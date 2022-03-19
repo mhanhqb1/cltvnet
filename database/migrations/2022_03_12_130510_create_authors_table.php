@@ -19,7 +19,11 @@ class CreateAuthorsTable extends Migration
             $table->string('image')->nullable();
             $table->integer('total_video')->default(0);
             $table->text('description')->nullable();
+            $table->string('source_type', 30)->nullable();//youtube, twitter
+            $table->string('source_id', 100)->nullable();
+            $table->date('crawl_at')->nullable();
             $table->timestamps();
+            $table->unique(['source_id', 'source_type'], 'unique_key');
         });
     }
 

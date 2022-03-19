@@ -34,6 +34,8 @@ class CreatePostsTable extends Migration
             $table->string('stream_url', 500)->nullable();
             $table->integer('author_id')->default(0);
             $table->timestamp('crawl_at')->nullable();
+            $table->timestamp('stream_crawl_at')->nullable();
+            $table->timestamp('published_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->unique(['source_id', 'source_type'], 'unique_key');
