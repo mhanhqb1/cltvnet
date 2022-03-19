@@ -9,23 +9,23 @@
                 <div class="slider-wrapper feature-carousel owl-carousel">
                     <div class="single-feature row">
                         <div class="slider-part-one col-md-6 pr-0">
-                            @include('elements.video_slider')
+                            @include('elements.video_slider', ['item' => $topVideos[0]])
                         </div>
                         <div class="slider-part-two col-md-6">
                             <div class="row">
                                 <div class="col-md-6">
-                                    @include('elements.video_slider')
+                                    @include('elements.video_slider', ['item' => $topVideos[1]])
                                 </div>
                                 <div class="col-md-6">
-                                    @include('elements.video_slider')
+                                    @include('elements.video_slider', ['item' => $topVideos[2]])
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    @include('elements.video_slider')
+                                    @include('elements.video_slider', ['item' => $topVideos[3]])
                                 </div>
                                 <div class="col-md-6">
-                                    @include('elements.video_slider')
+                                    @include('elements.video_slider', ['item' => $topVideos[3]])
                                 </div>
                             </div>
                         </div>
@@ -46,7 +46,9 @@
                     <h3>Trending Videos</h3>
                 </div>
                 <div class="video-carousel owl-carousel">
-                    @for($i=0; $i<=10; $i++) @include('elements.video_item') @endfor </div>
+                    @foreach ($trendVideos as $item)
+                        @include('elements.video_item', ['item' => $item])
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -65,11 +67,11 @@
                 </div>
             </div>
             <div class="row">
-                @for($i=0; $i<=7; $i++)
+                @foreach ($newVideos as $item)
                     <div class="col-md-6 col-lg-3 themeix-half">
-                        @include('elements.video_item')
+                        @include('elements.video_item', ['item' => $item])
                     </div>
-                @endfor
+                @endforeach
             </div>
         </div>
     </div>
