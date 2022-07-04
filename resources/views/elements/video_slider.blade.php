@@ -3,7 +3,7 @@
         <a href="single-video.html">
             <img class="lazy" alt="Video" src="{{ $item->image }}">
         </a>
-        <span class="video-duration">8.12</span>
+        <!-- <span class="video-duration">8.12</span> -->
     </div>
     <div class="video-content">
         <h4><a href="single-video.html" class="video-title">{{ $item->name }}</a></h4>

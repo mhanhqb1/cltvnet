@@ -25,7 +25,7 @@
                                     @include('elements.video_slider', ['item' => $topVideos[3]])
                                 </div>
                                 <div class="col-md-6">
-                                    @include('elements.video_slider', ['item' => $topVideos[3]])
+                                    @include('elements.video_slider', ['item' => $topVideos[4]])
                                 </div>
                             </div>
                         </div>

@@ -6,7 +6,7 @@
                 <img src="images/thumbnails/28.jpg" alt="video" />
             </noscript>
         </a>
-        <span class="video-duration">5.28</span>
+        <!-- <span class="video-duration">5.28</span> -->
     </div>
     <div class="review-content">
         <h4><a href="single-video.html" class="video-title">Funny pranks try not to laugh challenge</a></h4>
