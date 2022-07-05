@@ -24,10 +24,7 @@ $title = !empty($title) ? $title : 'Admin';
                 </div>
             </section>
         </div>
-        <footer class="main-footer">
-            <div class="float-right d-none d-sm-block">
-                <b>Version</b> 3.2.0
-            </div>
+        <footer class="main-footer text-center">
             <strong>Copyright © {{ date('Y') }} <a href="{{ env('APP_URL') }}">{{ env('APP_NAME') }}</a>.</strong> All rights reserved.
         </footer>
     </div>
