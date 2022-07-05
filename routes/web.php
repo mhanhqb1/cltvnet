@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,5 +34,17 @@ Route::prefix('user')->name('user.')->group(function(){
     Route::middleware(['auth:web'])->group(function(){
         Route::view('/home', 'user.home')->name('home');
         Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+    });
+});
+
+Route::prefix('admin')->name('admin.')->group(function() {
+    Route::middleware(['guest:admin'])->group(function() {
+        Route::view('/login', 'admin.login')->name('login');
+        Route::post('/check', [AdminController::class, 'check'])->name('check');
+    });
+
+    Route::middleware(['auth:admin'])->group(function() {
+        Route::view('/home', 'admin.home')->name('home');
+        Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
     });
 });
