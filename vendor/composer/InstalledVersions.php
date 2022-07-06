@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '413efef8b9cd770f00795ee2dc505f833980aae6',
+    'reference' => '8c1b0f8e6789dd01e73ea73f01acc74b96c983d9',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -43,6 +43,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '73e5b88775c64ccc0b84fb60836b30dc9d92ac4a',
+    ),
+    'bensampo/laravel-enum' => 
+    array (
+      'pretty_version' => 'v4.2.0',
+      'version' => '4.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ab1e261cd3214cf43521101858c50504bcd8e431',
     ),
     'brick/math' => 
     array (
@@ -210,6 +219,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '8c3d0a3f6af734494ad8f6fbbee0ba92422859f3',
+    ),
+    'hanneskod/classtools' => 
+    array (
+      'pretty_version' => '1.2.1',
+      'version' => '1.2.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'd365ddac0e602027c0471ea292f4ba2afcb49394',
     ),
     'illuminate/auth' => 
     array (
@@ -435,6 +453,33 @@ private static $installed = array (
         0 => '*',
       ),
     ),
+    'laminas/laminas-code' => 
+    array (
+      'pretty_version' => '3.5.1',
+      'version' => '3.5.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'b549b70c0bb6e935d497f84f750c82653326ac77',
+    ),
+    'laminas/laminas-eventmanager' => 
+    array (
+      'pretty_version' => '3.4.0',
+      'version' => '3.4.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'a93fd278c97b2d41ebbce5ba048a24e3e6f580ba',
+    ),
+    'laminas/laminas-zendframework-bridge' => 
+    array (
+      'pretty_version' => '1.4.1',
+      'version' => '1.4.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '88bf037259869891afce6504cacc4f8a07b24d0f',
+    ),
     'laravel/framework' => 
     array (
       'pretty_version' => 'v8.83.18',
@@ -451,7 +496,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '413efef8b9cd770f00795ee2dc505f833980aae6',
+      'reference' => '8c1b0f8e6789dd01e73ea73f01acc74b96c983d9',
     ),
     'laravel/sail' => 
     array (
@@ -1322,6 +1367,13 @@ private static $installed = array (
       array (
       ),
       'reference' => '11cb2199493b2f8a3b53e7f19068fc6aac760991',
+    ),
+    'zendframework/zend-code' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '^3.4.1',
+      ),
     ),
   ),
 );
