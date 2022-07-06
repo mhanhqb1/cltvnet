@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,5 +47,9 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::middleware(['auth:admin'])->group(function() {
         Route::view('/', 'admin.home')->name('home');
         Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
+
+        // Post
+        Route::get('/posts', [PostController::class, 'index'])->name('post.index');
+        Route::get('/posts/indexData', [PostController::class, 'indexData'])->name('post.indexData');
     });
 });
