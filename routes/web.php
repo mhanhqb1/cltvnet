@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CatesController;
 use App\Http\Controllers\Admin\MoviesController;
 use App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Route;
@@ -60,5 +61,13 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/movies/edit/{id}', [MoviesController::class, 'edit'])->name('movies.edit');
         Route::post('/movies/save', [MoviesController::class, 'save'])->name('movies.save');
         Route::delete('/movies/{id}', [MoviesController::class, 'delete'])->name('movies.delete');
+
+        // Cate
+        Route::get('/cates', [CatesController::class, 'index'])->name('cates.index');
+        Route::get('/cates/indexData', [CatesController::class, 'indexData'])->name('cates.indexData');
+        Route::get('/cates/add', [CatesController::class, 'add'])->name('cates.add');
+        Route::get('/cates/edit/{id}', [CatesController::class, 'edit'])->name('cates.edit');
+        Route::post('/cates/save', [CatesController::class, 'save'])->name('cates.save');
+        Route::delete('/cates/{id}', [CatesController::class, 'delete'])->name('cates.delete');
     });
 });
