@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Yajra\Datatables\Datatables;
 
 class MoviesController extends Controller
@@ -14,6 +15,9 @@ class MoviesController extends Controller
     public function __construct()
     {
         $this->model = new Movie();
+        $routeName = explode('.', Route::currentRouteName());
+        $pageTitle = ucfirst($routeName[1]).' '.ucfirst($routeName[2]);
+        view()->share('pageTitle', $pageTitle);
     }
 
     public function index()
