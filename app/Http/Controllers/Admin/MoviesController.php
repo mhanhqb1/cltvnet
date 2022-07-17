@@ -34,7 +34,13 @@ class MoviesController extends Controller
                 return $html;
             })
             ->addColumn('action', function ($item) {
-                return '<a href="'.route('admin.movies.edit', $item->id).'" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> Edit</a>';
+                return '<a href="'.route('admin.movies.edit', $item->id).'" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> Edit</a>
+                <form action="'.route('admin.movies.delete', $item->id).'" method="POST">
+                    <input type="hidden" name="_method" value="delete"/>
+                    '.csrf_field().'
+                    <input type="submit" class="btn btn-xs btn-danger" onclick="return window.confirm(\'Bạn muốn xóa item này không?\')" value="Delete"/>
+                </form>
+                ';
             })
             ->rawColumns(['image', 'action'])
             ->make(true);
@@ -81,6 +87,12 @@ class MoviesController extends Controller
         }
         $item->save();
         return redirect()->route('admin.movies.index')->with('success', 'Dữ liệu đã được cập nhật thành công');
+    }
+
+    public function delete($id)
+    {
+        $this->model->find($id)->delete();
+        return redirect()->route('admin.movies.index')->with('success', 'Dữ liệu đã được xóa thành công');
     }
 
     public function createSlug($str, $delimiter = '-'){

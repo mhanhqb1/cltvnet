@@ -59,5 +59,6 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/movies/add', [MoviesController::class, 'add'])->name('movies.add');
         Route::get('/movies/edit/{id}', [MoviesController::class, 'edit'])->name('movies.edit');
         Route::post('/movies/save', [MoviesController::class, 'save'])->name('movies.save');
+        Route::delete('/movies/{id}', [MoviesController::class, 'delete'])->name('movies.delete');
     });
 });
