@@ -27,7 +27,7 @@ $(function() {
         ajax: '{!! route('admin.movies.indexData') !!}',
         columns: [
             { data: 'id', name: 'id' },
-            { data: 'image', name: 'image' },
+            { data: 'image', name: 'image', orderable: false, searchable: false },
             { data: 'name', name: 'name' },
             { data: 'description', name: 'description' },
             { data: 'action', name: 'action', orderable: false, searchable: false }
