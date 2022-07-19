@@ -5,11 +5,11 @@
 @endpush
 
 @section('content')
-<form action="{{ route('admin.movies.save') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('admin.cates.save') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="id" value="{{ $item->id }}"/>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="card card-secondary">
                 <div class="card-header">
                     <h3 class="card-title">Thông tin chung</h3>
@@ -25,57 +25,19 @@
                         <input type="text" id="inputName" name="name" class="form-control" value="{{ !empty(old('name')) ? old('name') : $item->name }}">
                     </div>
                     <div class="form-group">
-                        <label for="inputDescription">Mô tả</label>
-                        <textarea id="inputDescription" class="form-control" name="description" rows="4">{{ !empty(old('description')) ? old('description') : $item['description'] }}</textarea>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-        <div class="col-md-6">
-            <div class="card card-secondary">
-                <div class="card-header">
-                    <h3 class="card-title">Thông tin khác</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="inputImage">Upload ảnh</label>
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="inputImage" name="image">
-                                <label class="custom-file-label" for="inputImage">Chọn file</label>
-                            </div>
-                            <div class="input-group-append">
-                                <span class="input-group-text">Upload</span>
-                            </div>
-                        </div>
+                        <label for="inputParentId">Danh mục cha</label>
+                        <select name="parent_id" id="inputParentId" class="form-control">
+                            <option value="0">-</option>
+                            @if (!empty($parents))
+                            @foreach ($parents as $v)
+                                <option value="{{ $v->id }}" {{ $item->parent_id == $v->id ? 'selected="selected"' : '' }}>{{ $v->name }}</option>
+                            @endforeach
+                            @endif
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="inputImageUrl">Link ảnh</label>
-                        <input type="text" id="inputImageUrl" class="form-control" name="image_url" value="{{ !empty(old('image_url')) ? old('image_url') : $item->image }}">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="card card-secondary">
-                <div class="card-header">
-                    <h3 class="card-title">Thông tin chi tiết</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <textarea id="inputDetail" class="form-control textEditor" rows="20" name="detail">{{ !empty(old('detail')) ? old('detail') : $item->detail }}</textarea>
+                        <label for="inputPosition">Vị trí</label>
+                        <input type="text" id="inputPosition" name="position" class="form-control" value="{{ !empty(old('position')) ? old('position') : $item->position }}">
                     </div>
                 </div>
             </div>

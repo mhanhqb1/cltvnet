@@ -45,13 +45,15 @@ class CatesController extends Controller
 
     public function add()
     {
-        return view('admin.cates.add');
+        $parents = Cate::get();
+        return view('admin.cates.add', compact('parents'));
     }
 
     public function edit($id)
     {
         $item = $this->model->find($id);
-        return view('admin.cates.edit', compact('item'));
+        $parents = Cate::where('id', '!=', $id)->get();
+        return view('admin.cates.edit', compact('item', 'parents'));
     }
 
     public function save(Request $request)

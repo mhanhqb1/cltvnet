@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cate;
 use App\Models\Movie;
+use App\Models\MovieCate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Yajra\Datatables\Datatables;
@@ -52,13 +54,16 @@ class MoviesController extends Controller
 
     public function add()
     {
-        return view('admin.movies.add');
+        $cates = Cate::get();
+        return view('admin.movies.add', compact('cates'));
     }
 
     public function edit($id)
     {
         $item = $this->model->find($id);
-        return view('admin.movies.edit', compact('item'));
+        $cates = Cate::get();
+        $movieCates = MovieCate::where('movie_id', $id)->pluck('cate_id')->toArray();
+        return view('admin.movies.edit', compact('item', 'cates', 'movieCates'));
     }
 
     public function save(Request $request)
@@ -89,8 +94,19 @@ class MoviesController extends Controller
         if (!empty($image)) {
             $item->image = $image;
         }
-        $item->save();
-        return redirect()->route('admin.movies.index')->with('success', 'Dữ liệu đã được cập nhật thành công');
+        if ($item->save()) {
+            MovieCate::where('movie_id', $item->id)->forceDelete();
+            if (!empty($request->cates)) {
+                foreach ($request->cates as $cate) {
+                    MovieCate::create([
+                        'cate_id' => $cate,
+                        'movie_id' => $item->id
+                    ]);
+                }
+            }
+            return redirect()->route('admin.movies.index')->with('success', 'Dữ liệu đã được cập nhật thành công');
+        }
+        return redirect()->route('admin.movies.index')->with('error', 'Dữ liệu cập nhật bị lỗi');
     }
 
     public function delete($id)
