@@ -17,4 +17,9 @@ class Movie extends Model
         'description',
         'detail'
     ];
+
+    public function videos()
+    {
+        return $this->hasMany(MovieVideo::class);
+    }
 }

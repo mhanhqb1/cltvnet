@@ -62,6 +62,13 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::post('/movies/save', [MoviesController::class, 'save'])->name('movies.save');
         Route::delete('/movies/{id}', [MoviesController::class, 'delete'])->name('movies.delete');
 
+        // Movie videos
+        Route::get('/movieVideos/add', [MoviesController::class, 'addVideo'])->name('movies.addVideo');
+        Route::get('/movieVideos/edit/{id}', [MoviesController::class, 'editVideo'])->name('movies.editVideo');
+        Route::post('/movieVideos/save', [MoviesController::class, 'saveVideo'])->name('movies.saveVideo');
+        Route::get('/movieVideos/indexData', [MoviesController::class, 'indexDataVideo'])->name('movies.indexDataVideo');
+        Route::delete('/moviesVideos/{id}', [MoviesController::class, 'deleteVideo'])->name('movies.deleteVideo');
+
         // Cate
         Route::get('/cates', [CatesController::class, 'index'])->name('cates.index');
         Route::get('/cates/indexData', [CatesController::class, 'indexData'])->name('cates.indexData');

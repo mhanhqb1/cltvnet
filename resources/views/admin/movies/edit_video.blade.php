@@ -6,7 +6,7 @@
 @endpush
 
 @section('content')
-<form action="{{ route('admin.movies.save') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('admin.movies.saveVideo') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="id" value="{{ $item->id }}"/>
     <div class="row">
@@ -22,22 +22,30 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="inputName">Tên</label>
-                        <input type="text" id="inputName" name="name" class="form-control" value="{{ !empty(old('name')) ? old('name') : $item->name }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Danh mục</label>
-                        <select class="select2" name="cates[]" multiple="multiple" data-placeholder="Chọn danh mục" style="width: 100%;">
-                            @if (!empty($cates))
-                            @foreach ($cates as $cate)
-                            <option value="{{ $cate->id }}" {{ !empty($movieCates) && in_array($cate->id, $movieCates) ? 'selected="selected"' : '' }}>{{ $cate->name }}</option>
+                        <label>Tên phim</label>
+                        <select class="form-control" name="movie_id" data-placeholder="Chọn phim" style="width: 100%;">
+                            @if (!empty($movies))
+                            @foreach ($movies as $movie)
+                            <option value="{{ $movie->id }}"
+                            @if ($movie->id == $item->movie_id)
+                            selected='selected'
+                            @endif
+                            >{{ $movie->name }}</option>
                             @endforeach
                             @endif
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="inputName">Tên</label>
+                        <input type="text" id="inputName" name="name" class="form-control" value="{{ old('name') ? old('name') : $item->name }}">
+                    </div>
+                    <div class="form-group">
                         <label for="inputDescription">Mô tả</label>
-                        <textarea id="inputDescription" class="form-control" name="description" rows="4">{{ !empty(old('description')) ? old('description') : $item['description'] }}</textarea>
+                        <textarea id="inputDescription" class="form-control" name="description" rows="4">{{ old('description') ? old('description') : $item->description }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSourceUrls">Link videos (type::id, youtube::abcd)</label>
+                        <textarea id="inputSourceUrls" class="form-control" name="source_urls" rows="4">{{ old('source_urls') ? old('source_urls') : $item->source_urls }}</textarea>
                     </div>
                 </div>
 
@@ -69,7 +77,15 @@
                     </div>
                     <div class="form-group">
                         <label for="inputImageUrl">Link ảnh</label>
-                        <input type="text" id="inputImageUrl" class="form-control" name="image_url" value="{{ !empty(old('image_url')) ? old('image_url') : $item->image }}">
+                        <input type="text" id="inputImageUrl" class="form-control" name="image_url" value="{{ old('image_url') ? old('image_url') : $item->image }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDuration">Thời gian</label>
+                        <input type="text" id="inputDuration" name="duration" class="form-control" value="{{ old('duration') ? old('duration') : $item->duration }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPosition">Vị trí</label>
+                        <input type="text" id="inputPosition" name="position" class="form-control" value="{{ old('position') ? old('position') : $item->position }}">
                     </div>
                 </div>
             </div>
@@ -86,44 +102,16 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <textarea id="inputDetail" class="form-control textEditor" rows="20" name="detail">{{ !empty(old('detail')) ? old('detail') : $item->detail }}</textarea>
+                        <textarea id="inputDetail" class="form-control textEditor" rows="20" name="detail">{{ old('detail') ? old('detail') : $item->detail }}</textarea>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="card card-secondary">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        Danh sách video
-                        <a href="{{ route('admin.movies.addVideo', ['movie_id' => $item->id]) }}" class="btn btn-primary">Add video</a>
-                    </h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <table class="table table-hover" id="videoDataTable">
-                        <thead>
-                            <tr>
-                                <td>#</td>
-                                <td>Image</td>
-                                <td>Name</td>
-                                <td>Description</td>
-                                <td></td>
-                            </tr>
-                        </thead>
-                    </table>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <a href="{{ route('admin.movies.index') }}" class="btn btn-secondary">Hủy bỏ</a>
-            <input type="submit" value="Chỉnh sửa" class="btn btn-success float-right">
+            <a href="{{ route('admin.movies.edit', $item->movie_id) }}" class="btn btn-secondary">Hủy bỏ</a>
+            <input type="submit" value="Tạo mới" class="btn btn-success float-right">
         </div>
     </div>
 </form>
@@ -136,19 +124,6 @@
     $(document).ready(function() {
         $('.textEditor').summernote();
         $('.select2').select2();
-
-        $('#videoDataTable').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{!! route('admin.movies.indexDataVideo', ['movie_id' => $item->id]) !!}',
-            columns: [
-                { data: 'id', name: 'id' },
-                { data: 'image', name: 'image', orderable: false, searchable: false },
-                { data: 'name', name: 'name' },
-                { data: 'description', name: 'description' },
-                { data: 'action', name: 'action', orderable: false, searchable: false }
-            ]
-        });
     });
 </script>
 @endpush

@@ -93,7 +93,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <a href="#" class="btn btn-secondary">Hủy bỏ</a>
+            <a href="{{ route('admin.movies.index') }}" class="btn btn-secondary">Hủy bỏ</a>
             <input type="submit" value="Tạo mới" class="btn btn-success float-right">
         </div>
     </div>
