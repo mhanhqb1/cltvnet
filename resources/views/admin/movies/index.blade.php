@@ -10,7 +10,8 @@
                     <td>Image</td>
                     <td>Name</td>
                     <td>Description</td>
-                    <td></td>
+                    <td>Total Video</td>
+                    <td style="width: 180px;"></td>
                 </tr>
             </thead>
         </table>
@@ -30,6 +31,7 @@ $(function() {
             { data: 'image', name: 'image', orderable: false, searchable: false },
             { data: 'name', name: 'name' },
             { data: 'description', name: 'description' },
+            { data: 'videos_count', name: 'videos_count' },
             { data: 'action', name: 'action', orderable: false, searchable: false }
         ]
     });

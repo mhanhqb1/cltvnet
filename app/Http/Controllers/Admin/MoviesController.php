@@ -30,20 +30,24 @@ class MoviesController extends Controller
 
     public function indexData()
     {
-        $limit = 10;
-        $data = $this->model->orderBy('id', 'desc')->limit($limit);
+        $data = $this->model->withCount('videos')->orderBy('id', 'desc');
         return Datatables::of($data)
             ->addColumn('image', function($item) {
                 $html = '';
                 if (!empty($item->image)) {
-                    $html = '<img src="'.url('/storage/'.$item->image).'" width="200"/>';
+                    if (strpos($item->image, 'http') !== false) {
+                        $html = '<img src="'.$item->image.'" width="200"/>';
+                    } else {
+                        $html = '<img src="'.url('/storage/'.$item->image).'" width="200"/>';
+                    }
+
                 }
                 return $html;
             })
             ->addColumn('action', function ($item) {
                 return '<a href="'.route('admin.movies.edit', $item->id).'" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> Edit</a>
                 <a href="'.route('admin.movies.addVideo', ['movie_id' => $item->id]).'" class="btn btn-xs btn-info"><i class="fas fa-edit"></i> Add video</a>
-                <form action="'.route('admin.movies.delete', $item->id).'" method="POST">
+                <form action="'.route('admin.movies.delete', $item->id).'" method="POST" style="display:inline-block;">
                     <input type="hidden" name="_method" value="delete"/>
                     '.csrf_field().'
                     <input type="submit" class="btn btn-xs btn-danger" onclick="return window.confirm(\'Bạn muốn xóa item này không?\')" value="Delete"/>
@@ -187,7 +191,7 @@ class MoviesController extends Controller
             })
             ->addColumn('action', function ($item) {
                 return '<a href="'.route('admin.movies.editVideo', $item->id).'" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> Edit</a>
-                <form action="'.route('admin.movies.deleteVideo', $item->id).'" method="POST">
+                <form action="'.route('admin.movies.deleteVideo', $item->id).'" method="POST" style="display:inline-block;">
                     <input type="hidden" name="_method" value="delete"/>
                     '.csrf_field().'
                     <input type="submit" class="btn btn-xs btn-danger" onclick="return window.confirm(\'Bạn muốn xóa item này không?\')" value="Delete"/>
