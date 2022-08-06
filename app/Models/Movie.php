@@ -15,7 +15,9 @@ class Movie extends Model
         'slug',
         'image',
         'description',
-        'detail'
+        'detail',
+        'is_series',
+        'country_id'
     ];
 
     public function videos()

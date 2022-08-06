@@ -35,6 +35,17 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label>Quốc gia</label>
+                        <select class="select2" name="country_id" data-placeholder="Chọn quốc gia" style="width: 100%;">
+                            <option value="0">----</option>
+                            @if (!empty($countries))
+                            @foreach ($countries as $country)
+                            <option value="{{ $country->id }}">{{ $country->name }}</option>
+                            @endforeach
+                            @endif
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="inputDescription">Mô tả</label>
                         <textarea id="inputDescription" class="form-control" name="description" rows="4">{{ old('description') }}</textarea>
                     </div>
@@ -69,6 +80,16 @@
                     <div class="form-group">
                         <label for="inputImageUrl">Link ảnh</label>
                         <input type="text" id="inputImageUrl" class="form-control" name="image_url" value="{{ old('image_url') }}">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="radio1" name="is_series" value="0">
+                            <label class="form-check-label" for="radio1">Phim lẻ</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="radio2" name="is_series" value="1">
+                            <label class="form-check-label" for="radio2">Phim bộ</label>
+                        </div>
                     </div>
                 </div>
             </div>

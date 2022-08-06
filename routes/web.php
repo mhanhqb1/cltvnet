@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CatesController;
 use App\Http\Controllers\Admin\MoviesController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\CountriesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -76,5 +77,13 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/cates/edit/{id}', [CatesController::class, 'edit'])->name('cates.edit');
         Route::post('/cates/save', [CatesController::class, 'save'])->name('cates.save');
         Route::delete('/cates/{id}', [CatesController::class, 'delete'])->name('cates.delete');
+
+        // Cate
+        Route::get('/countries', [CountriesController::class, 'index'])->name('countries.index');
+        Route::get('/countries/indexData', [CountriesController::class, 'indexData'])->name('countries.indexData');
+        Route::get('/countries/add', [CountriesController::class, 'add'])->name('countries.add');
+        Route::get('/countries/edit/{id}', [CountriesController::class, 'edit'])->name('countries.edit');
+        Route::post('/countries/save', [CountriesController::class, 'save'])->name('countries.save');
+        Route::delete('/countries/{id}', [CountriesController::class, 'delete'])->name('countries.delete');
     });
 });

@@ -36,6 +36,17 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label>Quốc gia</label>
+                        <select class="select2 form-control" name="country_id" data-placeholder="Chọn quốc gia" style="width: 100%;">
+                            <option value="0">----</option>
+                            @if (!empty($countries))
+                            @foreach ($countries as $country)
+                            <option value="{{ $country->id }}" {{ $item->country_id == $country->id ? 'selected="selected"' : '' }}>{{ $country->name }}</option>
+                            @endforeach
+                            @endif
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="inputDescription">Mô tả</label>
                         <textarea id="inputDescription" class="form-control" name="description" rows="4">{{ !empty(old('description')) ? old('description') : $item['description'] }}</textarea>
                     </div>
@@ -70,6 +81,17 @@
                     <div class="form-group">
                         <label for="inputImageUrl">Link ảnh</label>
                         <input type="text" id="inputImageUrl" class="form-control" name="image_url" value="{{ !empty(old('image_url')) ? old('image_url') : $item->image }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Thể loại</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="radio1" name="is_series" value="0" {!! $item->is_series == 0 ? 'checked="checked"' : '' !!}>
+                            <label class="form-check-label" for="radio1">Phim lẻ</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="radio2" name="is_series" value="1" {!! $item->is_series == 1 ? 'checked="checked"' : '' !!}>
+                            <label class="form-check-label" for="radio2">Phim bộ</label>
+                        </div>
                     </div>
                 </div>
             </div>

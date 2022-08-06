@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cate;
+use App\Models\Country;
 use App\Models\Movie;
 use App\Models\MovieCate;
 use App\Models\MovieVideo;
@@ -61,15 +62,17 @@ class MoviesController extends Controller
     public function add()
     {
         $cates = Cate::get();
-        return view('admin.movies.add', compact('cates'));
+        $countries = Country::get();
+        return view('admin.movies.add', compact('cates', 'countries'));
     }
 
     public function edit($id)
     {
         $item = $this->model->find($id);
         $cates = Cate::get();
+        $countries = Country::get();
         $movieCates = MovieCate::where('movie_id', $id)->pluck('cate_id')->toArray();
-        return view('admin.movies.edit', compact('item', 'cates', 'movieCates'));
+        return view('admin.movies.edit', compact('item', 'cates', 'movieCates', 'countries'));
     }
 
     public function save(Request $request)
@@ -83,7 +86,7 @@ class MoviesController extends Controller
             'name' => $nameValidate,
             'image' => 'nullable|image|max:1024'
         ]);
-        $slug = $this->createSlug($request->name);
+        $slug = createSlug($request->name);
         if (!empty($request->image)) {
             $image = $request->file('image')->storePubliclyAs('movies', $slug.'-'.time().'.jpg', 'public');
         } elseif (!empty($request->image_url)) {
@@ -96,7 +99,9 @@ class MoviesController extends Controller
         }
         $item->name = $request->name;
         $item->slug = $slug;
+        $item->country_id = !empty($request->country_id) ? $request->country_id : 0;
         $item->description = !empty($request->description) ? $request->description : '';
+        $item->is_series = !empty($request->is_series) ? $request->is_series : 0;
         $item->detail = !empty($request->detail) ? $request->detail : '';
         if (!empty($image)) {
             $item->image = $image;
@@ -143,7 +148,7 @@ class MoviesController extends Controller
             'movie_id' => 'required',
             'image' => 'nullable|image|max:1024'
         ]);
-        $slug = $this->createSlug($request->name);
+        $slug = createSlug($request->name);
         if (!empty($request->image)) {
             $image = $request->file('image')->storePubliclyAs('movies', $slug.'-'.time().'.jpg', 'public');
         } elseif (!empty($request->image_url)) {
@@ -207,10 +212,5 @@ class MoviesController extends Controller
         $video = MovieVideo::find($id);
         $video->delete();
         return redirect()->route('admin.movies.edit', $video->movie_id)->with('success', 'Dữ liệu đã được xóa thành công');
-    }
-
-    public function createSlug($str, $delimiter = '-'){
-        $slug = strtolower(trim(preg_replace('/[\s-]+/', $delimiter, preg_replace('/[^A-Za-z0-9-]+/', $delimiter, preg_replace('/[&]/', 'and', preg_replace('/[\']/', '', iconv('UTF-8', 'ASCII//TRANSLIT', $str))))), $delimiter));
-        return $slug;
     }
 }
