@@ -22,6 +22,12 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/tim-kiem', [App\Http\Controllers\HomeController::class, 'search'])->name('home.search');
+Route::get('/the-loai/{slug}', [App\Http\Controllers\HomeController::class, 'cateIndex'])->name('home.cate.index');
+Route::get('/phim-hoat-hinh', [App\Http\Controllers\HomeController::class, 'getAnime'])->name('home.anime');
+Route::get('/phim-le', [App\Http\Controllers\HomeController::class, 'getNotSeries'])->name('home.not_series');
+Route::get('/phim-bo', [App\Http\Controllers\HomeController::class, 'getSeries'])->name('home.series');
+Route::get('/phim-moi', [App\Http\Controllers\HomeController::class, 'getNewMovies'])->name('home.new_movie');
 
 Route::prefix('user')->name('user.')->group(function(){
     Route::middleware(['guest:web'])->group(function(){

@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Cate;
+
 function createSlug($str, $delimiter = '-')
 {
     $str = preg_replace("/(\,|-|\.)/", '', $str);
@@ -23,4 +25,17 @@ function createSlug($str, $delimiter = '-')
     $str = str_replace("?", "", $str);
 
     return strtolower($str);
+}
+
+function getFrontCategories() {
+    return Cate::orderBy('position', 'asc')->get();
+}
+
+function getImageUrl($image) {
+    if (strpos($image, 'http') !== false) {
+        $imageUrl = $image;
+    } else {
+        $imageUrl = url('/storage/'.$image);
+    }
+    return $imageUrl;
 }

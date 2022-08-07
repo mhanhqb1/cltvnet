@@ -13,7 +13,11 @@
                     <form class="form-horizontal">
                         <fieldset>
                             <div class="row">
-                                @include('layouts.video')
+                                @if(!$videos->isEmpty())
+                                    @foreach ($videos as $item)
+                                        @include('layouts.video', ['item' => $item])
+                                    @endforeach
+                                @endif
                             </div>
                         </fieldset>
                     </form>
@@ -34,7 +38,11 @@
                         <fieldset>
                             <!-- <seri> -->
                             <div class="row">
-                                @include('layouts.video')
+                                @if(!$movies->isEmpty())
+                                    @foreach ($movies as $item)
+                                        @include('layouts.movie', ['item' => $item])
+                                    @endforeach
+                                @endif
                             </div>
                             <center><a class="btn btn-block btn-border btn-post btn-danger" href="https://www.danfra.com/series/">Xem tất cả</a></center>
                         </fieldset>

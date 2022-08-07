@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'CaLaTV.net';
+$pageTitle = !empty($pageTitle) ? $pageTitle.' - CaLaTV.net' : 'CaLaTV.net';
 $masterDescription = "Website review phim hay ".date('Y').", chuyên review phim, tóm tắt phim hay, các bộ phim hành động, phim kinh dị, phim viễn tưởng, phim hài, phim hanh dong, tom tat phim hay, phim kinh di, review phim, vua phim, vua phim review, review phim hay review phim kinh dị hay phim hàn quốc phim hoạt hình hài hước phiêu lưu gay cấn hấp dẫn, review phim zombie anime, review phim hay 2020, review phim hay 2021, review anime, tóm tắt anime phim lẻ hay";
 $metaDescription = !empty($metaDescription) ? $metaDescription : $masterDescription;
 ?>
@@ -13,7 +13,7 @@ $metaDescription = !empty($metaDescription) ? $metaDescription : $masterDescript
     <link rel="shortcut icon" href="https://www.danfra.com/images/favicon.png">
     <title>{{ $pageTitle }}</title>
 
-    <meta name="description" content="" />
+    <meta name="description" content="{{ $metaDescription }}" />
     <base href="{{ url('/') }}">
     <meta name="revisit-after" content="2 days">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
