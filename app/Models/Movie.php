@@ -49,10 +49,17 @@ class Movie extends Model
         }
 
         // Paginate
-        if (!empty($params['limit'])) {
+        if (!empty($params['limit']) && !empty($params['not_page'])) {
             $data = $data->limit($params['limit']);
         }
-        $data = $data->orderBy('id', 'asc')->get();
+        $data = $data->orderBy('id', 'asc');
+
+        if (!empty($params['not_page'])) {
+            $data = $data->get();
+        } else {
+            $data = $data->paginate($params['limit']);
+        }
+
         return $data;
     }
 }

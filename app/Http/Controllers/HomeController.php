@@ -29,7 +29,8 @@ class HomeController extends Controller
         $limit = 18;
         $videos = MovieVideo::with('movie')->orderBy('id', 'asc')->limit($limit)->get();
         $movies = Movie::getList([
-            'limit' => $limit
+            'limit' => $limit,
+            'not_page' => 1
         ]);;
         return view('home', compact('videos', 'movies'));
     }

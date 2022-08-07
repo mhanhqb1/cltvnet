@@ -17,6 +17,11 @@
                 </div>
                 @endif
             </div>
+            <div class="row">
+                <center>
+                {{ $movies->onEachSide(5)->links() }}
+                </center>
+            </div>
         </div>
     </div>
 </div>
