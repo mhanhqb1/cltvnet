@@ -28,6 +28,7 @@ Route::get('/phim-hoat-hinh', [App\Http\Controllers\HomeController::class, 'getA
 Route::get('/phim-le', [App\Http\Controllers\HomeController::class, 'getNotSeries'])->name('home.not_series');
 Route::get('/phim-bo', [App\Http\Controllers\HomeController::class, 'getSeries'])->name('home.series');
 Route::get('/phim-moi', [App\Http\Controllers\HomeController::class, 'getNewMovies'])->name('home.new_movie');
+Route::get('/phim/{movieSlug}', [App\Http\Controllers\HomeController::class, 'getMovieDetail'])->name('home.movie_detail');
 
 Route::prefix('user')->name('user.')->group(function(){
     Route::middleware(['guest:web'])->group(function(){

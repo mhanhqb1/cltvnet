@@ -31,7 +31,7 @@ $cates = getFrontCategories();
 <div id="menu">
     <div class="container">
         <ul>
-            <li><a href="#">Phim mới</a></li>
+            <li><a href="{{ route('home.new_movie') }}">Phim mới</a></li>
             <li class="menu-child">
                 <span><i class="fa fa-caret-down" aria-hidden="true"></i> &nbsp;Thể loại</span>
                 <ul class="submenu">

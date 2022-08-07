@@ -91,7 +91,7 @@ class HomeController extends Controller
     public function getSeries(Request $request)
     {
         $limit = 12;
-        $pageTitle = 'Phim lẻ';
+        $pageTitle = 'Phim bộ';
         $movies = Movie::getList([
             'limit' => $limit,
             'is_series' => 1
@@ -102,10 +102,20 @@ class HomeController extends Controller
     public function getNewMovies(Request $request)
     {
         $limit = 12;
-        $pageTitle = 'Phim lẻ';
+        $pageTitle = 'Phim mới';
         $movies = Movie::getList([
             'limit' => $limit
         ]);
         return view('home.cate_index', compact('movies', 'pageTitle'));
+    }
+
+    public function getMovieDetail($movieSlug, Request $request)
+    {
+        $movie = Movie::with('country', 'videos', 'cates')->where('slug', $movieSlug)->first();
+        if (empty($movie)) {
+            return redirect()->route('home');
+        }
+        $pageTitle = $movie->name;
+        return view('home.movie_detail', compact('movie', 'pageTitle'));
     }
 }
