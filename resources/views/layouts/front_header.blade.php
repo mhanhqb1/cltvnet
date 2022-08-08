@@ -4,8 +4,9 @@ $cates = getFrontCategories();
 <nav class="navbar navbar-site navbar-default" role="navigation" style="background: #cd1d1f;">
     <div class="container">
         <div class="navbar-header">
-            <a href="{{ route('home') }}" class="navbar-brand logo logo-title">
-                <img src="https://www.danfra.com/images/logo.png" style="margin-top:-5px; max-height:70px;" height="51" width="200">
+            <a href="{{ route('home') }}" class="navbar-brand logo logo-title" style="color: #fff;">
+                CaLaTV
+                <!-- <img src="" style="margin-top:-5px; max-height:70px;" height="51" width="200"> -->
             </a>
         </div>
         <div>
