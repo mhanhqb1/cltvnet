@@ -49,6 +49,10 @@
                         <label for="inputDescription">Mô tả</label>
                         <textarea id="inputDescription" class="form-control" name="description" rows="4">{{ old('description') }}</textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="inputTags">Tags</label>
+                        <textarea id="inputTags" class="form-control" name="tags" rows="4">{{ old('tags') }}</textarea>
+                    </div>
                 </div>
 
             </div>
@@ -82,6 +86,7 @@
                         <input type="text" id="inputImageUrl" class="form-control" name="image_url" value="{{ old('image_url') }}">
                     </div>
                     <div class="form-group">
+                        <label>Thể loại</label>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" id="radio1" name="is_series" value="0">
                             <label class="form-check-label" for="radio1">Phim lẻ</label>
@@ -90,6 +95,10 @@
                             <input class="form-check-input" type="radio" id="radio2" name="is_series" value="1">
                             <label class="form-check-label" for="radio2">Phim bộ</label>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputYear">Năm sản xuất</label>
+                        <input type="text" id="inputYear" class="form-control" name="year" value="{{ old('year') }}">
                     </div>
                 </div>
             </div>

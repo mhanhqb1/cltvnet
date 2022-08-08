@@ -1,5 +1,6 @@
 <?php
 $cates = getFrontCategories();
+$countries = getFrontCountries();
 ?>
 <nav class="navbar navbar-site navbar-default" role="navigation" style="background: #cd1d1f;">
     <div class="container">
@@ -38,6 +39,14 @@ $cates = getFrontCategories();
                 <ul class="submenu">
                     @foreach ($cates as $cate)
                     <li><a href="{{ route('home.cate.index', $cate->slug) }}">{{ $cate->name }}</a></li>
+                    @endforeach
+                </ul>
+            </li>
+            <li class="menu-child">
+                <span><i class="fa fa-caret-down" aria-hidden="true"></i> &nbsp;Quốc gia</span>
+                <ul class="submenu">
+                    @foreach ($countries as $country)
+                    <li><a href="{{ route('home.country.index', $country->slug) }}">{{ $country->name }}</a></li>
                     @endforeach
                 </ul>
             </li>

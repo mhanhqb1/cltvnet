@@ -50,6 +50,10 @@
                         <label for="inputDescription">Mô tả</label>
                         <textarea id="inputDescription" class="form-control" name="description" rows="4">{{ !empty(old('description')) ? old('description') : $item['description'] }}</textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="inputTags">Tags</label>
+                        <textarea id="inputTags" class="form-control" name="tags" rows="4">{{ old('tags') ? old('tags') : $item->tags }}</textarea>
+                    </div>
                 </div>
 
             </div>
@@ -92,6 +96,10 @@
                             <input class="form-check-input" type="radio" id="radio2" name="is_series" value="1" {!! $item->is_series == 1 ? 'checked="checked"' : '' !!}>
                             <label class="form-check-label" for="radio2">Phim bộ</label>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputYear">Năm sản xuất</label>
+                        <input type="text" id="inputYear" class="form-control" name="year" value="{{ old('year') ? old('year') : $item->year }}">
                     </div>
                 </div>
             </div>

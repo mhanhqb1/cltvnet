@@ -122,7 +122,7 @@ $cateName = implode(' - ', $cateName);
                             </font>
                         </b>
                         <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;"> {{ !empty($movie->country->name) ? $movie->country->name : '-' }}</font>
+                            <font style="vertical-align: inherit;"> {!! !empty($movie->country->name) ? '<a href="'.route('home.country.index', $movie->country->slug).'">'.$movie->country->name.'</a>' : '-' !!}</font>
                         </font>
                     </p>
                     <p>
@@ -132,7 +132,7 @@ $cateName = implode(' - ', $cateName);
                             </font>
                         </b>
                         <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;"> {{ '-' }}</font>
+                            <font style="vertical-align: inherit;"> {{ !empty($movie->year) ? $movie->year : '-' }}</font>
                         </font>
                     </p>
                     <p>
@@ -143,6 +143,16 @@ $cateName = implode(' - ', $cateName);
                         </b>
                         <font style="vertical-align: inherit;">
                             <font style="vertical-align: inherit;"> {!! $cateName !!}</font>
+                        </font>
+                    </p>
+                    <p>
+                        <b>
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Tags:</font>
+                            </font>
+                        </b>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;"> {{ !empty($movie->tags) ? $movie->tags : '-' }}</font>
                         </font>
                     </p>
                 </div>

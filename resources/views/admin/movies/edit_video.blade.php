@@ -39,13 +39,13 @@
                         <label for="inputName">Tên</label>
                         <input type="text" id="inputName" name="name" class="form-control" value="{{ old('name') ? old('name') : $item->name }}">
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="inputDescription">Mô tả</label>
                         <textarea id="inputDescription" class="form-control" name="description" rows="4">{{ old('description') ? old('description') : $item->description }}</textarea>
-                    </div>
+                    </div> -->
                     <div class="form-group">
-                        <label for="inputSourceUrls">Link videos (type::id, youtube::abcd)</label>
-                        <textarea id="inputSourceUrls" class="form-control" name="source_urls" rows="4">{{ old('source_urls') ? old('source_urls') : $item->source_urls }}</textarea>
+                        <label for="inputSourceUrls">DailyMotion ID</label>
+                        <input type="text" id="inputSourceUrls" name="source_urls" class="form-control" value="{{ old('source_urls') ? old('source_urls') : $item->source_urls }}">
                     </div>
                 </div>
 
@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="inputImage">Upload ảnh</label>
                         <div class="input-group">
                             <div class="custom-file">
@@ -78,19 +78,19 @@
                     <div class="form-group">
                         <label for="inputImageUrl">Link ảnh</label>
                         <input type="text" id="inputImageUrl" class="form-control" name="image_url" value="{{ old('image_url') ? old('image_url') : $item->image }}">
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="inputDuration">Thời gian</label>
                         <input type="text" id="inputDuration" name="duration" class="form-control" value="{{ old('duration') ? old('duration') : $item->duration }}">
                     </div>
                     <div class="form-group">
-                        <label for="inputPosition">Vị trí</label>
+                        <label for="inputPosition">Số thứ tự</label>
                         <input type="text" id="inputPosition" name="position" class="form-control" value="{{ old('position') ? old('position') : $item->position }}">
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
+        <!-- <div class="col-md-12">
             <div class="card card-secondary">
                 <div class="card-header">
                     <h3 class="card-title">Thông tin chi tiết</h3>
@@ -106,7 +106,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="row">
         <div class="col-12">

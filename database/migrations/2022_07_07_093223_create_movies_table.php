@@ -22,6 +22,8 @@ class CreateMoviesTable extends Migration
             $table->text('detail')->nullable();
             $table->integer('country_id')->nullable();
             $table->boolean('is_series')->default(0);
+            $table->integer('year')->nullable();
+            $table->text('tags')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

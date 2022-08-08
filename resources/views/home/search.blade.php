@@ -19,7 +19,7 @@
             </div>
             <div class="row">
                 <center>
-                {{ $movies->onEachSide(5)->links() }}
+                {{ $movies->links() }}
                 </center>
             </div>
         </div>

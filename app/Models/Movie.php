@@ -17,7 +17,9 @@ class Movie extends Model
         'description',
         'detail',
         'is_series',
-        'country_id'
+        'country_id',
+        'year',
+        'tags'
     ];
 
     public function videos()
@@ -48,6 +50,9 @@ class Movie extends Model
             $data = $data->whereHas('cates', function($q) use($params) {
                 $q->where('cates.id', $params['cate_id']);
             });
+        }
+        if (!empty($params['country_id'])) {
+            $data = $data->where('country_id', $params['country_id']);
         }
         if (!empty($params['slug'])) {
             $data = $data->where('movies.slug', 'like', '%'.$params['slug'].'%');

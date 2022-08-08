@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cate;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Models\MovieVideo;
 use App\Models\Movie;
@@ -48,6 +49,21 @@ class HomeController extends Controller
             'cate_id' => $cate->id
         ]);
         return view('home.cate_index', compact('movies', 'cate', 'pageTitle'));
+    }
+
+    public function countryIndex($slug, Request $request)
+    {
+        $limit = 12;
+        $country = Country::where('slug', $slug)->first();
+        if (empty($country)) {
+            return redirect()->route('home');
+        }
+        $pageTitle = 'Phim '.$country->name;
+        $movies = Movie::getList([
+            'limit' => $limit,
+            'country_id' => $country->id
+        ]);
+        return view('home.cate_index', compact('movies', 'pageTitle'));
     }
 
     public function search(Request $request) {

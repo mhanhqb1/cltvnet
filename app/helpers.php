@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Cate;
+use App\Models\Country;
 
 function createSlug($str, $delimiter = '-')
 {
@@ -29,6 +30,9 @@ function createSlug($str, $delimiter = '-')
 
 function getFrontCategories() {
     return Cate::orderBy('position', 'asc')->get();
+}
+function getFrontCountries() {
+    return Country::orderBy('position', 'asc')->get();
 }
 
 function getImageUrl($image) {

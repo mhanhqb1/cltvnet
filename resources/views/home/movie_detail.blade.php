@@ -73,7 +73,7 @@ $cateName = implode(' - ', $cateName);
                             </font>
                         </b>
                         <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;"> {{ '-' }}</font>
+                            <font style="vertical-align: inherit;"> {{ !empty($movie->year) ? $movie->year : '-' }}</font>
                         </font>
                     </p>
                     <p>
@@ -84,6 +84,16 @@ $cateName = implode(' - ', $cateName);
                         </b>
                         <font style="vertical-align: inherit;">
                             <font style="vertical-align: inherit;"> {!! $cateName !!}</font>
+                        </font>
+                    </p>
+                    <p>
+                        <b>
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Tags:</font>
+                            </font>
+                        </b>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;"> {{ !empty($movie->tags) ? $movie->tags : '-' }}</font>
                         </font>
                     </p>
                 </div>

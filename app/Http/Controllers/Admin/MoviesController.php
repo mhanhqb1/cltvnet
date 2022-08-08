@@ -88,7 +88,7 @@ class MoviesController extends Controller
         ]);
         $slug = createSlug($request->name);
         if (!empty($request->image)) {
-            $image = $request->file('image')->storePubliclyAs('movies', $slug.'-'.time().'.jpg', 'public');
+            $image = $request->file('image')->storePubliclyAs('phim', $slug.'-'.time().'.jpg', 'public');
         } elseif (!empty($request->image_url)) {
             $image = $request->image_url;
         }
@@ -99,10 +99,12 @@ class MoviesController extends Controller
         }
         $item->name = $request->name;
         $item->slug = $slug;
+        $item->year = !empty($request->year) ? $request->year : null;
+        $item->tags = !empty($request->tags) ? $request->tags : null;
         $item->country_id = !empty($request->country_id) ? $request->country_id : 0;
         $item->description = !empty($request->description) ? $request->description : '';
         $item->is_series = !empty($request->is_series) ? $request->is_series : 0;
-        $item->detail = !empty($request->detail) ? $request->detail : '';
+        $item->detail = !empty($request->detail) ? $request->detail : null;
         if (!empty($image)) {
             $item->image = $image;
         }
@@ -150,7 +152,7 @@ class MoviesController extends Controller
         ]);
         $slug = createSlug($request->name);
         if (!empty($request->image)) {
-            $image = $request->file('image')->storePubliclyAs('movies', $slug.'-'.time().'.jpg', 'public');
+            $image = $request->file('image')->storePubliclyAs('phim', $slug.'-'.time().'.jpg', 'public');
         } elseif (!empty($request->image_url)) {
             $image = $request->image_url;
         }
