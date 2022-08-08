@@ -118,4 +118,18 @@ class HomeController extends Controller
         $pageTitle = $movie->name;
         return view('home.movie_detail', compact('movie', 'pageTitle'));
     }
+
+    public function getVideoDetail($movieSlug, $videoSlug, Request $request)
+    {
+        $movie = Movie::with('country', 'videos', 'cates')->where('slug', $movieSlug)->first();
+        if (empty($movie)) {
+            return redirect()->route('home');
+        }
+        $video = MovieVideo::where('movie_id', $movie->id)->where('slug', $videoSlug)->first();
+        if (empty($video)) {
+            return redirect()->route('home.movie_detail', $movie->slug);
+        }
+        $pageTitle = $movie->name . ' - ' . $video->name;
+        return view('home.video_detail', compact('movie', 'video', 'pageTitle'));
+    }
 }

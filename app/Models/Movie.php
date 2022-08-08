@@ -22,7 +22,7 @@ class Movie extends Model
 
     public function videos()
     {
-        return $this->hasMany(MovieVideo::class);
+        return $this->hasMany(MovieVideo::class)->orderBy('position', 'asc');
     }
 
     public function country()
@@ -41,7 +41,7 @@ class Movie extends Model
         $data = self::whereHas('videos');
 
         // Filter
-        if (isset($params['is_series']) && $params['is_series'] != '') {
+        if (isset($params['is_series'])) {
             $data = $data->where('is_series', $params['is_series']);
         }
         if (!empty($params['cate_id'])) {

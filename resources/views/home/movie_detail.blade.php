@@ -1,5 +1,4 @@
 <?php
-$cates = getFrontCategories();
 $cateName = [];
 if (!empty($movie->cates)) {
     foreach ($movie->cates as $v) {
@@ -13,45 +12,7 @@ $cateName = implode(' - ', $cateName);
 @section('content')
 <div class="row">
     <div class="col-sm-4 hidden-xs">
-        <div class="inner-box category-content" style="padding-bottom: 30px;">
-            <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;">
-                <i class="fa fa-television"></i>
-                <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">Danh mục</font>
-                </font>
-            </h2>
-            <p style="font-size:15px;">
-                <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">Chọn danh mục yêu thích của bạn</font>
-                </font>
-            </p>
-            <div class="row">
-                <div class="col-sm-12">
-                    <form class="form-horizontal">
-                        <fieldset>
-                            <table style="width:100%;">
-                                <tbody>
-                                    @foreach($cates as $cate)
-                                    <tr>
-                                        <td style="border-bottom:1px solid #ccc; padding:5px; width:100%;">
-                                            <a href="{{ route('home.cate.index', $cate->slug) }}">
-                                                <b>
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">{{ $cate->name }}</font>
-                                                    </font>
-                                                </b>
-                                                <img src="{{ asset('/images/arrow.png') }}" style="float:right; max-width:20px;">
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-        </div>
+    @include('layouts.front_left_cates')
     </div>
 
     <div class="col-sm-8">
@@ -152,9 +113,9 @@ $cateName = implode(' - ', $cateName);
                         <div aria-labelledby="headingOne" role="tabpanel" class="panel-collapse collapse in" id="collapseOne" aria-expanded="true">
                             @foreach ($movie->videos as $video)
                             <div class="panel-body pprc">
-                                <a data-id="{{ $video->id }}" href="#">
+                                <a data-id="{{ $video->id }}" href="{{ route('home.video_detail', ['movieSlug' => $movie->slug, 'videoSlug' => $video->slug]) }}">
                                     <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">{{ $movie->name.' - Tập '.$video->position }}</font>
+                                        <font style="vertical-align: inherit;">{{ $movie->name.' - '.$video->name }}</font>
                                     </font>
                                 </a>
                             </div>
