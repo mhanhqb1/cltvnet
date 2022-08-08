@@ -1,5 +1,10 @@
 <?php
 $cateName = [];
+if (empty($movie->is_series)) {
+    $cateName[] = '<a href="' . route('home.not_series') . '">Phim lẻ</a>';
+} else {
+    $cateName[] = '<a href="' . route('home.series') . '">Phim bộ</a>';
+}
 if (!empty($movie->cates)) {
     foreach ($movie->cates as $v) {
         $cateName[] = '<a href="' . route('home.cate.index', $v->slug) . '">' . $v->name . '</a>';
