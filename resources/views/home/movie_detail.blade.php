@@ -63,7 +63,7 @@ $cateName = implode(' - ', $cateName);
                             </font>
                         </b>
                         <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;"> {{ !empty($movie->country->name) ? $movie->country->name : '-' }}</font>
+                            <font style="vertical-align: inherit;"> {!! !empty($movie->country->name) ? '<a href="'.route('home.country.index', $movie->country->slug).'">'.$movie->country->name.'</a>' : '-' !!}</font>
                         </font>
                     </p>
                     <p>

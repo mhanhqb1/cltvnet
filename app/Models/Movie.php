@@ -34,7 +34,7 @@ class Movie extends Model
 
     public function cates()
     {
-        return $this->hasManyThrough(Cate::class, MovieCate::class, 'movie_id', 'id');
+        return $this->hasManyThrough(Cate::class, MovieCate::class, 'movie_id', 'id', 'id', 'cate_id');
     }
 
     public static function getList($params)
