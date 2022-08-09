@@ -2,7 +2,7 @@
 $pageTitle = !empty($pageTitle) ? $pageTitle.' - CaLaTV.net' : 'CaLaTV.net';
 $appName = env('APP_NAME');
 $masterDescription = "Website review phim hay ".date('Y').", chuyên review phim, tóm tắt phim hay, các bộ phim hành động, phim kinh dị, phim viễn tưởng, phim hài, phim hanh dong, tom tat phim hay, phim kinh di, review phim, vua phim, vua phim review, review phim hay review phim kinh dị hay phim hàn quốc phim hoạt hình hài hước phiêu lưu gay cấn hấp dẫn, review phim zombie anime, review phim hay 2020, review phim hay 2021, review anime, tóm tắt anime phim lẻ hay";
-$metaDescription = !empty($metaDescription) ? $metaDescription : $masterDescription;
+$metaDescription = !empty($metaDescription) ? substr($metaDescription, 0, 150) : $masterDescription;
 $metaKeywords = !empty($metaKeywords) ? $metaKeywords : 'tom tat phim, review phim, review phim hai, tom tat phim chau tinh tri, chau tinh tri, tom tat phim hai chau tinh tri';
 $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
 ?>
