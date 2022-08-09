@@ -134,7 +134,8 @@ class HomeController extends Controller
         $pageTitle = $movie->name;
         $metaDescription = $movie->description;
         $metaKeywords = $movie->tags;
-        return view('home.movie_detail', compact('movie', 'pageTitle', 'metaDescription', 'metaKeywords'));
+        $pageImage = getImageUrl($movie->image);
+        return view('home.movie_detail', compact('movie', 'pageTitle', 'metaDescription', 'metaKeywords', 'pageImage'));
     }
 
     public function getVideoDetail($movieSlug, $videoSlug, Request $request)
@@ -148,6 +149,9 @@ class HomeController extends Controller
             return redirect()->route('home.movie_detail', $movie->slug);
         }
         $pageTitle = $movie->name . ' - ' . $video->name;
-        return view('home.video_detail', compact('movie', 'video', 'pageTitle'));
+        $metaDescription = $movie->description;
+        $metaKeywords = $movie->tags;
+        $pageImage = getImageUrl($movie->image);
+        return view('home.video_detail', compact('movie', 'video', 'pageTitle', 'metaDescription', 'metaKeywords', 'pageImage'));
     }
 }
