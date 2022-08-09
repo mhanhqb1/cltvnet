@@ -14,6 +14,7 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="follow, index" />
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}">
+    <meta name='dailymotion-domain-verification' content='dmkcdbnamiml2bxsk' />
     <title>{{ $pageTitle }}</title>
 
     <meta name="description" content="{{ $metaDescription }}" />
