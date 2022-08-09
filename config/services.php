@@ -30,4 +30,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'ga_key' => env('GG_GA_KEY')
+    ]
+
 ];

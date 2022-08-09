@@ -11,7 +11,7 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="follow, index" />
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}">
     <title>{{ $pageTitle }}</title>
@@ -30,8 +30,8 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
 
     <!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image">
-	<!-- <meta name="twitter:site" content="@Vultr">
-	<meta name="twitter:creator" content="@Vultr"> -->
+	<!-- <meta name="twitter:site" content="@calatv">
+	<meta name="twitter:creator" content="@calatv"> -->
 	<meta name="twitter:title" content="{{ $pageTitle }}">
     <meta name="twitter:description" content="{{ $metaDescription }}">
     <meta name="twitter:image" content="{{ $pageImage }}">
@@ -42,6 +42,20 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}" media="all">
+
+    <?php if (!empty(config('services.google')['ga_key'])): ?>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.google')['ga_key'] }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', "<?php echo config('services.google')['ga_key']; ?>");
+        </script>
+    <?php endif; ?>
 </head>
 
 <body>
