@@ -44,7 +44,7 @@
                                     @endforeach
                                 @endif
                             </div>
-                            <center><a class="btn btn-block btn-border btn-post btn-danger" href="https://www.danfra.com/series/">Xem tất cả</a></center>
+                            <center><a class="btn btn-block btn-border btn-post btn-danger" href="{{ route('home.new_movie') }}" target="_blank">Xem tất cả</a></center>
                         </fieldset>
                     </form>
                 </div>
