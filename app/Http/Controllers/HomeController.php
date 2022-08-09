@@ -132,7 +132,9 @@ class HomeController extends Controller
             return redirect()->route('home');
         }
         $pageTitle = $movie->name;
-        return view('home.movie_detail', compact('movie', 'pageTitle'));
+        $metaDescription = $movie->description;
+        $metaKeywords = $movie->tags;
+        return view('home.movie_detail', compact('movie', 'pageTitle', 'metaDescription', 'metaKeywords'));
     }
 
     public function getVideoDetail($movieSlug, $videoSlug, Request $request)
