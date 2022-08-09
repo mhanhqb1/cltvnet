@@ -62,7 +62,7 @@ class Movie extends Model
         if (!empty($params['limit']) && !empty($params['not_page'])) {
             $data = $data->limit($params['limit']);
         }
-        $data = $data->orderBy('id', 'asc');
+        $data = $data->orderBy('year', 'desc')->orderBy('id', 'desc');
 
         if (!empty($params['not_page'])) {
             $data = $data->get();
