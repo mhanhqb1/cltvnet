@@ -38,7 +38,8 @@ $cateName = implode(' - ', $cateName);
     <div class="col-sm-8">
         @if (empty($movie->is_series))
         <div class="inner-box category-content" style="padding-bottom: 15px;">
-            <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;"> <i class="fa fa-tags"></i>
+            <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;">
+                <i class="fa fa-play-circle"></i>
                 <font style="vertical-align: inherit;">
                     <font style="vertical-align: inherit;"> {{ $movie->name }}</font>
                 </font>
@@ -57,7 +58,8 @@ $cateName = implode(' - ', $cateName);
 
         @if(!$relatedMovies->isEmpty())
         <div class="inner-box category-content" style="padding-bottom: 15px;">
-            <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;"> <i class="fa fa-tags"></i>
+            <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;">
+                <i class="fa fa-star"></i>
                 <font style="vertical-align: inherit;">
                     <font style="vertical-align: inherit;"> Có thể bạn sẽ thích</font>
                 </font>
