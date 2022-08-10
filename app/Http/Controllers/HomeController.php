@@ -135,7 +135,23 @@ class HomeController extends Controller
         $metaDescription = $movie->description;
         $metaKeywords = $movie->tags;
         $pageImage = getImageUrl($movie->image);
-        return view('home.movie_detail', compact('movie', 'pageTitle', 'metaDescription', 'metaKeywords', 'pageImage'));
+        $cateIds = [];
+        if (!empty($movie->cates)) {
+            foreach ($movie->cates as $v) {
+                $cateIds[] = $v->id;
+            }
+        }
+        $relatedMovies = Movie::with('country', 'cates')
+            ->where('id', '!=', $movie->id)
+            ->where('country_id', $movie->country_id)
+            ->whereHas('cates', function ($q) use ($cateIds) {
+                $q->whereIn('cates.id', $cateIds);
+            })
+            ->orderBy('year', 'desc')
+            ->orderBy('id', 'desc')
+            ->limit(5)
+            ->get();
+        return view('home.movie_detail', compact('relatedMovies', 'movie', 'pageTitle', 'metaDescription', 'metaKeywords', 'pageImage'));
     }
 
     public function getVideoDetail($movieSlug, $videoSlug, Request $request)
