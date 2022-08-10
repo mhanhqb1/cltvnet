@@ -19,7 +19,8 @@ $cateName = implode(' - ', $cateName);
     .related-movies li {
         display: flex;
         align-items: center;
-        padding: 5px 0;
+        padding: 10px 0;
+        border-bottom: 1px dashed #ccc;
     }
     .related-movies li:first-child {
         padding-top: 0;
