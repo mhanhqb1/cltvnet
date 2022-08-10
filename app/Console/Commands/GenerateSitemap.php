@@ -3,7 +3,10 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Spatie\Sitemap\SitemapGenerator;
+use Spatie\Sitemap\Sitemap;
+use App\Models\Movie;
+use App\Models\Cate;
+use App\Models\MovieVideo;
 
 class GenerateSitemap extends Command
 {
@@ -29,7 +32,12 @@ class GenerateSitemap extends Command
     public function handle()
     {
         // creates sitemap with all urls in your website
-        SitemapGenerator::create(env('APP_URL'))
-               ->writeToFile(public_path('sitemap.xml'));
+        $sitemap = Sitemap::create();
+        $sitemap = $sitemap->add(route('home'));
+        $sitemap = $sitemap->add(route('home.new_movie'));
+        $sitemap = $sitemap->add(route('home.anime'));
+        $sitemap = $sitemap->add(route('home.not_series'));
+        $sitemap = $sitemap->add(route('home.series'));
+        $sitemap->writeToFile(public_path('sitemap.xml'));
     }
 }
