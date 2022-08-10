@@ -38,6 +38,7 @@ class GenerateSitemap extends Command
         $sitemap = $sitemap->add(route('home.anime'));
         $sitemap = $sitemap->add(route('home.not_series'));
         $sitemap = $sitemap->add(route('home.series'));
+        echo public_path('sitemap.xml'); die();
         $sitemap->writeToFile(public_path('sitemap.xml'));
     }
 }
