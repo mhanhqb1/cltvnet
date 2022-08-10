@@ -21,6 +21,25 @@ $cateName = implode(' - ', $cateName);
     </div>
 
     <div class="col-sm-8">
+        @if (empty($movie->is_series))
+        <div class="inner-box category-content" style="padding-bottom: 15px;">
+            <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;"> <i class="fa fa-tags"></i>
+                <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;"> {{ $movie->name }}</font>
+                </font>
+            </h2>
+            <div class="faq-content">
+                <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;" itemscope itemtype="https://schema.org/VideoObject">
+                    <meta itemprop="name" content="{{ $pageTitle }}" />
+                    <meta itemprop="description" content="{{ $movie->description }}" />
+                    <meta itemprop="uploadDate" content="{{ date('Y-m-d\TH:i:s\Z', strtotime($movie->videos[0]->updated_at)) }}" />
+                    <meta itemprop="thumbnailUrl" content="{{ getImageUrl($movie->image) }}" />
+                    <meta itemprop="embedUrl" content="https://geo.dailymotion.com/player/x9pog.html?video={{ $movie->videos[0]->source_urls }}" />
+                    <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden" frameborder="0" type="text/html" src="https://geo.dailymotion.com/player/x9pog.html?video={{ $movie->videos[0]->source_urls }}" width="100%" height="100%" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        @endif
         <div class="inner-box category-content" style="padding-bottom:20px;">
             <h1 class="title-2" style="color:#cd1d1f; font-weight:bold;"> <i class="fa fa-video-camera"></i>
                 <font style="vertical-align: inherit;">
@@ -43,25 +62,7 @@ $cateName = implode(' - ', $cateName);
                 </div>
             </div>
         </div>
-        @if (empty($movie->is_series))
-        <div class="inner-box category-content" style="padding-bottom: 15px;">
-            <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;"> <i class="fa fa-tags"></i>
-                <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">Xem phim</font>
-                </font>
-            </h2>
-            <div class="faq-content">
-                <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;" itemscope itemtype="https://schema.org/VideoObject">
-                    <meta itemprop="name" content="{{ $pageTitle }}" />
-                    <meta itemprop="description" content="{{ $movie->description }}" />
-                    <meta itemprop="uploadDate" content="{{ date('Y-m-d\TH:i:s\Z', strtotime($movie->videos[0]->updated_at)) }}" />
-                    <meta itemprop="thumbnailUrl" content="{{ getImageUrl($movie->image) }}" />
-                    <meta itemprop="embedUrl" content="https://geo.dailymotion.com/player/x9pog.html?video={{ $movie->videos[0]->source_urls }}" />
-                    <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden" frameborder="0" type="text/html" src="https://geo.dailymotion.com/player/x9pog.html?video={{ $movie->videos[0]->source_urls }}" width="100%" height="100%" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-        @endif
+
         <div class="inner-box category-content" style="padding-bottom: 10px;">
             <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;"> <i class="fa fa-tags"></i>
                 <font style="vertical-align: inherit;">
