@@ -15,6 +15,20 @@ $cateName = implode(' - ', $cateName);
 @extends('layouts.front_master')
 
 @section('content')
+<style>
+    .related-movies li {
+        display: flex;
+        align-items: center;
+        padding: 5px 0;
+    }
+    .related-movies li:first-child {
+        padding-top: 0;
+    }
+    .related-movies li .movie-image img {
+        width: 100px;
+        margin-right: 24px;
+    }
+</style>
 <div class="row">
     <div class="col-sm-4 hidden-xs">
     @include('layouts.front_left_cates')
