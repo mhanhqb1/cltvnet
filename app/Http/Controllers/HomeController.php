@@ -43,7 +43,7 @@ class HomeController extends Controller
         if (empty($cate)) {
             return redirect()->route('home');
         }
-        $pageTitle = 'Phim '.$cate->name;
+        $pageTitle = $cate->name;
         $movies = Movie::getList([
             'limit' => $limit,
             'cate_id' => $cate->id
@@ -58,7 +58,7 @@ class HomeController extends Controller
         if (empty($country)) {
             return redirect()->route('home');
         }
-        $pageTitle = 'Phim '.$country->name;
+        $pageTitle = 'Novelas '.$country->name;
         $movies = Movie::getList([
             'limit' => $limit,
             'country_id' => $country->id
@@ -69,7 +69,7 @@ class HomeController extends Controller
     public function search(Request $request) {
         $limit = 12;
         $keyword = !empty($request->q) ? $request->q : '';
-        $pageTitle = 'Tìm kiếm: '.$keyword;
+        $pageTitle = 'Búsqueda: '.$keyword;
         $movies = Movie::getList([
             'limit' => $limit,
             'slug' => createSlug($keyword)
@@ -107,7 +107,7 @@ class HomeController extends Controller
     public function getSeries(Request $request)
     {
         $limit = 12;
-        $pageTitle = 'Phim bộ';
+        $pageTitle = 'Series';
         $movies = Movie::getList([
             'limit' => $limit,
             'is_series' => 1
@@ -118,7 +118,7 @@ class HomeController extends Controller
     public function getNewMovies(Request $request)
     {
         $limit = 12;
-        $pageTitle = 'Phim mới';
+        $pageTitle = 'Nuevas películas';
         $movies = Movie::getList([
             'limit' => $limit
         ]);
