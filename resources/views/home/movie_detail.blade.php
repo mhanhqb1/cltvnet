@@ -1,10 +1,5 @@
 <?php
 $cateName = [];
-if (empty($movie->is_series)) {
-    $cateName[] = '<a href="' . route('home.not_series') . '">Phim lẻ</a>';
-} else {
-    $cateName[] = '<a href="' . route('home.series') . '">Phim bộ</a>';
-}
 if (!empty($movie->cates)) {
     foreach ($movie->cates as $v) {
         $cateName[] = '<a href="' . route('home.cate.index', $v->slug) . '">' . $v->name . '</a>';
@@ -61,7 +56,7 @@ $cateName = implode(' - ', $cateName);
             <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;">
                 <i class="fa fa-star"></i>
                 <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;"> Có thể bạn sẽ thích</font>
+                    <font style="vertical-align: inherit;"> TE PUEDE GUSTAR</font>
                 </font>
             </h2>
             <div class="faq-content">
@@ -118,7 +113,7 @@ $cateName = implode(' - ', $cateName);
         <div class="inner-box category-content" style="padding-bottom: 10px;">
             <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;"> <i class="fa fa-tags"></i>
                 <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">Thông tin chi tiết</font>
+                    <font style="vertical-align: inherit;">FICHA TÉCNICA</font>
                 </font>
             </h2>
             <div class="row">
@@ -126,7 +121,7 @@ $cateName = implode(' - ', $cateName);
                     <p>
                         <b>
                             <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">Tên phim:</font>
+                                <font style="vertical-align: inherit;">Nombre:</font>
                             </font>
                         </b>
                         <font style="vertical-align: inherit;">
@@ -136,7 +131,7 @@ $cateName = implode(' - ', $cateName);
                     <p>
                         <b>
                             <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">Quốc gia:</font>
+                                <font style="vertical-align: inherit;">País:</font>
                             </font>
                         </b>
                         <font style="vertical-align: inherit;">
@@ -146,7 +141,7 @@ $cateName = implode(' - ', $cateName);
                     <p>
                         <b>
                             <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">Năm sản xuất:</font>
+                                <font style="vertical-align: inherit;">Año:</font>
                             </font>
                         </b>
                         <font style="vertical-align: inherit;">
@@ -156,7 +151,7 @@ $cateName = implode(' - ', $cateName);
                     <p>
                         <b>
                             <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">Thể loại:</font>
+                                <font style="vertical-align: inherit;">Categoría:</font>
                             </font>
                         </b>
                         <font style="vertical-align: inherit;">
@@ -180,7 +175,7 @@ $cateName = implode(' - ', $cateName);
         <div class="inner-box category-content" style="padding-bottom: 5px;">
             <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;"> <i class="fa fa-tags"></i>
                 <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">Danh sách tập phim</font>
+                    <font style="vertical-align: inherit;">CAPÍTULOS DE {{ $movie->name }}</font>
                 </font>
             </h2>
             <div class="faq-content">
@@ -191,7 +186,7 @@ $cateName = implode(' - ', $cateName);
                                 <a aria-controls="collapseOne" aria-expanded="true" href="javascript:void(0)" data-parent="#accordion" data-toggle="collapse" class="collapsed">
                                     <strong style="color:black;">
                                         <font style="vertical-align: inherit;">
-                                            <font style="vertical-align: inherit;">Danh sách tập phim</font>
+                                            <font style="vertical-align: inherit;">Ver Capítulos</font>
                                         </font>
                                     </strong>
                                 </a>

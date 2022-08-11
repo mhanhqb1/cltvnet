@@ -48,7 +48,7 @@ $cateName = implode(' - ', $cateName);
         <div class="inner-box category-content" style="padding-bottom: 5px;">
             <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;"> <i class="fa fa-tags"></i>
                 <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">Danh sách tập phim</font>
+                    <font style="vertical-align: inherit;">CAPÍTULOS DE {{ $movie->name }}</font>
                 </font>
             </h2>
             <div class="faq-content">
@@ -59,7 +59,7 @@ $cateName = implode(' - ', $cateName);
                                 <a aria-controls="collapseOne" aria-expanded="true" href="javascript:void(0)" data-parent="#accordion" data-toggle="collapse" class="collapsed">
                                     <strong style="color:black;">
                                         <font style="vertical-align: inherit;">
-                                            <font style="vertical-align: inherit;">Danh sách tập phim</font>
+                                            <font style="vertical-align: inherit;">Ver Capítulos</font>
                                         </font>
                                     </strong>
                                 </a>
@@ -105,15 +105,15 @@ $cateName = implode(' - ', $cateName);
         <div class="inner-box category-content" style="padding-bottom: 10px;">
             <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;"> <i class="fa fa-tags"></i>
                 <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">Thông tin chi tiết</font>
+                    <font style="vertical-align: inherit;">FICHA TÉCNICA</font>
                 </font>
             </h2>
             <div class="row">
                 <div class="col-sm-12">
-                    <p>
+                <p>
                         <b>
                             <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">Tên phim:</font>
+                                <font style="vertical-align: inherit;">Nombre:</font>
                             </font>
                         </b>
                         <font style="vertical-align: inherit;">
@@ -123,7 +123,7 @@ $cateName = implode(' - ', $cateName);
                     <p>
                         <b>
                             <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">Quốc gia:</font>
+                                <font style="vertical-align: inherit;">País:</font>
                             </font>
                         </b>
                         <font style="vertical-align: inherit;">
@@ -133,7 +133,7 @@ $cateName = implode(' - ', $cateName);
                     <p>
                         <b>
                             <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">Năm sản xuất:</font>
+                                <font style="vertical-align: inherit;">Año:</font>
                             </font>
                         </b>
                         <font style="vertical-align: inherit;">
@@ -143,7 +143,7 @@ $cateName = implode(' - ', $cateName);
                     <p>
                         <b>
                             <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">Thể loại:</font>
+                                <font style="vertical-align: inherit;">Categoría:</font>
                             </font>
                         </b>
                         <font style="vertical-align: inherit;">

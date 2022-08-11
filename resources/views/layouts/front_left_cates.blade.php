@@ -5,12 +5,12 @@ $cates = getFrontCategories();
     <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;">
         <i class="fa fa-television"></i>
         <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;">Danh mục</font>
+            <font style="vertical-align: inherit;">CATEGORÍAS</font>
         </font>
     </h2>
     <p style="font-size:15px;">
         <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;">Chọn danh mục yêu thích của bạn</font>
+            <font style="vertical-align: inherit;">Selecciona tu categoría.</font>
         </font>
     </p>
     <div class="row">

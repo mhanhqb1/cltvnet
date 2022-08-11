@@ -62,7 +62,7 @@ function getVideoNameFromDailyPlayList($name, $isSeries = 1) {
     if ($isSeries == 1) {
         $name = explode(' - ', $name);
         if (!empty($name[1])) {
-            $txt = 'Tập '.$name[1];
+            $txt = 'Capítulo '.$name[1];
         }
     }
     return $txt;
