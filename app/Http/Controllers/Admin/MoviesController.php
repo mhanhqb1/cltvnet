@@ -105,6 +105,8 @@ class MoviesController extends Controller
         $item->description = !empty($request->description) ? $request->description : '';
         $item->is_series = !empty($request->is_series) ? $request->is_series : 0;
         $item->detail = !empty($request->detail) ? $request->detail : null;
+        $item->daily_playlist_id = !empty($request->daily_playlist_id) ? $request->daily_playlist_id : null;
+        $item->daily_video_id = !empty($request->daily_video_id) ? $request->daily_video_id : '';
         if (!empty($image)) {
             $item->image = $image;
         }

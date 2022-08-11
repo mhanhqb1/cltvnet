@@ -28,6 +28,19 @@ function createSlug($str, $delimiter = '-')
     return strtolower($str);
 }
 
+function convertDuration($time) {
+    $hour = '';
+    $minute = intval($time/60);
+    $second = $time%60;
+    $txt = ($minute < 10 ? '0'.$minute : $minute).':'.($second < 10 ? '0'.$second : $second);
+    if ($minute > 60) {
+        $hour = intval($minute/60);
+        $minute = $minute%60;
+        $txt = ($hour < 10 ? '0'.$hour : $hour).':'.($minute < 10 ? '0'.$minute : $minute).':'.($second < 10 ? '0'.$second : $second);
+    }
+    return $txt;
+}
+
 function getFrontCategories() {
     return Cate::orderBy('position', 'asc')->get();
 }
@@ -42,4 +55,35 @@ function getImageUrl($image) {
         $imageUrl = url('/storage/'.$image);
     }
     return $imageUrl;
+}
+
+function getVideoNameFromDailyPlayList($name, $isSeries = 1) {
+    $txt = 1;
+    if ($isSeries == 1) {
+        $name = explode(' - ', $name);
+        if (!empty($name[1])) {
+            $txt = 'Tập '.$name[1];
+        }
+    }
+    return $txt;
+}
+
+function callApi($url) {
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => $url,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'GET',
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    return json_decode($response, true);
 }

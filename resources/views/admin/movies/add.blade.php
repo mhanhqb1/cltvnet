@@ -100,6 +100,14 @@
                         <label for="inputYear">Năm sản xuất</label>
                         <input type="text" id="inputYear" class="form-control" name="year" value="{{ old('year') }}">
                     </div>
+                    <div class="form-group">
+                        <label for="inputDailyVideoId">Dailymotion Video ID</label>
+                        <input type="text" id="inputDailyVideoId" class="form-control" name="daily_video_id" value="{{ old('daily_video_id') }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDailyPlaylistId">Dailymotion Playlist ID</label>
+                        <input type="text" id="inputDailyPlaylistId" class="form-control" name="daily_playlist_id" value="{{ old('daily_playlist_id') }}">
+                    </div>
                 </div>
             </div>
         </div>
