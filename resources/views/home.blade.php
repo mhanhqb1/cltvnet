@@ -6,7 +6,7 @@
         <div class="inner-box category-content" style="padding-bottom:20px;">
             <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;">
                 <i class="fa fa-list"></i>
-                Phim mới cập nhật
+                ÚLTIMOS CAPÍTULOS AGREGADOS
             </h2>
             <div class="row">
                 <div class="col-sm-12">
@@ -30,7 +30,7 @@
         <div class="inner-box category-content" style="padding-bottom:20px;">
             <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;">
                 <i class="fa fa-list"></i>
-                Phim HOT
+                ÚLTIMAS NOVELAS AGREGADAS
             </h2>
             <div class="row">
                 <div class="col-sm-12">
@@ -44,7 +44,7 @@
                                     @endforeach
                                 @endif
                             </div>
-                            <center><a class="btn btn-block btn-border btn-post btn-danger" href="{{ route('home.new_movie') }}" target="_blank">Xem tất cả</a></center>
+                            <center><a class="btn btn-block btn-border btn-post btn-danger" href="{{ route('home.new_movie') }}" target="_blank">VER TODAS LAS NOVELAS</a></center>
                         </fieldset>
                     </form>
                 </div>

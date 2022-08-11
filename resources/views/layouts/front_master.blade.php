@@ -1,9 +1,9 @@
 <?php
-$pageTitle = !empty($pageTitle) ? $pageTitle.' - CaLaTV.net' : 'CaLaTV.net';
 $appName = env('APP_NAME');
-$masterDescription = "Website review phim hay ".date('Y').", chuyên review phim, tóm tắt phim hay, các bộ phim hành động, phim kinh dị, phim viễn tưởng, phim hài, phim hanh dong, tom tat phim hay, phim kinh di, review phim, vua phim, vua phim review, review phim hay review phim kinh dị hay phim hàn quốc phim hoạt hình hài hước phiêu lưu gay cấn hấp dẫn, review phim zombie anime, review phim hay 2020, review phim hay 2021, review anime, tóm tắt anime phim lẻ hay";
+$pageTitle = !empty($pageTitle) ? $pageTitle.' - '.$appName : $appName;
+$masterDescription = "Gratis Multinacional Novelas y Series en Español. Las mejores novelas multi paises las encontraras aqui en español y completamente gratis y tambien novelas con subtitulos.";
 $metaDescription = !empty($metaDescription) ? substr($metaDescription, 0, 300).'...' : $masterDescription;
-$metaKeywords = !empty($metaKeywords) ? $metaKeywords : 'tom tat phim, review phim, review phim hai, tom tat phim chau tinh tri, chau tinh tri, tom tat phim hai chau tinh tri';
+$metaKeywords = !empty($metaKeywords) ? $metaKeywords : 'novelas, novelas y series, novelas turcas, novelas peruanas, novelas mexicanas';
 $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
 ?>
 <!DOCTYPE html>
@@ -68,7 +68,7 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
         <div class="main-container">
             <div class="container">
                 <a href="{{ url('/') }}" class="bartop">
-                    Welcome to <strong>CaLaTV.net</strong>
+                    Welcome to <strong>{{ $appName }}</strong>
                 </a>
             </div>
             <div class="container">
@@ -80,7 +80,7 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
                 <center>
                     <ul class="navbar-link footer-nav">
                         <li style="font-size:15px;">
-                            <strong style="color:black;"><a href="{{ url('/') }}">CaLaTV.net</a></strong><br />
+                            <strong style="color:black;"><a href="{{ url('/') }}">{{ $appName }}</a></strong><br />
                             {{ $masterDescription }}
                         </li>
                     </ul>
