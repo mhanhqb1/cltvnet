@@ -58,6 +58,20 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
             gtag('config', "<?php echo config('services.google')['ga_key']; ?>");
         </script>
     <?php endif; ?>
+    <style>
+        h3.movie-name {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            -webkit-line-clamp: 3;
+            font-size: 14px;
+            text-align: left;
+            padding-top:5px;
+            padding-bottom:0px !important;
+            font-size:16px;
+            line-height: 1.5;
+        }
+    </style>
 </head>
 
 <body>

@@ -222,7 +222,7 @@ class Movie extends Model
                                     }
                                 }
                             } else {
-                                break;
+                                // break;
                             }
                         }
                     }
