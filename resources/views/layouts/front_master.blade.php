@@ -71,6 +71,41 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
             font-size:16px;
             line-height: 1.5;
         }
+        .movie-item {
+            margin-bottom:20px;
+            min-height:330px;
+            position: relative;
+        }
+        .cate-movie-item {
+            position: relative;
+        }
+        .movie-label {
+            position: absolute;
+            top: 0;
+            left: 15px;
+            padding: 5px 10px;
+            color: #fff;
+            background: #1b2a39;
+            border-bottom: 2px solid #bb3c2f;
+            border: 1px solid #1b2a3900;
+            z-index: 2;
+            font-weight: 400;
+            background-size: 200% 100%;
+            background-image: linear-gradient(to right,#C02425 0%,#F0CB35 51%,#C02425 100%);
+            transition: .7s;
+        }
+        .movie-label::after {
+            content: '';
+            border-bottom: 6px solid #dd8b52;
+            border-left: 6px solid transparent;
+            display: block;
+            border-right: 6px solid transparent;
+            bottom: -10px;
+            left: 50%;
+            position: absolute;
+            -webkit-transform: translate(-50%,-50%) rotate(180deg);
+            transform: translate(-50%,-50%) rotate(180deg);
+        }
     </style>
 </head>
 

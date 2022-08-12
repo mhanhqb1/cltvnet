@@ -1,7 +1,8 @@
 <?php
 $imageUrl = getImageUrl($item->image);
 ?>
-<div>
+<div class="cate-movie-item">
+    <span class="movie-label">{{ $item->year }}</span>
     <div class="categ-image" style="background-image:url({!! $imageUrl !!})">
         <a href="{{ route('home.movie_detail', $item->slug) }}"></a>
     </div>
