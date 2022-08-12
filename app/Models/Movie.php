@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Dailymotion;
+use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class Movie extends Model
 {
@@ -50,7 +53,7 @@ class Movie extends Model
             $data = $data->where('is_series', $params['is_series']);
         }
         if (!empty($params['cate_id'])) {
-            $data = $data->whereHas('cates', function($q) use($params) {
+            $data = $data->whereHas('cates', function ($q) use ($params) {
                 $q->where('cates.id', $params['cate_id']);
             });
         }
@@ -58,7 +61,7 @@ class Movie extends Model
             $data = $data->where('country_id', $params['country_id']);
         }
         if (!empty($params['slug'])) {
-            $data = $data->where('movies.slug', 'like', '%'.$params['slug'].'%');
+            $data = $data->where('movies.slug', 'like', '%' . $params['slug'] . '%');
         }
 
         // Paginate
@@ -76,8 +79,9 @@ class Movie extends Model
         return $data;
     }
 
-    public static function dailyPlayListCrawler($limit = 20, $checkTime = true) {
-        $time = date('Y-m-d H:i:s', time() - 12*3600);
+    public static function dailyPlayListCrawler($limit = 20, $checkTime = true)
+    {
+        $time = date('Y-m-d H:i:s', time() - 12 * 3600);
         $movies = Movie::whereNotNull('daily_playlist_id')
             ->where('daily_playlist_id', '!=', '');
         if ($checkTime) {
@@ -88,7 +92,7 @@ class Movie extends Model
         if (!$movies->isEmpty()) {
             foreach ($movies as $m) {
                 $playListId = $m->daily_playlist_id;
-                $apiUrl = 'https://api.dailymotion.com/playlist/'.$playListId.'/videos?fields=id%2Cduration%2Ctitle&page=1&limit=100';
+                $apiUrl = 'https://api.dailymotion.com/playlist/' . $playListId . '/videos?fields=id%2Cduration%2Ctitle&page=1&limit=100';
                 $videos = callApi($apiUrl);
                 if (!empty($videos['list'])) {
                     foreach ($videos['list'] as $v) {
@@ -113,7 +117,8 @@ class Movie extends Model
         }
     }
 
-    public static function dailyVideoCrawler($limit = 20) {
+    public static function dailyVideoCrawler($limit = 20)
+    {
         $movies = Movie::whereNotNull('daily_video_id')
             ->where('daily_video_id', '!=', '')
             ->whereNull('daily_crawl_at')
@@ -122,7 +127,7 @@ class Movie extends Model
         if (!$movies->isEmpty()) {
             foreach ($movies as $m) {
                 $dailyId = $m->daily_video_id;
-                $apiUrl = 'https://api.dailymotion.com/video/'.$dailyId.'?fields=id%2Cduration%2Ctitle';
+                $apiUrl = 'https://api.dailymotion.com/video/' . $dailyId . '?fields=id%2Cduration%2Ctitle';
                 $data = callApi($apiUrl);
                 if (!empty($data['id'])) {
                     $_name = getVideoNameFromDailyPlayList($data['title'], $m->is_series);
@@ -139,6 +144,91 @@ class Movie extends Model
                 }
                 $m->daily_crawl_at = date('Y-m-d H:i:s');
                 $m->save();
+            }
+        }
+    }
+
+    public static function dailyMotionCrawler($limit = 100, $checkTime = true)
+    {
+        $today = date('Y-m-d');
+        if ($checkTime) {
+            $daily = Dailymotion::whereNull('crawl_at')->orWhere('crawl_at', '<', $today)->get();
+        } else {
+            $daily = Dailymotion::get();
+        }
+        if (!$daily->isEmpty()) {
+            $countries = Country::pluck('id', 'name')->toArray();
+            $cates = Cate::pluck('id', 'name')->toArray();
+            foreach ($daily as $v) {
+                $dailyId = $v->source_id;
+                $apiUrl = '';
+                if ($v->type == Dailymotion::$dailyTypeUser) {
+                    $apiUrl = 'https://api.dailymotion.com/user/' . $dailyId . '/videos?fields=id%2Cduration%2Ctitle%2Cdescription%2Ctags&page=1&limit=100';
+                } elseif ($v->type == Dailymotion::$dailyTypePlaylist) {
+                    $apiUrl = 'https://api.dailymotion.com/playlist/' . $dailyId . '/videos?fields=id%2Cduration%2Ctitle%2Cdescription%2Ctags&page=1&limit=100';
+                }
+                if (!empty($apiUrl)) {
+                    $videos = callApi($apiUrl);
+                    if (!empty($videos['list'])) {
+                        foreach ($videos['list'] as $video) {
+                            $_check = MovieVideo::where('source_urls', $video['id'])->first();
+                            if (empty($_check)) {
+                                $movieInfo = explode(' | ', $video['title']);
+                                if (count($movieInfo) != 4) {
+                                    continue;
+                                }
+                                // Add movie
+                                $_des = $video['description'];
+                                $desInfo = explode(' | ', $_des);
+                                $_image = '';
+                                if (count($desInfo) == 2) {
+                                    $_des = str_replace('<br />', '', $desInfo[1]);
+                                    $_image = 'phim/'.createSlug($movieInfo[0]).'.jpg';
+                                    try {
+                                        Storage::put(
+                                            'public/'.$_image,
+                                            file_get_contents($desInfo[0])
+                                        );
+                                    } catch(Exception $e) {
+                                        print_r($e->getMessage());
+                                    }
+                                }
+                                $movie = Movie::create([
+                                    'name' => $movieInfo[0],
+                                    'slug' => createSlug($movieInfo[0]),
+                                    'country_id' => !empty($countries[$movieInfo[1]]) ? $countries[$movieInfo[1]] : 0,
+                                    'year' => $movieInfo[2],
+                                    'image' => $_image,
+                                    'description' => $_des,
+                                    'tags' => !empty($video['tags']) ? implode(', ', $video['tags']) : ''
+                                ]);
+                                // Add video
+                                $_name = getVideoNameFromDailyPlayList($video['title'], 0);
+                                MovieVideo::create([
+                                    'movie_id' => $movie->id,
+                                    'source_urls' => $video['id'],
+                                    'name' => $_name,
+                                    'slug' => createSlug($_name),
+                                    'duration' => convertDuration($v['duration'])
+                                ]);
+                                // Add cate movie
+                                $_cates = explode(' - ', $movieInfo[3]);
+                                foreach ($_cates as $c) {
+                                    if (!empty($cates[$c])) {
+                                        MovieCate::create([
+                                            'movie_id' => $movie->id,
+                                            'cate_id' => $cates[$c]
+                                        ]);
+                                    }
+                                }
+                            } else {
+                                break;
+                            }
+                        }
+                    }
+                }
+                $v->crawl_at = $today;
+                $v->save();
             }
         }
     }

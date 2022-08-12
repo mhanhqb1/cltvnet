@@ -24,6 +24,8 @@ function createSlug($str, $delimiter = '-')
     $str = str_replace("/", "-", $str);
     $str = str_replace(" ", "-", $str);
     $str = str_replace("?", "", $str);
+    $str = str_replace("[", "", $str);
+    $str = str_replace("]", "", $str);
 
     return strtolower($str);
 }
