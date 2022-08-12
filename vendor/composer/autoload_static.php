@@ -617,6 +617,7 @@ class ComposerStaticInitf8f65ffb8bb2e48f7a89f89adfcc79ae
     );
 
     public static $classMap = array (
+        'App\\Console\\Commands\\DailyPlaylistCrawler' => __DIR__ . '/../..' . '/app/Console/Commands/DailyPlaylistCrawler.php',
         'App\\Console\\Commands\\GenerateSitemap' => __DIR__ . '/../..' . '/app/Console/Commands/GenerateSitemap.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Enums\\PostStatus' => __DIR__ . '/../..' . '/app/Enums/PostStatus.php',
@@ -647,6 +648,7 @@ class ComposerStaticInitf8f65ffb8bb2e48f7a89f89adfcc79ae
         'App\\Models\\Admin' => __DIR__ . '/../..' . '/app/Models/Admin.php',
         'App\\Models\\Cate' => __DIR__ . '/../..' . '/app/Models/Cate.php',
         'App\\Models\\Country' => __DIR__ . '/../..' . '/app/Models/Country.php',
+        'App\\Models\\Dailymotion' => __DIR__ . '/../..' . '/app/Models/Dailymotion.php',
         'App\\Models\\Movie' => __DIR__ . '/../..' . '/app/Models/Movie.php',
         'App\\Models\\MovieCate' => __DIR__ . '/../..' . '/app/Models/MovieCate.php',
         'App\\Models\\MovieVideo' => __DIR__ . '/../..' . '/app/Models/MovieVideo.php',

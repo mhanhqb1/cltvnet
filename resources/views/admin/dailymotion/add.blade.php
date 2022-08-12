@@ -5,7 +5,7 @@
 @endpush
 
 @section('content')
-<form action="{{ route('admin.cates.save') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('admin.dailymotion.save') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-md-12">
@@ -24,19 +24,17 @@
                         <input type="text" id="inputName" name="name" class="form-control" value="{{ old('name') }}">
                     </div>
                     <div class="form-group">
-                        <label for="inputParentId">Danh mục cha</label>
-                        <select name="parent_id" id="inputParentId" class="form-control">
-                            <option value="0">-</option>
-                            @if (!empty($parents))
-                            @foreach ($parents as $v)
-                                <option value="{{ $v->id }}" {{ old('parent_id') == $v->id ? 'selected="selected"' : '' }}>{{ $v->name }}</option>
-                            @endforeach
-                            @endif
-                        </select>
+                        <label for="inputSourceID">Dailymotion ID</label>
+                        <input type="text" id="inputSourceID" name="source_id" class="form-control" value="{{ old('source_id') }}">
                     </div>
                     <div class="form-group">
-                        <label for="inputPosition">Vị trí</label>
-                        <input type="text" id="inputPosition" name="position" class="form-control" value="{{ old('position') }}">
+                        <label for="inputPosition">Thể loại</label>
+                        @foreach ($dailyTypes as $k => $v)
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="radio{{ $k }}" name="type" value="{{ $k }}">
+                            <label class="form-check-label" for="radio{{ $k }}">{{ $v }}</label>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

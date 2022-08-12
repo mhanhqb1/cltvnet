@@ -5,8 +5,9 @@
 @endpush
 
 @section('content')
-<form action="{{ route('admin.cates.save') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('admin.dailymotion.save') }}" method="POST" enctype="multipart/form-data">
     @csrf
+    <input type="hidden" name="id" value="{{ $item->id }}"/>
     <div class="row">
         <div class="col-md-12">
             <div class="card card-secondary">
@@ -21,22 +22,20 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="inputName">Tên</label>
-                        <input type="text" id="inputName" name="name" class="form-control" value="{{ old('name') }}">
+                        <input type="text" id="inputName" name="name" class="form-control" value="{{ !empty(old('name')) ? old('name') : $item->name }}">
                     </div>
                     <div class="form-group">
-                        <label for="inputParentId">Danh mục cha</label>
-                        <select name="parent_id" id="inputParentId" class="form-control">
-                            <option value="0">-</option>
-                            @if (!empty($parents))
-                            @foreach ($parents as $v)
-                                <option value="{{ $v->id }}" {{ old('parent_id') == $v->id ? 'selected="selected"' : '' }}>{{ $v->name }}</option>
-                            @endforeach
-                            @endif
-                        </select>
+                        <label for="inputSourceID">Dailymotion ID</label>
+                        <input type="text" id="inputSourceID" name="source_id" class="form-control" value="{{ !empty(old('source_id')) ? old('source_id') : $item->source_id }}">
                     </div>
                     <div class="form-group">
-                        <label for="inputPosition">Vị trí</label>
-                        <input type="text" id="inputPosition" name="position" class="form-control" value="{{ old('position') }}">
+                        <label for="inputPosition">Thể loại</label>
+                        @foreach ($dailyTypes as $k => $v)
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="radio{{ $k }}" name="type" value="{{ $k }}" {!! $item->type == $k ? 'checked="checked"' : '' !!}>
+                            <label class="form-check-label" for="radio{{ $k }}">{{ $v }}</label>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -45,7 +44,7 @@
     <div class="row">
         <div class="col-12">
             <a href="#" class="btn btn-secondary">Hủy bỏ</a>
-            <input type="submit" value="Tạo mới" class="btn btn-success float-right">
+            <input type="submit" value="Chỉnh sửa" class="btn btn-success float-right">
         </div>
     </div>
 </form>

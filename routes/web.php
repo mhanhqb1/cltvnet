@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CatesController;
 use App\Http\Controllers\Admin\MoviesController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CountriesController;
+use App\Http\Controllers\Admin\DailymotionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -90,5 +91,13 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/countries/edit/{id}', [CountriesController::class, 'edit'])->name('countries.edit');
         Route::post('/countries/save', [CountriesController::class, 'save'])->name('countries.save');
         Route::delete('/countries/{id}', [CountriesController::class, 'delete'])->name('countries.delete');
+
+        // Cate
+        Route::get('/dailymotion', [DailymotionController::class, 'index'])->name('dailymotion.index');
+        Route::get('/dailymotion/indexData', [DailymotionController::class, 'indexData'])->name('dailymotion.indexData');
+        Route::get('/dailymotion/add', [DailymotionController::class, 'add'])->name('dailymotion.add');
+        Route::get('/dailymotion/edit/{id}', [DailymotionController::class, 'edit'])->name('dailymotion.edit');
+        Route::post('/dailymotion/save', [DailymotionController::class, 'save'])->name('dailymotion.save');
+        Route::delete('/dailymotion/{id}', [DailymotionController::class, 'delete'])->name('dailymotion.delete');
     });
 });

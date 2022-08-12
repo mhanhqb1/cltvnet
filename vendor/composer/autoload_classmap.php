@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Console\\Commands\\DailyPlaylistCrawler' => $baseDir . '/app/Console/Commands/DailyPlaylistCrawler.php',
     'App\\Console\\Commands\\GenerateSitemap' => $baseDir . '/app/Console/Commands/GenerateSitemap.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Enums\\PostStatus' => $baseDir . '/app/Enums/PostStatus.php',
@@ -36,6 +37,7 @@ return array(
     'App\\Models\\Admin' => $baseDir . '/app/Models/Admin.php',
     'App\\Models\\Cate' => $baseDir . '/app/Models/Cate.php',
     'App\\Models\\Country' => $baseDir . '/app/Models/Country.php',
+    'App\\Models\\Dailymotion' => $baseDir . '/app/Models/Dailymotion.php',
     'App\\Models\\Movie' => $baseDir . '/app/Models/Movie.php',
     'App\\Models\\MovieCate' => $baseDir . '/app/Models/MovieCate.php',
     'App\\Models\\MovieVideo' => $baseDir . '/app/Models/MovieVideo.php',
