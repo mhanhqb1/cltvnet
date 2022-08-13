@@ -87,23 +87,26 @@ class Movie extends Model
             ->get();
         if (!$movies->isEmpty()) {
             foreach ($movies as $m) {
-                $playListId = $m->daily_playlist_id;
-                $apiUrl = 'https://api.dailymotion.com/playlist/'.$playListId.'/videos?fields=id%2Cduration%2Ctitle&page=1&limit=100';
-                $videos = callApi($apiUrl);
-                if (!empty($videos['list'])) {
-                    foreach ($videos['list'] as $v) {
-                        $_check = MovieVideo::where('source_urls', $v['id'])->first();
-                        if (empty($_check)) {
-                            $_name = getVideoNameFromDailyPlayList($v['title'], $m->is_series);
-                            MovieVideo::create([
-                                'movie_id' => $m->id,
-                                'source_urls' => $v['id'],
-                                'name' => $_name,
-                                'slug' => createSlug($_name),
-                                'duration' => convertDuration($v['duration'])
-                            ]);
-                        } else {
-                            break;
+                $playListIds = explode(',', $m->daily_playlist_id);
+                foreach ($playListIds as $playListId) {
+                    $apiUrl = 'https://api.dailymotion.com/playlist/'.trim($playListId).'/videos?fields=id%2Cduration%2Ctitle&page=1&limit=50';
+                    $videos = callApi($apiUrl);
+                    if (!empty($videos['list'])) {
+                        foreach ($videos['list'] as $v) {
+                            $_check = MovieVideo::where('source_urls', $v['id'])->first();
+                            if (empty($_check)) {
+                                $_name = getVideoNameFromDailyPlayList($v['title'], $m->is_series);
+                                echo $m->name.' - '.$_name.PHP_EOL;
+                                MovieVideo::create([
+                                    'movie_id' => $m->id,
+                                    'source_urls' => $v['id'],
+                                    'name' => $_name,
+                                    'slug' => createSlug($_name),
+                                    'duration' => convertDuration($v['duration'])
+                                ]);
+                            } else {
+                                // break;
+                            }
                         }
                     }
                 }
