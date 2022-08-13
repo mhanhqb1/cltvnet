@@ -102,7 +102,8 @@ class Movie extends Model
                                     'source_urls' => $v['id'],
                                     'name' => $_name,
                                     'slug' => createSlug($_name),
-                                    'duration' => convertDuration($v['duration'])
+                                    'duration' => convertDuration($v['duration']),
+                                    'position' => str_replace('Capítulo ', '', $_name)
                                 ]);
                             } else {
                                 // break;
