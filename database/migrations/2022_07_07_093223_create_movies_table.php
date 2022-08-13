@@ -18,7 +18,7 @@ class CreateMoviesTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('image')->nullable();
-            $table->string('description', 500)->nullable();
+            $table->text('description')->nullable();
             $table->text('detail')->nullable();
             $table->integer('country_id')->nullable();
             $table->boolean('is_series')->default(0);
