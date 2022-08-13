@@ -41,12 +41,18 @@ $cateName = implode(' - ', $cateName);
             </h2>
             <div class="faq-content">
                 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;" itemscope itemtype="https://schema.org/VideoObject">
+                    <?php
+                    $iframeUrl = 'https://geo.dailymotion.com/player/x9pog.html?video='.$movie->videos[0]->source_urls;
+                    if (!empty($movie->videos[0]->source_type)) {
+                        $iframeUrl = '//ok.ru/videoembed/'.$movie->videos[0]->source_urls;
+                    }
+                    ?>
                     <meta itemprop="name" content="{{ $pageTitle }}" />
                     <meta itemprop="description" content="{{ $movie->description }}" />
                     <meta itemprop="uploadDate" content="{{ date('Y-m-d\TH:i:s\Z', strtotime($movie->videos[0]->updated_at)) }}" />
                     <meta itemprop="thumbnailUrl" content="{{ getImageUrl($movie->image) }}" />
-                    <meta itemprop="embedUrl" content="https://geo.dailymotion.com/player/x9pog.html?video={{ $movie->videos[0]->source_urls }}" />
-                    <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden" frameborder="0" type="text/html" src="https://geo.dailymotion.com/player/x9pog.html?video={{ $movie->videos[0]->source_urls }}" width="100%" height="100%" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
+                    <meta itemprop="embedUrl" content="{{ $iframeUrl }}" />
+                    <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden" frameborder="0" type="text/html" src="{{ $iframeUrl }}" width="100%" height="100%" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>

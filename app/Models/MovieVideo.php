@@ -19,9 +19,19 @@ class MovieVideo extends Model
         'duration',
         'position',
         'source_urls',
+        'source_type',
         'meta_description',
         'meta_keywords',
         'status'
+    ];
+
+    public static $sourceTypeValue = [
+        'daily' => 0,
+        'ok.ru' => 1
+    ];
+    public static $sourceTypes = [
+        0 => 'Dailymotion',
+        1 => 'Ok.ru'
     ];
 
     public function movie() {

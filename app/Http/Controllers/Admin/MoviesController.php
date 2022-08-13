@@ -22,6 +22,7 @@ class MoviesController extends Controller
         $routeName = explode('.', Route::currentRouteName());
         $pageTitle = ucfirst($routeName[1]).' '.ucfirst($routeName[2]);
         view()->share('pageTitle', $pageTitle);
+        view()->share('videoSourceTypes', MovieVideo::$sourceTypes);
     }
 
     public function index()
@@ -107,6 +108,7 @@ class MoviesController extends Controller
         $item->detail = !empty($request->detail) ? $request->detail : null;
         $item->daily_playlist_id = !empty($request->daily_playlist_id) ? $request->daily_playlist_id : null;
         $item->daily_video_id = !empty($request->daily_video_id) ? $request->daily_video_id : '';
+        $item->ok_ru_id = !empty($request->ok_ru_id) ? $request->ok_ru_id : '';
         if (!empty($image)) {
             $item->image = $image;
         }
@@ -128,6 +130,7 @@ class MoviesController extends Controller
     public function delete($id)
     {
         $this->model->find($id)->delete();
+        MovieVideo::where('movie_id', $id)->delete();
         return redirect()->route('admin.movies.index')->with('success', 'Dữ liệu đã được xóa thành công');
     }
 
