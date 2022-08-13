@@ -77,7 +77,7 @@ class Movie extends Model
     }
 
     public static function dailyPlayListCrawler($limit = 20, $checkTime = true) {
-        $time = date('Y-m-d H:i:s', time() - 1*3600);
+        $time = date('Y-m-d H:i:s', time() - 1*60*60);
         $movies = Movie::whereNotNull('daily_playlist_id')
             ->where('daily_playlist_id', '!=', '');
         if ($checkTime) {
