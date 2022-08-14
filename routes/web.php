@@ -32,6 +32,7 @@ Route::get('/phim-moi', [App\Http\Controllers\HomeController::class, 'getNewMovi
 Route::get('/phim/{movieSlug}', [App\Http\Controllers\HomeController::class, 'getMovieDetail'])->name('home.movie_detail');
 Route::get('/phim/{movieSlug}/{videoSlug}', [App\Http\Controllers\HomeController::class, 'getVideoDetail'])->name('home.video_detail');
 Route::get('/dailymotion', [App\Http\Controllers\HomeController::class, 'dailymotion'])->name('home.dailymotion');
+Route::get('/okru', [App\Http\Controllers\HomeController::class, 'okru'])->name('home.okru');
 
 Route::prefix('user')->name('user.')->group(function(){
     Route::middleware(['guest:web'])->group(function(){

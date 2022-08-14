@@ -178,4 +178,12 @@ class HomeController extends Controller
         $page = !empty($params['page']) ? $params['page'] : 1;
         Movie::dailyPlayListCrawler($limit, false);
     }
+
+    public function okru(Request $request)
+    {
+        $params = $request->all();
+        $limit = !empty($params['limit']) ? $params['limit'] : 100;
+        $page = !empty($params['page']) ? $params['page'] : 1;
+        Movie::okru();
+    }
 }
