@@ -22,15 +22,15 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/tim-kiem', [App\Http\Controllers\HomeController::class, 'search'])->name('home.search');
-Route::get('/the-loai/{slug}', [App\Http\Controllers\HomeController::class, 'cateIndex'])->name('home.cate.index');
-Route::get('/quoc-gia/{slug}', [App\Http\Controllers\HomeController::class, 'countryIndex'])->name('home.country.index');
+Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('home.search');
+Route::get('/category/{slug}', [App\Http\Controllers\HomeController::class, 'cateIndex'])->name('home.cate.index');
+Route::get('/country/{slug}', [App\Http\Controllers\HomeController::class, 'countryIndex'])->name('home.country.index');
 Route::get('/phim-hoat-hinh', [App\Http\Controllers\HomeController::class, 'getAnime'])->name('home.anime');
 Route::get('/phim-le', [App\Http\Controllers\HomeController::class, 'getNotSeries'])->name('home.not_series');
-Route::get('/phim-bo', [App\Http\Controllers\HomeController::class, 'getSeries'])->name('home.series');
-Route::get('/phim-moi', [App\Http\Controllers\HomeController::class, 'getNewMovies'])->name('home.new_movie');
-Route::get('/phim/{movieSlug}', [App\Http\Controllers\HomeController::class, 'getMovieDetail'])->name('home.movie_detail');
-Route::get('/phim/{movieSlug}/{videoSlug}', [App\Http\Controllers\HomeController::class, 'getVideoDetail'])->name('home.video_detail');
+Route::get('/series', [App\Http\Controllers\HomeController::class, 'getSeries'])->name('home.series');
+Route::get('/new-movie', [App\Http\Controllers\HomeController::class, 'getNewMovies'])->name('home.new_movie');
+Route::get('/novelas/{movieSlug}', [App\Http\Controllers\HomeController::class, 'getMovieDetail'])->name('home.movie_detail');
+Route::get('/novelas/{movieSlug}/{videoSlug}', [App\Http\Controllers\HomeController::class, 'getVideoDetail'])->name('home.video_detail');
 Route::get('/dailymotion', [App\Http\Controllers\HomeController::class, 'dailymotion'])->name('home.dailymotion');
 Route::get('/okru', [App\Http\Controllers\HomeController::class, 'okru'])->name('home.okru');
 
