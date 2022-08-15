@@ -98,13 +98,22 @@ class Movie extends Model
                     foreach ($videos['list'] as $v) {
                         $_check = MovieVideo::where('source_urls', $v['id'])->first();
                         if (empty($_check)) {
+                            $position = 0;
+                            if (!empty($m->is_series)) {
+                                $_names = explode(' - ', $v['title']);
+                                if (count($_names) != 2) {
+                                    continue;
+                                }
+                                $position = $_names[1];
+                            }
                             $_name = getVideoNameFromDailyPlayList($v['title'], $m->is_series);
                             MovieVideo::create([
                                 'movie_id' => $m->id,
                                 'source_urls' => $v['id'],
                                 'name' => $_name,
                                 'slug' => createSlug($_name),
-                                'duration' => convertDuration($v['duration'])
+                                'duration' => convertDuration($v['duration']),
+                                'position' => $position
                             ]);
                         } else {
                             break;
