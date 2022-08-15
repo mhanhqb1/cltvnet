@@ -28,7 +28,7 @@ class DailyPlaylistCrawler extends Command
      */
     public function handle()
     {
-        Movie::dailyPlayListCrawler(100, false);
+        Movie::dailyPlayListCrawler();
         Movie::dailyVideoCrawler();
     }
 }

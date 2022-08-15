@@ -170,4 +170,10 @@ class HomeController extends Controller
         $pageImage = getImageUrl($movie->image);
         return view('home.video_detail', compact('movie', 'video', 'pageTitle', 'metaDescription', 'metaKeywords', 'pageImage'));
     }
+
+    public function dailymotion() {
+        Movie::dailyPlayListCrawler(100, false);
+        Movie::dailyVideoCrawler(100);
+        Movie::dailymotionCrawler(100, false);
+    }
 }
