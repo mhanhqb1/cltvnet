@@ -7,6 +7,7 @@ use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Models\MovieVideo;
 use App\Models\Movie;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -28,7 +29,16 @@ class HomeController extends Controller
     public function index()
     {
         $limit = 18;
-        $videos = MovieVideo::with('movie')->orderBy('id', 'desc')->limit($limit)->get();
+        $videos = MovieVideo::with('movie')
+            ->select(
+                'movie_id',
+                DB::raw("SUBSTRING_INDEX(group_concat(slug order by position desc), ',', 1) as slug"),
+                DB::raw("SUBSTRING_INDEX(group_concat(name order by position desc), ',', 1) as name"),
+            )
+            ->groupBy('movie_id')
+            ->orderBy('id', 'desc')
+            ->limit($limit)
+            ->get();
         $notSeriesMovies = Movie::getList([
             'limit' => $limit,
             'not_page' => 1,
