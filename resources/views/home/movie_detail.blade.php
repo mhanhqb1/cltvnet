@@ -49,7 +49,7 @@ $cateName = implode(' - ', $cateName);
                     <?php
                         $iframeUrl = 'https://geo.dailymotion.com/player/x9pog.html?video='.$movie->videos[0]->source_urls;
                         if (!empty($movie->videos[0]->source_type)) {
-                            $iframeUrl = '//ok.ru/videoembed/'.$movie->videos[0]->source_urls;
+                            $iframeUrl = 'https://ok.ru/videoembed/'.$movie->videos[0]->source_urls;
                         }
                     ?>
                     <meta itemprop="name" content="{{ $pageTitle }}" />
