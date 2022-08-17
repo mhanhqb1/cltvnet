@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '252d0cc5d001a60eb8c8d4b3fc2ca156badc2527',
+    'reference' => 'f69219e6fb158236c2326b9ade0b210eb5511aa5',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -120,6 +120,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '0dbf5d78455d4d6a41d186da50adc1122ec066f4',
+    ),
+    'fabpot/goutte' => 
+    array (
+      'pretty_version' => 'v4.0.2',
+      'version' => '4.0.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f51940fbe0db060bc4fc0b3f1d19bc4ff3054b17',
     ),
     'facade/flare-client-php' => 
     array (
@@ -505,7 +514,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '252d0cc5d001a60eb8c8d4b3fc2ca156badc2527',
+      'reference' => 'f69219e6fb158236c2326b9ade0b210eb5511aa5',
     ),
     'laravel/sail' => 
     array (
@@ -685,6 +694,20 @@ private static $installed = array (
       ),
       'reference' => '4f7fd7836c6f332bb2933569e566a0d6c4cbed74',
     ),
+    'php-http/async-client-implementation' => 
+    array (
+      'provided' => 
+      array (
+        0 => '*',
+      ),
+    ),
+    'php-http/client-implementation' => 
+    array (
+      'provided' => 
+      array (
+        0 => '*',
+      ),
+    ),
     'phpdocumentor/reflection-common' => 
     array (
       'pretty_version' => '2.2.0',
@@ -861,8 +884,8 @@ private static $installed = array (
     array (
       'provided' => 
       array (
-        0 => '1.0|2.0',
-        1 => '1.0.0 || 2.0.0 || 3.0.0',
+        0 => '1.0.0 || 2.0.0 || 3.0.0',
+        1 => '1.0|2.0',
       ),
     ),
     'psr/simple-cache' => 
@@ -1140,6 +1163,15 @@ private static $installed = array (
       ),
       'reference' => '8a5d5072dca8f48460fce2f4131fcc495eec654c',
     ),
+    'symfony/browser-kit' => 
+    array (
+      'pretty_version' => 'v5.4.11',
+      'version' => '5.4.11.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '081fe28a26b6bd671dea85ef3a4b5003f3c88027',
+    ),
     'symfony/console' => 
     array (
       'pretty_version' => 'v5.4.11',
@@ -1218,6 +1250,31 @@ private static $installed = array (
       array (
       ),
       'reference' => '7872a66f57caffa2916a584db1aa7f12adc76f8c',
+    ),
+    'symfony/http-client' => 
+    array (
+      'pretty_version' => 'v5.4.11',
+      'version' => '5.4.11.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '5c5c37eb2a276d8d7d669dd76688aa1606ee78fb',
+    ),
+    'symfony/http-client-contracts' => 
+    array (
+      'pretty_version' => 'v2.5.2',
+      'version' => '2.5.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ba6a9f0e8f3edd190520ee3b9a958596b6ca2e70',
+    ),
+    'symfony/http-client-implementation' => 
+    array (
+      'provided' => 
+      array (
+        0 => '2.4',
+      ),
     ),
     'symfony/http-foundation' => 
     array (

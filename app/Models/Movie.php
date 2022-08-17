@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Dailymotion;
 use Exception;
 use Illuminate\Support\Facades\Storage;
+use Goutte\Client;
 
 class Movie extends Model
 {
@@ -260,7 +261,7 @@ class Movie extends Model
                     }
                     $name = explode(' - ', $name);
                     if (!empty($sourceId) && count($name) == 2) {
-                        $_name = 'Capítulo '.$name[1];
+                        $_name = 'Tập '.$name[1];
                         MovieVideo::updateOrCreate([
                             'movie_id' => $movie->id,
                             'name' => $_name,

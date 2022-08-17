@@ -25,6 +25,15 @@ class MovieVideo extends Model
         'source_type'
     ];
 
+    public static $sourceTypeValue = [
+        'daily' => 0,
+        'ok.ru' => 1
+    ];
+    public static $sourceTypes = [
+        0 => 'Dailymotion',
+        1 => 'Ok.ru'
+    ];
+
     public function movie() {
         return $this->belongsTo(Movie::class);
     }
