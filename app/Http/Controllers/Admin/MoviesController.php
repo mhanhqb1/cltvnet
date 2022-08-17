@@ -129,6 +129,7 @@ class MoviesController extends Controller
     public function delete($id)
     {
         $this->model->find($id)->delete();
+        MovieVideo::where('movie_id', $id)->delete();
         return redirect()->route('admin.movies.index')->with('success', 'Dữ liệu đã được xóa thành công');
     }
 
