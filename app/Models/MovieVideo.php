@@ -21,7 +21,8 @@ class MovieVideo extends Model
         'source_urls',
         'meta_description',
         'meta_keywords',
-        'status'
+        'status',
+        'source_type'
     ];
 
     public function movie() {
