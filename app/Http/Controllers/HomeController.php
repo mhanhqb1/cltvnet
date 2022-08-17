@@ -29,11 +29,17 @@ class HomeController extends Controller
     {
         $limit = 18;
         $videos = MovieVideo::with('movie')->orderBy('id', 'desc')->limit($limit)->get();
-        $movies = Movie::getList([
+        $notSeriesMovies = Movie::getList([
             'limit' => $limit,
-            'not_page' => 1
-        ]);;
-        return view('home', compact('videos', 'movies'));
+            'not_page' => 1,
+            'is_series' => 0
+        ]);
+        $seriesMovies = Movie::getList([
+            'limit' => $limit,
+            'not_page' => 1,
+            'is_series' => 1
+        ]);
+        return view('home', compact('videos', 'seriesMovies', 'notSeriesMovies'));
     }
 
     public function cateIndex($slug, Request $request)
