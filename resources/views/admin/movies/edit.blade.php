@@ -109,6 +109,10 @@
                         <label for="inputDailyPlaylistId">Dailymotion Playlist ID</label>
                         <input type="text" id="inputDailyPlaylistId" class="form-control" name="daily_playlist_id" value="{{ old('daily_playlist_id') ? old('daily_playlist_id') : $item->daily_playlist_id }}">
                     </div>
+                    <div class="form-group">
+                        <label for="inputOkRuId">Ok.ru ID</label>
+                        <input type="text" id="inputOkRuId" class="form-control" name="ok_ru_id" value="{{ old('ok_ru_id') ? old('ok_ru_id') : $item->ok_ru_id }}">
+                    </div>
                 </div>
             </div>
         </div>
