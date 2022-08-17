@@ -270,7 +270,7 @@ class Movie extends Model
                             'source_urls' => $sourceId,
                             'name' => $_name,
                             'slug' => createSlug($_name),
-                            'position' => trim($name[1]),
+                            'position' => intval(trim($name[1])),
                             'source_type' => MovieVideo::$sourceTypeValue['ok.ru']
                         ]);
                     }
