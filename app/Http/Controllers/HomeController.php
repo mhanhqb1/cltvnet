@@ -36,7 +36,7 @@ class HomeController extends Controller
                 DB::raw("SUBSTRING_INDEX(group_concat(name order by position desc), ',', 1) as name"),
             )
             ->groupBy('movie_id')
-            ->orderBy('id', 'desc')
+            // ->orderBy('id', 'desc')
             ->limit($limit)
             ->get();
         $notSeriesMovies = Movie::getList([
