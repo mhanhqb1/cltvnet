@@ -1,8 +1,8 @@
 <?php
 $appName = env('APP_NAME');
-$pageTitle = !empty($pageTitle) ? $pageTitle.' - '.$appName : $appName;
+$pageTitle = !empty($pageTitle) ? $pageTitle . ' - ' . $appName : $appName;
 $masterDescription = "Gratis Multinacional Novelas y Series en Español. Las mejores novelas multi paises las encontraras aqui en español y completamente gratis y tambien novelas con subtitulos.";
-$metaDescription = !empty($metaDescription) ? substr($metaDescription, 0, 300).'...' : $masterDescription;
+$metaDescription = !empty($metaDescription) ? substr($metaDescription, 0, 300) . '...' : $masterDescription;
 $metaKeywords = !empty($metaKeywords) ? $metaKeywords : 'novelas, novelas y series, novelas turcas, novelas peruanas, novelas mexicanas';
 $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
 ?>
@@ -20,25 +20,25 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
     <title>{{ $pageTitle }}</title>
 
     <meta name="description" content="{{ $metaDescription }}" />
-    <meta name="keywords" content="{{ $metaKeywords }}"/>
+    <meta name="keywords" content="{{ $metaKeywords }}" />
 
     <!-- OpenGraph -->
     <meta property="og:url" content="{{ url()->current() }}">
-	<meta property="og:type" content="website">
-	<meta property="og:title" content="{{ $pageTitle }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $pageTitle }}">
     <meta property="og:description" content="{{ $metaDescription }}">
-	<meta property="og:site_name" content="{{ $appName }}">
+    <meta property="og:site_name" content="{{ $appName }}">
     <meta property="og:image" content="{{ $pageImage }}">
-	<meta property="og:image:alt" content="{{ $appName }}">
+    <meta property="og:image:alt" content="{{ $appName }}">
 
     <!-- Twitter -->
-	<meta name="twitter:card" content="summary_large_image">
-	<!-- <meta name="twitter:site" content="@calatv">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- <meta name="twitter:site" content="@calatv">
 	<meta name="twitter:creator" content="@calatv"> -->
-	<meta name="twitter:title" content="{{ $pageTitle }}">
+    <meta name="twitter:title" content="{{ $pageTitle }}">
     <meta name="twitter:description" content="{{ $metaDescription }}">
     <meta name="twitter:image" content="{{ $pageImage }}">
-	<meta name="twitter:image:alt" content="{{ $appName }}">
+    <meta name="twitter:image:alt" content="{{ $appName }}">
 
     <base href="{{ url('/') }}">
     <meta name="revisit-after" content="2 days">
@@ -46,11 +46,12 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}" media="all">
 
-    <?php if (!empty(config('services.google')['ga_key'])): ?>
+    <?php if (!empty(config('services.google')['ga_key'])) : ?>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.google')['ga_key'] }}"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
+
             function gtag() {
                 dataLayer.push(arguments);
             }
@@ -73,11 +74,23 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
                 </a>
             </div>
             <div class="container">
-                <script type="text/javascript" src="https://udbaa.com/bnr.php?section=General&pub=771288&format=728x90&ga=g"></script>
-                <noscript><a href="https://yllix.com/publishers/771288" target="_blank"><img src="//ylx-aff.advertica-cdn.com/pub/728x90.png" style="border:none;margin:0;padding:0;vertical-align:baseline;" alt="ylliX - Online Advertising Network" /></a></noscript>
+                <script type="text/javascript">
+                    atOptions = {
+                        'key': '4d5af8e4f94a1a3fbbac9eeabdbe9a52',
+                        'format': 'iframe',
+                        'height': 90,
+                        'width': 728,
+                        'params': {}
+                    };
+                    document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/4d5af8e4f94a1a3fbbac9eeabdbe9a52/invoke.js"></scr' + 'ipt>');
+                </script>
             </div>
             <div class="container">
                 @yield('content')
+            </div>
+            <div class="container">
+                <script type="text/javascript" src="https://udbaa.com/bnr.php?section=General&pub=771288&format=728x90&ga=g"></script>
+                <noscript><a href="https://yllix.com/publishers/771288" target="_blank"><img src="//ylx-aff.advertica-cdn.com/pub/728x90.png" style="border:none;margin:0;padding:0;vertical-align:baseline;" alt="ylliX - Online Advertising Network" /></a></noscript>
             </div>
         </div>
         <div class="footer" id="footer">
