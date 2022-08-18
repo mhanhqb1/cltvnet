@@ -11,8 +11,6 @@
                 };
                 document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/b885faff3de006cdce1d13342d723a57/invoke.js"></scr' + 'ipt>');
             </script>
-        </div>
-        <div class="col-sm-6">
             <script type="text/javascript">
                 atOptions = {
                     'key': '2beb75141c9acf110403bc7a2eada0f5',
@@ -23,10 +21,6 @@
                 };
                 document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/2beb75141c9acf110403bc7a2eada0f5/invoke.js"></scr' + 'ipt>');
             </script>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
             <script type="text/javascript">
                 atOptions = {
                     'key': '5c69f71391f5cbcd667f2d7e489f8ca9',
@@ -39,32 +33,26 @@
             </script>
         </div>
         <div class="col-sm-6">
-            <div class="row">
-                <div class="col-sm-6">
-                    <script type="text/javascript">
-                        atOptions = {
-                            'key': '4f672f5ffc094617eabddd27f05d8927',
-                            'format': 'iframe',
-                            'height': 600,
-                            'width': 160,
-                            'params': {}
-                        };
-                        document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/4f672f5ffc094617eabddd27f05d8927/invoke.js"></scr' + 'ipt>');
-                    </script>
-                </div>
-                <div class="col-sm-6">
-                    <script type="text/javascript">
-                        atOptions = {
-                            'key': 'a2758b3e77c70fb612a9dfc934569e05',
-                            'format': 'iframe',
-                            'height': 300,
-                            'width': 160,
-                            'params': {}
-                        };
-                        document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/a2758b3e77c70fb612a9dfc934569e05/invoke.js"></scr' + 'ipt>');
-                    </script>
-                </div>
-            </div>
+            <script type="text/javascript">
+                atOptions = {
+                    'key': '4f672f5ffc094617eabddd27f05d8927',
+                    'format': 'iframe',
+                    'height': 600,
+                    'width': 160,
+                    'params': {}
+                };
+                document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/4f672f5ffc094617eabddd27f05d8927/invoke.js"></scr' + 'ipt>');
+            </script>
+            <script type="text/javascript">
+                atOptions = {
+                    'key': 'a2758b3e77c70fb612a9dfc934569e05',
+                    'format': 'iframe',
+                    'height': 300,
+                    'width': 160,
+                    'params': {}
+                };
+                document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/a2758b3e77c70fb612a9dfc934569e05/invoke.js"></scr' + 'ipt>');
+            </script>
         </div>
     </div>
 </div>
