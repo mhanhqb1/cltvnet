@@ -56,6 +56,8 @@ $cateName = implode(' - ', $cateName);
                 </div>
             </div>
         </div>
+        <script async="async" data-cfasync="false" src="//pl17602823.highperformancegate.com/4d6ca70c3586b0ea4842fdf40ea18b03/invoke.js"></script>
+        <div id="container-4d6ca70c3586b0ea4842fdf40ea18b03"></div>
 
         @if(!$relatedMovies->isEmpty())
         <div class="inner-box category-content" style="padding-bottom: 15px;">
