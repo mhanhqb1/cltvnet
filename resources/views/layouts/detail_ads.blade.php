@@ -3,18 +3,6 @@
         <div class="col-sm-12">
             <script type="text/javascript">
                 atOptions = {
-                    'key': 'b885faff3de006cdce1d13342d723a57',
-                    'format': 'iframe',
-                    'height': 60,
-                    'width': 468,
-                    'params': {}
-                };
-                document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/b885faff3de006cdce1d13342d723a57/invoke.js"></scr' + 'ipt>');
-            </script>
-        </div>
-        <div class="col-sm-12">
-            <script type="text/javascript">
-                atOptions = {
                     'key': '2beb75141c9acf110403bc7a2eada0f5',
                     'format': 'iframe',
                     'height': 50,
@@ -24,7 +12,7 @@
                 document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/2beb75141c9acf110403bc7a2eada0f5/invoke.js"></scr' + 'ipt>');
             </script>
         </div>
-        <div class="col-sm-12">
+        <!-- <div class="col-sm-12">
             <script type="text/javascript">
                 atOptions = {
                     'key': '5c69f71391f5cbcd667f2d7e489f8ca9',
@@ -35,12 +23,12 @@
                 };
                 document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/5c69f71391f5cbcd667f2d7e489f8ca9/invoke.js"></scr' + 'ipt>');
             </script>
-        </div>
+        </div> -->
     </div>
 </div>
-<div class="row">
+<!-- <div class="row">
     <div class="col-sm-12">
         <script async="async" data-cfasync="false" src="//pl17602823.highperformancegate.com/4d6ca70c3586b0ea4842fdf40ea18b03/invoke.js"></script>
         <div id="container-4d6ca70c3586b0ea4842fdf40ea18b03"></div>
     </div>
-</div>
+</div> -->

@@ -75,16 +75,32 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
                 </a>
             </div>
             <div class="container">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key': '4d5af8e4f94a1a3fbbac9eeabdbe9a52',
-                        'format': 'iframe',
-                        'height': 90,
-                        'width': 728,
-                        'params': {}
-                    };
-                    document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/4d5af8e4f94a1a3fbbac9eeabdbe9a52/invoke.js"></scr' + 'ipt>');
-                </script>
+                <center>
+                <div class="col-sm-12">
+                    <script type="text/javascript">
+                        atOptions = {
+                            'key': '4d5af8e4f94a1a3fbbac9eeabdbe9a52',
+                            'format': 'iframe',
+                            'height': 90,
+                            'width': 728,
+                            'params': {}
+                        };
+                        document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/4d5af8e4f94a1a3fbbac9eeabdbe9a52/invoke.js"></scr' + 'ipt>');
+                    </script>
+                </div>
+                <div class="col-sm-12">
+                    <script type="text/javascript">
+                        atOptions = {
+                            'key': 'b885faff3de006cdce1d13342d723a57',
+                            'format': 'iframe',
+                            'height': 60,
+                            'width': 468,
+                            'params': {}
+                        };
+                        document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/b885faff3de006cdce1d13342d723a57/invoke.js"></scr' + 'ipt>');
+                    </script>
+                </div>
+                </center>
             </div>
             <div class="container">
                 @yield('content')

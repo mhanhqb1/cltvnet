@@ -38,5 +38,7 @@ $cates = getFrontCategories();
                 </fieldset>
             </form>
         </div>
+
+        @include('layouts.detail_ads2')
     </div>
 </div>

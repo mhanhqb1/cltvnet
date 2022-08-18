@@ -179,7 +179,6 @@ $cateName = implode(' - ', $cateName);
                 </div>
             </div>
         </div>
-        @include('layouts.detail_ads2')
         @if (!empty($movie->is_series))
         <div class="inner-box category-content" style="padding-bottom: 5px;">
             <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;"> <i class="fa fa-tags"></i>
