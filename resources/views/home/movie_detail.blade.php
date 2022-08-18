@@ -17,9 +17,11 @@ $cateName = implode(' - ', $cateName);
         padding: 10px 0;
         border-bottom: 1px dashed #ccc;
     }
+
     .related-movies li:first-child {
         padding-top: 0;
     }
+
     .related-movies li .movie-image img {
         width: 100px;
         margin-right: 24px;
@@ -27,7 +29,7 @@ $cateName = implode(' - ', $cateName);
 </style>
 <div class="row">
     <div class="col-sm-4 hidden-xs">
-    @include('layouts.front_left_cates')
+        @include('layouts.front_left_cates')
     </div>
 
     <div class="col-sm-8">
@@ -42,9 +44,9 @@ $cateName = implode(' - ', $cateName);
             <div class="faq-content">
                 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;" itemscope itemtype="https://schema.org/VideoObject">
                     <?php
-                    $iframeUrl = 'https://geo.dailymotion.com/player/x9pog.html?video='.$movie->videos[0]->source_urls;
+                    $iframeUrl = 'https://geo.dailymotion.com/player/x9pog.html?video=' . $movie->videos[0]->source_urls;
                     if (!empty($movie->videos[0]->source_type)) {
-                        $iframeUrl = '//ok.ru/videoembed/'.$movie->videos[0]->source_urls;
+                        $iframeUrl = '//ok.ru/videoembed/' . $movie->videos[0]->source_urls;
                     }
                     ?>
                     <meta itemprop="name" content="{{ $pageTitle }}" />
@@ -56,9 +58,6 @@ $cateName = implode(' - ', $cateName);
                 </div>
             </div>
         </div>
-        <script async="async" data-cfasync="false" src="//pl17602823.highperformancegate.com/4d6ca70c3586b0ea4842fdf40ea18b03/invoke.js"></script>
-        <div id="container-4d6ca70c3586b0ea4842fdf40ea18b03"></div>
-
         @if(!$relatedMovies->isEmpty())
         <div class="inner-box category-content" style="padding-bottom: 15px;">
             <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;">
@@ -73,18 +72,18 @@ $cateName = implode(' - ', $cateName);
                     <li>
                         <div class="movie-image">
                             <a href="{{ route('home.movie_detail', $v->slug) }}" target="_blank" title="{{ $v->name }}">
-                                <img src="{{ getImageUrl($v->image) }}" alt="{{ $v->name }}"/>
+                                <img src="{{ getImageUrl($v->image) }}" alt="{{ $v->name }}" />
                             </a>
                         </div>
                         <div class="movie-info">
                             <h4><a href="{{ route('home.movie_detail', $v->slug) }}" target="_blank">{{ $v->name }}</a></h4>
                             @if(!empty($v->cates))
-                                <p>
-                                    <a href="{{ route('home.country.index', $v->country->slug) }}" title="Review phim {{ $v->country->name }}">{{ $v->country->name }}</a>
-                                    @foreach($v->cates as $c)
-                                    - <a href="{{ route('home.cate.index', $c->slug) }}" target="_blank" title="Review phim {{ $c->name }}">{{ $c->name }}</a>
-                                    @endforeach
-                                </p>
+                            <p>
+                                <a href="{{ route('home.country.index', $v->country->slug) }}" title="Review phim {{ $v->country->name }}">{{ $v->country->name }}</a>
+                                @foreach($v->cates as $c)
+                                - <a href="{{ route('home.cate.index', $c->slug) }}" target="_blank" title="Review phim {{ $c->name }}">{{ $c->name }}</a>
+                                @endforeach
+                            </p>
                             @endif
                         </div>
                     </li>
@@ -117,6 +116,7 @@ $cateName = implode(' - ', $cateName);
                 </div>
             </div>
         </div>
+        @include('layouts.detail_ads')
 
         <div class="inner-box category-content" style="padding-bottom: 10px;">
             <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;"> <i class="fa fa-tags"></i>
