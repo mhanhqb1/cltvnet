@@ -33,6 +33,7 @@ Route::get('/novelas/{movieSlug}', [App\Http\Controllers\HomeController::class, 
 Route::get('/novelas/{movieSlug}/{videoSlug}', [App\Http\Controllers\HomeController::class, 'getVideoDetail'])->name('home.video_detail');
 Route::get('/dailymotion', [App\Http\Controllers\HomeController::class, 'dailymotion'])->name('home.dailymotion');
 Route::get('/okru', [App\Http\Controllers\HomeController::class, 'okru'])->name('home.okru');
+Route::get('/tv-show', [App\Http\Controllers\HomeController::class, 'tvShow'])->name('home.tv_show');
 
 Route::prefix('user')->name('user.')->group(function(){
     Route::middleware(['guest:web'])->group(function(){

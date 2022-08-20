@@ -39,9 +39,8 @@ class GenerateSitemap extends Command
         // Categories
         $sitemap = $sitemap->add(route('home'));
         $sitemap = $sitemap->add(route('home.new_movie'));
-        $sitemap = $sitemap->add(route('home.anime'));
-        $sitemap = $sitemap->add(route('home.not_series'));
         $sitemap = $sitemap->add(route('home.series'));
+        $sitemap = $sitemap->add(route('home.tv_show'));
         $cates = Cate::get();
         foreach ($cates as $cate) {
             $sitemap = $sitemap->add(route('home.cate.index', $cate->slug));

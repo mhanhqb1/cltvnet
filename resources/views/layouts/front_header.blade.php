@@ -50,6 +50,7 @@ $countries = getFrontCountries();
                     @endforeach
                 </ul>
             </li>
+            <li><a href="{{ route('home.tv_show') }}">TV Show</a></li>
             <li><a href="{{ route('home.series') }}">Series</a></li>
         </ul>
     </div>

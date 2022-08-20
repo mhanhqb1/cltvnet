@@ -87,6 +87,21 @@ class HomeController extends Controller
         return view('home.search', compact('movies', 'pageTitle'));
     }
 
+    public function tvShow(Request $request)
+    {
+        $limit = 12;
+        $cate = Cate::find(15);
+        if (empty($cate)) {
+            return redirect()->route('home');
+        }
+        $pageTitle = $cate->name;
+        $movies = Movie::getList([
+            'limit' => $limit,
+            'cate_id' => $cate->id
+        ]);
+        return view('home.cate_index', compact('movies', 'cate', 'pageTitle'));
+    }
+
     public function getAnime(Request $request)
     {
         $limit = 12;
