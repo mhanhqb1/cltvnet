@@ -74,6 +74,7 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
                     Welcome to <strong>{{ $appName }}</strong>
                 </a>
             </div>
+            @if(env('APP_ENV') != 'local')
             <div class="container">
                 <center>
                 <div class="col-sm-12">
@@ -114,13 +115,16 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
                 </div>
                 </center>
             </div>
+            @endif
             <div class="container">
                 @yield('content')
             </div>
+            @if(env('APP_ENV') != 'local')
             <div class="container">
                 <script type="text/javascript" src="https://udbaa.com/bnr.php?section=General&pub=771288&format=728x90&ga=g"></script>
                 <noscript><a href="https://yllix.com/publishers/771288" target="_blank"><img src="//ylx-aff.advertica-cdn.com/pub/728x90.png" style="border:none;margin:0;padding:0;vertical-align:baseline;" alt="ylliX - Online Advertising Network" /></a></noscript>
             </div>
+            @endif
         </div>
         <div class="footer" id="footer">
             <div class="container">
