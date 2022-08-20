@@ -45,7 +45,55 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}" media="all">
-
+    <style>
+        h3.movie-name {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            -webkit-line-clamp: 3;
+            font-size: 14px;
+            text-align: left;
+            padding-top:5px;
+            padding-bottom:0px !important;
+            font-size:16px;
+            line-height: 1.5;
+        }
+        .movie-item {
+            margin-bottom:20px;
+            min-height:330px;
+            position: relative;
+        }
+        .cate-movie-item {
+            position: relative;
+        }
+        .movie-label {
+            position: absolute;
+            top: 0;
+            left: 15px;
+            padding: 5px 10px;
+            color: #fff;
+            background: #1b2a39;
+            border-bottom: 2px solid #bb3c2f;
+            border: 1px solid #1b2a3900;
+            z-index: 2;
+            font-weight: 400;
+            background-size: 200% 100%;
+            background-image: linear-gradient(to right,#C02425 0%,#F0CB35 51%,#C02425 100%);
+            transition: .7s;
+        }
+        .movie-label::after {
+            content: '';
+            border-bottom: 6px solid #dd8b52;
+            border-left: 6px solid transparent;
+            display: block;
+            border-right: 6px solid transparent;
+            bottom: -10px;
+            left: 50%;
+            position: absolute;
+            -webkit-transform: translate(-50%,-50%) rotate(180deg);
+            transform: translate(-50%,-50%) rotate(180deg);
+        }
+    </style>
     <?php if (!empty(config('services.google')['ga_key'])) : ?>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.google')['ga_key'] }}"></script>
