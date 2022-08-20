@@ -1,7 +1,7 @@
 <?php
-$imageUrl = getImageUrl(!empty($item->image) ? $item->image : $item->movie->image);
-$name = !empty($item->movie->is_series) ? $item->movie->name.' - '.$item->name : $item->movie->name;
-$url = empty($item->movie->is_series) ? route('home.movie_detail', $item->movie->slug) : route('home.video_detail', ['movieSlug' => $item->movie->slug, 'videoSlug' => $item->slug]);
+$imageUrl = getImageUrl(!empty($item->lastVideo[0]->image) ? $item->lastVideo[0]->image : $item->image);
+$name = !empty($item->is_series) ? $item->name.' - '.$item->lastVideo[0]->name : $item->name;
+$url = empty($item->is_series) ? route('home.movie_detail', $item->slug) : route('home.video_detail', ['movieSlug' => $item->slug, 'videoSlug' => $item->lastVideo[0]->slug]);
 ?>
 <div class="col-xs-6 col-sm-2" style="margin-bottom:20px; min-height:330px;">
     <a href="{{ $url }}">

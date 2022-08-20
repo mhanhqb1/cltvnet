@@ -32,6 +32,11 @@ class Movie extends Model
         return $this->hasMany(MovieVideo::class)->orderBy('position', 'asc');
     }
 
+    public function lastVideo()
+    {
+        return $this->hasMany(MovieVideo::class)->orderBy('position', 'desc');
+    }
+
     public function country()
     {
         return $this->belongsTo(Country::class);
@@ -167,17 +172,22 @@ class Movie extends Model
                     $name = explode(' - ', $name);
                     if (!empty($sourceId) && count($name) == 2) {
                         $_name = 'Capítulo '.$name[1];
-                        MovieVideo::updateOrCreate([
-                            'movie_id' => $movie->id,
-                            'name' => $_name,
-                        ],[
-                            'movie_id' => $movie->id,
-                            'source_urls' => $sourceId,
-                            'name' => $_name,
-                            'slug' => createSlug($_name),
-                            'position' => trim($name[1]),
-                            'source_type' => MovieVideo::$sourceTypeValue['ok.ru']
-                        ]);
+                        $check = MovieVideo::where('movie_id', $movie->id)->where('name', $_name)->first();
+                        if (empty($check)) {
+                            MovieVideo::updateOrCreate([
+                                'movie_id' => $movie->id,
+                                'name' => $_name,
+                            ],[
+                                'movie_id' => $movie->id,
+                                'source_urls' => $sourceId,
+                                'name' => $_name,
+                                'slug' => createSlug($_name),
+                                'position' => trim($name[1]),
+                                'source_type' => MovieVideo::$sourceTypeValue['ok.ru']
+                            ]);
+                            $movie->daily_crawl_at = date('Y-m-d H:i:s');
+                            $movie->save();
+                        }
                     }
                 });
             }
