@@ -35,9 +35,15 @@ class HomeController extends Controller
             ->get();
         $movies = Movie::getList([
             'limit' => $limit,
-            'not_page' => 1
-        ]);;
-        return view('home', compact('videos', 'movies'));
+            'not_page' => 1,
+            'not_cate_id' => 15
+        ]);
+        $movies2 = Movie::getList([
+            'limit' => $limit,
+            'not_page' => 1,
+            'cate_id' => 15
+        ]);
+        return view('home', compact('videos', 'movies', 'movies2'));
     }
 
     public function cateIndex($slug, Request $request)

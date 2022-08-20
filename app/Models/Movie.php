@@ -61,6 +61,11 @@ class Movie extends Model
                 $q->where('cates.id', $params['cate_id']);
             });
         }
+        if (!empty($params['not_cate_id'])) {
+            $data = $data->whereHas('cates', function($q) use($params) {
+                $q->where('cates.id', '!=', $params['not_cate_id']);
+            });
+        }
         if (!empty($params['country_id'])) {
             $data = $data->where('country_id', $params['country_id']);
         }

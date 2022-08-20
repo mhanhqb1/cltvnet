@@ -35,7 +35,7 @@ $countries = getFrontCountries();
         <ul>
             <li><a href="{{ route('home.new_movie') }}">Nuevas películas</a></li>
             <li class="menu-child">
-                <span><i class="fa fa-caret-down" aria-hidden="true"></i> &nbsp;Novelas</span>
+                <span><i class="fa fa-caret-down" aria-hidden="true"></i> &nbsp;Categorías</span>
                 <ul class="submenu">
                     @foreach ($cates as $cate)
                     <li><a href="{{ route('home.cate.index', $cate->slug) }}">{{ $cate->name }}</a></li>
