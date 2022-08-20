@@ -30,6 +30,7 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
-        <div id="amzn-assoc-ad-f401427b-f47a-43af-959f-bb333ff6a70b"></div><script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=f401427b-f47a-43af-959f-bb333ff6a70b"></script>
+        <div id="amzn-assoc-ad-f401427b-f47a-43af-959f-bb333ff6a70b"></div>
+        <script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=f401427b-f47a-43af-959f-bb333ff6a70b"></script>
     </div>
 </div>
