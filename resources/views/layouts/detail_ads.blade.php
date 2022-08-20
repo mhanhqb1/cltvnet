@@ -29,8 +29,7 @@
     </div>
 </div>
 <div class="row">
-    <!-- <div class="col-sm-12">
-        <script async="async" data-cfasync="false" src="//pl17602823.highperformancegate.com/4d6ca70c3586b0ea4842fdf40ea18b03/invoke.js"></script>
-        <div id="container-4d6ca70c3586b0ea4842fdf40ea18b03"></div>
-    </div> -->
+    <div class="col-sm-12">
+        <div id="amzn-assoc-ad-f401427b-f47a-43af-959f-bb333ff6a70b"></div><script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=f401427b-f47a-43af-959f-bb333ff6a70b"></script>
+    </div>
 </div>
