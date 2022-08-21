@@ -168,10 +168,10 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
                 @yield('content')
             </div>
             @if(env('APP_ENV') != 'local')
-            <div class="container">
+            <!-- <div class="container">
                 <script type="text/javascript" src="https://udbaa.com/bnr.php?section=General&pub=771288&format=728x90&ga=g"></script>
                 <noscript><a href="https://yllix.com/publishers/771288" target="_blank"><img src="//ylx-aff.advertica-cdn.com/pub/728x90.png" style="border:none;margin:0;padding:0;vertical-align:baseline;" alt="ylliX - Online Advertising Network" /></a></noscript>
-            </div>
+            </div> -->
             @endif
         </div>
         <div class="footer" id="footer">
@@ -190,7 +190,7 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{{ asset('/js/scripts.js') }}"></script>
     <!-- <script type="text/javascript" src="https://vdbaa.com/tun.php?section=General&pt=8&pub=771288&ga=g"></script> -->
-    <!-- <script type='text/javascript' src='//pl17603034.highperformancegate.com/28/19/a3/2819a3f13adda1bbb65ed30a4c3adb56.js'></script> -->
+    <script type='text/javascript' src='//pl17603034.highperformancegate.com/28/19/a3/2819a3f13adda1bbb65ed30a4c3adb56.js'></script>
 </body>
 
 </html>
