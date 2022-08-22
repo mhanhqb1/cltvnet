@@ -108,7 +108,7 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
             gtag('config', "<?php echo config('services.google')['ga_key']; ?>");
         </script>
     <?php endif; ?>
-    <script type='text/javascript' src='//pl17602848.highperformancegate.com/f1/47/cc/f147cc35ec3f391964af36aab05f0448.js'></script>
+    <!-- <script type='text/javascript' src='//pl17602848.highperformancegate.com/f1/47/cc/f147cc35ec3f391964af36aab05f0448.js'></script> -->
 </head>
 
 <body>
