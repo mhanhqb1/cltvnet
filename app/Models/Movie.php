@@ -177,7 +177,7 @@ class Movie extends Model
                     $name = explode(' - ', $name);
                     if (!empty($sourceId) && count($name) == 2) {
                         $_name = 'Capítulo '.$name[1];
-                        $_name1 = explode(' | ', $_name[0]);
+                        $_name1 = explode(' | ', $name[0]);
                         if (count($_name1) == 2) {
                             $_name = $_name1[1];
                         }
