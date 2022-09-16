@@ -35,6 +35,11 @@ class Movie extends Model
         return $this->hasMany(MovieVideo::class)->orderBy('position', 'asc');
     }
 
+    public function lastVideo()
+    {
+        return $this->hasMany(MovieVideo::class)->orderBy('position', 'desc');
+    }
+
     public function country()
     {
         return $this->belongsTo(Country::class);
