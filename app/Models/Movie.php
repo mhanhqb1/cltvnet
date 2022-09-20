@@ -27,7 +27,8 @@ class Movie extends Model
         'daily_playlist_id',
         'daily_video_id',
         'daily_crawl_at',
-        'ok_ru_id'
+        'ok_ru_id',
+        'cate_type'
     ];
 
     public function videos()

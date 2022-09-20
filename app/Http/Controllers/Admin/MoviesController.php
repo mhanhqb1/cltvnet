@@ -104,6 +104,7 @@ class MoviesController extends Controller
         $item->country_id = !empty($request->country_id) ? $request->country_id : 0;
         $item->description = !empty($request->description) ? $request->description : '';
         $item->is_series = !empty($request->is_series) ? $request->is_series : 0;
+        $item->cate_type = !empty($request->cate_type) ? $request->cate_type : 0;
         $item->detail = !empty($request->detail) ? $request->detail : null;
         $item->daily_playlist_id = !empty($request->daily_playlist_id) ? $request->daily_playlist_id : null;
         $item->daily_video_id = !empty($request->daily_video_id) ? $request->daily_video_id : null;

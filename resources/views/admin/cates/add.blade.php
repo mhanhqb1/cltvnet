@@ -1,3 +1,7 @@
+<?php
+$cateTypes = getCateTypes();
+?>
+
 @extends('layouts.admin_master')
 
 @push('css')
@@ -30,6 +34,16 @@
                             @if (!empty($parents))
                             @foreach ($parents as $v)
                                 <option value="{{ $v->id }}" {{ old('parent_id') == $v->id ? 'selected="selected"' : '' }}>{{ $v->name }}</option>
+                            @endforeach
+                            @endif
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputType">Thể loại</label>
+                        <select name="type" id="inputType" class="form-control">
+                            @if (!empty($cateTypes))
+                            @foreach ($cateTypes as $k => $v)
+                                <option value="{{ $k }}" {{ old('type') == $k ? 'selected="selected"' : '' }}>{{ $v }}</option>
                             @endforeach
                             @endif
                         </select>

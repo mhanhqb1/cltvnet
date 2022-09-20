@@ -3,6 +3,15 @@
 use App\Models\Cate;
 use App\Models\Country;
 
+function getCateTypes()
+{
+    return [
+        0 => 'movie',
+        1 => 'kid',
+        2 => 'course'
+    ];
+}
+
 function createSlug($str, $delimiter = '-')
 {
     $str = preg_replace("/(\,|-|\.)/", '', $str);
@@ -43,8 +52,11 @@ function convertDuration($time) {
     return $txt;
 }
 
-function getFrontCategories() {
-    return Cate::orderBy('position', 'asc')->get();
+function getFrontCategories($type = 0) {
+    return Cate::where('type', $type)
+        ->orderBy('position', 'asc')
+        ->get()
+    ;
 }
 function getFrontCountries() {
     return Country::orderBy('position', 'asc')->get();

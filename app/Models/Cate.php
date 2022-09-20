@@ -14,6 +14,7 @@ class Cate extends Model
         'name',
         'slug',
         'parent_id',
-        'position'
+        'position',
+        'type'
     ];
 }

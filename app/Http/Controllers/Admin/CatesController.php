@@ -74,6 +74,7 @@ class CatesController extends Controller
         $item->slug = createSlug($request->name);
         $item->parent_id = !empty($request->parent_id) ? $request->parent_id : 0;
         $item->position = !empty($request->position) ? $request->position : 0;
+        $item->type = $request->type;
         $item->save();
         return redirect()->route('admin.cates.index')->with('success', 'Dữ liệu đã được cập nhật thành công');
     }
