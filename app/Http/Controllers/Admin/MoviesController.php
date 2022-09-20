@@ -15,6 +15,7 @@ use Yajra\Datatables\Datatables;
 class MoviesController extends Controller
 {
     private $model;
+    private $cateType = 0;
 
     public function __construct()
     {
@@ -31,7 +32,7 @@ class MoviesController extends Controller
 
     public function indexData()
     {
-        $data = $this->model->withCount('videos')->orderBy('id', 'desc');
+        $data = $this->model->withCount('videos')->where('cate_type', $this->cateType)->orderBy('id', 'desc');
         return Datatables::of($data)
             ->addColumn('image', function($item) {
                 $html = '';
@@ -61,7 +62,7 @@ class MoviesController extends Controller
 
     public function add()
     {
-        $cates = Cate::get();
+        $cates = Cate::where('type', $this->cateType)->get();
         $countries = Country::get();
         return view('admin.movies.add', compact('cates', 'countries'));
     }
@@ -69,7 +70,7 @@ class MoviesController extends Controller
     public function edit($id)
     {
         $item = $this->model->find($id);
-        $cates = Cate::get();
+        $cates = Cate::where('type', $this->cateType)->get();
         $countries = Country::get();
         $movieCates = MovieCate::where('movie_id', $id)->pluck('cate_id')->toArray();
         return view('admin.movies.edit', compact('item', 'cates', 'movieCates', 'countries'));
@@ -104,7 +105,7 @@ class MoviesController extends Controller
         $item->country_id = !empty($request->country_id) ? $request->country_id : 0;
         $item->description = !empty($request->description) ? $request->description : '';
         $item->is_series = !empty($request->is_series) ? $request->is_series : 0;
-        $item->cate_type = !empty($request->cate_type) ? $request->cate_type : 0;
+        $item->cate_type = $this->cateType;
         $item->detail = !empty($request->detail) ? $request->detail : null;
         $item->daily_playlist_id = !empty($request->daily_playlist_id) ? $request->daily_playlist_id : null;
         $item->daily_video_id = !empty($request->daily_video_id) ? $request->daily_video_id : null;
@@ -136,14 +137,14 @@ class MoviesController extends Controller
 
     public function addVideo()
     {
-        $movies = Movie::get();
+        $movies = Movie::where('cate_type', $this->cateType)->get();
         return view('admin.movies.add_video', compact('movies'));
     }
 
     public function editVideo($id)
     {
         $item = MovieVideo::find($id);
-        $movies = Movie::get();
+        $movies = Movie::where('cate_type', $this->cateType)->get();
         return view('admin.movies.edit_video', compact('item', 'movies'));
     }
 
