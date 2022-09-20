@@ -4,6 +4,7 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CatesController;
 use App\Http\Controllers\Admin\MoviesController;
+use App\Http\Controllers\Admin\KidController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CountriesController;
 use App\Http\Controllers\Admin\DailymotionController;
@@ -76,6 +77,21 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::post('/movieVideos/save', [MoviesController::class, 'saveVideo'])->name('movies.saveVideo');
         Route::get('/movieVideos/indexData', [MoviesController::class, 'indexDataVideo'])->name('movies.indexDataVideo');
         Route::delete('/moviesVideos/{id}', [MoviesController::class, 'deleteVideo'])->name('movies.deleteVideo');
+
+        // Kid
+        Route::get('/kid', [KidController::class, 'index'])->name('kid.index');
+        Route::get('/kid/indexData', [KidController::class, 'indexData'])->name('kid.indexData');
+        Route::get('/kid/add', [KidController::class, 'add'])->name('kid.add');
+        Route::get('/kid/edit/{id}', [KidController::class, 'edit'])->name('kid.edit');
+        Route::post('/kid/save', [KidController::class, 'save'])->name('kid.save');
+        Route::delete('/kid/{id}', [KidController::class, 'delete'])->name('kid.delete');
+
+        // Kid videos
+        Route::get('/kidVideos/add', [KidController::class, 'addVideo'])->name('kid.addVideo');
+        Route::get('/kidVideos/edit/{id}', [KidController::class, 'editVideo'])->name('kid.editVideo');
+        Route::post('/kidVideos/save', [KidController::class, 'saveVideo'])->name('kid.saveVideo');
+        Route::get('/kidVideos/indexData', [KidController::class, 'indexDataVideo'])->name('kid.indexDataVideo');
+        Route::delete('/kidVideos/{id}', [KidController::class, 'deleteVideo'])->name('kid.deleteVideo');
 
         // Cate
         Route::get('/cates', [CatesController::class, 'index'])->name('cates.index');
