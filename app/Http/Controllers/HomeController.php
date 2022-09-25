@@ -234,4 +234,8 @@ class HomeController extends Controller
         Movie::dailyVideoCrawler(100);
         Movie::dailymotionCrawler(100, false);
     }
+
+    public function okru() {
+        Movie::okru();
+    }
 }

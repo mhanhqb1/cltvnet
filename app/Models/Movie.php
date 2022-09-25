@@ -270,6 +270,10 @@ class Movie extends Model
                     $name = explode(' - ', $name);
                     if (!empty($sourceId) && count($name) == 2) {
                         $_name = 'Tập '.$name[1];
+                        $_name1 = explode(' | ', $name[0]);
+                        if (count($_name1) == 2) {
+                            $_name = $_name1[1];
+                        }
                         MovieVideo::updateOrCreate([
                             'movie_id' => $movie->id,
                             'name' => $_name,
