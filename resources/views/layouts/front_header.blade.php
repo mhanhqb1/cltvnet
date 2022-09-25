@@ -1,5 +1,6 @@
 <?php
 $cates = getFrontCategories();
+$cates2 = getFrontCategories(1);
 $countries = getFrontCountries();
 ?>
 <nav class="navbar navbar-site navbar-default" role="navigation" style="background: #cd1d1f;">
@@ -53,7 +54,14 @@ $countries = getFrontCountries();
             <li><a href="{{ route('home.not_series') }}">Phim lẻ</a></li>
             <li><a href="{{ route('home.series') }}">Phim bộ</a></li>
             <li><a href="{{ route('home.anime') }}">Phim hoạt hình</a></li>
-            <li><a href="#">Bộ sưu tập</a></li>
+            <li class="menu-child">
+                <span><i class="fa fa-caret-down" aria-hidden="true"></i> &nbsp;Bộ sưu tập</span>
+                <ul class="submenu">
+                    @foreach ($cates2 as $cate)
+                    <li><a href="{{ route('home.cate.index', $cate->slug) }}">{{ $cate->name }}</a></li>
+                    @endforeach
+                </ul>
+            </li>
         </ul>
     </div>
 </div>

@@ -55,6 +55,7 @@ class Movie extends Model
     {
         // Init
         $data = self::whereHas('videos');
+        $cateType = !empty($params['cate_type']) ? $params['cate_type'] : 0;
 
         // Filter
         if (isset($params['is_series'])) {
@@ -71,6 +72,7 @@ class Movie extends Model
         if (!empty($params['slug'])) {
             $data = $data->where('movies.slug', 'like', '%' . $params['slug'] . '%');
         }
+        $data = $data->where('cate_type', $cateType);
 
         // Paginate
         if (!empty($params['limit']) && !empty($params['not_page'])) {

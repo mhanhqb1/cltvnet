@@ -30,6 +30,7 @@ class HomeController extends Controller
         $limit = 18;
         $videos = Movie::with('lastVideo')
             ->whereHas('lastVideo')
+            ->where('cate_type', 0)
             ->orderBy('updated_at', 'desc')
             ->limit($limit)
             ->get();
@@ -53,10 +54,11 @@ class HomeController extends Controller
         if (empty($cate)) {
             return redirect()->route('home');
         }
-        $pageTitle = 'Phim '.$cate->name;
+        $pageTitle = $cate->name;
         $movies = Movie::getList([
             'limit' => $limit,
-            'cate_id' => $cate->id
+            'cate_id' => $cate->id,
+            'cate_type' => $cate->type
         ]);
         return view('home.cate_index', compact('movies', 'cate', 'pageTitle'));
     }
@@ -179,6 +181,52 @@ class HomeController extends Controller
         $metaKeywords = $movie->tags;
         $pageImage = getImageUrl($movie->image);
         return view('home.video_detail', compact('movie', 'video', 'pageTitle', 'metaDescription', 'metaKeywords', 'pageImage'));
+    }
+
+    public function getMovieDetail2($movieSlug, Request $request)
+    {
+        $movie = Movie::with('country', 'videos', 'cates')->where('slug', $movieSlug)->first();
+        if (empty($movie)) {
+            return redirect()->route('home');
+        }
+        $pageTitle = $movie->name;
+        $metaDescription = $movie->description;
+        $metaKeywords = $movie->tags;
+        $pageImage = getImageUrl($movie->image);
+        $cateIds = [];
+        if (!empty($movie->cates)) {
+            foreach ($movie->cates as $v) {
+                $cateIds[] = $v->id;
+            }
+        }
+        $relatedMovies = Movie::with('country', 'cates')
+            ->where('id', '!=', $movie->id)
+            ->where('country_id', $movie->country_id)
+            ->whereHas('cates', function ($q) use ($cateIds) {
+                $q->whereIn('cates.id', $cateIds);
+            })
+            ->orderBy('year', 'desc')
+            ->orderBy('id', 'desc')
+            ->limit(5)
+            ->get();
+        return view('home.movie_detail2', compact('relatedMovies', 'movie', 'pageTitle', 'metaDescription', 'metaKeywords', 'pageImage'));
+    }
+
+    public function getVideoDetail2($movieSlug, $videoSlug, Request $request)
+    {
+        $movie = Movie::with('country', 'videos', 'cates')->where('slug', $movieSlug)->first();
+        if (empty($movie)) {
+            return redirect()->route('home');
+        }
+        $video = MovieVideo::where('movie_id', $movie->id)->where('slug', $videoSlug)->first();
+        if (empty($video)) {
+            return redirect()->route('home.movie_detail', $movie->slug);
+        }
+        $pageTitle = $movie->name . ' - ' . $video->name;
+        $metaDescription = $movie->description;
+        $metaKeywords = $movie->tags;
+        $pageImage = getImageUrl($movie->image);
+        return view('home.video_detail2', compact('movie', 'video', 'pageTitle', 'metaDescription', 'metaKeywords', 'pageImage'));
     }
 
     public function dailymotion() {

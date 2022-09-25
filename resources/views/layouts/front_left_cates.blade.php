@@ -1,5 +1,6 @@
 <?php
-$cates = getFrontCategories();
+$cateType = !empty($cateType) ? $cateType : 0;
+$cates = getFrontCategories($cateType);
 ?>
 <div class="inner-box category-content" style="padding-bottom: 30px;">
     <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;">
