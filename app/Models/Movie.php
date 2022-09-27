@@ -274,17 +274,25 @@ class Movie extends Model
                         if (count($_name1) == 2) {
                             $_name = $_name1[1];
                         }
-                        MovieVideo::updateOrCreate([
-                            'movie_id' => $movie->id,
-                            'name' => $_name,
-                        ],[
-                            'movie_id' => $movie->id,
-                            'source_urls' => $sourceId,
-                            'name' => $_name,
-                            'slug' => createSlug($_name),
-                            'position' => intval(trim($name[1])),
-                            'source_type' => MovieVideo::$sourceTypeValue['ok.ru']
-                        ]);
+                        $check = MovieVideo::where('movie_id', $movie->id)
+                            ->where('name', $_name)
+                            ->where('source_urls', $sourceId)
+                            ->first();
+                        if (empty($check)) {
+                            MovieVideo::updateOrCreate([
+                                'movie_id' => $movie->id,
+                                'name' => $_name,
+                            ],[
+                                'movie_id' => $movie->id,
+                                'source_urls' => $sourceId,
+                                'name' => $_name,
+                                'slug' => createSlug($_name),
+                                'position' => intval(trim($name[1])),
+                                'source_type' => MovieVideo::$sourceTypeValue['ok.ru']
+                            ]);
+                            $movie->daily_crawl_at = date('Y-m-d H:i:s');
+                            $movie->save();
+                        }
                     }
                 });
             }
