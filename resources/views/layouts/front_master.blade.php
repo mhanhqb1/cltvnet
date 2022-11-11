@@ -189,8 +189,8 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{{ asset('/js/scripts.js') }}"></script>
-    <script type="text/javascript" src="https://vdbaa.com/tun.php?section=General&pt=8&pub=771288&ga=g"></script>
-    <script type='text/javascript' src='//pl17603034.highperformancegate.com/28/19/a3/2819a3f13adda1bbb65ed30a4c3adb56.js'></script>
+    <!-- <script type="text/javascript" src="https://vdbaa.com/tun.php?section=General&pt=8&pub=771288&ga=g"></script>
+    <script type='text/javascript' src='//pl17603034.highperformancegate.com/28/19/a3/2819a3f13adda1bbb65ed30a4c3adb56.js'></script> -->
 </body>
 
 </html>
