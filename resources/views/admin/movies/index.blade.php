@@ -25,7 +25,7 @@ $(function() {
     $('#dataTable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '{!! route('admin.movies.indexData') !!}',
+        ajax: 'https://hoynovelas.net/admin/movies/indexData',
         columns: [
             { data: 'id', name: 'id' },
             { data: 'image', name: 'image', orderable: false, searchable: false },
