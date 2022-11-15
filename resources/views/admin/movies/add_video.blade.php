@@ -43,7 +43,17 @@
                         <textarea id="inputDescription" class="form-control" name="description" rows="4">{{ old('description') }}</textarea>
                     </div> -->
                     <div class="form-group">
-                        <label for="inputSourceUrls">DailyMotion ID</label>
+                        <label>Nguồn phim</label>
+                        <select class="form-control" name="source_type" data-placeholder="Chọn nguồn phim" style="width: 100%;">
+                            @if (!empty($sourceTypes))
+                            @foreach ($sourceTypes as $k => $v)
+                                <option value="{{ $k }}">{{ $v }}</option>
+                            @endforeach
+                            @endif
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSourceUrls">Video ID</label>
                         <input type="text" id="inputSourceUrls" name="source_urls" class="form-control" value="{{ old('source_urls') }}">
                     </div>
                 </div>

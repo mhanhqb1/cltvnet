@@ -31,9 +31,15 @@ $cateName = implode(' - ', $cateName);
                 <div class="col-sm-12">
                     <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;" itemscope itemtype="https://schema.org/VideoObject">
                         <?php
-                        $iframeUrl = 'https://geo.dailymotion.com/player/x9pog.html?video=' . $video->source_urls;
-                        if (!empty($video->source_type)) {
-                            $iframeUrl = '//ok.ru/videoembed/' . $video->source_urls;
+                        switch($video->source_type) {
+                            case 1:
+                                $iframeUrl = '//ok.ru/videoembed/' . $video->source_urls;
+                                break;
+                            case 2:
+                                $iframeUrl = 'https://short.ink/' . $video->source_urls;
+                                break;
+                            default:
+                                $iframeUrl = 'https://geo.dailymotion.com/player/x9pog.html?video=' . $video->source_urls;
                         }
                         ?>
                         <meta itemprop="name" content="{{ $pageTitle }}" />

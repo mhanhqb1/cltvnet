@@ -137,14 +137,16 @@ class MoviesController extends Controller
     public function addVideo()
     {
         $movies = Movie::get();
-        return view('admin.movies.add_video', compact('movies'));
+        $sourceTypes = MovieVideo::$sourceTypes;
+        return view('admin.movies.add_video', compact('movies', 'sourceTypes'));
     }
 
     public function editVideo($id)
     {
         $item = MovieVideo::find($id);
         $movies = Movie::get();
-        return view('admin.movies.edit_video', compact('item', 'movies'));
+        $sourceTypes = MovieVideo::$sourceTypes;
+        return view('admin.movies.edit_video', compact('item', 'movies', 'sourceTypes'));
     }
 
     public function saveVideo(Request $request)
