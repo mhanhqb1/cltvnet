@@ -48,7 +48,7 @@
                         <select class="form-control" name="source_type" data-placeholder="Chọn nguồn phim" style="width: 100%;">
                             @if (!empty($sourceTypes))
                             @foreach ($sourceTypes as $k => $v)
-                                <option value="{{ $k }}" {{ $v->source_type == $k ? "selected='selected'" : "" }}>{{ $v }}</option>
+                                <option value="{{ $k }}" {{ $item->source_type == $k ? "selected='selected'" : "" }}>{{ $v }}</option>
                             @endforeach
                             @endif
                         </select>
