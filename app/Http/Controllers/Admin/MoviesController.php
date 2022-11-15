@@ -176,6 +176,7 @@ class MoviesController extends Controller
         $item->duration = !empty($request->duration) ? $request->duration : '';
         $item->position = !empty($request->position) ? $request->position : 0;
         $item->source_urls = !empty($request->source_urls) ? $request->source_urls : '';
+        $item->source_type = !empty($request->source_type) ? $request->source_type : 0;
         $item->meta_description = !empty($request->meta_description) ? $request->meta_description : '';
         $item->meta_keywords = !empty($request->meta_keywords) ? $request->meta_keywords : '';
         if (!empty($image)) {
