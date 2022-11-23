@@ -11,6 +11,7 @@
                     <td>Email</td>
                     <td>Phone</td>
                     <td>Message</td>
+                    <td>Created At</td>
                     <td style="width: 50px; text-align: center"></td>
                 </tr>
             </thead>
@@ -33,6 +34,7 @@ $(function() {
             { data: 'email', name: 'email' },
             { data: 'phone', name: 'phone' },
             { data: 'message', name: 'message' },
+            { data: 'created_at', name: 'created_at' },
             { data: 'action', name: 'action', orderable: false, searchable: false }
         ]
     });

@@ -61,32 +61,42 @@ $menuData = [
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 @foreach ($menuData as $menu)
+                @if (empty($menu['subMenu']))
                 <li class="nav-item">
-                    @if (empty($menu['subMenu']))
                     <a href="{{ !empty($menu['route']) ? route($menu['route']) : '#' }}" class="nav-link {{ $routeName == $menu['route'] ? 'active' : '' }}">
                         <i class="{{ $menu['className'] }}"></i>
                         <p>{{ $menu['name'] }}</p>
                     </a>
-                    @else
-                        <a href="#" class="nav-link">
-                            <i class="{{ $menu['className'] }}"></i>
-                            <p>
-                                {{ $menu['name'] }}
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            @foreach($menu['subMenu'] as $subMenu)
-                            <li class="nav-item">
-                                <a href="{{ !empty($subMenu['route']) ? route($subMenu['route']) : '#' }}" class="nav-link {{ $routeName == $subMenu['route'] ? 'active' : '' }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>{{ $subMenu['name'] }}</p>
-                                </a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    @endif
                 </li>
+                @else
+                <?php
+                $subRoutes = [];
+                foreach ($menu['subMenu'] as $v) {
+                    if (!empty($v['route'])) {
+                        $subRoutes[] = $v['route'];
+                    }
+                }
+                ?>
+                <li class="nav-item {{ in_array($routeName, $subRoutes) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ in_array($routeName, $subRoutes) ? 'active' : '' }}">
+                        <i class="{{ $menu['className'] }}"></i>
+                        <p>
+                            {{ $menu['name'] }}
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @foreach($menu['subMenu'] as $subMenu)
+                        <li class="nav-item">
+                            <a href="{{ !empty($subMenu['route']) ? route($subMenu['route']) : '#' }}" class="nav-link {{ $routeName == $subMenu['route'] ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ $subMenu['name'] }}</p>
+                            </a>
+                        </li>
+                        @endforeach
+                    </ul>
+                </li>
+                @endif
                 @endforeach
             </ul>
         </nav>
