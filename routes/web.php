@@ -56,5 +56,6 @@ Route::prefix('admin')->name('admin.')->group(function() {
         // Post
         Route::get('/contacts', [ContactController::class, 'index'])->name('contact.index');
         Route::get('/contacts/indexData', [ContactController::class, 'indexData'])->name('contact.indexData');
+        Route::delete('/contacts/{id}', [ContactController::class, 'delete'])->name('contact.delete');
     });
 });
