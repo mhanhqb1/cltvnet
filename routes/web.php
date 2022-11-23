@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -51,5 +52,9 @@ Route::prefix('admin')->name('admin.')->group(function() {
         // Post
         Route::get('/posts', [PostController::class, 'index'])->name('post.index');
         Route::get('/posts/indexData', [PostController::class, 'indexData'])->name('post.indexData');
+
+        // Post
+        Route::get('/contacts', [ContactController::class, 'index'])->name('contact.index');
+        Route::get('/contacts/indexData', [ContactController::class, 'indexData'])->name('contact.indexData');
     });
 });
