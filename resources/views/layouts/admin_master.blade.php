@@ -1,5 +1,5 @@
 <?php
-$title = !empty($title) ? $title : 'Admin';
+$title = !empty($pageTitle) ? $pageTitle : 'Admin';
 ?>
 <!DOCTYPE html>
 <html lang="en">

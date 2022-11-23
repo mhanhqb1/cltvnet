@@ -1,3 +1,37 @@
+<?php
+$menuData = [
+    [
+        'name' => 'Dashboard',
+        'route' => 'admin.admin.dashboard',
+        'className' => 'nav-icon fas fa-tachometer-alt'
+    ],
+    [
+        'name' => 'Quản lý bài viết',
+        'route' => '',
+        'className' => 'nav-icon fas fa-book',
+        'subMenu' => [
+            [
+                'name' => 'Danh sách bài viết',
+                'route' => 'admin.post.index'
+            ],
+            [
+                'name' => 'Danh sách danh mục',
+                'route' => ''
+            ]
+        ]
+    ],
+    [
+        'name' => 'Quản lý liên hệ',
+        'route' => 'admin.contact.index',
+        'className' => 'nav-icon far fa-envelope'
+    ],
+    [
+        'name' => 'Cấu hình website',
+        'route' => '',
+        'className' => 'nav-icon fas fa-th'
+    ],
+];
+?>
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -7,7 +41,7 @@
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
             <a href="#" onclick="event.preventDefault(); document.getElementById('js-logoutForm').submit();">Logout</a>
-            <form action="{{ route('admin.logout') }}" method="POST" id="js-logoutForm">@csrf</form>
+            <form action="{{ route('admin.admin.logout') }}" method="POST" id="js-logoutForm">@csrf</form>
         </li>
     </ul>
 </nav>
@@ -26,51 +60,34 @@
         </div>
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                @foreach ($menuData as $menu)
                 <li class="nav-item">
-                    <a href="{{ route('admin.home') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Dashboard</p>
+                    @if (empty($menu['subMenu']))
+                    <a href="{{ !empty($menu['route']) ? route($menu['route']) : '#' }}" class="nav-link {{ $routeName == $menu['route'] ? 'active' : '' }}">
+                        <i class="{{ $menu['className'] }}"></i>
+                        <p>{{ $menu['name'] }}</p>
                     </a>
+                    @else
+                        <a href="#" class="nav-link">
+                            <i class="{{ $menu['className'] }}"></i>
+                            <p>
+                                {{ $menu['name'] }}
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @foreach($menu['subMenu'] as $subMenu)
+                            <li class="nav-item">
+                                <a href="{{ !empty($subMenu['route']) ? route($subMenu['route']) : '#' }}" class="nav-link {{ $routeName == $subMenu['route'] ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ $subMenu['name'] }}</p>
+                                </a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-book"></i>
-                        <p>
-                            Quản lý bài viết
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="../../index.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách bài viết</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../../index.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách danh mục</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.contact.index') }}" class="nav-link">
-                        <i class="nav-icon far fa-envelope"></i>
-                        <p>
-                            Quản lý liên hệ
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Cấu hình website
-                        </p>
-                    </a>
-                </li>
+                @endforeach
             </ul>
         </nav>
     </div>

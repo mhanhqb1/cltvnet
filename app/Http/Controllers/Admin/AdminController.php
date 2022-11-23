@@ -17,14 +17,14 @@ class AdminController extends Controller
         ]);
         $params = $request->only('email', 'password');
         if (Auth::guard('admin')->attempt($params)) {
-            return redirect()->route('admin.home');
+            return redirect()->route('admin.admin.dashboard');
         } else {
-            return redirect()->route('admin.login')->with('fail', 'Somthing went wrong');
+            return redirect()->route('admin.admin.login')->with('fail', 'Somthing went wrong');
         }
     }
 
     public function logout() {
         Auth::guard('admin')->logout();
-        return redirect()->route('admin.login');
+        return redirect()->route('admin.admin.login');
     }
 }

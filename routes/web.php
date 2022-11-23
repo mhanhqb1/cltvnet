@@ -3,6 +3,7 @@
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,11 +17,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -41,13 +37,13 @@ Route::prefix('user')->name('user.')->group(function(){
 
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::middleware(['guest:admin'])->group(function() {
-        Route::view('/login', 'admin.login')->name('login');
-        Route::post('/check', [AdminController::class, 'check'])->name('check');
+        Route::view('/login', 'admin.login')->name('admin.login');
+        Route::post('/check', [AdminController::class, 'check'])->name('admin.check');
     });
 
     Route::middleware(['auth:admin'])->group(function() {
-        Route::view('/', 'admin.home')->name('home');
-        Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
+        Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+        Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
         // Post
         Route::get('/posts', [PostController::class, 'index'])->name('post.index');
