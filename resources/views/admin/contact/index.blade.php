@@ -6,12 +6,12 @@
         <table class="table table-hover" id="dataTable">
             <thead>
                 <tr>
-                    <td>#</td>
+                    <td style="width: 30px;">#</td>
                     <td>Name</td>
                     <td>Email</td>
                     <td>Phone</td>
                     <td>Message</td>
-                    <td></td>
+                    <td style="width: 50px; text-align: center"></td>
                 </tr>
             </thead>
         </table>
