@@ -23,6 +23,16 @@ class PostController extends Controller
         return view('admin.post.index');
     }
 
+    public function update($id)
+    {
+        return view('admin.post.add_update');
+    }
+
+    public function adđ()
+    {
+        return view('admin.post.add_update');
+    }
+
     public function indexData()
     {
         $limit = 10;
@@ -32,7 +42,7 @@ class PostController extends Controller
                 return PostStatus::getKey($item->status);
             })
             ->addColumn('action', function ($item) {
-                return '<a href="#edit-'.$item->id.'" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> Edit</a>';
+                return '<a href="'.route('admin.post.update', $item->id).'" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> Edit</a>';
             })
             ->make(true);
     }
