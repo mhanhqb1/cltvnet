@@ -12,9 +12,12 @@
             <div class="card-body">
                 <form action="{{ route('admin.post.save') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @if (!empty($item->id))
+                        <input type="hidden" value="{{ $item->id }}" name="id"/>
+                    @endif
                     <div class="form-group">
                         <label for="inputName">{{ __('Name') }}</label>
-                        <input type="text" id="inputName" name="name" class="form-control">
+                        <input type="text" id="inputName" name="name" class="form-control" value="{{ !empty($item->name) ? $item->name : '' }}">
                     </div>
                     <div class="form-group">
                         <label for="inputCategory">{{ __('Category') }}</label>
@@ -32,15 +35,15 @@
                     </div>
                     <div class="form-group">
                         <label for="inputDescription">{{ __('Description') }}</label>
-                        <textarea id="inputDescription" class="form-control" name="description" rows="4"></textarea>
+                        <textarea id="inputDescription" class="form-control" name="description" rows="4">{{ !empty($item->description) ? $item->description : '' }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="summernote">{{ __('Detail') }}</label>
-                        <textarea id="summernote" class="form-control" name="detail" rows="10"></textarea>
+                        <textarea id="summernote" class="form-control" name="detail" rows="10">{{ !empty($item->detail) ? $item->detail : '' }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="inputSeoKeywords">{{ __('Seo Keywords') }}</label>
-                        <input type="text" id="inputSeoKeywords" name="seo_keywords" class="form-control">
+                        <input type="text" id="inputSeoKeywords" name="seo_keywords" class="form-control" value="{{ !empty($item->seo_keywords) ? $item->seo_keywords : '' }}"/>
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="{{ __('Save') }}" />

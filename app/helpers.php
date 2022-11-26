@@ -28,7 +28,7 @@ function createSlug($str, $delimiter = '-')
     return strtolower($str);
 }
 
-function editorUploadImage($html)
+function editorUploadImages($html)
 {
     $dom = new \DomDocument();
 
@@ -37,33 +37,20 @@ function editorUploadImage($html)
     $images = $dom->getElementsByTagName('img');
 
     foreach ($images as $k => $img) {
-
-
         $data = $img->getAttribute('src');
-
         $data = explode(';', $data);
         if (empty($data[1])) {
             continue;
         }
-
-        list(, $data)      = explode(',', $data[1]);
-
+        list(, $data) = explode(',', $data[1]);
         $data = base64_decode($data);
-
         $image_name = time() . $k . '.png';
         $image_path = "/public/upload/" .  $image_name;
-
         Storage::put($image_path, $data);
-
-        // $path = public_path() . $image_name;
-
-        // file_put_contents($path, $data);
-
         $img->removeAttribute('src');
-
-        $img->setAttribute('src', url('/storage/upload/').$image_name);
+        $img->removeAttribute('data-filename');
+        $img->setAttribute('src', url('/storage/upload').'/'.$image_name);
     }
-
 
     $html = $dom->saveHTML();
     return $html;

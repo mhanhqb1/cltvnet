@@ -26,7 +26,9 @@ class PostController extends Controller
 
     public function update($id)
     {
-        return view('admin.post.add_update');
+        $item = $this->model->find($id);
+        $cates = Category::get();
+        return view('admin.post.add_update', compact('item', 'cates'));
     }
 
     public function add()
@@ -55,7 +57,7 @@ class PostController extends Controller
         }
         $item->name = $request->name;
         $item->slug = createSlug($request->name);
-        $item->detail = editorUploadImage($request->detail);
+        $item->detail = editorUploadImages($request->detail);
         if ($item->save()) {
             return redirect()->route('admin.post.index')->with('success', 'Dữ liệu đã được cập nhật thành công');
         }
