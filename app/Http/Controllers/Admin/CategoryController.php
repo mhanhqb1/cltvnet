@@ -27,9 +27,27 @@ class CategoryController extends Controller
         return view('admin.category.add_update');
     }
 
-    public function save(Request $rq)
+    public function save(Request $request)
     {
-        return redirect()->route('admin.category.index')->with('success', 'Dữ liệu đã được cập nhật thành công');
+        $nameValidate = 'required|unique:categories|max:255';
+        if (!empty($request->id)) {
+            $nameValidate = 'required|unique:categories,name,'.$request->id.'|max:255';
+        }
+        $request->validate([
+            'name' => $nameValidate
+        ]);
+
+        if (!empty($request->id)) {
+            $item = $this->model->find($request->id);
+        } else {
+            $item = $this->model;
+        }
+        $item->name = $request->name;
+        $item->slug = $request->name;
+        if ($item->save()) {
+            return redirect()->route('admin.category.index')->with('success', 'Dữ liệu đã được cập nhật thành công');
+        }
+        return redirect()->route('admin.category.index')->with('error', 'Dữ liệu cập nhật bị lỗi');
     }
 
     public function indexData()
@@ -37,6 +55,9 @@ class CategoryController extends Controller
         $limit = 10;
         $data = $this->model->limit($limit);
         return Datatables::of($data)
+            ->addColumn('created_at', function ($item) {
+                return date('Y-m-d H:i:s', strtotime($item->created_at));
+            })
             ->addColumn('action', function ($item) {
                 return '<form action="'.route('admin.category.delete', $item->id).'" method="POST" style="display:inline-block;">
                 <input type="hidden" name="_method" value="delete"/>

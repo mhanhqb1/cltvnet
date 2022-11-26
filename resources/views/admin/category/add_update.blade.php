@@ -6,6 +6,7 @@
         <div class="card card-primary">
             <div class="card-body">
                 <form action="{{ route('admin.category.save') }}" method="POST">
+                    @csrf
                     <div class="form-group">
                         <label for="inputName">{{ __('Name') }}</label>
                         <input type="text" id="inputName" name="name" class="form-control">
