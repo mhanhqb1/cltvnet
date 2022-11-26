@@ -32,6 +32,11 @@
                     <div class="form-group">
                         <label for="inputImage">{{ __('Image') }}</label>
                         <input type="file" id="inputImage" name="image" class="form-control">
+                        @if (!empty($item->image))
+                        <div>
+                            <img src="{{ $item->image }}" alt="old image" width="200px"/>
+                        </div>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="inputDescription">{{ __('Description') }}</label>

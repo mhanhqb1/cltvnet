@@ -49,6 +49,12 @@ class PostController extends Controller
         ], [
             'name.unique' => 'Tên đã được sử dụng'
         ]);
+        $slug = createSlug($request->name);
+        if (!empty($request->image)) {
+            $image = $request->file('image')->storePubliclyAs('images', $slug.'-'.time().'.jpg', 'public');
+        } elseif (!empty($request->image_url)) {
+            $image = $request->image_url;
+        }
 
         if (!empty($request->id)) {
             $item = $this->model->find($request->id);
@@ -56,8 +62,13 @@ class PostController extends Controller
             $item = $this->model;
         }
         $item->name = $request->name;
-        $item->slug = createSlug($request->name);
+        $item->slug = $slug;
+        $item->description = $request->description;
         $item->detail = editorUploadImages($request->detail);
+        $item->meta_keyword = $request->seo_keywords;
+        if (!empty($image)) {
+            $item->image = $image;
+        }
         if ($item->save()) {
             return redirect()->route('admin.post.index')->with('success', 'Dữ liệu đã được cập nhật thành công');
         }

@@ -44,7 +44,7 @@ function editorUploadImages($html)
         }
         list(, $data) = explode(',', $data[1]);
         $data = base64_decode($data);
-        $image_name = time() . $k . '.png';
+        $image_name = time() . $k . '.jpg';
         $image_path = "/public/upload/" .  $image_name;
         Storage::put($image_path, $data);
         $img->removeAttribute('src');
