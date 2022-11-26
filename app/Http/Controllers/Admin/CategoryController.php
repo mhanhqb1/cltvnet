@@ -27,6 +27,12 @@ class CategoryController extends Controller
         return view('admin.category.add_update');
     }
 
+    public function update($id)
+    {
+        $item = $this->model->find($id);
+        return view('admin.category.add_update', compact('item'));
+    }
+
     public function save(Request $request)
     {
         $nameValidate = 'required|unique:categories|max:255';
@@ -59,7 +65,7 @@ class CategoryController extends Controller
                 return date('Y-m-d H:i:s', strtotime($item->created_at));
             })
             ->addColumn('action', function ($item) {
-                return '<form action="'.route('admin.category.delete', $item->id).'" method="POST" style="display:inline-block;">
+                return '<a href="'.route('admin.category.update', $item->id).'" class="btn btn-xs btn-info">'.__('Update').'</a> <form action="'.route('admin.category.delete', $item->id).'" method="POST" style="display:inline-block;">
                 <input type="hidden" name="_method" value="delete"/>
                 '.csrf_field().'
                 <input type="submit" class="btn btn-xs btn-danger" onclick="return window.confirm(\'Bạn muốn xóa item này không?\')" value="Delete"/>

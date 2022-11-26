@@ -54,7 +54,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/posts', [PostController::class, 'index'])->name('post.index');
         Route::get('/posts/indexData', [PostController::class, 'indexData'])->name('post.indexData');
         Route::get('/posts/add', [PostController::class, 'add'])->name('post.add');
-        Route::get('/posts/{id}', [PostController::class, 'update'])->name('post.update');
+        Route::get('/posts/update/{id}', [PostController::class, 'update'])->name('post.update');
 
         // Contact
         Route::get('/contacts', [ContactController::class, 'index'])->name('contact.index');
@@ -65,6 +65,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
         Route::get('/categories/indexData', [CategoryController::class, 'indexData'])->name('category.indexData');
         Route::get('/categories/add', [CategoryController::class, 'add'])->name('category.add');
+        Route::get('/categories/update/{id}', [CategoryController::class, 'update'])->name('category.update');
         Route::delete('/categories/{id}', [CategoryController::class, 'delete'])->name('category.delete');
         Route::post('/categories/save', [CategoryController::class, 'save'])->name('category.save');
     });
