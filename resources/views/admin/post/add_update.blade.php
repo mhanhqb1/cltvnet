@@ -32,12 +32,12 @@
                     <div class="form-group">
                         <label for="inputImage">{{ __('Image') }}</label>
                         <input type="file" id="inputImage" name="image" class="form-control">
-                        @if (!empty($item->image))
-                        <div>
-                            <img src="{{ $item->image }}" alt="old image" width="200px"/>
-                        </div>
-                        @endif
                     </div>
+                    @if (!empty($item->image))
+                        <div class="form-group">
+                            <img src="{{ getImageUrl($item->image) }}" alt="old image" width="150px"/>
+                        </div>
+                    @endif
                     <div class="form-group">
                         <label for="inputDescription">{{ __('Description') }}</label>
                         <textarea id="inputDescription" class="form-control" name="description" rows="4">{{ !empty($item->description) ? $item->description : '' }}</textarea>
@@ -48,7 +48,15 @@
                     </div>
                     <div class="form-group">
                         <label for="inputSeoKeywords">{{ __('Seo Keywords') }}</label>
-                        <input type="text" id="inputSeoKeywords" name="seo_keywords" class="form-control" value="{{ !empty($item->seo_keywords) ? $item->seo_keywords : '' }}"/>
+                        <input type="text" id="inputSeoKeywords" name="seo_keywords" class="form-control" value="{{ !empty($item->meta_keyword) ? $item->meta_keyword : '' }}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="postStatus">{{ __('Status') }}</label>
+                        <select name="status" class="form-control">
+                            @foreach ($postStatus as $v)
+                                <option value="{{ $v->value }}" {{ isset($item->status) && $item->status == $v->value ? 'selected="selected"' : '' }}>{{ __($v->key) }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="{{ __('Save') }}" />

@@ -32,7 +32,11 @@ function editorUploadImages($html)
 {
     $dom = new \DomDocument();
 
-    $dom->loadHtml($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+    try {
+        $dom->loadHtml($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+    } catch (\Exception $e) {
+        return $html;
+    }
 
     $images = $dom->getElementsByTagName('img');
 
@@ -54,6 +58,15 @@ function editorUploadImages($html)
 
     $html = $dom->saveHTML();
     return $html;
+}
+
+function getImageUrl($image) {
+    if (strpos($image, 'http') !== false) {
+        $imageUrl = $image;
+    } else {
+        $imageUrl = url('/storage/'.$image);
+    }
+    return $imageUrl;
 }
 
 function callApi($url)

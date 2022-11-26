@@ -28,7 +28,8 @@ class PostController extends Controller
     {
         $item = $this->model->find($id);
         $cates = Category::get();
-        return view('admin.post.add_update', compact('item', 'cates'));
+        $postStatus = PostStatus::getInstances();
+        return view('admin.post.add_update', compact('item', 'cates', 'postStatus'));
     }
 
     public function add()
@@ -66,6 +67,7 @@ class PostController extends Controller
         $item->description = $request->description;
         $item->detail = editorUploadImages($request->detail);
         $item->meta_keyword = $request->seo_keywords;
+        $item->status = $request->status;
         if (!empty($image)) {
             $item->image = $image;
         }

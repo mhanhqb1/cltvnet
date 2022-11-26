@@ -11,6 +11,6 @@ use BenSampo\Enum\Enum;
  */
 final class PostStatus extends Enum
 {
-    const Hide =   0;
     const Show =   1;
+    const Hide =   0;
 }
