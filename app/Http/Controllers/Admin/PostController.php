@@ -35,6 +35,33 @@ class PostController extends Controller
         return view('admin.post.add_update', compact('cates'));
     }
 
+    public function save(Request $request)
+    {
+        $nameValidate = 'required|unique:posts|max:255';
+        if (!empty($request->id)) {
+            $nameValidate = 'required|unique:posts,name,'.$request->id.'|max:255';
+        }
+        $request->validate([
+            'name' => $nameValidate,
+            'image' => 'nullable|image|max:1024'
+        ], [
+            'name.unique' => 'Tên đã được sử dụng'
+        ]);
+
+        if (!empty($request->id)) {
+            $item = $this->model->find($request->id);
+        } else {
+            $item = $this->model;
+        }
+        $item->name = $request->name;
+        $item->slug = createSlug($request->name);
+        $item->detail = editorUploadImage($request->detail);
+        if ($item->save()) {
+            return redirect()->route('admin.post.index')->with('success', 'Dữ liệu đã được cập nhật thành công');
+        }
+        return redirect()->route('admin.post.index')->with('error', 'Dữ liệu cập nhật bị lỗi');
+    }
+
     public function indexData()
     {
         $limit = 10;

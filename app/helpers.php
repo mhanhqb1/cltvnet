@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Storage;
 
 function createSlug($str, $delimiter = '-')
 {
@@ -27,18 +28,60 @@ function createSlug($str, $delimiter = '-')
     return strtolower($str);
 }
 
-function callApi($url) {
+function editorUploadImage($html)
+{
+    $dom = new \DomDocument();
+
+    $dom->loadHtml($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+    $images = $dom->getElementsByTagName('img');
+
+    foreach ($images as $k => $img) {
+
+
+        $data = $img->getAttribute('src');
+
+        $data = explode(';', $data);
+        if (empty($data[1])) {
+            continue;
+        }
+
+        list(, $data)      = explode(',', $data[1]);
+
+        $data = base64_decode($data);
+
+        $image_name = time() . $k . '.png';
+        $image_path = "/public/upload/" .  $image_name;
+
+        Storage::put($image_path, $data);
+
+        // $path = public_path() . $image_name;
+
+        // file_put_contents($path, $data);
+
+        $img->removeAttribute('src');
+
+        $img->setAttribute('src', url('/storage/upload/').$image_name);
+    }
+
+
+    $html = $dom->saveHTML();
+    return $html;
+}
+
+function callApi($url)
+{
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-      CURLOPT_URL => $url,
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
     ));
 
     $response = curl_exec($curl);

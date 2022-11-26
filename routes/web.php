@@ -55,6 +55,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/posts/indexData', [PostController::class, 'indexData'])->name('post.indexData');
         Route::get('/posts/add', [PostController::class, 'add'])->name('post.add');
         Route::get('/posts/update/{id}', [PostController::class, 'update'])->name('post.update');
+        Route::post('/posts/save', [PostController::class, 'save'])->name('post.save');
 
         // Contact
         Route::get('/contacts', [ContactController::class, 'index'])->name('contact.index');

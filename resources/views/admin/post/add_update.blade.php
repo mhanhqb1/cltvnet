@@ -10,36 +10,42 @@
     <div class="col-md-12">
         <div class="card card-primary">
             <div class="card-body">
-                <div class="form-group">
-                    <label for="inputName">{{ __('Name') }}</label>
-                    <input type="text" id="inputName" name="name" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="inputCategory">{{ __('Category') }}</label>
-                    <select id="inputCategory" class="select2 form-control" multiple="multiple">
-                        @if (!empty($cates))
-                        @foreach ($cates as $cate)
-                        <option value="{{ $cate->id }}">{{ $cate->name }}</option>
-                        @endforeach
-                        @endif
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="inputImage">{{ __('Image') }}</label>
-                    <input type="file" id="inputImage" name="image" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="inputDescription">{{ __('Description') }}</label>
-                    <textarea id="inputDescription" class="form-control" name="description" rows="4"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="summernote">{{ __('Detail') }}</label>
-                    <textarea id="summernote" class="form-control" name="detail" rows="10"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="inputSeoKeywords">{{ __('Seo Keywords') }}</label>
-                    <input type="text" id="inputSeoKeywords" name="seo_keywords" class="form-control">
-                </div>
+                <form action="{{ route('admin.post.save') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="inputName">{{ __('Name') }}</label>
+                        <input type="text" id="inputName" name="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputCategory">{{ __('Category') }}</label>
+                        <select id="inputCategory" class="select2 form-control" multiple="multiple">
+                            @if (!empty($cates))
+                            @foreach ($cates as $cate)
+                            <option value="{{ $cate->id }}">{{ $cate->name }}</option>
+                            @endforeach
+                            @endif
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputImage">{{ __('Image') }}</label>
+                        <input type="file" id="inputImage" name="image" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDescription">{{ __('Description') }}</label>
+                        <textarea id="inputDescription" class="form-control" name="description" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="summernote">{{ __('Detail') }}</label>
+                        <textarea id="summernote" class="form-control" name="detail" rows="10"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSeoKeywords">{{ __('Seo Keywords') }}</label>
+                        <input type="text" id="inputSeoKeywords" name="seo_keywords" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" value="{{ __('Save') }}" />
+                    </div>
+                </form>
             </div>
         </div>
     </div>
