@@ -21,10 +21,10 @@
                     </div>
                     <div class="form-group">
                         <label for="inputCategory">{{ __('Category') }}</label>
-                        <select id="inputCategory" class="select2 form-control" multiple="multiple">
+                        <select id="inputCategory" class="select2 form-control" name="cates" multiple="multiple">
                             @if (!empty($cates))
                             @foreach ($cates as $cate)
-                            <option value="{{ $cate->id }}">{{ $cate->name }}</option>
+                            <option value="{{ $cate->id }}" {{ in_array($cate->id, $postCates) ? "selected='selected'" : '' }}>{{ $cate->name }}</option>
                             @endforeach
                             @endif
                         </select>

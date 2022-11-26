@@ -12,10 +12,11 @@
         <table class="table table-hover" id="dataTable">
             <thead>
                 <tr>
-                    <td style="width: 30px;">#</td>
-                    <td>Name</td>
-                    <td>Description</td>
-                    <td style="width: 50px;">Status</td>
+                    <td style="width: 20px;">#</td>
+                    <td style="width: 130px;">{{ __('Image') }}</td>
+                    <td>{{ __('Name') }}</td>
+                    <td>{{ __('Description') }}</td>
+                    <td style="width: 70px;">{{ __('Status') }}</td>
                     <td style="width: 150px;">{{ __('Created At') }}</td>
                     <td style="width: 100px;"></td>
                 </tr>
@@ -35,6 +36,7 @@ $(function() {
         ajax: '{!! route('admin.post.indexData') !!}',
         columns: [
             { data: 'id', name: 'id' },
+            { data: 'image', name: 'image' },
             { data: 'name', name: 'name' },
             { data: 'description', name: 'description' },
             { data: 'status', name: 'status' },
