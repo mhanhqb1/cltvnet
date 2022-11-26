@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\PostStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
@@ -30,7 +31,8 @@ class PostController extends Controller
 
     public function add()
     {
-        return view('admin.post.add_update');
+        $cates = Category::get();
+        return view('admin.post.add_update', compact('cates'));
     }
 
     public function indexData()
