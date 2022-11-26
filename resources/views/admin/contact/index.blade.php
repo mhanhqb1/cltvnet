@@ -7,11 +7,11 @@
             <thead>
                 <tr>
                     <td style="width: 30px;">#</td>
-                    <td>Name</td>
-                    <td>Email</td>
-                    <td>Phone</td>
-                    <td>Message</td>
-                    <td style="width: 150px;">Created At</td>
+                    <td>{{ __('Name') }}</td>
+                    <td>{{ __('Email') }}</td>
+                    <td>{{ __('Phone') }}</td>
+                    <td>{{ __('Message') }}</td>
+                    <td style="width: 150px;">{{ __('Created At') }}</td>
                     <td style="width: 50px; text-align: center"></td>
                 </tr>
             </thead>
