@@ -11,7 +11,7 @@
                     <td>Email</td>
                     <td>Phone</td>
                     <td>Message</td>
-                    <td>Created At</td>
+                    <td style="width: 150px;">Created At</td>
                     <td style="width: 50px; text-align: center"></td>
                 </tr>
             </thead>

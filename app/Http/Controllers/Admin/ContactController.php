@@ -27,6 +27,9 @@ class ContactController extends Controller
         $limit = 10;
         $data = $this->model->limit($limit);
         return Datatables::of($data)
+            ->addColumn('created_at', function ($item) {
+                return date('Y-m-d H:i:s', strtotime($item->created_at));
+            })
             ->addColumn('action', function ($item) {
                 return '<a href="mailto:'.$item->email.'" class="btn btn-xs btn-success">Send mail</a><br/><form action="'.route('admin.contact.delete', $item->id).'" method="POST" style="display:inline-block;">
                 <input type="hidden" name="_method" value="delete"/>
