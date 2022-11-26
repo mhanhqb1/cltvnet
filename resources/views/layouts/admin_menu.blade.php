@@ -16,7 +16,7 @@ $menuData = [
             ],
             [
                 'name' => 'Danh sách danh mục',
-                'route' => ''
+                'route' => 'admin.category.index'
             ]
         ]
     ],

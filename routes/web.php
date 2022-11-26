@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
@@ -55,9 +56,14 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/posts/add', [PostController::class, 'add'])->name('post.add');
         Route::get('/posts/{id}', [PostController::class, 'update'])->name('post.update');
 
-        // Post
+        // Contact
         Route::get('/contacts', [ContactController::class, 'index'])->name('contact.index');
         Route::get('/contacts/indexData', [ContactController::class, 'indexData'])->name('contact.indexData');
         Route::delete('/contacts/{id}', [ContactController::class, 'delete'])->name('contact.delete');
+
+        // Category
+        Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
+        Route::get('/categories/indexData', [CategoryController::class, 'indexData'])->name('category.indexData');
+        Route::delete('/categories/{id}', [CategoryController::class, 'delete'])->name('category.delete');
     });
 });
