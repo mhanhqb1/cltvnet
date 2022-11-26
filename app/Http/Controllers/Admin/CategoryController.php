@@ -41,6 +41,8 @@ class CategoryController extends Controller
         }
         $request->validate([
             'name' => $nameValidate
+        ], [
+            'name.unique' => 'Tên đã được sử dụng'
         ]);
 
         if (!empty($request->id)) {

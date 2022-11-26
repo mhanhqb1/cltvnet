@@ -21,6 +21,7 @@ $title = !empty($pageTitle) ? $pageTitle : 'Admin';
         <div class="content-wrapper">
             @include('layouts.admin_breadcrumb')
             <section class="content">
+                @include('layouts.admin_alerts')
                 <div class="container-fluid">
                     @yield('content')
                 </div>
