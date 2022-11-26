@@ -83,11 +83,29 @@ class PostController extends Controller
         $data = $this->model->limit($limit);
         return Datatables::of($data)
             ->addColumn('status', function ($item) {
-                return PostStatus::getKey($item->status);
+                $_className = 'btn-success';
+                if ($item->status == PostStatus::Hide) {
+                    $_className = 'btn-danger';
+                }
+                return "<span class='btn btn-xs ".$_className."'>".__(PostStatus::getKey($item->status))."</span>";
+            })
+            ->addColumn('created_at', function ($item) {
+                return date('Y-m-d H:i:s', strtotime($item->created_at));
             })
             ->addColumn('action', function ($item) {
-                return '<a href="'.route('admin.post.update', $item->id).'" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> Edit</a>';
+                return '<a href="'.route('admin.post.update', $item->id).'" class="btn btn-xs btn-info">'.__('Update').'</a> <form action="'.route('admin.post.delete', $item->id).'" method="POST" style="display:inline-block;">
+                <input type="hidden" name="_method" value="delete"/>
+                '.csrf_field().'
+                <input type="submit" class="btn btn-xs btn-danger" onclick="return window.confirm(\'Bạn muốn xóa item này không?\')" value="'.__('Delete').'"/>
+            </form>';
             })
+            ->rawColumns(['status', 'action'])
             ->make(true);
+    }
+
+    public function delete($id)
+    {
+        $this->model->find($id)->delete();
+        return redirect()->route('admin.post.index')->with('success', 'Dữ liệu đã được xóa thành công');
     }
 }

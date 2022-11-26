@@ -1,6 +1,15 @@
 {
     "Add New": "Thêm mới",
     "Update": "Cập nhật",
+    "Delete": "Xóa",
+    "Name": "Tên",
+    "Category": "Danh mục",
+    "Image": "Hình ảnh",
+    "Description": "Mô tả",
+    "Detail": "Chi tiết",
+    "Status": "Trạng thái",
+    "Show": "Hiển thị",
+    "Hide": "Ẩn",
 
     "Post Update": "Cập nhật bài viết",
     "Post Add": "Thêm mới bài viết",

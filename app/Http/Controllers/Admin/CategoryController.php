@@ -70,7 +70,7 @@ class CategoryController extends Controller
                 return '<a href="'.route('admin.category.update', $item->id).'" class="btn btn-xs btn-info">'.__('Update').'</a> <form action="'.route('admin.category.delete', $item->id).'" method="POST" style="display:inline-block;">
                 <input type="hidden" name="_method" value="delete"/>
                 '.csrf_field().'
-                <input type="submit" class="btn btn-xs btn-danger" onclick="return window.confirm(\'Bạn muốn xóa item này không?\')" value="Delete"/>
+                <input type="submit" class="btn btn-xs btn-danger" onclick="return window.confirm(\'Bạn muốn xóa item này không?\')" value="'.__('Delete').'"/>
             </form>';
             })
             ->make(true);

@@ -13,7 +13,7 @@
                 <tr>
                     <td style="width: 30px;">#</td>
                     <td>Name</td>
-                    <td style="width: 150px;">Created At</td>
+                    <td style="width: 150px;">{{ __('Created At') }}</td>
                     <td style="width: 150px; text-align: center"></td>
                 </tr>
             </thead>

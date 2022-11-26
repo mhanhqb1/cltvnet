@@ -56,6 +56,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/posts/add', [PostController::class, 'add'])->name('post.add');
         Route::get('/posts/update/{id}', [PostController::class, 'update'])->name('post.update');
         Route::post('/posts/save', [PostController::class, 'save'])->name('post.save');
+        Route::delete('/posts/{id}', [PostController::class, 'delete'])->name('post.delete');
 
         // Contact
         Route::get('/contacts', [ContactController::class, 'index'])->name('contact.index');

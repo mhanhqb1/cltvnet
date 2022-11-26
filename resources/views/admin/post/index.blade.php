@@ -12,11 +12,12 @@
         <table class="table table-hover" id="dataTable">
             <thead>
                 <tr>
-                    <td>#</td>
+                    <td style="width: 30px;">#</td>
                     <td>Name</td>
                     <td>Description</td>
-                    <td>Status</td>
-                    <td></td>
+                    <td style="width: 50px;">Status</td>
+                    <td style="width: 150px;">{{ __('Created At') }}</td>
+                    <td style="width: 100px;"></td>
                 </tr>
             </thead>
         </table>
@@ -37,6 +38,7 @@ $(function() {
             { data: 'name', name: 'name' },
             { data: 'description', name: 'description' },
             { data: 'status', name: 'status' },
+            { data: 'created_at', name: 'created_at' },
             { data: 'action', name: 'action', orderable: false, searchable: false }
         ]
     });
