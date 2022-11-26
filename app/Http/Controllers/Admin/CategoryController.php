@@ -43,7 +43,7 @@ class CategoryController extends Controller
             $item = $this->model;
         }
         $item->name = $request->name;
-        $item->slug = $request->name;
+        $item->slug = createSlug($request->name);
         if ($item->save()) {
             return redirect()->route('admin.category.index')->with('success', 'Dữ liệu đã được cập nhật thành công');
         }
