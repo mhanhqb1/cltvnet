@@ -1,6 +1,11 @@
 @extends('layouts.admin_master')
 
 @section('content')
+<div class="row" style="margin-bottom: 24px;">
+    <div class="col-md-12">
+        <a href="{{ route('admin.category.add') }}" class="btn btn-primary">{{ __('Add New') }}</a>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12">
         <table class="table table-hover" id="dataTable">

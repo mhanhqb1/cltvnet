@@ -64,6 +64,8 @@ Route::prefix('admin')->name('admin.')->group(function() {
         // Category
         Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
         Route::get('/categories/indexData', [CategoryController::class, 'indexData'])->name('category.indexData');
+        Route::get('/categories/add', [CategoryController::class, 'add'])->name('category.add');
         Route::delete('/categories/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+        Route::post('/categories/save', [CategoryController::class, 'save'])->name('category.save');
     });
 });

@@ -22,6 +22,16 @@ class CategoryController extends Controller
         return view('admin.category.index');
     }
 
+    public function add()
+    {
+        return view('admin.category.add_update');
+    }
+
+    public function save(Request $rq)
+    {
+        return redirect()->route('admin.category.index')->with('success', 'Dữ liệu đã được cập nhật thành công');
+    }
+
     public function indexData()
     {
         $limit = 10;

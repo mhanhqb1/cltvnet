@@ -1,5 +1,6 @@
 {
     "Add New": "Thêm mới",
+    "Update": "Cập nhật",
 
     "Post Update": "Cập nhật bài viết",
     "Post Add": "Thêm mới bài viết",
@@ -7,5 +8,6 @@
 
     "Contact Index": "Danh sách liên hệ",
 
-    "Category Index": "Danh sách danh mục"
+    "Category Index": "Danh sách danh mục",
+    "Category Add": "Thêm mới danh mục"
 }
