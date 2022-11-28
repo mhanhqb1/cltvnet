@@ -124,8 +124,7 @@
                 <p>
                     Copyright © <script>
                         document.write(new Date().getFullYear())
-                    </script> Techex. All Rights Reserved by
-                    <a href="https://hibootstrap.com/" target="_blank">HiBootstrap</a>
+                    </script> <a href="{{ url('/') }}">{{ env('APP_NAME') }}</a>. All rights reserved.
                 </p>
             </div>
         </div>
@@ -133,9 +132,9 @@
 </footer>
 
 
-<div class="switch-box">
+<!-- <div class="switch-box">
     <label id="switch" class="switch">
         <input type="checkbox" onchange="toggleTheme()" id="slider">
         <span class="slider round"></span>
     </label>
-</div>
+</div> -->
