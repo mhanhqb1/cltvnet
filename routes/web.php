@@ -28,6 +28,7 @@ Route::get('/lien-he', [FrontContact::class, 'index'])->name('front.contact.inde
 Route::post('/lien-he', [FrontContact::class, 'save'])->name('front.contact.save');
 Route::get('/bai-viet', [FrontPost::class, 'index'])->name('front.post.index');
 Route::get('/bai-viet/{slug}', [FrontPost::class, 'detail'])->name('front.post.detail');
+Route::get('/danh-muc/{slug}', [FrontPost::class, 'cateDetail'])->name('front.post.cate_detail');
 
 Auth::routes();
 

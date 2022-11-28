@@ -1,13 +1,21 @@
+<?php
+$url = route('front.post.detail', $item->slug);
+?>
 <div class="case-study-item">
-    <a href="case-details.html">
-        <img src="images/case-study/case-study1.jpg" alt="Images">
+    <a href="{{ $url }}">
+        <img src="{{ getImageUrl($item->image) }}" alt="Images">
     </a>
     <div class="content">
-        <h3><a href="case-details.html">Business Solution</a></h3>
+        <h3><a href="{{ $url }}">{{ $item->name }}</a></h3>
+        @if(!$item->cates->isEmpty())
         <ul>
-            <li><a href="case-details.html">Business</a></li>
-            <li><a href="case-details.html">Planing</a> </li>
+            @foreach ($item->cates as $k => $v)
+                @if ($k < 2)
+                    <li><a href="{{ route('front.post.cate_detail', $v->slug) }}">{{ $v->name }}</a></li>
+                @endif
+            @endforeach
         </ul>
-        <a href="case-details.html" class="more-btn"><i class='bx bx-right-arrow-alt'></i></a>
+        @endif
+        <a href="{{ $url }}" class="more-btn"><i class='bx bx-right-arrow-alt'></i></a>
     </div>
 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -28,5 +29,12 @@ class PostController extends Controller
             ->where('slug', $slug)
             ->first();
         return view('front.post.detail', compact('item'));
+    }
+
+    public function cateDetail($slug, Request $request)
+    {
+        $item = Category::where('slug', $slug)
+            ->first();
+        return view('front.post.cate_detail', compact('item'));
     }
 }

@@ -274,9 +274,11 @@
             <h2>Introduce Our Projects and Check Recent Work </h2>
         </div>
         <div class="case-study-slider owl-carousel owl-theme pt-45">
-            @for ($i=0; $i<6; $i++)
-                @include('front.home.item_product')
-            @endfor
+            @if (!$posts->isEmpty())
+                @foreach ($posts as $p)
+                    @include('front.home.item_product', ['item' => $p])
+                @endforeach
+            @endif
         </div>
     </div>
 </div>

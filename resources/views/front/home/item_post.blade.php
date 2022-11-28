@@ -16,7 +16,7 @@
                 </li>
                 @if (!$item->cates->isEmpty())
                 <li>
-                    <a href="index.html"><i class='bx bx-purchase-tag-alt'></i>{{ $item->cates[0]->name }}</a>
+                    <a href="{{ route('front.post.cate_detail', $item->cates[0]->slug) }}"><i class='bx bx-purchase-tag-alt'></i>{{ $item->cates[0]->name }}</a>
                 </li>
                 @endif
             </ul>
