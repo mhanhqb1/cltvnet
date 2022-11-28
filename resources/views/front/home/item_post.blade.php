@@ -21,10 +21,10 @@
                 @endif
             </ul>
             <h3>
-                <a href="blog-details.html">{{ $item->name }}</a>
+                <a href="{{ route('front.post.detail', $item->slug) }}">{{ $item->name }}</a>
             </h3>
             <p>{{ $item->description }}</p>
-            <a href="blog-details.html" class="read-btn">{{ __('Read More') }} <i class='bx bx-chevron-right'></i></a>
+            <a href="{{ route('front.post.detail', $item->slug) }}" class="read-btn">{{ __('Read More') }} <i class='bx bx-chevron-right'></i></a>
         </div>
     </div>
 </div>

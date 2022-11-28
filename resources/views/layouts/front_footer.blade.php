@@ -1,3 +1,6 @@
+<?php
+$posts = getFooterPosts();
+?>
 <footer class="footer-area footer-bg">
     <div class="container">
         <div class="footer-top pt-100 pb-70">
@@ -72,33 +75,11 @@
                     <div class="footer-widget pl-5">
                         <h3>Our Blog</h3>
                         <ul class="footer-blog">
-                            <li>
-                                <a href="blog-details.html">
-                                    <img src="images/blog/blog-img-footer.jpg" alt="Images">
-                                </a>
-                                <div class="content">
-                                    <h3><a href="blog-details.html">Product Idea Solution For New Generation</a></h3>
-                                    <span>04 Dec 2020</span>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="blog-details.html">
-                                    <img src="images/blog/blog-img-footer2.jpg" alt="Images">
-                                </a>
-                                <div class="content">
-                                    <h3><a href="blog-details.html">New Device Invention for Digital Platform</a></h3>
-                                    <span>07 Dec 2020</span>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="blog-details.html">
-                                    <img src="images/blog/blog-img-footer3.jpg" alt="Images">
-                                </a>
-                                <div class="content">
-                                    <h3><a href="blog-details.html">Business Strategy Make His Goal Acheive</a></h3>
-                                    <span>10 Dec 2020</span>
-                                </div>
-                            </li>
+                            @if (!$posts->isEmpty())
+                                @foreach ($posts as $p)
+                                    @include('layouts.item_post_footer', ['item' => $p])
+                                @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>

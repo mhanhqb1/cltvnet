@@ -274,84 +274,9 @@
             <h2>Introduce Our Projects and Check Recent Work </h2>
         </div>
         <div class="case-study-slider owl-carousel owl-theme pt-45">
-            <div class="case-study-item">
-                <a href="case-details.html">
-                    <img src="images/case-study/case-study1.jpg" alt="Images">
-                </a>
-                <div class="content">
-                    <h3><a href="case-details.html">Business Solution</a></h3>
-                    <ul>
-                        <li><a href="case-details.html">Business</a></li>
-                        <li><a href="case-details.html">Planing</a> </li>
-                    </ul>
-                    <a href="case-details.html" class="more-btn"><i class='bx bx-right-arrow-alt'></i></a>
-                </div>
-            </div>
-            <div class="case-study-item">
-                <a href="case-details.html">
-                    <img src="images/case-study/case-study2.jpg" alt="Images">
-                </a>
-                <div class="content">
-                    <h3><a href="case-details.html">Business Solution</a></h3>
-                    <ul>
-                        <li><a href="case-details.html">Business</a></li>
-                        <li><a href="case-details.html">Planing</a> </li>
-                    </ul>
-                    <a href="case-details.html" class="more-btn"><i class='bx bx-right-arrow-alt'></i></a>
-                </div>
-            </div>
-            <div class="case-study-item">
-                <a href="case-details.html">
-                    <img src="images/case-study/case-study3.jpg" alt="Images">
-                </a>
-                <div class="content">
-                    <h3><a href="case-details.html">Business Solution</a></h3>
-                    <ul>
-                        <li><a href="case-details.html">Business</a></li>
-                        <li><a href="case-details.html">Planing</a> </li>
-                    </ul>
-                    <a href="case-details.html" class="more-btn"><i class='bx bx-right-arrow-alt'></i></a>
-                </div>
-            </div>
-            <div class="case-study-item">
-                <a href="case-details.html">
-                    <img src="images/case-study/case-study4.jpg" alt="Images">
-                </a>
-                <div class="content">
-                    <h3><a href="case-details.html">UI/UX Research</a></h3>
-                    <ul>
-                        <li><a href="case-details.html">UI/UX Design</a></li>
-                        <li><a href="case-details.html">Research</a> </li>
-                    </ul>
-                    <a href="case-details.html" class="more-btn"><i class='bx bx-right-arrow-alt'></i></a>
-                </div>
-            </div>
-            <div class="case-study-item">
-                <a href="case-details.html">
-                    <img src="images/case-study/case-study6.jpg" alt="Images">
-                </a>
-                <div class="content">
-                    <h3><a href="case-details.html">Business Solution</a></h3>
-                    <ul>
-                        <li><a href="case-details.html">Solution</a></li>
-                        <li><a href="case-details.html">Business</a> </li>
-                    </ul>
-                    <a href="case-details.html" class="more-btn"><i class='bx bx-right-arrow-alt'></i></a>
-                </div>
-            </div>
-            <div class="case-study-item">
-                <a href="case-details.html">
-                    <img src="images/case-study/case-study2.jpg" alt="Images">
-                </a>
-                <div class="content">
-                    <h3><a href="case-details.html">Web Development</a></h3>
-                    <ul>
-                        <li><a href="case-details.html">Design</a></li>
-                        <li><a href="case-details.html">Development</a> </li>
-                    </ul>
-                    <a href="case-details.html" class="more-btn"><i class='bx bx-right-arrow-alt'></i></a>
-                </div>
-            </div>
+            @for ($i=0; $i<6; $i++)
+                @include('front.home.item_product')
+            @endfor
         </div>
     </div>
 </div>
@@ -451,42 +376,9 @@
             <h2>Our Clients Feedback</h2>
         </div>
         <div class="clients-slider owl-carousel owl-theme pt-45">
-            <div class="clients-content">
-                <div class="content">
-                    <img src="images/clients-img/clients-img1.jpg" alt="Images">
-                    <i class='bx bxs-quote-alt-left'></i>
-                    <h3>Jonthon Martin</h3>
-                    <span>App Developer</span>
-                </div>
-                <p>
-                    “Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis.
-                    sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi loren accumsan ipsum velit.”
-                </p>
-            </div>
-            <div class="clients-content">
-                <div class="content">
-                    <img src="images/clients-img/clients-img2.jpg" alt="Images">
-                    <i class='bx bxs-quote-alt-left'></i>
-                    <h3>Alin Decros</h3>
-                    <span>Graphic Designer</span>
-                </div>
-                <p>
-                    “Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis.
-                    sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi loren accumsan ipsum velit.”
-                </p>
-            </div>
-            <div class="clients-content">
-                <div class="content">
-                    <img src="images/clients-img/clients-img3.jpg" alt="Images">
-                    <i class='bx bxs-quote-alt-left'></i>
-                    <h3>Elen Musk</h3>
-                    <span>Web Developer</span>
-                </div>
-                <p>
-                    “Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis.
-                    sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi loren accumsan ipsum velit.”
-                </p>
-            </div>
+            @for ($i=0; $i<3; $i++)
+                @include('front.home.item_client')
+            @endfor
         </div>
     </div>
     <div class="client-circle">
@@ -524,7 +416,7 @@
         <div class="row pt-45">
             @if (!$posts->isEmpty())
                 @foreach ($posts as $p)
-                    @include('front.home.post_item', ['item' => $p])
+                    @include('front.home.item_post', ['item' => $p])
                 @endforeach
             @endif
         </div>

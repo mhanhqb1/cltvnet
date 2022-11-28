@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Support\Facades\Storage;
 
 function createSlug($str, $delimiter = '-')
@@ -75,6 +76,14 @@ function getFrontCates() {
     $data = Category::select('id', 'name', 'slug');
 
     $data = $data->get();
+    return $data;
+}
+
+function getFooterPosts() {
+    $data = Post::front_get_list([
+        'limit' => 3,
+        'page' => 1
+    ]);
     return $data;
 }
 
