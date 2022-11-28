@@ -13,7 +13,7 @@
                         </p>
                         <div class="banner-btn">
                             <a href="about.html" class="default-btn btn-bg-two border-radius-50">Learn More <i class='bx bx-chevron-right'></i></a>
-                            <a href="contact.html" class="default-btn btn-bg-one border-radius-50 ml-20">Get A Quote <i class='bx bx-chevron-right'></i></a>
+                            <a href="{{ route('front.contact.index') }}" class="default-btn btn-bg-one border-radius-50 ml-20">Get A Quote <i class='bx bx-chevron-right'></i></a>
                         </div>
                     </div>
                 </div>
@@ -252,7 +252,7 @@
             </div>
             <div class="col-lg-4 col-md-4">
                 <div class="build-btn-area">
-                    <a href="contact.html" class="default-btn btn-bg-two border-radius-50">Contact Us <i class='bx bx-chevron-right'></i></a>
+                    <a href="{{ route('front.contact.index') }}" class="default-btn btn-bg-two border-radius-50">Contact Us <i class='bx bx-chevron-right'></i></a>
                 </div>
             </div>
         </div>
@@ -291,7 +291,7 @@
                 <span class="sp-color1">Let's Talk</span>
                 <h2>We Are Adding Kinds of It Services That You Grow Success</h2>
             </div>
-            <a href="contact.html" class="default-btn btn-bg-two border-radius-5">Contact Us</a>
+            <a href="{{ route('front.contact.index') }}" class="default-btn btn-bg-two border-radius-5">Contact Us</a>
         </div>
     </div>
 </div>

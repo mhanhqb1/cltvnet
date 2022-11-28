@@ -18,7 +18,8 @@ class SettingController extends Controller
 
     public function index()
     {
-        return view('admin.setting.index');
+        $settings = $this->model::$settings;
+        return view('admin.setting.index', compact('settings'));
     }
 
     public function save(Request $request)

@@ -8,35 +8,38 @@ $cates = getFrontCates();
             <div class="row align-items-center">
                 <div class="col-lg-7 col-md-6">
                     <div class="top-head-left">
+                        @if (!empty($web_phone))
                         <div class="top-contact">
-                            <h3>Support By : <a href="tel:+1(212)-255-5511">+1 (212) 255-5511</a></h3>
+                            <h3>Support By : <a href="tel:{{ $web_phone }}">{{ $web_phone }}</a></h3>
                         </div>
+                        @endif
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-6">
                     <div class="top-header-right">
                         <div class="top-header-social">
                             <ul>
+                                @if (!empty($facebook_url))
                                 <li>
-                                    <a href="https://www.facebook.com/" target="_blank">
+                                    <a href="{{ $facebook_url }}" target="_blank">
                                         <i class='bx bxl-facebook'></i>
                                     </a>
                                 </li>
+                                @endif
+                                @if (!empty($twitter_url))
                                 <li>
-                                    <a href="https://twitter.com/?lang=en" target="_blank">
+                                    <a href="{{ $twitter_url }}" target="_blank">
                                         <i class='bx bxl-twitter'></i>
                                     </a>
                                 </li>
+                                @endif
+                                @if (!empty($instagram_url))
                                 <li>
-                                    <a href="https://www.linkedin.com/" target="_blank">
-                                        <i class='bx bxl-linkedin-square'></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.instagram.com/" target="_blank">
+                                    <a href="{{ $instagram_url }}" target="_blank">
                                         <i class='bx bxl-instagram'></i>
                                     </a>
                                 </li>
+                                @endif
                             </ul>
                         </div>
                         <!-- <div class="language-list">
@@ -59,7 +62,7 @@ $cates = getFrontCates();
 <div class="navbar-area">
 
     <div class="mobile-nav">
-        <a href="index.html" class="logo">
+        <a href="{{ url('/') }}" class="logo">
             <img src="images/logos/logo-1.png" class="logo-one" alt="Logo">
             <img src="images/logos/logo-2.png" class="logo-two" alt="Logo">
         </a>
@@ -69,7 +72,7 @@ $cates = getFrontCates();
         <div class="container-fluid">
             <div class="container-max">
                 <nav class="navbar navbar-expand-md navbar-light ">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="images/logos/logo-1.png" class="logo-one" alt="Logo">
                         <img src="images/logos/logo-2.png" class="logo-two" alt="Logo">
                     </a>

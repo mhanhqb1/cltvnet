@@ -87,6 +87,13 @@ function getFooterPosts() {
     return $data;
 }
 
+function getFooterCates() {
+    $data = Category::select('id', 'name', 'slug');
+
+    $data = $data->limit(5)->get();
+    return $data;
+}
+
 function callApi($url)
 {
     $curl = curl_init();

@@ -32,27 +32,33 @@
                     <h2>Let's Connect With Us</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam imperdiet varius mi, ut hendrerit magna mollis ac. </p>
                     <ul>
+                        @if (!empty($web_phone))
                         <li>
                             <div class="content">
                                 <i class='bx bx-phone-call'></i>
                                 <h3>Phone Number</h3>
-                                <a href="tel:+1(212)-255-5511">+1 (212) 255-5511</a>
+                                <a href="tel:{{ $web_phone }}">{{ $web_phone }}1</a>
                             </div>
                         </li>
+                        @endif
+                        @if (!empty($web_address))
                         <li>
                             <div class="content">
                                 <i class='bx bxs-map'></i>
                                 <h3>Address</h3>
-                                <span>124 Virgil A Virginia, USA</span>
+                                <span>{{ $web_address }}</span>
                             </div>
                         </li>
+                        @endif
+                        @if (!empty($web_email))
                         <li>
                             <div class="content">
                                 <i class='bx bx-message'></i>
                                 <h3>Contact Info</h3>
-                                <a href="/cdn-cgi/l/email-protection#452d2029292a053120262d203d6b262a28"><span class="__cf_email__" data-cfemail="b6ded3dadad9f6c2d3d5ded3ce98d5d9db">[email&#160;protected]</span></a>
+                                <a href="mailto:{{ $web_email }}"><span class="__cf_email__" >{{ $web_email }}</span></a>
                             </div>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -111,9 +117,11 @@
         </div>
     </div>
 </div>
+@if (!empty($google_map_url))
 <div class="map-area">
     <div class="container-fluid m-0 p-0">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50194.82376159623!2d-79.09792989247224!3d38.159337740034566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b4a08eb8621697%3A0xe5d6e4710a09b66e!2sStaunton%2C%20VA%2024401%2C%20USA!5e0!3m2!1sen!2sbd!4v1607173226867!5m2!1sen!2sbd"></iframe>
+        <iframe src="{{ $google_map_url }}"></iframe>
     </div>
 </div>
+@endif
 @endsection
