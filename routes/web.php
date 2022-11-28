@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SettingController;
+
+use App\Http\Controllers\ContactController as FrontContact;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +24,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/lien-he', [FrontContact::class, 'index'])->name('front.contact.index');
+Route::post('/lien-he', [FrontContact::class, 'save'])->name('front.contact.save');
 
 Auth::routes();
 
