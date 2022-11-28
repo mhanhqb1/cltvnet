@@ -37,7 +37,7 @@ $title = !empty($pageTitle) ? $pageTitle : '';
         </div>
     </div>
 
-
+    @include('layouts.front_header')
     @yield('content')
 
 
