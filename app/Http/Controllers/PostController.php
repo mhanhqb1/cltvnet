@@ -16,9 +16,17 @@ class PostController extends Controller
     {
         $data = Post::front_get_list([
             'page' => 1,
-            'limit' => 1
+            'limit' => 1,
+            'cates' => 1
         ]);
-        print_r($data); die();
         return view('front.post.index', compact('data'));
+    }
+
+    public function detail($slug, Request $request)
+    {
+        $item = Post::with('cates')
+            ->where('slug', $slug)
+            ->first();
+        return view('front.post.detail', compact('item'));
     }
 }

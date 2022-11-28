@@ -27,6 +27,7 @@ Route::get('/', [HomeController::class, 'index'])->name('front.home.index');
 Route::get('/lien-he', [FrontContact::class, 'index'])->name('front.contact.index');
 Route::post('/lien-he', [FrontContact::class, 'save'])->name('front.contact.save');
 Route::get('/bai-viet', [FrontPost::class, 'index'])->name('front.post.index');
+Route::get('/bai-viet/{slug}', [FrontPost::class, 'detail'])->name('front.post.detail');
 
 Auth::routes();
 

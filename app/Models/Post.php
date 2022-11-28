@@ -21,9 +21,17 @@ class Post extends Model
         'status'
     ];
 
+    public function cates()
+    {
+        return $this->hasManyThrough(Category::class, PostCate::class, 'post_id', 'id', 'id', 'cate_id');
+    }
+
     public static function front_get_list($params = []) {
         $data = [];
         $data = self::where('status', PostStatus::Show);
+        if (!empty($params['cates'])) {
+            $data = $data->with('cates');
+        }
         if (!empty($params['page']) && !empty($params['limit'])) {
             $data = $data->offset(($params['page'] - 1)*$params['limit'])->limit($params['limit']);
         }
