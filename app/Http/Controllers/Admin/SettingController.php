@@ -18,8 +18,7 @@ class SettingController extends Controller
 
     public function index()
     {
-        $data = $this->model->pluck('value', 'name')->toArray();
-        return view('admin.setting.index', $data);
+        return view('admin.setting.index');
     }
 
     public function save(Request $request)

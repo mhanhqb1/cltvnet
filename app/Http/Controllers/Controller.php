@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setting;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -18,5 +19,11 @@ class Controller extends BaseController
         $pageTitle = ucfirst($routeName[1]).' '.ucfirst($routeName[2]);
         view()->share('pageTitle', $pageTitle);
         view()->share('routeName', Route::currentRouteName());
+
+        // Get websetting
+        $settings = Setting::pluck('value', 'name')->toArray();
+        foreach ($settings as $k => $v) {
+            view()->share($k, $v);
+        }
     }
 }
