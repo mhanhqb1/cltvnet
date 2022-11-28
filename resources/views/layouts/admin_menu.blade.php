@@ -27,7 +27,7 @@ $menuData = [
     ],
     [
         'name' => 'Cấu hình website',
-        'route' => '',
+        'route' => 'admin.setting.index',
         'className' => 'nav-icon fas fa-th'
     ],
 ];

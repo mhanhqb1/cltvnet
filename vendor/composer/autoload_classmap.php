@@ -36,6 +36,8 @@ return array(
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
     'App\\Models\\Contact' => $baseDir . '/app/Models/Contact.php',
     'App\\Models\\Post' => $baseDir . '/app/Models/Post.php',
+    'App\\Models\\PostCate' => $baseDir . '/app/Models/PostCate.php',
+    'App\\Models\\Setting' => $baseDir . '/app/Models/Setting.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',

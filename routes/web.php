@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -70,5 +71,9 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/categories/update/{id}', [CategoryController::class, 'update'])->name('category.update');
         Route::delete('/categories/{id}', [CategoryController::class, 'delete'])->name('category.delete');
         Route::post('/categories/save', [CategoryController::class, 'save'])->name('category.save');
+
+        // Setting
+        Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
+        Route::post('/setting/save', [SettingController::class, 'save'])->name('setting.save');
     });
 });
