@@ -25,7 +25,7 @@ class ContactController extends Controller
     public function indexData()
     {
         $limit = 10;
-        $data = $this->model->limit($limit);
+        $data = $this->model->orderBy('id', 'desc')->limit($limit);
         return Datatables::of($data)
             ->addColumn('created_at', function ($item) {
                 return date('Y-m-d H:i:s', strtotime($item->created_at));
