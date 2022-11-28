@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SettingController;
 
 use App\Http\Controllers\ContactController as FrontContact;
+use App\Http\Controllers\PostController as FrontPost;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('front.home.index');
 Route::get('/lien-he', [FrontContact::class, 'index'])->name('front.contact.index');
 Route::post('/lien-he', [FrontContact::class, 'save'])->name('front.contact.save');
+Route::get('/bai-viet', [FrontPost::class, 'index'])->name('front.post.index');
 
 Auth::routes();
 
