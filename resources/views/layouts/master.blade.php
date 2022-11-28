@@ -9,6 +9,9 @@ $title = !empty($pageTitle) ? $pageTitle : '';
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="{{ csrf_token() }}" name="csrf-token">
+
+    <title>{{ __($title) }}</title>
 
     @stack('before_css')
 
@@ -24,7 +27,6 @@ $title = !empty($pageTitle) ? $pageTitle : '';
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/theme-dark.css">
-    <title>{{ __($title) }}</title>
     @stack('css')
 </head>
 
@@ -42,6 +44,14 @@ $title = !empty($pageTitle) ? $pageTitle : '';
     @include('layouts.front_footer')
 
     <script src="js/jquery.min.js"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/jquery.magnific-popup.min.js"></script>

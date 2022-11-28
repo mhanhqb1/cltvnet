@@ -25,6 +25,7 @@ class ContactController extends Controller
         $contact->email = !empty($request->email) ? $request->email : '';
         $contact->message = !empty($request->message) ? $request->message : '';
         $contact->save();
+        echo 'success'; exit();
         return redirect()->route('front.contact.index')->with('success', 'Dữ liệu đã được cập nhật thành công');
     }
 }
