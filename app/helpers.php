@@ -1,4 +1,6 @@
 <?php
+
+use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 
 function createSlug($str, $delimiter = '-')
@@ -67,6 +69,13 @@ function getImageUrl($image) {
         $imageUrl = url('/storage/'.$image);
     }
     return $imageUrl;
+}
+
+function getFrontCates() {
+    $data = Category::select('id', 'name', 'slug');
+
+    $data = $data->get();
+    return $data;
 }
 
 function callApi($url)

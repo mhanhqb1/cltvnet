@@ -1,3 +1,7 @@
+<?php
+$cates = getFrontCates();
+?>
+
 <header class="top-header top-header-bg">
     <div class="container-fluid">
         <div class="container-max">
@@ -72,7 +76,7 @@
                     <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                         <ul class="navbar-nav m-auto">
                             <li class="nav-item">
-                                <a href="{{ url('/') }}" class="nav-link active">
+                                <a href="{{ url('/') }}" class="nav-link {{ in_array($routeName, ['front.home.index']) ? 'active' : '' }}">
                                     {{ __('Home') }}
                                 </a>
                             </li>
@@ -82,43 +86,37 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="#" class="nav-link {{ in_array($routeName, ['front.post.index']) ? 'active' : '' }}">
                                     {{ __('Product') }}
                                     <i class='bx bx-caret-down'></i>
                                 </a>
                                 <ul class="dropdown-menu">
+                                    @foreach ($cates as $cate)
                                     <li class="nav-item">
                                         <a href="team.html" class="nav-link">
-                                            Team
+                                            {{ $cate->name }}
                                         </a>
                                     </li>
+                                    @endforeach
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="#" class="nav-link {{ in_array($routeName, ['front.post.index']) ? 'active' : '' }}">
                                     {{ __('Post') }}
                                     <i class='bx bx-caret-down'></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="services-1.html" class="nav-link">
-                                            Services Style One
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="services-2.html" class="nav-link">
-                                            Services Style Two
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="service-details.html" class="nav-link">
-                                            Service Details
-                                        </a>
-                                    </li>
+                                    @foreach ($cates as $cate)
+                                        <li class="nav-item">
+                                            <a href="team.html" class="nav-link">
+                                                {{ $cate->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('front.contact.index') }}" class="nav-link">
+                                <a href="{{ route('front.contact.index') }}" class="nav-link {{ in_array($routeName, ['front.contact.index']) ? 'active' : '' }}">
                                     {{ __('Contact') }}
                                 </a>
                             </li>
@@ -155,9 +153,6 @@
                         <div class="side-nav-item nav-side">
                             <div class="search-box">
                                 <i class='bx bx-search'></i>
-                            </div>
-                            <div class="get-btn">
-                                <a href="contact.html" class="default-btn btn-bg-two border-radius-50">Get A Quote <i class='bx bx-chevron-right'></i></a>
                             </div>
                         </div>
                     </div>
