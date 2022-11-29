@@ -28,8 +28,10 @@ class HomeController extends Controller
             'limit' => 3,
             'page' => 1
         ]);
+        $pageTitle = __('Home');
         return view('front.home.index', compact(
-            'posts'
+            'posts',
+            'pageTitle'
         ));
     }
 }

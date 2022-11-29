@@ -1,5 +1,6 @@
 <?php
 $title = !empty($pageTitle) ? $pageTitle : '';
+$title = !empty($web_name) ? $title.' - '.$web_name : $title;
 ?>
 
 <!doctype html>
