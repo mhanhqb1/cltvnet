@@ -79,9 +79,9 @@ function getFrontCates() {
     return $data;
 }
 
-function getFooterPosts() {
+function getLastestPosts($limit = 3) {
     $data = Post::front_get_list([
-        'limit' => 3,
+        'limit' => $limit,
         'page' => 1
     ]);
     return $data;

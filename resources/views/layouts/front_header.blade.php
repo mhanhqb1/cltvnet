@@ -110,11 +110,11 @@ $cates = getFrontCates();
                                 </a>
                                 <ul class="dropdown-menu">
                                     @foreach ($cates as $cate)
-                                        <li class="nav-item">
-                                            <a href="{{ route('front.post.cate_detail', $cate->slug) }}" class="nav-link">
-                                                {{ $cate->name }}
-                                            </a>
-                                        </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('front.post.cate_detail', $cate->slug) }}" class="nav-link">
+                                            {{ $cate->name }}
+                                        </a>
+                                    </li>
                                     @endforeach
                                 </ul>
                             </li>
@@ -133,6 +133,11 @@ $cates = getFrontCates();
                                             <i class="bx bx-search"></i>
                                         </button>
                                     </form>
+                                </div>
+                            </div>
+                            <div class="nav-side-item">
+                                <div class="get-btn">
+                                    <a href="{{ route('front.contact.index') }}" class="default-btn btn-bg-two border-radius-50">{{ __('Get A Quote') }} <i class="bx bx-chevron-right"></i></a>
                                 </div>
                             </div>
                         </div>

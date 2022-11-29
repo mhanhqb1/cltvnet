@@ -28,7 +28,11 @@ class PostController extends Controller
         $item = Post::with('cates')
             ->where('slug', $slug)
             ->first();
-        return view('front.post.detail', compact('item'));
+        $pageTitle = $item->name;
+        return view('front.post.detail', compact(
+            'item',
+            'pageTitle'
+        ));
     }
 
     public function cateDetail($slug, Request $request)

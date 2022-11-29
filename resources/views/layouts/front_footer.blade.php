@@ -1,5 +1,5 @@
 <?php
-$posts = getFooterPosts();
+$posts = getLastestPosts();
 $cates = getFooterCates();
 ?>
 <footer class="footer-area footer-bg">
