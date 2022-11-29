@@ -15,7 +15,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('front.contact.index');
+        $pageTitle = 'Liên Hệ';
+        return view('front.contact.index', compact('pageTitle'));
     }
     public function save(Request $request)
     {
