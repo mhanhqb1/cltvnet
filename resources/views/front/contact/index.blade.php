@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="inner-shape">
-        <img src="assets/images/shape/inner-shape.png" alt="Images">
+        <img src="/images/shape/inner-shape.png" alt="Images">
     </div>
 </div>
 <div class="contact-form-area pt-100 pb-70">

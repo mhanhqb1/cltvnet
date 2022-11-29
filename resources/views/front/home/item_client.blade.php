@@ -1,6 +1,6 @@
 <div class="clients-content">
     <div class="content">
-        <img src="images/clients-img/clients-img1.jpg" alt="Images">
+        <img src="/images/clients-img/clients-img1.jpg" alt="Images">
         <i class='bx bxs-quote-alt-left'></i>
         <h3>Jonthon Martin</h3>
         <span>App Developer</span>

@@ -19,9 +19,9 @@
                 </div>
                 <div class="col-lg-7">
                     <div class="banner-img">
-                        <img src="images/home-three/home-three-img.png" alt="Images">
+                        <img src="/images/home-three/home-three-img.png" alt="Images">
                         <div class="banner-img-shape">
-                            <img src="images/home-three/home-three-shape.png" alt="Images">
+                            <img src="/images/home-three/home-three-shape.png" alt="Images">
                         </div>
                     </div>
                 </div>
@@ -31,21 +31,21 @@
     <div class="container">
         <div class="banner-sub-slider owl-carousel owl-theme">
             <div class="banner-sub-item">
-                <img src="images/home-three/home-three-sub1.jpg" alt="Images">
+                <img src="/images/home-three/home-three-sub1.jpg" alt="Images">
                 <div class="content">
                     <h3>3.7k</h3>
                     <span>Satisfied Clients</span>
                 </div>
             </div>
             <div class="banner-sub-item">
-                <img src="images/home-three/home-three-sub2.jpg" alt="Images">
+                <img src="/images/home-three/home-three-sub2.jpg" alt="Images">
                 <div class="content">
                     <h3>45+</h3>
                     <span>Country Worldwide</span>
                 </div>
             </div>
             <div class="banner-sub-item">
-                <img src="images/home-three/home-three-sub3.jpg" alt="Images">
+                <img src="/images/home-three/home-three-sub3.jpg" alt="Images">
                 <div class="content">
                     <h3>6.5+</h3>
                     <span>Project Completed</span>
@@ -61,7 +61,7 @@
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <div class="about-img-2">
-                    <img src="images/about/about-img3.jpg" alt="About Images">
+                    <img src="/images/about/about-img3.jpg" alt="About Images">
                 </div>
             </div>
             <div class="col-lg-6">
@@ -165,7 +165,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="services-item">
                     <a href="service-details.html">
-                        <img src="images/services/services-img1.jpg" alt="Images">
+                        <img src="/images/services/services-img1.jpg" alt="Images">
                     </a>
                     <div class="content">
                         <i class="flaticon-consultant"></i>
@@ -177,7 +177,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="services-item">
                     <a href="service-details.html">
-                        <img src="images/services/services-img2.jpg" alt="Images">
+                        <img src="/images/services/services-img2.jpg" alt="Images">
                     </a>
                     <div class="content">
                         <i class="flaticon-consulting"></i>
@@ -189,7 +189,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="services-item">
                     <a href="service-details.html">
-                        <img src="images/services/services-img3.jpg" alt="Images">
+                        <img src="/images/services/services-img3.jpg" alt="Images">
                     </a>
                     <div class="content">
                         <i class="flaticon-web-development"></i>
@@ -201,7 +201,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="services-item">
                     <a href="service-details.html">
-                        <img src="images/services/services-img4.jpg" alt="Images">
+                        <img src="/images/services/services-img4.jpg" alt="Images">
                     </a>
                     <div class="content">
                         <i class="flaticon-stats"></i>
@@ -213,7 +213,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="services-item">
                     <a href="service-details.html">
-                        <img src="images/services/services-img5.jpg" alt="Images">
+                        <img src="/images/services/services-img5.jpg" alt="Images">
                     </a>
                     <div class="content">
                         <i class="flaticon-structure"></i>
@@ -225,7 +225,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="services-item">
                     <a href="service-details.html">
-                        <img src="images/services/services-img6.jpg" alt="Images">
+                        <img src="/images/services/services-img6.jpg" alt="Images">
                     </a>
                     <div class="content">
                         <i class="flaticon-data-analytics"></i>
@@ -349,22 +349,22 @@
     <div class="container">
         <div class="brand-slider owl-carousel owl-theme">
             <div class="brand-item">
-                <img src="images/brand-logo/brand-style1.png" alt="Images">
+                <img src="/images/brand-logo/brand-style1.png" alt="Images">
             </div>
             <div class="brand-item">
-                <img src="images/brand-logo/brand-style2.png" alt="Images">
+                <img src="/images/brand-logo/brand-style2.png" alt="Images">
             </div>
             <div class="brand-item">
-                <img src="images/brand-logo/brand-style3.png" alt="Images">
+                <img src="/images/brand-logo/brand-style3.png" alt="Images">
             </div>
             <div class="brand-item">
-                <img src="images/brand-logo/brand-style4.png" alt="Images">
+                <img src="/images/brand-logo/brand-style4.png" alt="Images">
             </div>
             <div class="brand-item">
-                <img src="images/brand-logo/brand-style5.png" alt="Images">
+                <img src="/images/brand-logo/brand-style5.png" alt="Images">
             </div>
             <div class="brand-item">
-                <img src="images/brand-logo/brand-style3.png" alt="Images">
+                <img src="/images/brand-logo/brand-style3.png" alt="Images">
             </div>
         </div>
     </div>

@@ -35,7 +35,20 @@ class Post extends Model
         if (!empty($params['page']) && !empty($params['limit'])) {
             $data = $data->offset(($params['page'] - 1)*$params['limit'])->limit($params['limit']);
         }
-        $data = $data->get();
+        if (!empty($params['cate_ids'])) {
+            $cateIds = $params['cate_ids'];
+            if (!is_array($cateIds)) {
+                $cateIds = explode(',', $cateIds);
+            }
+            $data = $data->whereHas('cates', function($q) use($cateIds){
+                $q->whereIn('categories.id', $cateIds);
+            });
+        }
+        if (!empty($params['paginate'])) {
+            $data = $data->paginate($params['limit']);
+        } else {
+            $data = $data->get();
+        }
         return $data;
     }
 }

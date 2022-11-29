@@ -63,8 +63,8 @@ $cates = getFrontCates();
 
     <div class="mobile-nav">
         <a href="{{ url('/') }}" class="logo">
-            <img src="images/logos/logo-1.png" class="logo-one" alt="Logo">
-            <img src="images/logos/logo-2.png" class="logo-two" alt="Logo">
+            <img src="/images/logos/logo-1.png" class="logo-one" alt="Logo">
+            <img src="/images/logos/logo-2.png" class="logo-two" alt="Logo">
         </a>
     </div>
 
@@ -73,8 +73,8 @@ $cates = getFrontCates();
             <div class="container-max">
                 <nav class="navbar navbar-expand-md navbar-light ">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="images/logos/logo-1.png" class="logo-one" alt="Logo">
-                        <img src="images/logos/logo-2.png" class="logo-two" alt="Logo">
+                        <img src="/images/logos/logo-1.png" class="logo-one" alt="Logo">
+                        <img src="/images/logos/logo-2.png" class="logo-two" alt="Logo">
                     </a>
                     <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                         <ul class="navbar-nav m-auto">
@@ -96,7 +96,7 @@ $cates = getFrontCates();
                                 <ul class="dropdown-menu">
                                     @foreach ($cates as $cate)
                                     <li class="nav-item">
-                                        <a href="team.html" class="nav-link">
+                                        <a href="{{ route('front.post.cate_detail', $cate->slug) }}" class="nav-link">
                                             {{ $cate->name }}
                                         </a>
                                     </li>
@@ -111,7 +111,7 @@ $cates = getFrontCates();
                                 <ul class="dropdown-menu">
                                     @foreach ($cates as $cate)
                                         <li class="nav-item">
-                                            <a href="team.html" class="nav-link">
+                                            <a href="{{ route('front.post.cate_detail', $cate->slug) }}" class="nav-link">
                                                 {{ $cate->name }}
                                             </a>
                                         </li>
