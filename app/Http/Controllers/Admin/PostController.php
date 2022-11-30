@@ -40,7 +40,7 @@ class PostController extends Controller
     {
         $postType = Post::$postTypes['post'];
         $item = $this->model->find($id);
-        $cates = Category::get();
+        $cates = Category::where('type', $postType)->get();
         $postStatus = PostStatus::getInstances();
         $postCates = PostCate::where('post_id', $id)->pluck('cate_id')->toArray();
         return view('admin.post.add_update', compact(
@@ -56,7 +56,7 @@ class PostController extends Controller
     {
         $postType = Post::$postTypes['product'];
         $item = $this->model->find($id);
-        $cates = Category::get();
+        $cates = Category::where('type', $postType)->get();
         $postStatus = PostStatus::getInstances();
         $postCates = PostCate::where('post_id', $id)->pluck('cate_id')->toArray();
         return view('admin.post.add_update', compact(
@@ -71,7 +71,7 @@ class PostController extends Controller
     public function add()
     {
         $postType = Post::$postTypes['product'];
-        $cates = Category::get();
+        $cates = Category::where('type', $postType)->get();
         $postStatus = PostStatus::getInstances();
         return view('admin.post.add_update', compact(
             'cates',
@@ -83,7 +83,7 @@ class PostController extends Controller
     public function productAdd()
     {
         $postType = Post::$postTypes['product'];
-        $cates = Category::get();
+        $cates = Category::where('type', $postType)->get();
         $postStatus = PostStatus::getInstances();
         return view('admin.post.add_update', compact(
             'cates',
