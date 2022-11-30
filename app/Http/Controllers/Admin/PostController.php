@@ -70,7 +70,7 @@ class PostController extends Controller
 
     public function add()
     {
-        $postType = Post::$postTypes['product'];
+        $postType = Post::$postTypes['post'];
         $cates = Category::where('type', $postType)->get();
         $postStatus = PostStatus::getInstances();
         return view('admin.post.add_update', compact(
