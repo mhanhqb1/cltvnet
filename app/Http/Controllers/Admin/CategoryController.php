@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
@@ -19,18 +20,54 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return view('admin.category.index');
+        $postType = Post::$postTypes['post'];
+        return view('admin.category.index', compact(
+            'postType'
+        ));
+    }
+
+    public function productIndex()
+    {
+        $postType = Post::$postTypes['product'];
+        return view('admin.category.index', compact(
+            'postType'
+        ));
     }
 
     public function add()
     {
-        return view('admin.category.add_update');
+        $postType = Post::$postTypes['post'];
+        return view('admin.category.add_update', compact(
+            'postType'
+        ));
+    }
+
+    public function productAdd()
+    {
+        $postType = Post::$postTypes['product'];
+        return view('admin.category.add_update', compact(
+            'postType'
+        ));
     }
 
     public function update($id)
     {
+        $postType = Post::$postTypes['post'];
         $item = $this->model->find($id);
-        return view('admin.category.add_update', compact('item'));
+        return view('admin.category.add_update', compact(
+            'item',
+            'postType'
+        ));
+    }
+
+    public function productUpdate($id)
+    {
+        $postType = Post::$postTypes['product'];
+        $item = $this->model->find($id);
+        return view('admin.category.add_update', compact(
+            'item',
+            'postType'
+        ));
     }
 
     public function save(Request $request)
@@ -51,23 +88,33 @@ class CategoryController extends Controller
             $item = $this->model;
         }
         $item->name = $request->name;
+        $item->type = !empty($request->type) ? $request->type : 0;
         $item->slug = createSlug($request->name);
-        if ($item->save()) {
-            return redirect()->route('admin.category.index')->with('success', 'Dữ liệu đã được cập nhật thành công');
+        $listUrl = 'admin.category.index';
+        if (!empty($item->type)) {
+            $listUrl = 'admin.product_category.index';
         }
-        return redirect()->route('admin.category.index')->with('error', 'Dữ liệu cập nhật bị lỗi');
+        if ($item->save()) {
+            return redirect()->route($listUrl)->with('success', 'Dữ liệu đã được cập nhật thành công');
+        }
+        return redirect()->route($listUrl)->with('error', 'Dữ liệu cập nhật bị lỗi');
     }
 
-    public function indexData()
+    public function indexData(Request $request)
     {
         $limit = 10;
-        $data = $this->model->limit($limit);
+        $type = !empty($request->type) ? $request->type : 0;
+        $data = $this->model->where('type', $type)->limit($limit);
         return Datatables::of($data)
             ->addColumn('created_at', function ($item) {
                 return date('Y-m-d H:i:s', strtotime($item->created_at));
             })
             ->addColumn('action', function ($item) {
-                return '<a href="'.route('admin.category.update', $item->id).'" class="btn btn-xs btn-info">'.__('Update').'</a> <form action="'.route('admin.category.delete', $item->id).'" method="POST" style="display:inline-block;">
+                $updateUrl = 'admin.category.update';
+                if (!empty($item->type)) {
+                    $updateUrl = 'admin.product_category.update';
+                }
+                return '<a href="'.route($updateUrl, $item->id).'" class="btn btn-xs btn-info">'.__('Update').'</a> <form action="'.route('admin.category.delete', $item->id).'" method="POST" style="display:inline-block;">
                 <input type="hidden" name="_method" value="delete"/>
                 '.csrf_field().'
                 <input type="submit" class="btn btn-xs btn-danger" onclick="return window.confirm(\'Bạn muốn xóa item này không?\')" value="'.__('Delete').'"/>
@@ -78,7 +125,12 @@ class CategoryController extends Controller
 
     public function delete($id)
     {
-        $this->model->find($id)->delete();
-        return redirect()->route('admin.category.index')->with('success', 'Dữ liệu đã được xóa thành công');
+        $item = $this->model->find($id);
+        $listUrl = 'admin.category.index';
+        if (!empty($item->type)) {
+            $listUrl = 'admin.product_category.index';
+        }
+        $item->delete();
+        return redirect()->route($listUrl)->with('success', 'Dữ liệu đã được xóa thành công');
     }
 }

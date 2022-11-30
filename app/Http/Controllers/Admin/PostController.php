@@ -126,6 +126,10 @@ class PostController extends Controller
         if (!empty($image)) {
             $item->image = $image;
         }
+        $listUrl = 'admin.post.index';
+        if (!empty($item->type)) {
+            $listUrl = 'admin.product.index';
+        }
         if ($item->save()) {
             PostCate::where('post_id', $item->id)->forceDelete();
             if (!empty($request->cates)) {
@@ -136,9 +140,9 @@ class PostController extends Controller
                     ]);
                 }
             }
-            return redirect()->route('admin.post.index')->with('success', 'Dữ liệu đã được cập nhật thành công');
+            return redirect()->route($listUrl)->with('success', 'Dữ liệu đã được cập nhật thành công');
         }
-        return redirect()->route('admin.post.index')->with('error', 'Dữ liệu cập nhật bị lỗi');
+        return redirect()->route($listUrl)->with('error', 'Dữ liệu cập nhật bị lỗi');
     }
 
     public function indexData(Request $request)

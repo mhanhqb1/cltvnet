@@ -3,7 +3,7 @@
 @section('content')
 <div class="row" style="margin-bottom: 24px;">
     <div class="col-md-12">
-        <a href="{{ route('admin.category.add') }}" class="btn btn-primary">{{ __('Add New') }}</a>
+        <a href="{{ !empty($postType) ? route('admin.product_category.add') : route('admin.category.add') }}" class="btn btn-primary">{{ __('Add New') }}</a>
     </div>
 </div>
 <div class="row">
@@ -29,7 +29,7 @@ $(function() {
         processing: true,
         serverSide: true,
         searching: false,
-        ajax: '{!! route('admin.category.indexData') !!}',
+        ajax: '{!! route('admin.category.indexData', ['type' => $postType]) !!}',
         columns: [
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },

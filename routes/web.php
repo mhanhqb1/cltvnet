@@ -84,6 +84,10 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::delete('/categories/{id}', [CategoryController::class, 'delete'])->name('category.delete');
         Route::post('/categories/save', [CategoryController::class, 'save'])->name('category.save');
 
+        Route::get('/productcategories', [CategoryController::class, 'productIndex'])->name('product_category.index');
+        Route::get('/productcategories/add', [CategoryController::class, 'productAdd'])->name('product_category.add');
+        Route::get('/productcategories/update/{id}', [CategoryController::class, 'productUpdate'])->name('product_category.update');
+
         // Setting
         Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
         Route::post('/setting/save', [SettingController::class, 'save'])->name('setting.save');

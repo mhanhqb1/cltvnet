@@ -10,6 +10,9 @@
                     @if (!empty($item->id))
                     <input type="hidden" name="id" value="{{ $item->id }}"/>
                     @endif
+                    @if (isset($postType))
+                        <input type="hidden" value="{{ $postType }}" name="type"/>
+                    @endif
                     <div class="form-group">
                         <label for="inputName">{{ __('Name') }}</label>
                         <input type="text" id="inputName" name="name" class="form-control" value="{{ !empty($item->name) ? $item->name : '' }}">
