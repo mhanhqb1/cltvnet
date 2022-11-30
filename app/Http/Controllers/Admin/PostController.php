@@ -160,10 +160,12 @@ class PostController extends Controller
             })
             ->addColumn('status', function ($item) {
                 $_className = 'btn-success';
+                $_label = 'Show';
                 if ($item->status == PostStatus::Hide) {
                     $_className = 'btn-danger';
+                    $_label = 'Hide';
                 }
-                return "<span class='btn btn-xs " . $_className . "'>" . __(PostStatus::getKey($item->status)) . "</span>";
+                return "<span class='btn btn-xs " . $_className . "'>" . __($_label) . "</span>";
             })
             ->addColumn('created_at', function ($item) {
                 return date('Y-m-d H:i:s', strtotime($item->created_at));
