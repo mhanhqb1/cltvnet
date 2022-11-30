@@ -95,14 +95,6 @@
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12">
-                                <div class="agree-label">
-                                    <input type="checkbox" id="chb1">
-                                    <label for="chb1">
-                                        Accept <a href="#">Terms & Conditions</a> And <a href="#">Privacy Policy.</a>
-                                    </label>
-                                </div>
-                            </div>
                             <div class="col-lg-12 col-md-12 text-center">
                                 <button type="submit" class="default-btn btn-bg-two border-radius-50">
                                     {{ __('Send Message') }} <i class='bx bx-chevron-right'></i>
