@@ -72,17 +72,18 @@ function getImageUrl($image) {
     return $imageUrl;
 }
 
-function getFrontCates() {
-    $data = Category::select('id', 'name', 'slug');
-
-    $data = $data->get();
+function getFrontCates($type = 0) {
+    $data = Category::select('id', 'name', 'slug')
+        ->where('type', $type)
+        ->get();
     return $data;
 }
 
-function getLastestPosts($limit = 3) {
+function getLastestPosts($type = 0, $limit = 3) {
     $data = Post::front_get_list([
         'limit' => $limit,
-        'page' => 1
+        'page' => 1,
+        'type' => $type
     ]);
     return $data;
 }

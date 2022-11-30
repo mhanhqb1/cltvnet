@@ -27,8 +27,13 @@
 <div class="blog-area pt-100 pb-70">
     <div class="container">
         <div class="section-title text-center">
+            @if (empty($item->type))
             <span class="sp-color2">Latest Blog</span>
             <h2>Let’s Check Some Latest Blog</h2>
+            @else
+            <span class="sp-color2">Latest Product</span>
+            <h2>Let’s Check Some Latest Product</h2>
+            @endif
         </div>
         <div class="row pt-45">
             @if (!$data->isEmpty())

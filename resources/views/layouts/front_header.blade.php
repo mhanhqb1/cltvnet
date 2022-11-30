@@ -1,5 +1,6 @@
 <?php
-$cates = getFrontCates();
+$cates = getFrontCates(0);
+$productCates = getFrontCates(1);
 ?>
 
 <header class="top-header top-header-bg">
@@ -89,12 +90,12 @@ $cates = getFrontCates();
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link {{ in_array($routeName, ['front.post.index']) ? 'active' : '' }}">
+                                <a href="#" class="nav-link {{ in_array($routeName, ['front.product.index']) ? 'active' : '' }}">
                                     {{ __('Product') }}
                                     <i class='bx bx-caret-down'></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    @foreach ($cates as $cate)
+                                    @foreach ($productCates as $cate)
                                     <li class="nav-item">
                                         <a href="{{ route('front.post.cate_detail', $cate->slug) }}" class="nav-link">
                                             {{ $cate->name }}

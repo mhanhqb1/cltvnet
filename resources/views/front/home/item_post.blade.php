@@ -1,7 +1,13 @@
+<?php
+$urlDetail = route('front.post.detail', $item->slug);
+if (!empty($item->type)) {
+    $urlDetail = route('front.product.detail', $item->slug);
+}
+?>
 <div class="col-lg-4 col-md-6">
     <div class="blog-card">
         <div class="blog-img">
-            <a href="blog-details.html">
+            <a href="{{ $urlDetail }}">
                 <img src="{{ getImageUrl($item->image) }}" alt="{{ $item->name }}">
             </a>
             <div class="blog-tag">
@@ -21,10 +27,10 @@
                 @endif
             </ul>
             <h3>
-                <a href="{{ route('front.post.detail', $item->slug) }}">{{ $item->name }}</a>
+                <a href="{{ $urlDetail }}">{{ $item->name }}</a>
             </h3>
             <p>{{ $item->description }}</p>
-            <a href="{{ route('front.post.detail', $item->slug) }}" class="read-btn">{{ __('Read More') }} <i class='bx bx-chevron-right'></i></a>
+            <a href="{{ $urlDetail }}" class="read-btn">{{ __('Read More') }} <i class='bx bx-chevron-right'></i></a>
         </div>
     </div>
 </div>

@@ -12,7 +12,13 @@
                 <li>
                     <i class="bx bx-chevrons-right"></i>
                 </li>
-                <li>{{ __('Post') }}</li>
+                <li>
+                    @if (empty($item->type))
+                    <a href="{{ route('front.post.index') }}">{{ __('Post') }}</a>
+                    @else
+                    <a href="{{ route('front.product.index') }}">{{ __('Product') }}</a>
+                    @endif
+                </li>
                 <li>
                     <i class="bx bx-chevrons-right"></i>
                 </li>
@@ -99,10 +105,10 @@
                         </form>
                     </div>
                     <div class="side-bar-widget">
-                        <h3 class="title">Blog Categories</h3>
+                        <h3 class="title">Categories</h3>
                         <div class="side-bar-categories">
                             <?php
-                            $cates = getFrontCates();
+                            $cates = getFrontCates($item->type);
                             ?>
                             <ul>
                                 @foreach ($cates as $cate)
@@ -115,19 +121,22 @@
                         </div>
                     </div>
                     <div class="side-bar-widget">
-                        <h3 class="title">Latest Blog</h3>
+                        <h3 class="title">{{ !empty($item->type) ? __('Latest Product') : __('Latest Blog') }}</h3>
                         <div class="widget-popular-post">
                             <?php
-                                $posts = getLastestPosts(5);
+                                $posts = getLastestPosts($item->type, 5);
                             ?>
                             @foreach ($posts as $post)
+                            <?php
+                                $urlDetail = !empty($post->type) ? route('front.product.detail', $post->slug) : route('front.post.detail', $post->slug);
+                            ?>
                             <article class="item">
-                                <a href="{{ route('front.post.detail', $post->slug) }}" target="_blank" class="thumb">
+                                <a href="{{ $urlDetail }}" target="_blank" class="thumb">
                                     <span class="full-image cover" role="img" style="background-image: url('{{ getImageUrl($post->image) }}');"></span>
                                 </a>
                                 <div class="info">
                                     <h4 class="title-text">
-                                        <a href="{{ route('front.post.detail', $post->slug) }}" target="_blank">
+                                        <a href="{{ $urlDetail }}" target="_blank">
                                             {{ $post->name }}
                                         </a>
                                     </h4>
