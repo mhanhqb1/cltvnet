@@ -36,7 +36,7 @@ function editorUploadImages($html)
     $dom = new \DomDocument();
 
     try {
-        $dom->loadHtml($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $dom->loadHtml(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
     } catch (\Exception $e) {
         return $html;
     }
