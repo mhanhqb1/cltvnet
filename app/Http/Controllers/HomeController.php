@@ -26,12 +26,19 @@ class HomeController extends Controller
     {
         $posts = Post::front_get_list([
             'limit' => 3,
-            'page' => 1
+            'page' => 1,
+            'type' => Post::$postTypes['blog']
+        ]);
+        $product = Post::front_get_list([
+            'limit' => 3,
+            'page' => 1,
+            'type' => Post::$postTypes['product']
         ]);
         $pageTitle = __('Home');
         return view('front.home.index', compact(
             'posts',
-            'pageTitle'
+            'pageTitle',
+            'products'
         ));
     }
 }

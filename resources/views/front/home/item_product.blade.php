@@ -1,5 +1,8 @@
 <?php
 $url = route('front.post.detail', $item->slug);
+if (!empty($item->type)) {
+    $url = route('front.product.detail', $item->slug);
+}
 ?>
 <div class="case-study-item">
     <a href="{{ $url }}">
