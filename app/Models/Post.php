@@ -52,6 +52,8 @@ class Post extends Model
         }
         if (!empty($params['type'])) {
             $data = $data->where('type', $params['type']);
+        } else {
+            $data = $data->where('type', 0);
         }
         if (!empty($params['paginate'])) {
             $data = $data->paginate($params['limit']);
