@@ -27,7 +27,7 @@ class HomeController extends Controller
         $posts = Post::front_get_list([
             'limit' => 3,
             'page' => 1,
-            'type' => Post::$postTypes['blog']
+            'type' => Post::$postTypes['post']
         ]);
         $product = Post::front_get_list([
             'limit' => 3,
