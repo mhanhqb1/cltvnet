@@ -28,6 +28,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/command/migrate', function () {
     Artisan::call('migrate');
 });
+Route::get('/command/install', function () {
+    Artisan::call('migrate');
+    Artisan::call('storage:link');
+});
 Route::get('/command/clearAll', function () {
     Artisan::call('config:clear');
     Artisan::call('cache:clear');
