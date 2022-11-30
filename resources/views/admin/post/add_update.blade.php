@@ -15,6 +15,9 @@
                     @if (!empty($item->id))
                         <input type="hidden" value="{{ $item->id }}" name="id"/>
                     @endif
+                    @if (isset($postType))
+                        <input type="hidden" value="{{ $postType }}" name="type"/>
+                    @endif
                     <div class="form-group">
                         <label for="inputName">{{ __('Name') }}</label>
                         <input type="text" id="inputName" name="name" class="form-control" value="{{ !empty($item->name) ? $item->name : '' }}">
@@ -24,7 +27,7 @@
                         <select id="inputCategory" class="select2 form-control" name="cates[]" multiple="multiple">
                             @if (!empty($cates))
                             @foreach ($cates as $cate)
-                            <option value="{{ $cate->id }}" {{ in_array($cate->id, $postCates) ? "selected='selected'" : '' }}>{{ $cate->name }}</option>
+                            <option value="{{ $cate->id }}" {{ !empty($postCates) && in_array($cate->id, $postCates) ? "selected='selected'" : '' }}>{{ $cate->name }}</option>
                             @endforeach
                             @endif
                         </select>

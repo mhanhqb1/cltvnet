@@ -22,22 +22,74 @@ class PostController extends Controller
 
     public function index()
     {
-        return view('admin.post.index');
+        $postType = Post::$postTypes['post'];
+        return view('admin.post.index', compact(
+            'postType'
+        ));
+    }
+
+    public function productIndex()
+    {
+        $postType = Post::$postTypes['product'];
+        return view('admin.post.index', compact(
+            'postType'
+        ));
     }
 
     public function update($id)
     {
+        $postType = Post::$postTypes['post'];
         $item = $this->model->find($id);
         $cates = Category::get();
         $postStatus = PostStatus::getInstances();
         $postCates = PostCate::where('post_id', $id)->pluck('cate_id')->toArray();
-        return view('admin.post.add_update', compact('item', 'cates', 'postStatus', 'postCates'));
+        return view('admin.post.add_update', compact(
+            'item',
+            'cates',
+            'postStatus',
+            'postCates',
+            'postType'
+        ));
+    }
+
+    public function productUpdate($id)
+    {
+        $postType = Post::$postTypes['product'];
+        $item = $this->model->find($id);
+        $cates = Category::get();
+        $postStatus = PostStatus::getInstances();
+        $postCates = PostCate::where('post_id', $id)->pluck('cate_id')->toArray();
+        return view('admin.post.add_update', compact(
+            'item',
+            'cates',
+            'postStatus',
+            'postCates',
+            'postType'
+        ));
     }
 
     public function add()
     {
+        $postType = Post::$postTypes['product'];
         $cates = Category::get();
-        return view('admin.post.add_update', compact('cates'));
+        $postStatus = PostStatus::getInstances();
+        return view('admin.post.add_update', compact(
+            'cates',
+            'postStatus',
+            'postType'
+        ));
+    }
+
+    public function productAdd()
+    {
+        $postType = Post::$postTypes['product'];
+        $cates = Category::get();
+        $postStatus = PostStatus::getInstances();
+        return view('admin.post.add_update', compact(
+            'cates',
+            'postStatus',
+            'postType'
+        ));
     }
 
     public function save(Request $request)
@@ -70,6 +122,7 @@ class PostController extends Controller
         $item->detail = editorUploadImages($request->detail);
         $item->meta_keyword = $request->seo_keywords;
         $item->status = $request->status;
+        $item->type = isset($request->type) ? $request->type : 0;
         if (!empty($image)) {
             $item->image = $image;
         }
@@ -88,10 +141,11 @@ class PostController extends Controller
         return redirect()->route('admin.post.index')->with('error', 'Dữ liệu cập nhật bị lỗi');
     }
 
-    public function indexData()
+    public function indexData(Request $request)
     {
         $limit = 10;
-        $data = $this->model->limit($limit);
+        $postType = !empty($request->type) ? $request->type : 0;
+        $data = $this->model->where('type', $postType)->limit($limit);
         return Datatables::of($data)
             ->addColumn('image', function ($item) {
                 $html = '';
@@ -111,7 +165,11 @@ class PostController extends Controller
                 return date('Y-m-d H:i:s', strtotime($item->created_at));
             })
             ->addColumn('action', function ($item) {
-                return '<a href="' . route('admin.post.update', $item->id) . '" class="btn btn-xs btn-info">' . __('Update') . '</a> <form action="' . route('admin.post.delete', $item->id) . '" method="POST" style="display:inline-block;">
+                $updateUrl = 'admin.post.update';
+                if (!empty($item->type)) {
+                    $updateUrl = 'admin.product.update';
+                }
+                return '<a href="' . route($updateUrl, $item->id) . '" class="btn btn-xs btn-info">' . __('Update') . '</a> <form action="' . route('admin.post.delete', $item->id) . '" method="POST" style="display:inline-block;">
                 <input type="hidden" name="_method" value="delete"/>
                 ' . csrf_field() . '
                 <input type="submit" class="btn btn-xs btn-danger" onclick="return window.confirm(\'Bạn muốn xóa item này không?\')" value="' . __('Delete') . '"/>
@@ -123,7 +181,12 @@ class PostController extends Controller
 
     public function delete($id)
     {
-        $this->model->find($id)->delete();
-        return redirect()->route('admin.post.index')->with('success', 'Dữ liệu đã được xóa thành công');
+        $listUrl = 'admin.post.index';
+        $item = $this->model->find($id);
+        if (!empty($item->type)) {
+            $listUrl = 'admin.product.index';
+        }
+        $item->delete();
+        return redirect()->route($listUrl)->with('success', 'Dữ liệu đã được xóa thành công');
     }
 }

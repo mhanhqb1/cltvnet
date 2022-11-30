@@ -4,7 +4,7 @@
 
 <div class="row" style="margin-bottom: 24px;">
     <div class="col-md-12">
-        <a href="{{ route('admin.post.add') }}" class="btn btn-primary">{{ __('Add New') }}</a>
+        <a href="{{ !empty($postType) ? route('admin.product.add') : route('admin.post.add') }}" class="btn btn-primary">{{ __('Add New') }}</a>
     </div>
 </div>
 <div class="row">
@@ -33,7 +33,7 @@ $(function() {
         processing: true,
         serverSide: true,
         searching: false,
-        ajax: '{!! route('admin.post.indexData') !!}',
+        ajax: '{!! route('admin.post.indexData', ['type' => $postType]) !!}',
         columns: [
             { data: 'id', name: 'id' },
             { data: 'image', name: 'image' },

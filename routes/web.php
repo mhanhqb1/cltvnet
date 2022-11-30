@@ -66,6 +66,11 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::post('/posts/save', [PostController::class, 'save'])->name('post.save');
         Route::delete('/posts/{id}', [PostController::class, 'delete'])->name('post.delete');
 
+        // Product
+        Route::get('/products', [PostController::class, 'productIndex'])->name('product.index');
+        Route::get('/products/add', [PostController::class, 'productAdd'])->name('product.add');
+        Route::get('/products/update/{id}', [PostController::class, 'productUpdate'])->name('product.update');
+
         // Contact
         Route::get('/contacts', [ContactController::class, 'index'])->name('contact.index');
         Route::get('/contacts/indexData', [ContactController::class, 'indexData'])->name('contact.indexData');

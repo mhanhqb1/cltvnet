@@ -18,7 +18,13 @@ class Post extends Model
         'image',
         'meta_keyword',
         'meta_description',
-        'status'
+        'status',
+        'type'
+    ];
+
+    public static $postTypes = [
+        'post' => 0,
+        'product' => 1
     ];
 
     public function cates()
@@ -43,6 +49,9 @@ class Post extends Model
             $data = $data->whereHas('cates', function($q) use($cateIds){
                 $q->whereIn('categories.id', $cateIds);
             });
+        }
+        if (!empty($params['type'])) {
+            $data = $data->where('type', $params['type']);
         }
         if (!empty($params['paginate'])) {
             $data = $data->paginate($params['limit']);

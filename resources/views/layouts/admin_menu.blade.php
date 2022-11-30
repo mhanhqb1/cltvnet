@@ -6,6 +6,26 @@ $menuData = [
         'className' => 'nav-icon fas fa-tachometer-alt'
     ],
     [
+        'name' => 'Quản lý dự án',
+        'route' => '',
+        'className' => 'nav-icon fas fa-chart-pie',
+        'subMenu' => [
+            [
+                'name' => 'Danh sách dự án',
+                'route' => 'admin.product.index'
+            ],
+            [
+                'name' => 'Danh sách danh mục',
+                'route' => 'admin.category.index'
+            ]
+        ]
+    ],
+    [
+        'name' => 'Quản lý liên hệ',
+        'route' => 'admin.contact.index',
+        'className' => 'nav-icon far fa-envelope'
+    ],
+    [
         'name' => 'Quản lý bài viết',
         'route' => '',
         'className' => 'nav-icon fas fa-book',
@@ -19,11 +39,6 @@ $menuData = [
                 'route' => 'admin.category.index'
             ]
         ]
-    ],
-    [
-        'name' => 'Quản lý liên hệ',
-        'route' => 'admin.contact.index',
-        'className' => 'nav-icon far fa-envelope'
     ],
     [
         'name' => 'Cấu hình website',
