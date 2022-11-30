@@ -16,7 +16,6 @@ class AdminController extends Controller
             'password' => 'required|min:5|max:30'
         ]);
         $params = $request->only('email', 'password');
-        print_r($params); die();
         if (Auth::guard('admin')->attempt($params)) {
             return redirect()->route('admin.admin.dashboard');
         } else {
