@@ -29,7 +29,7 @@ class HomeController extends Controller
             'page' => 1,
             'type' => Post::$postTypes['post']
         ]);
-        $product = Post::front_get_list([
+        $products = Post::front_get_list([
             'limit' => 3,
             'page' => 1,
             'type' => Post::$postTypes['product']
