@@ -50,10 +50,8 @@ class Post extends Model
                 $q->whereIn('categories.id', $cateIds);
             });
         }
-        if (!empty($params['type'])) {
+        if (isset($params['type'])) {
             $data = $data->where('type', $params['type']);
-        } else {
-            $data = $data->where('type', 0);
         }
         if (!empty($params['paginate'])) {
             $data = $data->paginate($params['limit']);
