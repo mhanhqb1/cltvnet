@@ -1,5 +1,6 @@
 <?php
-$posts = getLastestPosts();
+$posts = getLastestPosts(0);
+$products = getLastestPosts(1);
 $cates = getFooterCates();
 ?>
 <footer class="footer-area footer-bg">
@@ -37,8 +38,8 @@ $cates = getFooterCates();
                     <div class="footer-widget pl-5">
                         <h3>{{ __('Our Product') }}</h3>
                         <ul class="footer-blog">
-                            @if (!$posts->isEmpty())
-                            @foreach ($posts as $p)
+                            @if (!$products->isEmpty())
+                            @foreach ($products as $p)
                             @include('layouts.item_post_footer', ['item' => $p])
                             @endforeach
                             @endif
