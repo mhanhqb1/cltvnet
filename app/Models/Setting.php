@@ -16,6 +16,7 @@ class Setting extends Model
 
     public static $settings = [
         'web_name' => 'Web Name',
+        'web_description' => 'Web Description',
         'web_email' => 'Email',
         'web_phone' => 'Phone',
         'web_address' => 'Address',

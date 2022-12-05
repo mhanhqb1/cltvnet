@@ -10,7 +10,11 @@
                     @foreach ($settings as $k => $v)
                     <div class="form-group">
                         <label for="{{ $k }}">{{ __($v) }}</label>
+                        @if ($k == 'web_description')
+                        <textarea id="{{ $k }}" class="form-control" name="{{ $k }}" rows="4">{{ !empty($$k) ? $$k : '' }}</textarea>
+                        @else
                         <input type="text" id="{{ $k }}" name="{{ $k }}" class="form-control" value="{{ !empty($$k) ? $$k : '' }}">
+                        @endif
                     </div>
                     @endforeach
                     <div class="form-group">

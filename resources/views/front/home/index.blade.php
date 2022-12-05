@@ -100,7 +100,7 @@
     </div>
 </div>
 
-
+@if (!$solutions->isEmpty())
 <div class="security-area pt-100 pb-70">
     <div class="container">
         <div class="section-title text-center">
@@ -108,53 +108,21 @@
             <h2>Searching for a Solution! We Provide Truly Prominent IT Solutions</h2>
         </div>
         <div class="row pt-45">
+            @foreach ($solutions as $v)
             <div class="col-lg-4 col-sm-6">
                 <div class="security-card">
-                    <i class="flaticon-cyber-security"></i>
-                    <h3><a href="case-details.html">Business Security</a></h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam blandit scelerisque ullamcorper proin scelerisque tortor odio.</p>
+                    <i class="{{ $v->icon }}"></i>
+                    <h3><a href="javascript:void(0)">{{ $v->name }}</a></h3>
+                    <p>{{ $v->description }}</p>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="security-card">
-                    <i class="flaticon-computer"></i>
-                    <h3><a href="case-details.html">Manage IT Service</a></h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam blandit scelerisque ullamcorper proin scelerisque tortor odio.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="security-card">
-                    <i class="flaticon-effective"></i>
-                    <h3><a href="case-details.html">Product Analysis</a></h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam blandit scelerisque ullamcorper proin scelerisque tortor odio.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="security-card">
-                    <i class="flaticon-implement"></i>
-                    <h3><a href="case-details.html">Analytic Solution</a></h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam blandit scelerisque ullamcorper proin scelerisque tortor odio.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="security-card">
-                    <i class="flaticon-consulting"></i>
-                    <h3><a href="case-details.html">Finest Quality</a></h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam blandit scelerisque ullamcorper proin scelerisque tortor odio.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="security-card">
-                    <i class="flaticon-consultant"></i>
-                    <h3><a href="case-details.html">Risk Management</a></h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam blandit scelerisque ullamcorper proin scelerisque tortor odio.</p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
+@endif
 
-
+@if (!$services->isEmpty())
 <section class="services-area-three pt-100 pb-70">
     <div class="container">
         <div class="section-title text-center">
@@ -162,82 +130,24 @@
             <h2>We Provide a Wide Variety of IT Services</h2>
         </div>
         <div class="row pt-45">
+            @foreach($services as $v)
             <div class="col-lg-4 col-md-6">
                 <div class="services-item">
-                    <a href="service-details.html">
-                        <img src="/images/services/services-img1.jpg" alt="Images">
+                    <a href="javascript:void(0)">
+                        <img src="{{ getImageUrl($v->image) }}" alt="Images">
                     </a>
                     <div class="content">
-                        <i class="flaticon-consultant"></i>
-                        <span><a href="service-details.html">IT Solution</a></span>
-                        <h3><a href="service-details.html">IT Consulting</a></h3>
+                        <i class="{{ $v->icon }}"></i>
+                        <span><a href="javascript:void(0)">{{ $v->category }}</a></span>
+                        <h3><a href="javascript:void(0)">{{ $v->name }}</a></h3>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="services-item">
-                    <a href="service-details.html">
-                        <img src="/images/services/services-img2.jpg" alt="Images">
-                    </a>
-                    <div class="content">
-                        <i class="flaticon-consulting"></i>
-                        <span><a href="service-details.html">Cloud Services</a></span>
-                        <h3><a href="service-details.html">Cloud Computing</a></h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="services-item">
-                    <a href="service-details.html">
-                        <img src="/images/services/services-img3.jpg" alt="Images">
-                    </a>
-                    <div class="content">
-                        <i class="flaticon-web-development"></i>
-                        <span><a href="service-details.html">Web Services</a></span>
-                        <h3><a href="service-details.html">Web Development</a></h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="services-item">
-                    <a href="service-details.html">
-                        <img src="/images/services/services-img4.jpg" alt="Images">
-                    </a>
-                    <div class="content">
-                        <i class="flaticon-stats"></i>
-                        <span><a href="service-details.html">Business</a></span>
-                        <h3><a href="service-details.html">Business Reform</a></h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="services-item">
-                    <a href="service-details.html">
-                        <img src="/images/services/services-img5.jpg" alt="Images">
-                    </a>
-                    <div class="content">
-                        <i class="flaticon-structure"></i>
-                        <span><a href="service-details.html">Planing</a></span>
-                        <h3><a href="service-details.html">Infrastructure</a></h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="services-item">
-                    <a href="service-details.html">
-                        <img src="/images/services/services-img6.jpg" alt="Images">
-                    </a>
-                    <div class="content">
-                        <i class="flaticon-data-analytics"></i>
-                        <span><a href="service-details.html">Analysis</a></span>
-                        <h3><a href="service-details.html">Data Analysis</a></h3>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
-
+@endif
 
 <div class="build-area pt-100 pb-70">
     <div class="container">
@@ -370,7 +280,7 @@
     </div>
 </div>
 
-
+@if (!$feedback->isEmpty())
 <section class="clients-area pt-100 pb-70">
     <div class="container">
         <div class="section-title text-center">
@@ -378,9 +288,9 @@
             <h2>Our Clients Feedback</h2>
         </div>
         <div class="clients-slider owl-carousel owl-theme pt-45">
-            @for ($i=0; $i<3; $i++)
-                @include('front.home.item_client')
-            @endfor
+            @foreach ($feedback as $v)
+                @include('front.home.item_client', ['item' => $v])
+            @endforeach
         </div>
     </div>
     <div class="client-circle">
@@ -407,6 +317,7 @@
         </div>
     </div>
 </section>
+@endif
 
 
 <div class="blog-area pt-100 pb-70">

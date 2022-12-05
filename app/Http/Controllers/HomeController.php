@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HomeFeedback;
+use App\Models\HomeService;
+use App\Models\HomeSolution;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -34,11 +37,17 @@ class HomeController extends Controller
             'page' => 1,
             'type' => Post::$postTypes['product']
         ]);
+        $feedback = HomeFeedback::get();
+        $solutions = HomeSolution::get();
+        $services = HomeService::get();
         $pageTitle = __('Home');
         return view('front.home.index', compact(
             'posts',
             'pageTitle',
-            'products'
+            'products',
+            'feedback',
+            'solutions',
+            'services'
         ));
     }
 }

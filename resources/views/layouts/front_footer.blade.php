@@ -15,7 +15,7 @@ $cates = getFooterCates();
                             </a>
                         </div>
                         <p>
-                            Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auct.Aenean, lorem quis bibendum auct. Aenean sollicitudin lorem.
+                            {{ !empty($web_description) ? $web_description : '' }}
                         </p>
                     </div>
                 </div>

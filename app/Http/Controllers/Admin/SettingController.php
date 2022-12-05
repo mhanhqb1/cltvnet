@@ -35,7 +35,7 @@ class SettingController extends Controller
                     'name' => $k
                 ], [
                     'name' => $k,
-                    'value' => $v
+                    'value' => !empty($v) ? $v : ''
                 ]);
             }
         }
