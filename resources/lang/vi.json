@@ -37,7 +37,15 @@
     "Web Name": "Tên website",
 
     "Setting Home_feedback_index": "Danh sách feedback",
+    "Setting Home_feedback_add": "Thêm mới feedback",
+    "Setting Home_feedback_update": "Cập nhật feedback",
     "Job": "Công việc",
+    "Setting Home_solution_index": "Danh sách solution",
+    "Setting Home_solution_add": "Thêm mới solution",
+    "Setting Home_solution_update": "Cập nhật solution",
+    "Setting Home_service_index": "Danh sách service",
+    "Setting Home_service_add": "Thêm mới service",
+    "Setting Home_service_update": "Cập nhật service",
 
     "Home": "Trang Chủ",
     "About": "Giới Thiệu",

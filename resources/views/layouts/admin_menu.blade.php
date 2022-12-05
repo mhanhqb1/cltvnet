@@ -46,7 +46,15 @@ $menuData = [
         'className' => 'nav-icon fas fa-columns',
         'subMenu' => [
             [
-                'name' => 'Danh sách feedback',
+                'name' => 'Solution',
+                'route' => 'admin.setting.home_solution_index'
+            ],
+            [
+                'name' => 'Service',
+                'route' => 'admin.setting.home_service_index'
+            ],
+            [
+                'name' => 'Feedback',
                 'route' => 'admin.setting.home_feedback_index'
             ]
         ]

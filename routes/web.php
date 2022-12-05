@@ -108,12 +108,28 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
         Route::post('/setting/save', [SettingController::class, 'save'])->name('setting.save');
 
-        // HomePage Setting
+        // HomePage Setting feedback
         Route::get('/setting/homefeedback', [SettingController::class, 'homeFeedbackIndex'])->name('setting.home_feedback_index');
         Route::get('/setting/homefeedback/indexData', [SettingController::class, 'homeFeedbackIndexData'])->name('setting.home_feedback_indexData');
         Route::get('/setting/homefeedback/add', [SettingController::class, 'homeFeedbackAdd'])->name('setting.home_feedback_add');
         Route::get('/setting/homefeedback/update/{id}', [SettingController::class, 'homeFeedbackUpdate'])->name('setting.home_feedback_update');
         Route::delete('/setting/homefeedback/{id}', [SettingController::class, 'homeFeedbackDelete'])->name('setting.home_feedback_delete');
         Route::post('/setting/homefeedback/save', [SettingController::class, 'homeFeedbackSave'])->name('setting.home_feedback_save');
+
+        // HomePage Setting solution
+        Route::get('/setting/homesolution', [SettingController::class, 'homeSolutionIndex'])->name('setting.home_solution_index');
+        Route::get('/setting/homesolution/indexData', [SettingController::class, 'homeSolutionIndexData'])->name('setting.home_solution_indexData');
+        Route::get('/setting/homesolution/add', [SettingController::class, 'homeSolutionAdd'])->name('setting.home_solution_add');
+        Route::get('/setting/homesolution/update/{id}', [SettingController::class, 'homeSolutionUpdate'])->name('setting.home_solution_update');
+        Route::delete('/setting/homesolution/{id}', [SettingController::class, 'homeSolutionDelete'])->name('setting.home_solution_delete');
+        Route::post('/setting/homesolution/save', [SettingController::class, 'homeSolutionSave'])->name('setting.home_solution_save');
+
+        // HomePage Setting service
+        Route::get('/setting/homeservice', [SettingController::class, 'homeServiceIndex'])->name('setting.home_service_index');
+        Route::get('/setting/homeservice/indexData', [SettingController::class, 'homeServiceIndexData'])->name('setting.home_service_indexData');
+        Route::get('/setting/homeservice/add', [SettingController::class, 'homeServiceAdd'])->name('setting.home_service_add');
+        Route::get('/setting/homeservice/update/{id}', [SettingController::class, 'homeServiceUpdate'])->name('setting.home_service_update');
+        Route::delete('/setting/homeservice/{id}', [SettingController::class, 'homeServiceDelete'])->name('setting.home_service_delete');
+        Route::post('/setting/homeservice/save', [SettingController::class, 'homeServiceSave'])->name('setting.home_service_save');
     });
 });
