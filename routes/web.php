@@ -107,5 +107,13 @@ Route::prefix('admin')->name('admin.')->group(function() {
         // Setting
         Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
         Route::post('/setting/save', [SettingController::class, 'save'])->name('setting.save');
+
+        // HomePage Setting
+        Route::get('/setting/homefeedback', [SettingController::class, 'homeFeedbackIndex'])->name('setting.home_feedback_index');
+        Route::get('/setting/homefeedback/indexData', [SettingController::class, 'homeFeedbackIndexData'])->name('setting.home_feedback_indexData');
+        Route::get('/setting/homefeedback/add', [SettingController::class, 'homeFeedbackAdd'])->name('setting.home_feedback_add');
+        Route::get('/setting/homefeedback/update/{id}', [SettingController::class, 'homeFeedbackUpdate'])->name('setting.home_feedback_update');
+        Route::delete('/setting/homefeedback/{id}', [SettingController::class, 'homeFeedbackDelete'])->name('setting.home_feedback_delete');
+        Route::post('/setting/homefeedback/save', [SettingController::class, 'homeFeedbackSave'])->name('setting.home_feedback_save');
     });
 });

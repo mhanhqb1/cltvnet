@@ -41,6 +41,17 @@ $menuData = [
         ]
     ],
     [
+        'name' => 'Quản lý trang chủ',
+        'route' => '',
+        'className' => 'nav-icon fas fa-book',
+        'subMenu' => [
+            [
+                'name' => 'Danh sách feedback',
+                'route' => 'admin.setting.home_feedback_index'
+            ]
+        ]
+    ],
+    [
         'name' => 'Cấu hình website',
         'route' => 'admin.setting.index',
         'className' => 'nav-icon fas fa-th'

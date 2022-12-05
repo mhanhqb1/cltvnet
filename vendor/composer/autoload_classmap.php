@@ -38,6 +38,7 @@ return array(
     'App\\Models\\Admin' => $baseDir . '/app/Models/Admin.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
     'App\\Models\\Contact' => $baseDir . '/app/Models/Contact.php',
+    'App\\Models\\HomeFeedback' => $baseDir . '/app/Models/HomeFeedback.php',
     'App\\Models\\Post' => $baseDir . '/app/Models/Post.php',
     'App\\Models\\PostCate' => $baseDir . '/app/Models/PostCate.php',
     'App\\Models\\Setting' => $baseDir . '/app/Models/Setting.php',
