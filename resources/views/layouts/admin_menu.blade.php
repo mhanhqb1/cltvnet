@@ -43,7 +43,7 @@ $menuData = [
     [
         'name' => 'Quản lý trang chủ',
         'route' => '',
-        'className' => 'nav-icon fas fa-book',
+        'className' => 'nav-icon fas fa-columns',
         'subMenu' => [
             [
                 'name' => 'Danh sách feedback',

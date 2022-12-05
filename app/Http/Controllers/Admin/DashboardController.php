@@ -16,13 +16,15 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $postCount = Post::count();
+        $postCount = Post::where('type', Post::$postTypes['post'])->count();
+        $productCount = Post::where('type', Post::$postTypes['product'])->count();
         $contactCount = Contact::count();
         $settingCount = Setting::count();
         return view('admin.dashboard.index', compact(
             'postCount',
             'contactCount',
-            'settingCount'
+            'settingCount',
+            'productCount'
         ));
     }
 }
