@@ -14,33 +14,43 @@ class PostController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $page = !empty($request->page) ? $request->page : 1;
+        $limit = !empty($request->limit) ? $request->limit : $this->limit;
         $postType = Post::$postTypes['post'];
         $data = Post::front_get_list([
-            'page' => 1,
-            'limit' => $this->limit,
+            'page' => $page,
+            'limit' => $limit,
             'cates' => 1,
-            'type' => $postType
+            'type' => $postType,
+            'paginate' => 1
         ]);
+        $pageTitle = __('Post');
         return view('front.post.index', compact(
             'data',
-            'postType'
+            'postType',
+            'pageTitle'
         ));
     }
 
-    public function productIndex()
+    public function productIndex(Request $request)
     {
+        $page = !empty($request->page) ? $request->page : 1;
+        $limit = !empty($request->limit) ? $request->limit : $this->limit;
         $postType = Post::$postTypes['product'];
         $data = Post::front_get_list([
-            'page' => 1,
-            'limit' => $this->limit,
+            'page' => $page,
+            'limit' => $limit,
             'cates' => 1,
-            'type' => $postType
+            'type' => $postType,
+            'paginate' => 1
         ]);
+        $pageTitle = __('Product');
         return view('front.post.index', compact(
             'data',
-            'postType'
+            'postType',
+            'pageTitle'
         ));
     }
 
