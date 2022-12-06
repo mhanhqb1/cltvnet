@@ -16,6 +16,6 @@ class StaticPage extends Model
 
     public static $pages = [
         'about_us' => 'About us',
-        'term_and_services' => 'Term And Services'
+        'term_and_services' => 'Term and Services'
     ];
 }

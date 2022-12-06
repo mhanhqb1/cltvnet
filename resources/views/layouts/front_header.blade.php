@@ -85,7 +85,7 @@ $productCates = getFrontCates(1);
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="about.html" class="nav-link">
+                                <a href="{{ route('front.home.about_us') }}" class="nav-link">
                                     {{ __('About') }}
                                 </a>
                             </li>

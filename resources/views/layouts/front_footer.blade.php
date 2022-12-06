@@ -23,14 +23,36 @@ $cates = getFooterCates();
                     <div class="footer-widget pl-2">
                         <h3>{{ __('Cates') }}</h3>
                         <ul class="footer-list">
-                            @foreach ($cates as $v)
                             <li>
-                                <a href="{{ route('front.post.cate_detail', $v->slug) }}" target="_blank">
+                                <a href="{{ route('front.home.about_us') }}" target="_blank">
                                     <i class="bx bx-chevron-right"></i>
-                                    {{ $v->name }}
+                                    {{ __('About us') }}
                                 </a>
                             </li>
-                            @endforeach
+                            <li>
+                                <a href="{{ route('front.product.index') }}" target="_blank">
+                                    <i class="bx bx-chevron-right"></i>
+                                    {{ __('Product') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('front.post.index') }}" target="_blank">
+                                    <i class="bx bx-chevron-right"></i>
+                                    {{ __('Post') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('front.contact.index') }}" target="_blank">
+                                    <i class="bx bx-chevron-right"></i>
+                                    {{ __('Contact') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('front.home.term_and_services') }}" target="_blank">
+                                    <i class="bx bx-chevron-right"></i>
+                                    {{ __('Term and Services') }}
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

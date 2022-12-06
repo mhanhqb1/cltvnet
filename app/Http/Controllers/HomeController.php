@@ -6,6 +6,7 @@ use App\Models\HomeFeedback;
 use App\Models\HomeService;
 use App\Models\HomeSolution;
 use App\Models\Post;
+use App\Models\StaticPage;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -48,6 +49,30 @@ class HomeController extends Controller
             'feedback',
             'solutions',
             'services'
+        ));
+    }
+
+    public function aboutUs()
+    {
+        $name = 'about_us';
+        $pageTitle = __(StaticPage::$pages[$name]);
+        $page = StaticPage::where('name', $name)->first();
+        return view('front.home.static_page', compact(
+            'pageTitle',
+            'name',
+            'page'
+        ));
+    }
+
+    public function termAndServices ()
+    {
+        $name = 'term_and_services';
+        $pageTitle = __(StaticPage::$pages[$name]);
+        $page = StaticPage::where('name', $name)->first();
+        return view('front.home.static_page', compact(
+            'pageTitle',
+            'name',
+            'page'
         ));
     }
 }
