@@ -11,7 +11,7 @@ $cates = getFooterCates();
                     <div class="footer-widget">
                         <div class="footer-logo">
                             <a href="{{ url('/') }}">
-                                <img src="/images/logos/footer-logo.png" alt="Images">
+                                <img src="/images/logos/footer-logo.png" alt="Images" style="max-width: 200px">
                             </a>
                         </div>
                         <p>

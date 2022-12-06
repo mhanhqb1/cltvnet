@@ -74,8 +74,7 @@ $productCates = getFrontCates(1);
             <div class="container-max">
                 <nav class="navbar navbar-expand-md navbar-light ">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="/images/logos/logo-1.png" class="logo-one" alt="Logo">
-                        <img src="/images/logos/logo-2.png" class="logo-two" alt="Logo">
+                        <img src="/images/logos/logo-1.png" class="logo-one" alt="Logo" style="max-width: 200px">
                     </a>
                     <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                         <ul class="navbar-nav m-auto">
