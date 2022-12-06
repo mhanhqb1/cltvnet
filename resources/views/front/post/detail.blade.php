@@ -97,8 +97,8 @@
             <div class="col-lg-4">
                 <div class="side-bar-area">
                     <div class="search-widget">
-                        <form class="search-form">
-                            <input type="search" class="form-control" placeholder="Search...">
+                        <form action="{{ !empty($item->type) ? route('front.product.index') : route('front.post.index') }}" class="search-form">
+                            <input type="text" name="s" class="form-control" placeholder="{{ __('Search...') }}">
                             <button type="submit">
                                 <i class="bx bx-search"></i>
                             </button>

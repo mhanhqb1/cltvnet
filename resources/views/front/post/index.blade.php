@@ -23,12 +23,17 @@
 <div class="blog-area pt-100 pb-70">
     <div class="container">
         <div class="section-title text-center">
-            @if (empty($postType))
-            <span class="sp-color2">Latest Blog</span>
-            <h2>Let’s Check Some Latest Blog</h2>
+            @if (!empty($search))
+                <span class="sp-color2">{{ __('Search') }}</span>
+                <h2>{{ __('Keyword').': '.$search }}</h2>
             @else
-            <span class="sp-color2">Latest Product</span>
-            <h2>Let’s Check Some Latest Product</h2>
+                @if (empty($postType))
+                <span class="sp-color2">Latest Blog</span>
+                <h2>Let’s Check Some Latest Blog</h2>
+                @else
+                <span class="sp-color2">Latest Product</span>
+                <h2>Let’s Check Some Latest Product</h2>
+                @endif
             @endif
         </div>
         <div class="row pt-45">

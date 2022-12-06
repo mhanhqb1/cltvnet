@@ -127,8 +127,8 @@ $productCates = getFrontCates(1);
                         <div class="nav-side d-display nav-side-mt">
                             <div class="nav-side-item">
                                 <div class="search-side-widget">
-                                    <form class="search-side-form">
-                                        <input type="search" class="form-control" placeholder="{{ __('Search...') }}">
+                                    <form action="{{ route('front.product.index') }}" class="search-side-form">
+                                        <input type="text" class="form-control" name="s" placeholder="{{ __('Search...') }}">
                                         <button type="submit">
                                             <i class="bx bx-search"></i>
                                         </button>
@@ -146,7 +146,7 @@ $productCates = getFrontCates(1);
             </div>
         </div>
     </div>
-    <div class="side-nav-responsive">
+    <!-- <div class="side-nav-responsive">
         <div class="container-max">
             <div class="dot-menu">
                 <div class="circle-inner">
@@ -167,7 +167,7 @@ $productCates = getFrontCates(1);
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 
 

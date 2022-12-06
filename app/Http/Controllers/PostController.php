@@ -18,19 +18,22 @@ class PostController extends Controller
     {
         $page = !empty($request->page) ? $request->page : 1;
         $limit = !empty($request->limit) ? $request->limit : $this->limit;
+        $search = !empty($request->s) ? $request->s : '';
         $postType = Post::$postTypes['post'];
         $data = Post::front_get_list([
             'page' => $page,
             'limit' => $limit,
             'cates' => 1,
             'type' => $postType,
-            'paginate' => 1
+            'paginate' => 1,
+            'name' => $search
         ]);
         $pageTitle = __('Post');
         return view('front.post.index', compact(
             'data',
             'postType',
-            'pageTitle'
+            'pageTitle',
+            'search'
         ));
     }
 
@@ -38,19 +41,22 @@ class PostController extends Controller
     {
         $page = !empty($request->page) ? $request->page : 1;
         $limit = !empty($request->limit) ? $request->limit : $this->limit;
+        $search = !empty($request->s) ? $request->s : '';
         $postType = Post::$postTypes['product'];
         $data = Post::front_get_list([
             'page' => $page,
             'limit' => $limit,
             'cates' => 1,
             'type' => $postType,
-            'paginate' => 1
+            'paginate' => 1,
+            'name' => $search
         ]);
         $pageTitle = __('Product');
         return view('front.post.index', compact(
             'data',
             'postType',
-            'pageTitle'
+            'pageTitle',
+            'search'
         ));
     }
 

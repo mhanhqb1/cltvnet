@@ -41,6 +41,9 @@ class Post extends Model
         if (!empty($params['page']) && !empty($params['limit'])) {
             $data = $data->offset(($params['page'] - 1)*$params['limit'])->limit($params['limit']);
         }
+        if (!empty($params['name'])) {
+            $data = $data->where('name', 'like', '%'.$params['name'].'%');
+        }
         if (!empty($params['cate_ids'])) {
             $cateIds = $params['cate_ids'];
             if (!is_array($cateIds)) {
