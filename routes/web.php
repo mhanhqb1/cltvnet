@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SettingController;
-
+use App\Http\Controllers\Admin\StaticPageController;
 use App\Http\Controllers\ContactController as FrontContact;
 use App\Http\Controllers\PostController as FrontPost;
 use App\Http\Controllers\HomeController;
@@ -107,6 +107,10 @@ Route::prefix('admin')->name('admin.')->group(function() {
         // Setting
         Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
         Route::post('/setting/save', [SettingController::class, 'save'])->name('setting.save');
+
+        // Page about us
+        Route::get('/staticpage', [StaticPageController::class, 'index'])->name('static_page.index');
+        Route::post('/staticpage/save', [StaticPageController::class, 'save'])->name('static_page.save');
 
         // HomePage Setting feedback
         Route::get('/setting/homefeedback', [SettingController::class, 'homeFeedbackIndex'])->name('setting.home_feedback_index');
