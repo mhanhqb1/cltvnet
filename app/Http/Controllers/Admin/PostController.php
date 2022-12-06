@@ -23,16 +23,20 @@ class PostController extends Controller
     public function index()
     {
         $postType = Post::$postTypes['post'];
+        $cates = Category::where('type', $postType)->get();
         return view('admin.post.index', compact(
-            'postType'
+            'postType',
+            'cates'
         ));
     }
 
     public function productIndex()
     {
         $postType = Post::$postTypes['product'];
+        $cates = Category::where('type', $postType)->get();
         return view('admin.post.index', compact(
-            'postType'
+            'postType',
+            'cates'
         ));
     }
 
@@ -149,7 +153,16 @@ class PostController extends Controller
     {
         $limit = 10;
         $postType = !empty($request->type) ? $request->type : 0;
-        $data = $this->model->where('type', $postType)->limit($limit);
+        $data = $this->model->with('cates')->where('type', $postType);
+        if (!empty($request->name)) {
+            $data = $data->where('name', 'like', '%'.$request->name.'%');
+        }
+        if (!empty($request->cate_id)) {
+            $data = $data->whereHas('cates', function($q) use($request) {
+                $q->where('categories.id', $request->cate_id);
+            });
+        }
+        $data = $data->limit($limit);
         return Datatables::of($data)
             ->addColumn('image', function ($item) {
                 $html = '';

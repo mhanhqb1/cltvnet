@@ -104,7 +104,11 @@ class CategoryController extends Controller
     {
         $limit = 10;
         $type = !empty($request->type) ? $request->type : 0;
-        $data = $this->model->where('type', $type)->limit($limit);
+        $data = $this->model->where('type', $type);
+        if (!empty($request->name)) {
+            $data = $data->where('name', 'like', '%'.$request->name.'%');
+        }
+        $data = $data->limit($limit);
         return Datatables::of($data)
             ->addColumn('created_at', function ($item) {
                 return date('Y-m-d H:i:s', strtotime($item->created_at));
