@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\HomeFeedback;
 use App\Models\HomeService;
 use App\Models\HomeSolution;
+use App\Models\HomeTopSlider;
 use App\Models\Post;
 use App\Models\StaticPage;
 use Illuminate\Http\Request;
@@ -41,6 +42,7 @@ class HomeController extends Controller
         $feedback = HomeFeedback::get();
         $solutions = HomeSolution::get();
         $services = HomeService::get();
+        $topSliders = HomeTopSlider::get();
         $pageTitle = __('Home');
         return view('front.home.index', compact(
             'posts',
@@ -48,7 +50,8 @@ class HomeController extends Controller
             'products',
             'feedback',
             'solutions',
-            'services'
+            'services',
+            'topSliders'
         ));
     }
 

@@ -30,27 +30,17 @@
     </div>
     <div class="container">
         <div class="banner-sub-slider owl-carousel owl-theme">
+            @if(!$topSliders->isEmpty())
+            @foreach ($topSliders as $v)
             <div class="banner-sub-item">
-                <img src="/images/home-three/home-three-sub1.jpg" alt="Images">
+                <img src="{{ getImageUrl($v->image) }}" alt="{{ $v->text }}">
                 <div class="content">
-                    <h3>3.7k</h3>
-                    <span>Satisfied Clients</span>
+                    <h3>{{ $v->number }}</h3>
+                    <span>{{ $v->text }}</span>
                 </div>
             </div>
-            <div class="banner-sub-item">
-                <img src="/images/home-three/home-three-sub2.jpg" alt="Images">
-                <div class="content">
-                    <h3>45+</h3>
-                    <span>Country Worldwide</span>
-                </div>
-            </div>
-            <div class="banner-sub-item">
-                <img src="/images/home-three/home-three-sub3.jpg" alt="Images">
-                <div class="content">
-                    <h3>6.5+</h3>
-                    <span>Project Completed</span>
-                </div>
-            </div>
+            @endforeach
+            @endif
         </div>
     </div>
 </div>
