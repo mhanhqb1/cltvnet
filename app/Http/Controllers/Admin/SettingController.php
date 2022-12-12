@@ -30,7 +30,7 @@ class SettingController extends Controller
     {
         $params = $request->all();
         foreach ($params as $k => $v) {
-            if ($k != '_token') {
+            if (!in_array($k, ['_token', 'file_header_logo', 'file_footer_logo'])) {
                 $this->model->updateOrCreate([
                     'name' => $k
                 ], [
@@ -38,6 +38,24 @@ class SettingController extends Controller
                     'value' => !empty($v) ? $v : ''
                 ]);
             }
+        }
+        if (!empty($request->file_header_logo)) {
+            $headerLogo = $request->file('file_header_logo')->storePubliclyAs('images', 'headerlogo' . '-' . time() . '.jpg', 'public');
+            $this->model->updateOrCreate([
+                'name' => 'file_header_logo'
+            ], [
+                'name' => 'file_header_logo',
+                'value' => $headerLogo
+            ]);
+        }
+        if (!empty($request->file_footer_logo)) {
+            $footerLogo = $request->file('file_footer_logo')->storePubliclyAs('images', 'footerlogo' . '-' . time() . '.jpg', 'public');
+            $this->model->updateOrCreate([
+                'name' => 'file_footer_logo'
+            ], [
+                'name' => 'file_footer_logo',
+                'value' => $footerLogo
+            ]);
         }
         return redirect()->route('admin.setting.index')->with('success', 'Dữ liệu đã được cập nhật thành công');
     }
