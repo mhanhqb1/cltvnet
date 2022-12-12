@@ -139,5 +139,13 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/setting/homeservice/update/{id}', [SettingController::class, 'homeServiceUpdate'])->name('setting.home_service_update');
         Route::delete('/setting/homeservice/{id}', [SettingController::class, 'homeServiceDelete'])->name('setting.home_service_delete');
         Route::post('/setting/homeservice/save', [SettingController::class, 'homeServiceSave'])->name('setting.home_service_save');
+
+        // HomePage Setting top slider
+        Route::get('/setting/topslider', [SettingController::class, 'topSliderIndex'])->name('setting.top_slider_index');
+        Route::get('/setting/topslider/indexData', [SettingController::class, 'topSliderIndexData'])->name('setting.top_slider_indexData');
+        Route::get('/setting/topslider/add', [SettingController::class, 'topSliderAdd'])->name('setting.top_slider_add');
+        Route::get('/setting/topslider/update/{id}', [SettingController::class, 'topSliderUpdate'])->name('setting.top_slider_update');
+        Route::delete('/setting/topslider/{id}', [SettingController::class, 'topSliderDelete'])->name('setting.top_slider_delete');
+        Route::post('/setting/topslider/save', [SettingController::class, 'topSliderSave'])->name('setting.top_slider_save');
     });
 });

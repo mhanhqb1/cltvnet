@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\HomeFeedback;
 use App\Models\HomeService;
 use App\Models\HomeSolution;
+use App\Models\HomeTopSlider;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
@@ -72,6 +73,12 @@ class SettingController extends Controller
     {
         return view('admin.homepage.solution');
     }
+    public function topSliderIndex()
+    {
+        return view('admin.homepage.top_slider');
+    }
+
+
     public function homeFeedbackIndexData(Request $request)
     {
         $limit = 10;
@@ -143,6 +150,30 @@ class SettingController extends Controller
             ->rawColumns(['status', 'action'])
             ->make(true);
     }
+    public function topSliderIndexData(Request $request)
+    {
+        $limit = 10;
+        $data = HomeTopSlider::limit($limit);
+        return Datatables::of($data)
+            ->addColumn('created_at', function ($item) {
+                return date('Y-m-d H:i:s', strtotime($item->created_at));
+            })
+            ->addColumn('image', function ($item) {
+                return "<img src='".getImageUrl($item->image)."' width='200px'/>";
+            })
+            ->addColumn('action', function ($item) {
+                $updateUrl = 'admin.setting.top_slider_update';
+                return '<a href="'.route($updateUrl, $item->id).'" class="btn btn-xs btn-info">'.__('Update').'</a> <form action="'.route('admin.setting.top_slider_delete', $item->id).'" method="POST" style="display:inline-block;">
+                <input type="hidden" name="_method" value="delete"/>
+                '.csrf_field().'
+                <input type="submit" class="btn btn-xs btn-danger" onclick="return window.confirm(\'Bạn muốn xóa item này không?\')" value="'.__('Delete').'"/>
+            </form>';
+            })
+            ->rawColumns(['image', 'action'])
+            ->make(true);
+    }
+
+
     public function homeFeedbackAdd()
     {
         return view('admin.homepage.feedback_add_update');
@@ -155,6 +186,12 @@ class SettingController extends Controller
     {
         return view('admin.homepage.service_add_update');
     }
+    public function topSliderAdd()
+    {
+        return view('admin.homepage.top_slider_add_update');
+    }
+
+
     public function homeFeedbackUpdate($id)
     {
         $item = HomeFeedback::find($id);
@@ -170,6 +207,13 @@ class SettingController extends Controller
         $item = HomeService::find($id);
         return view('admin.homepage.service_add_update', compact('item'));
     }
+    public function topSliderUpdate($id)
+    {
+        $item = HomeTopSlider::find($id);
+        return view('admin.homepage.top_slider_add_update', compact('item'));
+    }
+
+
     public function homeFeedbackDelete($id)
     {
         $listUrl = 'admin.setting.home_feedback_index';
@@ -188,6 +232,14 @@ class SettingController extends Controller
         HomeService::find($id)->delete();
         return redirect()->route($listUrl)->with('success', 'Dữ liệu đã được xóa thành công');
     }
+    public function topSliderDelete($id)
+    {
+        $listUrl = 'admin.setting.top_slider_index';
+        HomeTopSlider::find($id)->delete();
+        return redirect()->route($listUrl)->with('success', 'Dữ liệu đã được xóa thành công');
+    }
+
+
     public function homeFeedbackSave(Request $request)
     {
         $request->validate([
@@ -281,6 +333,38 @@ class SettingController extends Controller
             $item->image = $image;
         }
         $listUrl = 'admin.setting.home_service_index';
+        if ($item->save()) {
+            return redirect()->route($listUrl)->with('success', 'Dữ liệu đã được cập nhật thành công');
+        }
+        return redirect()->route($listUrl)->with('error', 'Dữ liệu cập nhật bị lỗi');
+    }
+
+    public function topSliderSave(Request $request)
+    {
+        $request->validate([
+            'text' => 'required|max:255',
+            'image' => 'nullable|image|max:1024',
+            'number' => 'required|max:255'
+        ], [
+            'text.required' => 'Vui lòng nhập tên',
+            'image.required' => 'Vui lòng chọn hình ảnh',
+            'number.required' => 'Vui lòng nhập số lượng'
+        ]);
+        if (!empty($request->image)) {
+            $image = $request->file('image')->storePubliclyAs('images', 'top-slider-' . time() . '.jpg', 'public');
+        }
+
+        if (!empty($request->id)) {
+            $item = HomeTopSlider::find($request->id);
+        } else {
+            $item = new HomeTopSlider();
+        }
+        $item->text = $request->text;
+        $item->number = $request->number;
+        if (!empty($image)) {
+            $item->image = $image;
+        }
+        $listUrl = 'admin.setting.top_slider_index';
         if ($item->save()) {
             return redirect()->route($listUrl)->with('success', 'Dữ liệu đã được cập nhật thành công');
         }
