@@ -37,6 +37,8 @@ Route::get('/command/clearAll', function () {
     Artisan::call('cache:clear');
 });
 
+Route::get('/flaticon', [HomeController::class, 'flaticon'])->name('front.home.flaticon');
+
 Route::get('/', [HomeController::class, 'index'])->name('front.home.index');
 Route::get('/gioi-thieu', [HomeController::class, 'aboutUs'])->name('front.home.about_us');
 Route::get('/dieu-khoan-va-dich-vu', [HomeController::class, 'termAndServices'])->name('front.home.term_and_services');

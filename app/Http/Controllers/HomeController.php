@@ -75,4 +75,9 @@ class HomeController extends Controller
             'page'
         ));
     }
+
+    public function flaticon()
+    {
+        return view('front.home.flaticon');
+    }
 }
