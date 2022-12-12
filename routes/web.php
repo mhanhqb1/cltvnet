@@ -116,6 +116,10 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/staticpage', [StaticPageController::class, 'index'])->name('static_page.index');
         Route::post('/staticpage/save', [StaticPageController::class, 'save'])->name('static_page.save');
 
+        // Page about us
+        Route::get('/setting/topBanner', [SettingController::class, 'topBanner'])->name('setting.top_banner_index');
+        Route::post('/setting/topBanner', [SettingController::class, 'topBannerSave'])->name('setting.top_banner_save');
+
         // HomePage Setting feedback
         Route::get('/setting/homefeedback', [SettingController::class, 'homeFeedbackIndex'])->name('setting.home_feedback_index');
         Route::get('/setting/homefeedback/indexData', [SettingController::class, 'homeFeedbackIndexData'])->name('setting.home_feedback_indexData');

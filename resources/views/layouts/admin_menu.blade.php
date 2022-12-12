@@ -46,6 +46,10 @@ $menuData = [
         'className' => 'nav-icon fas fa-columns',
         'subMenu' => [
             [
+                'name' => 'Top Banner',
+                'route' => 'admin.setting.top_banner_index'
+            ],
+            [
                 'name' => 'Top Slider',
                 'route' => 'admin.setting.top_slider_index'
             ],

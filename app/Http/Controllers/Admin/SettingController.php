@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\HomeFeedback;
 use App\Models\HomeService;
 use App\Models\HomeSolution;
+use App\Models\HomeTopBanner;
 use App\Models\HomeTopSlider;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -25,6 +26,34 @@ class SettingController extends Controller
     {
         $settings = $this->model::$settings;
         return view('admin.setting.index', compact('settings'));
+    }
+
+    public function topBanner()
+    {
+        $item = HomeTopBanner::first();
+        return view('admin.homepage.top_banner', compact('item'));
+    }
+
+    public function topBannerSave(Request $request)
+    {
+        $item = HomeTopBanner::first();
+        if (empty($item)) {
+            $item = new HomeTopBanner();
+        }
+        if (!empty($request->image)) {
+            $image = $request->file('image')->storePubliclyAs('images', 'topbanner' . '-' . time() . '.jpg', 'public');
+        }
+        if (!empty($image)) {
+            $item->image = $image;
+        }
+        $item->name = $request->name;
+        $item->description = $request->description;
+        $item->btn_1_text = $request->btn_1_text;
+        $item->btn_1_url = $request->btn_1_url;
+        $item->btn_2_text = $request->btn_2_text;
+        $item->btn_2_url = $request->btn_2_url;
+        $item->save();
+        return redirect()->route('admin.setting.top_banner_index')->with('success', 'Dữ liệu đã được cập nhật thành công');
     }
 
     public function save(Request $request)

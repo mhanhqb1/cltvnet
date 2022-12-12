@@ -7,19 +7,17 @@
             <div class="row align-items-center">
                 <div class="col-lg-5">
                     <div class="banner-content">
-                        <h1>Digital IT Service With Excellent Quality</h1>
-                        <p>
-                            Aenean Sollicitudin, Lorem quis Bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet
-                        </p>
+                        <h1>{{ !empty($topBanner->name) ? $topBanner->name : '' }}</h1>
+                        <p>{{ !empty($topBanner->description) ? $topBanner->description : '' }}</p>
                         <div class="banner-btn">
-                            <a href="{{ route('front.home.about_us') }}" class="default-btn btn-bg-two border-radius-50">Learn More <i class='bx bx-chevron-right'></i></a>
-                            <a href="{{ route('front.contact.index') }}" class="default-btn btn-bg-one border-radius-50 ml-20">Get A Quote <i class='bx bx-chevron-right'></i></a>
+                            <a href="{{ !empty($topBanner->btn_1_url) ? $topBanner->btn_1_url : '#' }}" class="default-btn btn-bg-two border-radius-50">{{ !empty($topBanner->btn_1_text) ? $topBanner->btn_1_text : '' }} <i class='bx bx-chevron-right'></i></a>
+                            <a href="{{ !empty($topBanner->btn_2_url) ? $topBanner->btn_2_url : '#' }}" class="default-btn btn-bg-one border-radius-50 ml-20">{{ !empty($topBanner->btn_2_text) ? $topBanner->btn_2_text : '' }} <i class='bx bx-chevron-right'></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-7">
                     <div class="banner-img">
-                        <img src="/images/home-three/home-three-img.png" alt="Images">
+                        <img src="{{ !empty($topBanner->image) ? getImageUrl($topBanner->image) : '' }}" alt="Images">
                         <div class="banner-img-shape">
                             <img src="/images/home-three/home-three-shape.png" alt="Images">
                         </div>
