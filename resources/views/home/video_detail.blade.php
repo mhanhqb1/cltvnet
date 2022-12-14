@@ -14,6 +14,20 @@ $cateName = implode(' - ', $cateName);
     .panel-body.pprc.active a {
         color: #cd1d1f !important;
     }
+    .related-movies li {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px dashed #ccc;
+    }
+    .related-movies li:first-child {
+        padding-top: 0;
+    }
+
+    .related-movies li .movie-image img {
+        width: 100px;
+        margin-right: 24px;
+    }
 </style>
 <div class="row">
     <div class="col-sm-4 hidden-xs">
@@ -67,6 +81,10 @@ $cateName = implode(' - ', $cateName);
                 </div>
             </div>
         </div>
+
+        @if(!$relatedMovies->isEmpty())
+            @include('layouts.related_movies', ['relatedMovies' => $relatedMovies])
+        @endif
 
         @include('layouts.detail_ads')
 

@@ -168,7 +168,7 @@ class HomeController extends Controller
         }
         $relatedMovies = Movie::with('country', 'cates')
             ->where('id', '!=', $movie->id)
-            ->where('country_id', $movie->country_id)
+            // ->where('country_id', $movie->country_id)
             ->whereHas('cates', function ($q) use ($cateIds) {
                 $q->whereIn('cates.id', $cateIds);
             })
@@ -203,6 +203,24 @@ class HomeController extends Controller
         $metaDescription = $movie->description;
         $metaKeywords = $movie->tags;
         $pageImage = getImageUrl($movie->image);
+
+        // Get related movies
+        $cateIds = [];
+        if (!empty($movie->cates)) {
+            foreach ($movie->cates as $v) {
+                $cateIds[] = $v->id;
+            }
+        }
+        $relatedMovies = Movie::with('country', 'cates')
+            ->where('id', '!=', $movie->id)
+            // ->where('country_id', $movie->country_id)
+            ->whereHas('cates', function ($q) use ($cateIds) {
+                $q->whereIn('cates.id', $cateIds);
+            })
+            ->orderBy('year', 'desc')
+            ->orderBy('id', 'desc')
+            ->limit(5)
+            ->get();
         return view('home.video_detail', compact(
             'movie',
             'video',
@@ -211,7 +229,8 @@ class HomeController extends Controller
             'metaKeywords',
             'pageImage',
             'preVideo',
-            'nextVideo'
+            'nextVideo',
+            'relatedMovies'
         ));
     }
 
