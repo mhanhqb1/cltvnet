@@ -67,18 +67,37 @@ $cateName = implode(' - ', $cateName);
             </h1>
             <div class="row">
                 <div class="col-sm-12">
-                    <form class="form-horizontal">
-                        <fieldset>
-                            <div class="add-image" style="max-width:300px; float:left; margin-right:15px; margin-bottom:15px;">
-                                <img src="{{ getImageUrl($movie->image) }}" class="xxxx" style="max-width:100%; height: auto; display: block;">
-                            </div>
+                    <fieldset>
+                        <div class="add-image" style="max-width:300px; float:left; margin-right:15px; margin-bottom:15px;">
+                            <img src="{{ getImageUrl($movie->image) }}" class="xxxx" style="max-width:100%; height: auto; display: block;">
+                        </div>
 
-                            <div style="text-align:justify;">
-                                {{ $movie->description }}
-                            </div>
-                        </fieldset>
-                    </form>
+                        <div style="text-align:justify;">
+                            {{ $movie->description }}
+                        </div>
+                    </fieldset>
                 </div>
+                @if (!empty($movie->is_series) && !empty($movie->videos))
+                <?php
+                    $preVideo = $movie->videos[0];
+                    $nextVideo = $movie->videos[count($movie->videos) - 1];
+                ?>
+                <div class="col-sm-12">
+                    <div class="prev_next">
+                        @if (!empty($preVideo))
+                        <div class="pn_prev">
+                            <a href="{{ route('home.video_detail', ['movieSlug' => $movie->slug, 'videoSlug' => $preVideo->slug]) }}" title="{{ $movie->name . ' - ' . $preVideo->name }}">{{ $preVideo->name }}</a>
+                        </div>
+                        @endif
+
+                        @if (!empty($nextVideo))
+                        <div class="pn_next">
+                            <a href="{{ route('home.video_detail', ['movieSlug' => $movie->slug, 'videoSlug' => $nextVideo->slug]) }}" title="{{ $movie->name . ' - ' . $nextVideo->name }}">{{ $nextVideo->name }}</a>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+                @endif
             </div>
         </div>
         @if(!$relatedMovies->isEmpty())
