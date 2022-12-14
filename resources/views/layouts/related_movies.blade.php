@@ -10,17 +10,17 @@
             @foreach($relatedMovies as $v)
             <li>
                 <div class="movie-image">
-                    <a href="{{ route('home.movie_detail', $v->slug) }}" target="_blank" title="{{ $v->name }}">
+                    <a href="{{ route('home.movie_detail', $v->slug) }}" title="{{ $v->name }}">
                         <img src="{{ getImageUrl($v->image) }}" alt="{{ $v->name }}" />
                     </a>
                 </div>
                 <div class="movie-info">
-                    <h4><a href="{{ route('home.movie_detail', $v->slug) }}" target="_blank">{{ $v->name }}</a></h4>
+                    <h4><a href="{{ route('home.movie_detail', $v->slug) }}">{{ $v->name }}</a></h4>
                     @if(!empty($v->cates) && !empty($v->country))
                     <p>
-                        <a href="{{ route('home.country.index', $v->country->slug) }}" title="Review phim {{ $v->country->name }}">{{ $v->country->name }}</a>
+                        <a href="{{ route('home.country.index', $v->country->slug) }}" title="Novelas {{ $v->country->name }}">{{ $v->country->name }}</a>
                         @foreach($v->cates as $c)
-                        - <a href="{{ route('home.cate.index', $c->slug) }}" target="_blank" title="Review phim {{ $c->name }}">{{ $c->name }}</a>
+                        - <a href="{{ route('home.cate.index', $c->slug) }}" title="{{ $c->name }}">{{ $c->name }}</a>
                         @endforeach
                     </p>
                     @endif
