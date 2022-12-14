@@ -189,11 +189,30 @@ class HomeController extends Controller
         if (empty($video)) {
             return redirect()->route('home.movie_detail', $movie->slug);
         }
+        $preVideo = MovieVideo::where('movie_id', $movie->id)
+            ->where('id', '!=', $video->id)
+            ->where('position', '<', $video->position)
+            ->orderBy('position', 'desc')
+            ->first();
+        $nextVideo = MovieVideo::where('movie_id', $movie->id)
+            ->where('id', '!=', $video->id)
+            ->where('position', '>', $video->position)
+            ->orderBy('position', 'asc')
+            ->first();
         $pageTitle = $movie->name . ' - ' . $video->name;
         $metaDescription = $movie->description;
         $metaKeywords = $movie->tags;
         $pageImage = getImageUrl($movie->image);
-        return view('home.video_detail', compact('movie', 'video', 'pageTitle', 'metaDescription', 'metaKeywords', 'pageImage'));
+        return view('home.video_detail', compact(
+            'movie',
+            'video',
+            'pageTitle',
+            'metaDescription',
+            'metaKeywords',
+            'pageImage',
+            'preVideo',
+            'nextVideo'
+        ));
     }
 
     public function dailymotion(Request $request)

@@ -50,6 +50,21 @@ $cateName = implode(' - ', $cateName);
                         <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden" frameborder="0" type="text/html" src="{{ $iframeUrl }}" width="100%" height="100%" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
+                <div class="col-sm-12">
+                    <div class="prev_next">
+                        @if (!empty($preVideo))
+                        <div class="pn_prev">
+                            <a href="{{ route('home.video_detail', ['movieSlug' => $movie->slug, 'videoSlug' => $preVideo->slug]) }}" title="{{ $movie->name . ' - ' . $preVideo->name }}"><i class="fa fa-angle-left" aria-hidden="true"></i> {{ $preVideo->name }}</a>
+                        </div>
+                        @endif
+
+                        @if (!empty($nextVideo))
+                        <div class="pn_next">
+                            <a href="{{ route('home.video_detail', ['movieSlug' => $movie->slug, 'videoSlug' => $nextVideo->slug]) }}" title="{{ $movie->name . ' - ' . $nextVideo->name }}">{{ $nextVideo->name }} <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        </div>
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
 
