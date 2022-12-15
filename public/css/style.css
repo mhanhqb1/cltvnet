@@ -1,0 +1,31 @@
+:root {
+    --black: #232323;
+    --white: #FFFFFF;
+    --orange: #FF963C;
+    --yellow: #FFCC21;
+    --gray: #777777;
+    --red: #cd1d1f;
+}
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+ol, ul {
+	list-style: none;
+}
+a {
+  text-decoration: none;
+}
+ol, ul {
+	list-style: none;
+}
+body {
+    margin: 0;
+    padding: 0;
+    color: var(--black);
+    font-size: 14px;
+    line-height: 21px;
+    font-family: 'Arial', sans-serif;
+}
