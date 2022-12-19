@@ -44,7 +44,7 @@
 </div>
 
 
-<div class="about-area about-bg pt-100 pb-70">
+<!-- <div class="about-area about-bg pt-100 pb-70">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6">
@@ -86,9 +86,9 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
-@if (!$solutions->isEmpty())
+@if (!empty($solutions) && !$solutions->isEmpty())
 <div class="security-area pt-100 pb-70">
     <div class="container">
         <div class="section-title text-center">
@@ -137,7 +137,7 @@
 </section>
 @endif
 
-<div class="build-area pt-100 pb-70">
+<!-- <div class="build-area pt-100 pb-70">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-8 col-md-8">
@@ -162,7 +162,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 <div class="case-study-area pb-70">
@@ -268,7 +268,7 @@
     </div>
 </div>
 
-@if (!$feedback->isEmpty())
+@if (!empty($feedback) && !$feedback->isEmpty())
 <section class="clients-area pt-100 pb-70">
     <div class="container">
         <div class="section-title text-center">
@@ -308,6 +308,7 @@
 @endif
 
 
+@if (!empty($posts))
 <div class="blog-area pt-100 pb-70">
     <div class="container">
         <div class="section-title text-center">
@@ -323,5 +324,6 @@
         </div>
     </div>
 </div>
+@endif
 
 @endsection

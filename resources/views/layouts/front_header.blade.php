@@ -11,7 +11,7 @@ $productCates = getFrontCates(1);
                     <div class="top-head-left">
                         @if (!empty($web_phone))
                         <div class="top-contact">
-                            <h3>Support By : <a href="tel:{{ $web_phone }}">{{ $web_phone }}</a></h3>
+                            <h3>Hotline: <a href="tel:{{ $web_phone }}">{{ $web_phone }}</a></h3>
                         </div>
                         @endif
                     </div>

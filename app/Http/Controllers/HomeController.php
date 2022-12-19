@@ -30,18 +30,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::front_get_list([
-            'limit' => 3,
-            'page' => 1,
-            'type' => Post::$postTypes['post']
-        ]);
+        // $posts = Post::front_get_list([
+        //     'limit' => 3,
+        //     'page' => 1,
+        //     'type' => Post::$postTypes['post']
+        // ]);
+        $posts = [];
         $products = Post::front_get_list([
             'limit' => 3,
             'page' => 1,
             'type' => Post::$postTypes['product']
         ]);
-        $feedback = HomeFeedback::get();
-        $solutions = HomeSolution::get();
+        $feedback = [];//HomeFeedback::get();
+        $solutions = [];//HomeSolution::get();
         $services = HomeService::get();
         $topSliders = HomeTopSlider::get();
         $topBanner = HomeTopBanner::first();
