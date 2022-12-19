@@ -5,6 +5,7 @@
     --yellow: #FFCC21;
     --gray: #777777;
     --red: #cd1d1f;
+    --maxWidth: 1280px;
 }
 * {
 	margin: 0;
@@ -28,4 +29,10 @@ body {
     font-size: 14px;
     line-height: 21px;
     font-family: 'Arial', sans-serif;
+}
+.container, .container-fluid {
+    width: 100%;
+}
+.container {
+    max-width: var(--maxWidth);
 }
