@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\HomeCompany;
 use App\Models\HomeFeedback;
 use App\Models\HomeService;
 use App\Models\HomeSolution;
@@ -106,6 +107,10 @@ class SettingController extends Controller
     {
         return view('admin.homepage.top_slider');
     }
+    public function companyIndex()
+    {
+        return view('admin.homepage.company');
+    }
 
 
     public function homeFeedbackIndexData(Request $request)
@@ -201,6 +206,28 @@ class SettingController extends Controller
             ->rawColumns(['image', 'action'])
             ->make(true);
     }
+    public function companyIndexData(Request $request)
+    {
+        $limit = 10;
+        $data = HomeCompany::limit($limit);
+        return Datatables::of($data)
+            ->addColumn('created_at', function ($item) {
+                return date('Y-m-d H:i:s', strtotime($item->created_at));
+            })
+            ->addColumn('image', function ($item) {
+                return "<img src='".getImageUrl($item->image)."' width='200px'/>";
+            })
+            ->addColumn('action', function ($item) {
+                $updateUrl = 'admin.setting.company_update';
+                return '<a href="'.route($updateUrl, $item->id).'" class="btn btn-xs btn-info">'.__('Update').'</a> <form action="'.route('admin.setting.company_delete', $item->id).'" method="POST" style="display:inline-block;">
+                <input type="hidden" name="_method" value="delete"/>
+                '.csrf_field().'
+                <input type="submit" class="btn btn-xs btn-danger" onclick="return window.confirm(\'Bạn muốn xóa item này không?\')" value="'.__('Delete').'"/>
+            </form>';
+            })
+            ->rawColumns(['image', 'action'])
+            ->make(true);
+    }
 
 
     public function homeFeedbackAdd()
@@ -218,6 +245,10 @@ class SettingController extends Controller
     public function topSliderAdd()
     {
         return view('admin.homepage.top_slider_add_update');
+    }
+    public function companyAdd()
+    {
+        return view('admin.homepage.company_add_update');
     }
 
 
@@ -240,6 +271,11 @@ class SettingController extends Controller
     {
         $item = HomeTopSlider::find($id);
         return view('admin.homepage.top_slider_add_update', compact('item'));
+    }
+    public function companyUpdate($id)
+    {
+        $item = HomeCompany::find($id);
+        return view('admin.homepage.company_add_update', compact('item'));
     }
 
 
@@ -265,6 +301,12 @@ class SettingController extends Controller
     {
         $listUrl = 'admin.setting.top_slider_index';
         HomeTopSlider::find($id)->delete();
+        return redirect()->route($listUrl)->with('success', 'Dữ liệu đã được xóa thành công');
+    }
+    public function companyDelete($id)
+    {
+        $listUrl = 'admin.setting.company_index';
+        HomeCompany::find($id)->delete();
         return redirect()->route($listUrl)->with('success', 'Dữ liệu đã được xóa thành công');
     }
 
@@ -394,6 +436,33 @@ class SettingController extends Controller
             $item->image = $image;
         }
         $listUrl = 'admin.setting.top_slider_index';
+        if ($item->save()) {
+            return redirect()->route($listUrl)->with('success', 'Dữ liệu đã được cập nhật thành công');
+        }
+        return redirect()->route($listUrl)->with('error', 'Dữ liệu cập nhật bị lỗi');
+    }
+    public function companySave(Request $request)
+    {
+        $request->validate([
+            'image' => 'nullable|image|max:1024'
+        ], [
+            'image.required' => 'Vui lòng chọn hình ảnh'
+        ]);
+        if (!empty($request->image)) {
+            $image = $request->file('image')->storePubliclyAs('images', 'company-' . time() . '.jpg', 'public');
+        }
+
+        if (!empty($request->id)) {
+            $item = HomeCompany::find($request->id);
+        } else {
+            $item = new HomeCompany();
+        }
+        $item->name = !empty($request->name) ? $request->name : '';
+        $item->url = !empty($request->url) ? $request->url : '';
+        if (!empty($image)) {
+            $item->image = $image;
+        }
+        $listUrl = 'admin.setting.company_index';
         if ($item->save()) {
             return redirect()->route($listUrl)->with('success', 'Dữ liệu đã được cập nhật thành công');
         }

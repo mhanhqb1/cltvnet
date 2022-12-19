@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HomeCompany;
 use App\Models\HomeFeedback;
 use App\Models\HomeService;
 use App\Models\HomeSolution;
@@ -45,6 +46,7 @@ class HomeController extends Controller
         $solutions = [];//HomeSolution::get();
         $services = HomeService::get();
         $topSliders = HomeTopSlider::get();
+        $topLogos = HomeCompany::get();
         $topBanner = HomeTopBanner::first();
         $pageTitle = __('Home');
         return view('front.home.index', compact(
@@ -55,7 +57,8 @@ class HomeController extends Controller
             'solutions',
             'services',
             'topSliders',
-            'topBanner'
+            'topBanner',
+            'topLogos'
         ));
     }
 

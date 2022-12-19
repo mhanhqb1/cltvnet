@@ -165,7 +165,7 @@
 </div> -->
 
 
-<div class="case-study-area pb-70">
+<div class="case-study-area pb-70 pt-100">
     <div class="container-fluid p-0">
         <div class="section-title text-center">
             <span class="sp-color2">Case Study</span>
@@ -182,7 +182,7 @@
 </div>
 
 
-<div class="talk-area ptb-100">
+<!-- <div class="talk-area ptb-100">
     <div class="container">
         <div class="talk-content text-center">
             <div class="section-title text-center">
@@ -192,10 +192,28 @@
             <a href="{{ route('front.contact.index') }}" class="default-btn btn-bg-two border-radius-5">Contact Us</a>
         </div>
     </div>
-</div>
-
-
+</div> -->
+@if(!empty($topLogos) && !$topLogos->isEmpty())
 <section class="technology-area-two pt-100 pb-70">
+    <div class="container">
+        <div class="section-title text-center">
+            <!-- <span class="sp-color2">Technology Index</span> -->
+            <h2>Thương hiệu liên kết</h2>
+        </div>
+        <div class="row pt-45">
+            <div class="brand-slider owl-carousel owl-theme">
+                @foreach($topLogos as $v)
+                <div class="brand-item">
+                    <a href="{{ !empty($v->url) ? $v->url : 'javascript:void(0)' }}"><img src="{{ getImageUrl($v->image) }}" alt="{{ $v->name }}"></a>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</section>
+@endif
+
+<!-- <section class="technology-area-two pt-100 pb-70">
     <div class="container">
         <div class="section-title text-center">
             <span class="sp-color2">Technology Index</span>
@@ -240,10 +258,10 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 
-<div class="brand-area-two ptb-100">
+<!-- <div class="brand-area-two ptb-100">
     <div class="container">
         <div class="brand-slider owl-carousel owl-theme">
             <div class="brand-item">
@@ -266,7 +284,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 @if (!empty($feedback) && !$feedback->isEmpty())
 <section class="clients-area pt-100 pb-70">

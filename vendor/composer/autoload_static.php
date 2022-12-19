@@ -588,6 +588,7 @@ class ComposerStaticInitf8f65ffb8bb2e48f7a89f89adfcc79ae
         'App\\Models\\Admin' => __DIR__ . '/../..' . '/app/Models/Admin.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Contact' => __DIR__ . '/../..' . '/app/Models/Contact.php',
+        'App\\Models\\HomeCompany' => __DIR__ . '/../..' . '/app/Models/HomeCompany.php',
         'App\\Models\\HomeFeedback' => __DIR__ . '/../..' . '/app/Models/HomeFeedback.php',
         'App\\Models\\HomeService' => __DIR__ . '/../..' . '/app/Models/HomeService.php',
         'App\\Models\\HomeSolution' => __DIR__ . '/../..' . '/app/Models/HomeSolution.php',

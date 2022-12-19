@@ -53,18 +53,22 @@ $menuData = [
                 'name' => 'Top Slider',
                 'route' => 'admin.setting.top_slider_index'
             ],
-            [
-                'name' => 'Solution',
-                'route' => 'admin.setting.home_solution_index'
-            ],
+            // [
+            //     'name' => 'Solution',
+            //     'route' => 'admin.setting.home_solution_index'
+            // ],
             [
                 'name' => 'Service',
                 'route' => 'admin.setting.home_service_index'
             ],
             [
-                'name' => 'Feedback',
-                'route' => 'admin.setting.home_feedback_index'
-            ]
+                'name' => 'Top Logo',
+                'route' => 'admin.setting.company_index'
+            ],
+            // [
+            //     'name' => 'Feedback',
+            //     'route' => 'admin.setting.home_feedback_index'
+            // ]
         ]
     ],
     [

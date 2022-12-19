@@ -151,5 +151,13 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/setting/topslider/update/{id}', [SettingController::class, 'topSliderUpdate'])->name('setting.top_slider_update');
         Route::delete('/setting/topslider/{id}', [SettingController::class, 'topSliderDelete'])->name('setting.top_slider_delete');
         Route::post('/setting/topslider/save', [SettingController::class, 'topSliderSave'])->name('setting.top_slider_save');
+
+        // HomePage Setting company
+        Route::get('/setting/company', [SettingController::class, 'companyIndex'])->name('setting.company_index');
+        Route::get('/setting/company/indexData', [SettingController::class, 'companyIndexData'])->name('setting.company_indexData');
+        Route::get('/setting/company/add', [SettingController::class, 'companyAdd'])->name('setting.company_add');
+        Route::get('/setting/company/update/{id}', [SettingController::class, 'companyUpdate'])->name('setting.company_update');
+        Route::delete('/setting/company/{id}', [SettingController::class, 'companyDelete'])->name('setting.company_delete');
+        Route::post('/setting/company/save', [SettingController::class, 'companySave'])->name('setting.company_save');
     });
 });

@@ -39,6 +39,7 @@ return array(
     'App\\Models\\Admin' => $baseDir . '/app/Models/Admin.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
     'App\\Models\\Contact' => $baseDir . '/app/Models/Contact.php',
+    'App\\Models\\HomeCompany' => $baseDir . '/app/Models/HomeCompany.php',
     'App\\Models\\HomeFeedback' => $baseDir . '/app/Models/HomeFeedback.php',
     'App\\Models\\HomeService' => $baseDir . '/app/Models/HomeService.php',
     'App\\Models\\HomeSolution' => $baseDir . '/app/Models/HomeSolution.php',
