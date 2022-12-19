@@ -112,6 +112,10 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
         Route::post('/setting/save', [SettingController::class, 'save'])->name('setting.save');
 
+        // Setting header
+        Route::get('/setting/header', [SettingController::class, 'headerIndex'])->name('setting.header_index');
+        Route::post('/setting/header/save', [SettingController::class, 'headerSave'])->name('setting.header_save');
+
         // Page about us
         Route::get('/staticpage', [StaticPageController::class, 'index'])->name('static_page.index');
         Route::post('/staticpage/save', [StaticPageController::class, 'save'])->name('static_page.save');

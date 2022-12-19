@@ -41,6 +41,7 @@ return array(
     'App\\Models\\Contact' => $baseDir . '/app/Models/Contact.php',
     'App\\Models\\HomeCompany' => $baseDir . '/app/Models/HomeCompany.php',
     'App\\Models\\HomeFeedback' => $baseDir . '/app/Models/HomeFeedback.php',
+    'App\\Models\\HomeHeader' => $baseDir . '/app/Models/HomeHeader.php',
     'App\\Models\\HomeService' => $baseDir . '/app/Models/HomeService.php',
     'App\\Models\\HomeSolution' => $baseDir . '/app/Models/HomeSolution.php',
     'App\\Models\\HomeTopBanner' => $baseDir . '/app/Models/HomeTopBanner.php',

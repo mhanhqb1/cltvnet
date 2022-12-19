@@ -111,11 +111,10 @@
 @endif
 
 @if (!$services->isEmpty())
-<section class="services-area-three pt-100 pb-70">
+<section class="services-area-three pt-100 pb-70 custom-area">
     <div class="container">
         <div class="section-title text-center">
-            <span class="sp-color2">Our Services</span>
-            <h2>We Provide a Wide Variety of IT Services</h2>
+            {!! !empty($topHeaders['header_1']) ? $topHeaders['header_1'] : '' !!}
         </div>
         <div class="row pt-45">
             @foreach($services as $v)
@@ -165,11 +164,10 @@
 </div> -->
 
 
-<div class="case-study-area pb-70 pt-100">
+<div class="case-study-area pb-70 pt-100 custom-area">
     <div class="container-fluid p-0">
         <div class="section-title text-center">
-            <span class="sp-color2">Case Study</span>
-            <h2>Introduce Our Projects and Check Recent Work </h2>
+        {!! !empty($topHeaders['header_2']) ? $topHeaders['header_2'] : '' !!}
         </div>
         <div class="case-study-slider owl-carousel owl-theme pt-45">
             @if (!$products->isEmpty())
@@ -194,11 +192,10 @@
     </div>
 </div> -->
 @if(!empty($topLogos) && !$topLogos->isEmpty())
-<section class="technology-area-two pt-100 pb-70">
+<section class="technology-area-two pt-100 pb-70 custom-area">
     <div class="container">
         <div class="section-title text-center">
-            <!-- <span class="sp-color2">Technology Index</span> -->
-            <h2>Thương hiệu liên kết</h2>
+            {!! !empty($topHeaders['header_3']) ? $topHeaders['header_3'] : '' !!}
         </div>
         <div class="row pt-45">
             <div class="brand-slider owl-carousel owl-theme">

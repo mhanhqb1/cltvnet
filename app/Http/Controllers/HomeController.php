@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\HomeCompany;
 use App\Models\HomeFeedback;
+use App\Models\HomeHeader;
 use App\Models\HomeService;
 use App\Models\HomeSolution;
 use App\Models\HomeTopBanner;
@@ -48,6 +49,7 @@ class HomeController extends Controller
         $topSliders = HomeTopSlider::get();
         $topLogos = HomeCompany::get();
         $topBanner = HomeTopBanner::first();
+        $topHeaders = HomeHeader::pluck('value', 'name')->toArray();
         $pageTitle = __('Home');
         return view('front.home.index', compact(
             'posts',
@@ -58,7 +60,8 @@ class HomeController extends Controller
             'services',
             'topSliders',
             'topBanner',
-            'topLogos'
+            'topLogos',
+            'topHeaders'
         ));
     }
 

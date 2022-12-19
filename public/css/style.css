@@ -7070,3 +7070,6 @@ Home Page Six Css End
   }
 }
 /*# sourceMappingURL=style.css.map */
+.custom-area .section-title > p {
+    margin: 0 auto;
+}

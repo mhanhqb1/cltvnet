@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\HomeCompany;
 use App\Models\HomeFeedback;
+use App\Models\HomeHeader;
 use App\Models\HomeService;
 use App\Models\HomeSolution;
 use App\Models\HomeTopBanner;
@@ -27,6 +28,12 @@ class SettingController extends Controller
     {
         $settings = $this->model::$settings;
         return view('admin.setting.index', compact('settings'));
+    }
+    public function headerIndex()
+    {
+        $settings = HomeHeader::$headers;
+        $data = HomeHeader::pluck('value', 'name')->toArray();
+        return view('admin.homepage.header_index', compact('settings', 'data'));
     }
 
     public function topBanner()
@@ -89,6 +96,21 @@ class SettingController extends Controller
             ]);
         }
         return redirect()->route('admin.setting.index')->with('success', 'Dữ liệu đã được cập nhật thành công');
+    }
+    public function headerSave(Request $request)
+    {
+        $params = $request->all();
+        foreach ($params as $k => $v) {
+            if (!in_array($k, ['_token', 'file_header_logo', 'file_footer_logo'])) {
+                HomeHeader::updateOrCreate([
+                    'name' => $k
+                ], [
+                    'name' => $k,
+                    'value' => !empty($v) ? $v : ''
+                ]);
+            }
+        }
+        return redirect()->route('admin.setting.header_index')->with('success', 'Dữ liệu đã được cập nhật thành công');
     }
 
     public function homeFeedbackIndex()
