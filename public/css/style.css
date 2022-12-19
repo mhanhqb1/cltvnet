@@ -6199,6 +6199,20 @@ Map Area End
   top: -5px;
 }
 
+.footer-contact p {
+    display: flex;
+    align-items: center;
+}
+
+.footer-contact p i {
+    font-size: 25px;
+    margin-right: 10px;
+}
+
+.footer-contact p a {
+    color: #fff;
+}
+
 .footer-widget h3 {
   margin-top: 0;
   font-size: 24px;

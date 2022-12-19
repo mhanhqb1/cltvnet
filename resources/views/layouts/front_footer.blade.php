@@ -14,9 +14,23 @@ $cates = getFooterCates();
                                 <img src="{{ !empty($file_footer_logo) ? getImageUrl($file_footer_logo) : '/images/logos/footer-logo.png' }}" alt="Images" style="max-width: 200px">
                             </a>
                         </div>
-                        <p>
+                        <!-- <p>
                             {{ !empty($web_description) ? $web_description : '' }}
-                        </p>
+                        </p> -->
+                        <div class="footer-contact">
+                            <p>
+                                <i class="bx bx-phone-call"></i>
+                                <a href="tel:{{ $web_phone }}">{{ $web_phone }}1</a>
+                            </p>
+                            <p>
+                                <i class="bx bxs-map"></i>
+                                <span>{{ $web_address }}</span>
+                            </p>
+                            <p>
+                                <i class='bx bx-message'></i>
+                                <a href="mailto:{{ $web_email }}"><span class="__cf_email__" >{{ $web_email }}</span></a>
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-2 col-sm-6">
@@ -58,7 +72,7 @@ $cates = getFooterCates();
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="footer-widget pl-5">
-                        <h3>{{ __('Our Product') }}</h3>
+                        <h3>{{ __('Product') }}</h3>
                         <ul class="footer-blog">
                             @if (!$products->isEmpty())
                             @foreach ($products as $p)
@@ -70,7 +84,7 @@ $cates = getFooterCates();
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="footer-widget pl-5">
-                        <h3>{{ __('Our Blog') }}</h3>
+                        <h3>{{ __('Post') }}</h3>
                         <ul class="footer-blog">
                             @if (!$posts->isEmpty())
                             @foreach ($posts as $p)
