@@ -182,6 +182,9 @@
     font-size: 35px;
     max-width: 100%;
   }
+  .banner-content .h1 {
+    max-width: 100%;
+  }
   .banner-content p {
     font-size: 16px;
     max-width: 100%;
@@ -1252,6 +1255,10 @@
   }
   .banner-content h1 {
     font-size: 35px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .banner-content .h1 {
     margin-left: auto;
     margin-right: auto;
   }

@@ -15,7 +15,7 @@ class CreateHomeTopBannersTable extends Migration
     {
         Schema::create('home_top_banners', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->text('name');
             $table->text('description');
             $table->string('btn_1_text');
             $table->string('btn_1_url');

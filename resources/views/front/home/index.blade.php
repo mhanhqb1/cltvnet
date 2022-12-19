@@ -7,8 +7,8 @@
             <div class="row align-items-center">
                 <div class="col-lg-5">
                     <div class="banner-content">
-                        <h1>{{ !empty($topBanner->name) ? $topBanner->name : '' }}</h1>
-                        <p>{{ !empty($topBanner->description) ? $topBanner->description : '' }}</p>
+                        <div class="h1">{!! !empty($topBanner->name) ? $topBanner->name : '' !!}</div>
+                        <p>{!! !empty($topBanner->description) ? $topBanner->description : '' !!}</p>
                         <div class="banner-btn">
                             <a href="{{ !empty($topBanner->btn_1_url) ? $topBanner->btn_1_url : '#' }}" class="default-btn btn-bg-two border-radius-50">{{ !empty($topBanner->btn_1_text) ? $topBanner->btn_1_text : '' }} <i class='bx bx-chevron-right'></i></a>
                             <a href="{{ !empty($topBanner->btn_2_url) ? $topBanner->btn_2_url : '#' }}" class="default-btn btn-bg-one border-radius-50 ml-20">{{ !empty($topBanner->btn_2_text) ? $topBanner->btn_2_text : '' }} <i class='bx bx-chevron-right'></i></a>

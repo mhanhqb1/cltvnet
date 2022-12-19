@@ -9,7 +9,7 @@ This files table contents are outlined below>>>>>
 
 *******************************************
 *******************************************
-** - Default Btn Style 
+** - Default Btn Style
 ** - Section Title Style
 ** - Top Header Style
 ** - Navbar Area Style
@@ -158,7 +158,7 @@ img {
 }
 
 /*================================
-Section Title Style 
+Section Title Style
 ===================================*/
 .section-title span {
   margin-bottom: 8px;
@@ -194,7 +194,7 @@ Section Title Style
 Section Title Style End
 ===================================*/
 /*================================
-Default Btn Style 
+Default Btn Style
 ===================================*/
 .default-btn {
   display: inline-block;
@@ -251,7 +251,7 @@ Default Btn Style
 Default Btn Style End
 ===================================*/
 /*================================
-Top Header 
+Top Header
 ===================================*/
 .top-header {
   padding: 7px 0 10px;
@@ -1104,7 +1104,7 @@ Search Overlay CSS
 Search Overlay CSS End
 =================================*/
 /*==================================
-Main Banner Area 
+Main Banner Area
 =================================*/
 .banner-slider-area {
   position: relative;
@@ -1275,6 +1275,11 @@ Main Banner Area
   max-width: 680px;
   line-height: 1.2;
   margin-bottom: 20px;
+}
+.banner-content .h1 {
+    max-width: 680px;
+    line-height: 1.2;
+    margin-bottom: 20px;
 }
 
 .banner-content p {
@@ -1523,7 +1528,7 @@ Main Banner Area
 Main Banner Area End
 =================================*/
 /*==================================
-Banner Bottom Area 
+Banner Bottom Area
 =================================*/
 .banner-bottom-area {
   position: relative;
@@ -1646,7 +1651,7 @@ Inner Banner
 Inner Banner End
 ==================================*/
 /*==================================
-About Area 
+About Area
 =================================*/
 .about-content .about-content-card {
   margin-top: 30px;
@@ -1992,7 +1997,7 @@ About Area
 About Area End
 =================================*/
 /*==================================
-Security Area Area 
+Security Area Area
 =================================*/
 .security-area .section-title h2 {
   max-width: 600px;
@@ -2055,7 +2060,7 @@ Security Area Area
 Security Area End
 =================================*/
 /*==================================
-Services Area 
+Services Area
 =================================*/
 .services-area {
   background-color: #070b3b;
@@ -2438,7 +2443,7 @@ Services Area
 Services Area End
 =================================*/
 /*==================================
-Work Area 
+Work Area
 =================================*/
 .work-process-area .section-title h2 {
   max-width: 550px;
@@ -2770,7 +2775,7 @@ Work Area End
 }
 
 /*==================================
-Build Area 
+Build Area
 =================================*/
 .build-area {
   position: relative;
@@ -3233,7 +3238,7 @@ Build Area End
 }
 
 /*==================================
-Counter Area 
+Counter Area
 =================================*/
 .counter-area {
   position: relative;
@@ -3340,7 +3345,7 @@ Counter Area
 Counter Area End
 =================================*/
 /*==================================
-Case Study Area 
+Case Study Area
 =================================*/
 .case-study-area .section-title h2 {
   max-width: 500px;
@@ -3719,7 +3724,7 @@ Team Area
 Team Area End
 ====================================*/
 /*==================================
-Technology Area 
+Technology Area
 =================================*/
 .technology-area {
   position: relative;
@@ -3940,7 +3945,7 @@ Technology Area
 Technology Area End
 =================================*/
 /*==================================
-Brand Area 
+Brand Area
 =================================*/
 .brand-area {
   position: relative;
@@ -5474,7 +5479,7 @@ Blog Area End
 Blog Area End
 =================================*/
 /*=================================
-Faq Area 
+Faq Area
 ===================================*/
 .faq-area .section-title p {
   max-width: 560px;
@@ -5610,7 +5615,7 @@ Faq Area End
 }
 
 /*==============================
-Pagination Area 
+Pagination Area
 =================================*/
 .pagination-area {
   margin-top: 10px;
@@ -5671,7 +5676,7 @@ Pagination Area End
 }
 
 /*=================================
-Contact Area 
+Contact Area
 ====================================*/
 .contact-form {
   max-width: 800px;
@@ -5986,8 +5991,8 @@ Contact Area End
 /*=================================
 404 Error Area End
 ===================================*/
-/*================================== 
-Coming Soon Area 
+/*==================================
+Coming Soon Area
 ====================================*/
 .coming-soon-area {
   position: relative;
@@ -6165,11 +6170,11 @@ Coming Soon Area
   color: #dc3545 !important;
 }
 
-/*================================== 
+/*==================================
 Coming Soon Area End
 ====================================*/
 /*=================================
-Map Area 
+Map Area
 ====================================*/
 .map-area iframe {
   display: block;
@@ -6418,7 +6423,7 @@ Map Area End
 }
 
 /*=================================
-Go Top Area 
+Go Top Area
 ====================================*/
 .go-top {
   position: fixed;
@@ -6497,7 +6502,7 @@ Buy Now Btn
 }
 
 /*==================================
-Preloader CSS 
+Preloader CSS
 =====================================*/
 .preloader {
   position: fixed;

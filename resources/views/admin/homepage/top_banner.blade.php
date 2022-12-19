@@ -1,5 +1,9 @@
 @extends('layouts.admin_master')
 
+@push('before_css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs4.min.css" integrity="sha512-ngQ4IGzHQ3s/Hh8kMyG4FC74wzitukRMIcTOoKT3EyzFZCILOPF0twiXOQn75eDINUfKBYmzYn2AA8DkAk8veQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endpush
+
 @section('content')
 <div class="row">
     <div class="col-md-12">
@@ -9,12 +13,12 @@
                     @csrf
                     <div class="form-group">
                         <label for="inputName">{{ __('Name') }}</label>
-                        <input type="text" id="inputName" name="name" class="form-control" value="{{ !empty($item->name) ? $item->name : '' }}">
+                        <textarea id="inputName" name="name" class="form-control summernote" >{{ !empty($item->name) ? $item->name : '' }}</textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="inputJob">{{ __('Description') }}</label>
-                        <textarea id="inputJob" name="description" class="form-control">{{ !empty($item->description) ? $item->description : '' }}</textarea>
+                        <textarea id="inputJob" name="description" class="form-control summernote">{{ !empty($item->description) ? $item->description : '' }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="inputImage">{{ __('Image') }} (748 x 611 px)</label>
@@ -51,3 +55,15 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs4.min.js" integrity="sha512-ZESy0bnJYbtgTNGlAD+C2hIZCt4jKGF41T5jZnIXy4oP8CQqcrBGWyxNP16z70z/5Xy6TS/nUZ026WmvOcjNIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $('document').ready(function() {
+        $('.summernote').summernote({
+            height: 150,
+        });
+    });
+</script>
+
+@endpush
