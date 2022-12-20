@@ -19,6 +19,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('generate:sitemap')->daily();
         $schedule->command('CaLaTV:DailyPlaylistCrawler')->everyThirtyMinutes();
         $schedule->command('CaLaTV:OkRuCrawler')->everyFifteenMinutes();
+        $schedule->command('CaLaTV:UltraNovelasCrawler')->everyFifteenMinutes();
     }
 
     /**
