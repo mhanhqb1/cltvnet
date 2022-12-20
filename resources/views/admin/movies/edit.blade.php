@@ -113,6 +113,10 @@
                         <label for="inputOkRuId">Ok.ru ID</label>
                         <input type="text" id="inputOkRuId" class="form-control" name="ok_ru_id" value="{{ old('ok_ru_id') ? old('ok_ru_id') : $item->ok_ru_id }}">
                     </div>
+                    <div class="form-group">
+                        <label for="ultra_keyword">Ultra Keyword</label>
+                        <input type="text" id="ultra_keyword" class="form-control" name="ultra_keyword" value="{{ old('ultra_keyword') ? old('ultra_keyword') : $item->ultra_keyword }}">
+                    </div>
                 </div>
             </div>
         </div>

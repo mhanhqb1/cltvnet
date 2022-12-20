@@ -24,7 +24,8 @@ class Movie extends Model
         'daily_playlist_id',
         'daily_video_id',
         'daily_crawl_at',
-        'ok_ru_id'
+        'ok_ru_id',
+        'ultra_keyword'
     ];
 
     public function videos()
@@ -201,5 +202,50 @@ class Movie extends Model
                 });
             }
         }
+    }
+
+    public static function ultraNovelas()
+    {
+        $movieIds = Movie::whereNotNull('ultra_keyword')->where('ultra_keyword', '!=', '')->pluck('id', 'ultra_keyword')->toArray();
+        $client = new Client();
+        $url = 'https://ultranovelast.com/';
+        $crawler = $client->request('GET', $url);
+        $crawler->filter('.featuredpost .gb-block-post-grid-text .gb-block-post-grid-title')->each(function ($node) use ($client, $movieIds) {
+            $href = $node->filter('a')->attr('href');
+            if (str_contains($href, "-hd/")) {
+                $text = explode('/', $href);
+                $text = explode('-', $text[count($text) - 2]);
+                $chapter = $text[count($text) - 2];
+                $name = implode('-', array_slice($text, 0, count($text) - 2));
+                if (in_array($name, array_keys($movieIds))) {
+                    echo $name . ' - ' . $chapter;
+                    $movieId = $movieIds[$name];
+                    $crawler2 = $client->request('GET', $href);
+                    try {
+                        $crawler2->filter('.wp-block-ub-tabbed-content-tabs-content')->each(function ($node2) use ($movieId, $chapter) {
+                            if (!empty($node2)) {
+                                $okRu = $node2->filter('iframe')->attr('src');
+                                $okRu = explode('/', $okRu);
+                                $okRu = $okRu[count($okRu) - 1];
+                                $_name = 'Capítulo '.$chapter;
+                                MovieVideo::updateOrCreate([
+                                    'movie_id' => $movieId,
+                                    'name' => $_name,
+                                ],[
+                                    'movie_id' => $movieId,
+                                    'source_urls' => $okRu,
+                                    'name' => $_name,
+                                    'slug' => createSlug($_name),
+                                    'position' => $chapter,
+                                    'source_type' => MovieVideo::$sourceTypeValue['ok.ru']
+                                ]);
+                            }
+                        });
+                    } catch (\Throwable $th) {
+                        //throw $th;
+                    }
+                }
+            }
+        });
     }
 }

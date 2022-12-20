@@ -249,4 +249,9 @@ class HomeController extends Controller
         $page = !empty($params['page']) ? $params['page'] : 1;
         Movie::okru();
     }
+
+    public function videoCrawler()
+    {
+        Movie::ultraNovelas();
+    }
 }

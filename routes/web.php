@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('/videoCrawler', [App\Http\Controllers\HomeController::class, 'videoCrawler'])->name('home.video_crawler');
+
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('home.search');
 Route::get('/category/{slug}', [App\Http\Controllers\HomeController::class, 'cateIndex'])->name('home.cate.index');
