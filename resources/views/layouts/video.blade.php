@@ -7,7 +7,7 @@ $url = empty($item->is_series) ? route('home.movie_detail', $item->slug) : route
 <div class="col-xs-6 col-sm-2 movie-item">
     <span class="movie-label">{{ $label }}</span>
     <a href="{{ $url }}">
-        <img src="{{ asset('/images/blank.png') }}" data-src="{!! $imageUrl !!}" alt="{{ $name }}" style="width:100%; height:233px;" class="lazyload" /><br />
+        <img src="{{ asset('/images/blank.png') }}" data-src="{!! $imageUrl !!}" alt="{{ $name }}" style="width:100%; height:233px;object-fit: cover;" class="lazyload" /><br />
         <center>
             <h3 class="movie-name">{{ $name }}</h3>
         </center>
