@@ -252,6 +252,17 @@ class HomeController extends Controller
 
     public function videoCrawler()
     {
-        Movie::ultraNovelas();
+        $movies = Movie::pluck('name', 'id')->toArray();
+        return view('home.video_crawler', compact(
+            'movies',
+        ));
+    }
+    public function videoCrawlerSave(Request $request)
+    {
+        $link = !empty($request->link) ? $request->link : '';
+        $movieId = !empty($request->movie_id) ? $request->movie_id : '';
+        if (!empty($movieId) && !empty($link)) {
+            Movie::ultraNovelas($link, $movieId);
+        }
     }
 }

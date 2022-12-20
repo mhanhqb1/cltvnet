@@ -204,48 +204,69 @@ class Movie extends Model
         }
     }
 
-    public static function ultraNovelas()
+    public static function ultraNovelas($url = '', $movieId = '')
     {
-        $movieIds = Movie::whereNotNull('ultra_keyword')->where('ultra_keyword', '!=', '')->pluck('id', 'ultra_keyword')->toArray();
         $client = new Client();
-        $url = 'https://ultranovelast.com/';
+        if (empty($url)) {
+            $url = 'https://ultranovelast.com/';
+        }
         $crawler = $client->request('GET', $url);
-        $crawler->filter('.featuredpost .gb-block-post-grid-text .gb-block-post-grid-title')->each(function ($node) use ($client, $movieIds) {
-            $href = $node->filter('a')->attr('href');
-            if (str_contains($href, "-hd/")) {
-                $text = explode('/', $href);
-                $text = explode('-', $text[count($text) - 2]);
-                $chapter = $text[count($text) - 2];
-                $name = implode('-', array_slice($text, 0, count($text) - 2));
-                if (in_array($name, array_keys($movieIds))) {
-                    echo $name . ' - ' . $chapter;
-                    $movieId = $movieIds[$name];
-                    $crawler2 = $client->request('GET', $href);
-                    try {
-                        $crawler2->filter('.wp-block-ub-tabbed-content-tabs-content')->each(function ($node2) use ($movieId, $chapter) {
-                            if (!empty($node2)) {
-                                $okRu = $node2->filter('iframe')->attr('src');
-                                $okRu = explode('/', $okRu);
-                                $okRu = $okRu[count($okRu) - 1];
-                                $_name = 'Capítulo '.$chapter;
-                                MovieVideo::updateOrCreate([
-                                    'movie_id' => $movieId,
-                                    'name' => $_name,
-                                ],[
-                                    'movie_id' => $movieId,
-                                    'source_urls' => $okRu,
-                                    'name' => $_name,
-                                    'slug' => createSlug($_name),
-                                    'position' => $chapter,
-                                    'source_type' => MovieVideo::$sourceTypeValue['ok.ru']
-                                ]);
-                            }
-                        });
-                    } catch (\Throwable $th) {
-                        //throw $th;
+        if (!empty($movieId)) {
+            $crawler->filter('.ub-block-post-grid .ub-post-grid-items .ub-block-post-grid-text .ub-block-post-grid-title')->each(function ($node) use ($client, $movieId) {
+                $href = $node->filter('a')->attr('href');
+                if (str_contains($href, "-hd/")) {
+                    $text = explode('/', $href);
+                    $text = explode('-', $text[count($text) - 2]);
+                    $chapter = $text[count($text) - 2];
+                    self::ultraNovelasDetail($client, $href, $movieId, $chapter);
+                }
+            });
+            die();
+        } else {
+            $movieIds = Movie::whereNotNull('ultra_keyword')->where('ultra_keyword', '!=', '')->pluck('id', 'ultra_keyword')->toArray();
+            $crawler->filter('.featuredpost .gb-block-post-grid-text .gb-block-post-grid-title')->each(function ($node) use ($client, $movieIds) {
+                $href = $node->filter('a')->attr('href');
+                if (str_contains($href, "-hd/")) {
+                    $text = explode('/', $href);
+                    $text = explode('-', $text[count($text) - 2]);
+                    $chapter = $text[count($text) - 2];
+                    $name = implode('-', array_slice($text, 0, count($text) - 2));
+                    if (in_array($name, array_keys($movieIds))) {
+                        echo $name . ' - ' . $chapter;
+                        $movieId = $movieIds[$name];
+                        self::ultraNovelasDetail($client, $href, $movieId, $chapter);
                     }
                 }
-            }
-        });
+            });
+        }
+    }
+
+    public static function ultraNovelasDetail($client, $url, $movieId, $chapter)
+    {
+        $crawler2 = $client->request('GET', $url);
+        try {
+            $crawler2->filter('.wp-block-ub-tabbed-content-tabs-content')->each(function ($node2) use ($movieId, $chapter) {
+                if (!empty($node2)) {
+                    $okRu = $node2->filter('iframe')->attr('src');
+                    $okRu = explode('/', $okRu);
+                    $okRu = $okRu[count($okRu) - 1];
+                    $_name = 'Capítulo '.$chapter;
+                    echo $_name.PHP_EOL;
+                    MovieVideo::updateOrCreate([
+                        'movie_id' => $movieId,
+                        'name' => $_name,
+                    ],[
+                        'movie_id' => $movieId,
+                        'source_urls' => $okRu,
+                        'name' => $_name,
+                        'slug' => createSlug($_name),
+                        'position' => $chapter,
+                        'source_type' => MovieVideo::$sourceTypeValue['ok.ru']
+                    ]);
+                }
+            });
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 }
