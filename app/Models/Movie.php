@@ -252,17 +252,34 @@ class Movie extends Model
                     $okRu = $okRu[count($okRu) - 1];
                     $_name = 'Capítulo '.$chapter;
                     echo $_name.PHP_EOL;
-                    MovieVideo::updateOrCreate([
-                        'movie_id' => $movieId,
-                        'name' => $_name,
-                    ],[
-                        'movie_id' => $movieId,
-                        'source_urls' => $okRu,
-                        'name' => $_name,
-                        'slug' => createSlug($_name),
-                        'position' => $chapter,
-                        'source_type' => MovieVideo::$sourceTypeValue['ok.ru']
-                    ]);
+                    $check = MovieVideo::where('movie_id', $movieId)->where('name', $_name)->first();
+                    if (!empty($check)) {
+                        $check->source_urls = $okRu;
+                        $check->slug = createSlug($_name);
+                        $check->position = $chapter;
+                        $check->source_type = MovieVideo::$sourceTypeValue['ok.ru'];
+                        $check->save();
+                    } else {
+                        MovieVideo::create([
+                            'movie_id' => $movieId,
+                            'source_urls' => $okRu,
+                            'name' => $_name,
+                            'slug' => createSlug($_name),
+                            'position' => $chapter,
+                            'source_type' => MovieVideo::$sourceTypeValue['ok.ru']
+                        ]);
+                    }
+                    // MovieVideo::updateOrCreate([
+                    //     'movie_id' => $movieId,
+                    //     'name' => $_name,
+                    // ],[
+                    //     'movie_id' => $movieId,
+                    //     'source_urls' => $okRu,
+                    //     'name' => $_name,
+                    //     'slug' => createSlug($_name),
+                    //     'position' => $chapter,
+                    //     'source_type' => MovieVideo::$sourceTypeValue['ok.ru']
+                    // ]);
                 }
             });
         } catch (\Throwable $th) {
