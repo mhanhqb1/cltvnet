@@ -232,7 +232,6 @@ class Movie extends Model
                     $chapter = $text[count($text) - 2];
                     $name = implode('-', array_slice($text, 0, count($text) - 2));
                     if (in_array($name, array_keys($movieIds))) {
-                        echo $name . ' - ' . $chapter;
                         $movieId = $movieIds[$name];
                         self::ultraNovelasDetail($client, $href, $movieId, $chapter);
                     }
