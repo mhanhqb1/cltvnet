@@ -251,7 +251,6 @@ class Movie extends Model
                     $okRu = explode('/', $okRu);
                     $okRu = $okRu[count($okRu) - 1];
                     $_name = 'Capítulo '.$chapter;
-                    echo $_name.PHP_EOL;
                     $check = MovieVideo::where('movie_id', $movieId)->where('name', $_name)->first();
                     if (!empty($check)) {
                         $check->source_urls = $okRu;
@@ -259,6 +258,7 @@ class Movie extends Model
                         $check->position = $chapter;
                         $check->source_type = MovieVideo::$sourceTypeValue['ok.ru'];
                         $check->save();
+                        echo '1.-'.$movieId.'-'.$_name.PHP_EOL;
                     } else {
                         MovieVideo::create([
                             'movie_id' => $movieId,
@@ -268,6 +268,7 @@ class Movie extends Model
                             'position' => $chapter,
                             'source_type' => MovieVideo::$sourceTypeValue['ok.ru']
                         ]);
+                        echo '2.-'.$movieId.'-'.$_name.PHP_EOL;
                     }
                     // MovieVideo::updateOrCreate([
                     //     'movie_id' => $movieId,
