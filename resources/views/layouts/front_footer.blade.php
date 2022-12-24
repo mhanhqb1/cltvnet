@@ -20,7 +20,7 @@ $cates = getFooterCates();
                         <div class="footer-contact">
                             <p>
                                 <i class="bx bx-phone-call"></i>
-                                <a href="tel:{{ $web_phone }}">{{ $web_phone }}1</a>
+                                <a href="tel:{{ $web_phone }}">{{ $web_phone }}</a>
                             </p>
                             <p>
                                 <i class="bx bxs-map"></i>
