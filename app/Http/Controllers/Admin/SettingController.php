@@ -18,20 +18,30 @@ class SettingController extends Controller
 
     public function index()
     {
-        return view('admin.setting.index');
+        $settings = $this->model::$settings;
+        return view('admin.setting.index', compact('settings'));
     }
 
     public function save(Request $request)
     {
-        $params = $request->all();
-        foreach ($params as $k => $v) {
-            if ($k != '_token') {
+        $settings = $this->model::$settings;
+        foreach ($settings as $k => $v) {
+            if ($v['type'] == 'file' && !empty($request->$k)) {
                 $this->model->updateOrCreate([
                     'name' => $k
                 ], [
                     'name' => $k,
-                    'value' => $v
+                    'value' => $request->file($k)->storePubliclyAs('settings', $k . '-' . time() . '.webp', 'public')
                 ]);
+            } else {
+                if (isset($request->$k)) {
+                    $this->model->updateOrCreate([
+                        'name' => $k
+                    ], [
+                        'name' => $k,
+                        'value' => $request->$k
+                    ]);
+                }
             }
         }
         return redirect()->route('admin.setting.index')->with('success', 'Dữ liệu đã được cập nhật thành công');

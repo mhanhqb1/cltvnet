@@ -5,20 +5,23 @@
     <div class="col-md-12">
         <div class="card card-primary">
             <div class="card-body">
-                <form action="{{ route('admin.setting.save') }}" method="POST">
+                <form action="{{ route('admin.setting.save') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @foreach ($settings as $k => $v)
                     <div class="form-group">
-                        <label for="inputWebName">{{ __('Web Name') }}</label>
-                        <input type="text" id="inputWebName" name="web_name" class="form-control" value="{{ !empty($web_name) ? $web_name : '' }}">
+                        <label for="{{ $k }}">{{ __($v['title']) }}</label>
+                        @if ($v['type'] == 'textarea')
+                            <textarea id="{{ $k }}" name="{{ $k }}" class="form-control" rows="5">{{ !empty($$k) ? $$k : '' }}</textarea>
+                        @elseif ($v['type'] == 'file')
+                            <input type="file" id="{{ $k }}" name="{{ $k }}" class="form-control" />
+                            @if (!empty($$k))
+                            <img src="{{ getImageUrl($$k) }}" width="200px" style="margin-top: 10px"/>
+                            @endif
+                        @else
+                            <input type="text" id="{{ $k }}" name="{{ $k }}" class="form-control" value="{{ !empty($$k) ? $$k : '' }}"/>
+                        @endif
                     </div>
-                    <div class="form-group">
-                        <label for="inputFacebookId">{{ __('Facebook ID') }}</label>
-                        <input type="text" id="inputFacebookId" name="facebook_id" class="form-control" value="{{ !empty($facebook_id) ? $facebook_id : '' }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputGAId">{{ __('Google Analytic ID') }}</label>
-                        <input type="text" id="inputGAId" name="ga_id" class="form-control" value="{{ !empty($ga_id) ? $ga_id : '' }}">
-                    </div>
+                    @endforeach
                     <div class="form-group">
                         <input type="submit" value="{{ __('Save') }}" class="btn btn-primary">
                     </div>
