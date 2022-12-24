@@ -22,7 +22,8 @@ class PostController extends Controller
 
     public function index()
     {
-        return view('admin.post.index');
+        $cates = Category::get();
+        return view('admin.post.index', compact('cates'));
     }
 
     public function update($id)
@@ -88,10 +89,18 @@ class PostController extends Controller
         return redirect()->route('admin.post.index')->with('error', 'Dữ liệu cập nhật bị lỗi');
     }
 
-    public function indexData()
+    public function indexData(Request $request)
     {
         $limit = 10;
         $data = $this->model->limit($limit);
+        if (!empty($request->name)) {
+            $data = $data->where('name', 'like', '%'.$request->name.'%');
+        }
+        if (!empty($request->cate_id)) {
+            $data = $data->with('cates')->whereHas('cates', function ($q) use($request){
+                $q->where('categories.id', $request->cate_id);
+            });
+        }
         return Datatables::of($data)
             ->addColumn('image', function ($item) {
                 $html = '';
