@@ -1,9 +1,11 @@
 <?php
 $webName = !empty($cf_web_name) ? $cf_web_name : env('APP_NAME');
-$title = !empty($pageTitle) ? $pageTitle : $webName;
-$description = !empty($pageDescription) ? $pageDescription : '';
+$webDescription = !empty($cf_web_description) ? $cf_web_description : '';
+$webBanner = !empty($cf_web_banner) ? getImageUrl($cf_web_banner) : '';
+$title = !empty($pageTitle) ? $pageTitle.' - '.$webName : $webName;
+$description = !empty($pageDescription) ? $pageDescription : $webDescription;
 $keywords = !empty($pageKeywords) ? $pageKeywords : '';
-$image = !empty($pageImage) ? $pageImage : '';
+$image = !empty($pageImage) ? $pageImage : $webBanner;
 $url = url()->full();
 ?>
 <!DOCTYPE html>
