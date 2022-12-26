@@ -43,5 +43,13 @@ class Setting extends Model
             'title' => 'Web email',
             'type' => 'text'
         ],
+        'cf_header_script' => [
+            'title' => 'Header Script',
+            'type' => 'textarea'
+        ],
+        'cf_footer_script' => [
+            'title' => 'Footer Script',
+            'type' => 'textarea'
+        ],
     ];
 }
