@@ -268,6 +268,9 @@ class Movie extends Model
                             'source_type' => MovieVideo::$sourceTypeValue['ok.ru']
                         ]);
                         echo '2.-'.$movieId.'-'.$_name.PHP_EOL;
+                        Movie::where('id', $movieId)->update([
+                            'daily_crawl_at' => date('Y-m-d H:i:s')
+                        ]);
                     }
                     // MovieVideo::updateOrCreate([
                     //     'movie_id' => $movieId,
