@@ -68,6 +68,10 @@ function getVideoNameFromDailyPlayList($name, $isSeries = 1) {
     return $txt;
 }
 
+function getNumber($str) {
+    return preg_replace('/[^0-9]/', '', $str);
+}
+
 function callApi($url) {
     $curl = curl_init();
 
