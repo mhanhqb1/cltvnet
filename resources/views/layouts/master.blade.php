@@ -1,6 +1,12 @@
 <?php
-$title = !empty($pageTitle) ? $pageTitle : '';
-$title = !empty($web_name) ? $title.' - '.$web_name : $title;
+$webName = !empty($web_name) ? $web_name : env('APP_NAME');
+$webDescription = !empty($web_description) ? $web_description : '';
+$webImage = !empty($file_header_logo) ? getImageUrl($file_header_logo) : '';
+$title = !empty($pageTitle) ? $pageTitle . ' - ' . $webName : $webName;
+$description = !empty($pageDescription) ? $pageDescription : $webDescription;
+$keywords = !empty($pageKeywords) ? $pageKeywords : '';
+$image = !empty($pageImage) ? $pageImage : $webImage;
+$url = url()->full();
 ?>
 
 <!doctype html>
@@ -11,8 +17,31 @@ $title = !empty($web_name) ? $title.' - '.$web_name : $title;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="{{ csrf_token() }}" name="csrf-token">
+    <meta name="robots" content="follow, index" />
+    <meta name="googlebot" content="follow, index" />
+    <link rel="shortcut icon" href="/favicon.ico">
 
     <title>{{ __($title) }}</title>
+
+    <meta name="description" content="{{ $description }}" />
+    <meta name="keywords" content="{{ $keywords }}" />
+
+    <meta property="og:url" content="{{ $url }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:description" content="{{ $description }}">
+    <meta property="og:site_name" content="{{ $webName }}">
+    <meta property="og:image" content="{{ $image }}">
+    <meta property="og:image:alt" content="{{ $title }}">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- <meta name="twitter:site" content="@calatv">
+    <meta name="twitter:creator" content="@calatv"> -->
+    <meta name="twitter:title" content="{{ $title }}">
+    <meta name="twitter:description" content="{{ $description }}">
+    <meta name="twitter:image" content="{{ $image }}">
+    <meta name="twitter:image:alt" content="{{ $title }}">
 
     @stack('before_css')
 

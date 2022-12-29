@@ -66,9 +66,15 @@ class PostController extends Controller
             ->where('slug', $slug)
             ->first();
         $pageTitle = $item->name;
+        $pageDescription = $item->description;
+        $pageImage = !empty($item->image) ? getImageUrl($item->image) : '';
+        $pageKeywords = $item->meta_keyword;
         return view('front.post.detail', compact(
             'item',
-            'pageTitle'
+            'pageTitle',
+            'pageDescription',
+            'pageImage',
+            'pageKeywords'
         ));
     }
 
@@ -78,9 +84,15 @@ class PostController extends Controller
             ->where('slug', $slug)
             ->first();
         $pageTitle = $item->name;
+        $pageDescription = $item->description;
+        $pageImage = !empty($item->image) ? getImageUrl($item->image) : '';
+        $pageKeywords = $item->meta_keyword;
         return view('front.post.detail', compact(
             'item',
-            'pageTitle'
+            'pageTitle',
+            'pageDescription',
+            'pageImage',
+            'pageKeywords'
         ));
     }
 
