@@ -22,8 +22,8 @@ function createSlug($str, $delimiter = '-')
     $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", 'Y', $str);
     $str = preg_replace("/(Đ)/", 'D', $str);
     $str = preg_replace('/\s+/', ' ', $str);
-    $str = str_replace("/", "-", $str);
-    $str = str_replace(" ", "-", $str);
+    $str = str_replace("/", $delimiter, $str);
+    $str = str_replace(" ", $delimiter, $str);
     $str = str_replace("?", "", $str);
     $str = str_replace("[", "", $str);
     $str = str_replace("]", "", $str);
@@ -33,6 +33,23 @@ function createSlug($str, $delimiter = '-')
 
 function editorUploadImages($html)
 {
+    if (preg_match_all('/src="(.*?)"/', $html, $match) >= 1) {
+        foreach ($match[1] as $k => $v) {
+            $image = explode('data:image', $v);
+            if (!empty($image[1])) {
+                $image = explode(',', $image[1]);
+                if (!empty($image[1])) {
+                    $data = base64_decode($image[1]);
+                    $image_name = time() . $k. '.jpg';
+                    $image_path = "/public/upload/" .  $image_name;
+                    Storage::put($image_path, $data);
+                    $html = str_replace($v, url('/storage/upload').'/'.$image_name, $html);
+                }
+            }
+        }
+    }
+    return $html;
+    print_r($html); die();
     $dom = new \DomDocument();
 
     try {
