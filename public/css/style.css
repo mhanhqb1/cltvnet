@@ -339,13 +339,23 @@ Top Header
   padding: 0;
 }
 
-.top-header-right .top-header-social ul li {
+.top-footer-social {
+    text-align: center;
+}
+.top-footer-social ul {
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.top-header-right .top-header-social ul li,
+.top-footer-social ul li {
   display: inline-block;
   top: 1px;
   position: relative;
 }
 
-.top-header-right .top-header-social ul li a {
+.top-header-right .top-header-social ul li a,
+.top-footer-social ul li a {
   width: 30px;
   height: 30px;
   line-height: 32px;
@@ -356,7 +366,8 @@ Top Header
   font-size: 18px;
 }
 
-.top-header-right .top-header-social ul li a:hover {
+.top-header-right .top-header-social ul li a:hover,
+.top-footer-social ul li a:hover {
   color: #ffc221;
 }
 
@@ -6316,6 +6327,7 @@ Map Area End
   margin-bottom: 20px;
   padding-left: 90px;
   position: relative;
+  overflow: hidden;
 }
 
 .footer-widget .footer-blog li:hover h3 a {
@@ -6342,12 +6354,15 @@ Map Area End
   font-size: 16px;
   color: #ffffff;
   margin-bottom: 5px;
-  max-width: 200px;
+  /* max-width: 200px; */
 }
 
 .footer-widget .footer-blog li h3 a {
   color: #ffffff;
   line-height: 1.4;
+  overflow: hidden;
+  white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .footer-widget .footer-blog li h3 a:hover {

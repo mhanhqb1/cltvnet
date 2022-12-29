@@ -26,6 +26,7 @@ class Setting extends Model
         'facebook_url' => 'Facebook URL',
         'twitter_url' => 'Twitter URL',
         'instagram_url' => 'Instagram URL',
-        'ga_id' => 'Google Analytic ID'
+        'script_header' => 'Script Header',
+        'script_footer' => 'Script Footer'
     ];
 }

@@ -10,7 +10,7 @@
                     @foreach ($settings as $k => $v)
                     <div class="form-group">
                         <label for="{{ $k }}">{{ __($v) }}</label>
-                        @if ($k == 'web_description')
+                        @if (in_array($k, ['web_description', 'script_header', 'script_footer']))
                         <textarea id="{{ $k }}" class="form-control" name="{{ $k }}" rows="4">{{ !empty($$k) ? $$k : '' }}</textarea>
                         @elseif (in_array($k, ['file_header_logo', 'file_footer_logo']))
                         <input type="file" id="{{ $k }}" name="{{ $k }}" class="form-control">

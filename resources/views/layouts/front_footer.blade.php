@@ -28,7 +28,7 @@ $cates = getFooterCates();
                             </p>
                             <p>
                                 <i class='bx bx-message'></i>
-                                <a href="mailto:{{ $web_email }}"><span class="__cf_email__" >{{ $web_email }}</span></a>
+                                <a href="mailto:{{ $web_email }}"><span class="__cf_email__">{{ $web_email }}</span></a>
                             </p>
                         </div>
                     </div>
@@ -97,6 +97,31 @@ $cates = getFooterCates();
             </div>
         </div>
         <div class="copy-right-area">
+            <div class="top-footer-social">
+                <ul>
+                    @if (!empty($facebook_url))
+                    <li>
+                        <a href="{{ $facebook_url }}" target="_blank">
+                            <i class='bx bxl-facebook'></i>
+                        </a>
+                    </li>
+                    @endif
+                    @if (!empty($twitter_url))
+                    <li>
+                        <a href="{{ $twitter_url }}" target="_blank">
+                            <i class='bx bxl-twitter'></i>
+                        </a>
+                    </li>
+                    @endif
+                    @if (!empty($instagram_url))
+                    <li>
+                        <a href="{{ $instagram_url }}" target="_blank">
+                            <i class='bx bxl-instagram'></i>
+                        </a>
+                    </li>
+                    @endif
+                </ul>
+            </div>
             <div class="copy-right-text">
                 <p>
                     Copyright © <script>
