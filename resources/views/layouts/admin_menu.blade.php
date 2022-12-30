@@ -122,7 +122,7 @@ $menuData = [
                 <img src="/images/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ Auth::guard('admin')->user()->name }}</a>
+                <a href="{{ route('admin.admin.detail') }}" class="d-block">{{ Auth::guard('admin')->user()->name }}</a>
             </div>
         </div>
         <nav class="mt-2">

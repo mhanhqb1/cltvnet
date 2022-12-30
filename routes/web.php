@@ -77,6 +77,8 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::middleware(['auth:admin'])->group(function() {
         Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
+        Route::get('/profile', [AdminController::class, 'detail'])->name('admin.detail');
+        Route::post('/profile', [AdminController::class, 'save'])->name('admin.save');
 
         // Post
         Route::get('/posts', [PostController::class, 'index'])->name('post.index');
