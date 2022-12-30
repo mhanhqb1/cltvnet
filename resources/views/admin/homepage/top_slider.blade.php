@@ -15,6 +15,7 @@
                     <td>{{ __('Image') }}</td>
                     <td>{{ __('Text') }}</td>
                     <td>{{ __('Number') }}</td>
+                    <td>{{ __('Priority') }}</td>
                     <td style="width: 150px;">{{ __('Created At') }}</td>
                     <td style="width: 50px; text-align: center"></td>
                 </tr>
@@ -37,6 +38,7 @@ $(function() {
             { data: 'image', name: 'image' },
             { data: 'text', name: 'text' },
             { data: 'number', name: 'number' },
+            { data: 'priority', name: 'priority' },
             { data: 'created_at', name: 'created_at' },
             { data: 'action', name: 'action', orderable: false, searchable: false }
         ]

@@ -19,7 +19,8 @@ class Post extends Model
         'meta_keyword',
         'meta_description',
         'status',
-        'type'
+        'type',
+        'priority'
     ];
 
     public static $postTypes = [
@@ -52,6 +53,15 @@ class Post extends Model
             $data = $data->whereHas('cates', function($q) use($cateIds){
                 $q->whereIn('categories.id', $cateIds);
             });
+        }
+        if (!empty($params['home'])) {
+            $data = $data->where('priority', '>', 0);
+        }
+        if (!empty($params['sort'])) {
+            $sort = explode('-', $params['sort']);
+            $data = $data->orderBy($sort[0], $sort[1]);
+        } else {
+            $data = $data->orderBy('id', 'desc');
         }
         if (isset($params['type'])) {
             $data = $data->where('type', $params['type']);

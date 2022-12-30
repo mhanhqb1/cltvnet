@@ -32,6 +32,12 @@
                             @endif
                         </select>
                     </div>
+                    @if (!empty($postType))
+                    <div class="form-group">
+                        <label for="Priority">{{ __('Priority') }} <span>(Độ ưu tiên hiển thị ở trang chủ theo thứ tự lớn -> bé, bằng 0 là k hiển thị)</span></label>
+                        <input type="number" id="Priority" name="priority" class="form-control" value="{{ !empty($item->priority) ? $item->priority : 0 }}">
+                    </div>
+                    @endif
                     <div class="form-group">
                         <label for="inputImage">{{ __('Image') }}</label>
                         <input type="file" id="inputImage" name="image" class="form-control">

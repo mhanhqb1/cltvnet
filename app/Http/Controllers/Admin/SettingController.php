@@ -422,6 +422,7 @@ class SettingController extends Controller
         $item->name = $request->name;
         $item->icon = $request->icon;
         $item->category = $request->category;
+        $item->priority = !empty($request->priority) ? $request->priority : 0;
         if (!empty($image)) {
             $item->image = $image;
         }
@@ -454,6 +455,7 @@ class SettingController extends Controller
         }
         $item->text = $request->text;
         $item->number = $request->number;
+        $item->priority = !empty($request->priority) ? $request->priority : 0;
         if (!empty($image)) {
             $item->image = $image;
         }
@@ -481,6 +483,7 @@ class SettingController extends Controller
         }
         $item->name = !empty($request->name) ? $request->name : '';
         $item->url = !empty($request->url) ? $request->url : '';
+        $item->priority = !empty($request->priority) ? $request->priority : 0;
         if (!empty($image)) {
             $item->image = $image;
         }

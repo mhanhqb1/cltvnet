@@ -23,6 +23,10 @@
                         <input type="text" id="category" name="category" class="form-control" value="{{ !empty($item->category) ? $item->category : '' }}">
                     </div>
                     <div class="form-group">
+                        <label for="Priority">{{ __('Priority') }} <span>(Độ ưu tiên hiển thị ở trang chủ theo thứ tự lớn -> bé)</span></label>
+                        <input type="number" id="Priority" name="priority" class="form-control" value="{{ !empty($item->priority) ? $item->priority : 0 }}">
+                    </div>
+                    <div class="form-group">
                         <label for="inputImage">{{ __('Image') }}</label>
                         <input type="file" id="inputImage" name="image" class="form-control">
                     </div>

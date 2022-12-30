@@ -12,6 +12,7 @@ class HomeTopSlider extends Model
     protected $fillable = [
         'text',
         'number',
-        'image'
+        'image',
+        'priority'
     ];
 }

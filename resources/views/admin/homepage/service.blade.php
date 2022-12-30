@@ -16,6 +16,7 @@
                     <td>{{ __('Name') }}</td>
                     <td>{{ __('Category') }}</td>
                     <td>{{ __('Flat Icon') }}</td>
+                    <td>{{ __('Priority') }}</td>
                     <td style="width: 150px;">{{ __('Created At') }}</td>
                     <td style="width: 50px; text-align: center"></td>
                 </tr>
@@ -39,6 +40,7 @@ $(function() {
             { data: 'name', name: 'name' },
             { data: 'category', name: 'category' },
             { data: 'icon', name: 'icon' },
+            { data: 'priority', name: 'priority' },
             { data: 'created_at', name: 'created_at' },
             { data: 'action', name: 'action', orderable: false, searchable: false }
         ]

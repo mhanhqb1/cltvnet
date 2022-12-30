@@ -14,6 +14,12 @@ $title = !empty($pageTitle) ? $pageTitle : 'Admin';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
     @stack('css')
+    <style>
+        label span {
+            font-size: 14px;
+            font-weight: normal;
+        }
+    </style>
 </head>
 
 <body class="sidebar-mini layout-fixed layout-navbar-fixed" cz-shortcut-listen="true">

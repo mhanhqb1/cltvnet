@@ -13,6 +13,7 @@ class HomeService extends Model
         'icon',
         'image',
         'name',
-        'category'
+        'category',
+        'priority'
     ];
 }

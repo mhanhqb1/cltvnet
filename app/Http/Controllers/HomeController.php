@@ -39,15 +39,17 @@ class HomeController extends Controller
         // ]);
         $posts = [];
         $products = Post::front_get_list([
-            'limit' => 3,
+            'limit' => 5,
             'page' => 1,
-            'type' => Post::$postTypes['product']
+            'type' => Post::$postTypes['product'],
+            'home' => 1,
+            'sort' => 'priority-desc'
         ]);
         $feedback = [];//HomeFeedback::get();
         $solutions = [];//HomeSolution::get();
-        $services = HomeService::get();
-        $topSliders = HomeTopSlider::get();
-        $topLogos = HomeCompany::get();
+        $services = HomeService::orderBy('priority', 'desc')->get();
+        $topSliders = HomeTopSlider::orderBy('priority', 'desc')->get();
+        $topLogos = HomeCompany::orderBy('priority', 'desc')->get();
         $topBanner = HomeTopBanner::first();
         $topHeaders = HomeHeader::pluck('value', 'name')->toArray();
         $pageTitle = __('Home');

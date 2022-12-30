@@ -127,6 +127,7 @@ class PostController extends Controller
         $item->meta_keyword = $request->seo_keywords;
         $item->status = $request->status;
         $item->type = isset($request->type) ? $request->type : 0;
+        $item->priority = isset($request->priority) ? $request->priority : 0;
         if (!empty($image)) {
             $item->image = $image;
         }

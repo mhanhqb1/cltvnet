@@ -14,10 +14,13 @@
                         <label for="inputName">{{ __('Text') }}</label>
                         <input type="text" id="inputName" name="text" class="form-control" value="{{ !empty($item->text) ? $item->text : '' }}">
                     </div>
-
                     <div class="form-group">
                         <label for="inputJob">{{ __('Number') }}</label>
                         <input type="text" id="inputJob" name="number" class="form-control" value="{{ !empty($item->number) ? $item->number : '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="Priority">{{ __('Priority') }} <span>(Độ ưu tiên hiển thị ở trang chủ theo thứ tự lớn -> bé)</span></label>
+                        <input type="number" id="Priority" name="priority" class="form-control" value="{{ !empty($item->priority) ? $item->priority : 0 }}">
                     </div>
                     <div class="form-group">
                         <label for="inputImage">{{ __('Image') }}</label>

@@ -12,6 +12,7 @@ class HomeCompany extends Model
     protected $fillable = [
         'name',
         'image',
-        'url'
+        'url',
+        'priority'
     ];
 }
