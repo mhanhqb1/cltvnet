@@ -28,11 +28,9 @@
     <div class="container">
         <div class="section-title text-center">
             @if (empty($item->type))
-            <span class="sp-color2">Latest Blog</span>
-            <h2>Let’s Check Some Latest Blog</h2>
+            <h2>Danh sách các bài viết mới nhất</h2>
             @else
-            <span class="sp-color2">Latest Product</span>
-            <h2>Let’s Check Some Latest Product</h2>
+            <h2>Danh sách các dự án mới nhất</h2>
             @endif
         </div>
         <div class="row pt-45">

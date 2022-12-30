@@ -18,7 +18,7 @@ if (!empty($item->type)) {
         <div class="content">
             <ul>
                 <li>
-                    <a href="#"><i class='bx bxs-user'></i> By Admin</a>
+                    <a href="#"><i class='bx bxs-user'></i> Admin</a>
                 </li>
                 @if (!$item->cates->isEmpty())
                 <li>
