@@ -37,7 +37,7 @@
                             <div class="content">
                                 <i class='bx bx-phone-call'></i>
                                 <h3>{{ __('Phone Number') }}</h3>
-                                <a href="tel:{{ $web_phone }}">{{ $web_phone }}1</a>
+                                <a href="tel:{{ $web_phone }}">{{ $web_phone }}</a>
                             </div>
                         </li>
                         @endif

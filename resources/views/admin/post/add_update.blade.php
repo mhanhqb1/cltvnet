@@ -39,7 +39,7 @@
                     </div>
                     @endif
                     <div class="form-group">
-                        <label for="inputImage">{{ __('Image') }}</label>
+                        <label for="inputImage">{{ __('Image') }} <span>(Thumbnail nên để chung kích thước, kích thước gợi ý <strong>350 x 290</strong> px)</span></label>
                         <input type="file" id="inputImage" name="image" class="form-control">
                     </div>
                     @if (!empty($item->image))
