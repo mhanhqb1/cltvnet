@@ -111,7 +111,7 @@
 @endif
 
 @if (!$services->isEmpty())
-<section class="services-area-three pt-100 pb-70 custom-area">
+<section class="services-area-three pt-100 pb-70 custom-area" style="background-color: #ffffff;">
     <div class="container">
         <div class="section-title text-center">
             {!! !empty($topHeaders['header_1']) ? $topHeaders['header_1'] : '' !!}
@@ -164,7 +164,7 @@
 </div> -->
 
 
-<div class="case-study-area pb-70 pt-100 custom-area">
+<div class="case-study-area pb-70 pt-100 custom-area" style="background-color: #f8f8f8;">
     <div class="container-fluid p-0">
         <div class="section-title text-center">
         {!! !empty($topHeaders['header_2']) ? $topHeaders['header_2'] : '' !!}
@@ -192,7 +192,7 @@
     </div>
 </div> -->
 @if(!empty($topLogos) && !$topLogos->isEmpty())
-<section class="technology-area-two pt-100 pb-70 custom-area">
+<section class="technology-area-two pt-100 pb-70 custom-area" style="background-color: #ffffff;">
     <div class="container">
         <div class="section-title text-center">
             {!! !empty($topHeaders['header_3']) ? $topHeaders['header_3'] : '' !!}

@@ -1063,6 +1063,9 @@
     padding-left: 15px;
     padding-right: 15px;
   }
+  footer {
+    padding: 0 24px;
+  }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -2044,7 +2047,7 @@
     right: 20px;
   }
   .footer-widget .footer-list li a {
-    color: #ffffff;
+    color: #252525;
     font-weight: 400;
     font-size: 14px;
   }

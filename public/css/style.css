@@ -6197,7 +6197,7 @@ Map Area
 Map Area End
 ====================================*/
 .footer-bg {
-  background-color: #070b3b;
+  background-color: #f8f8f8;
 }
 
 .footer-widget {
@@ -6221,20 +6221,20 @@ Map Area End
 }
 
 .footer-contact p a {
-    color: #fff;
+    color: #252525;
 }
 
 .footer-widget h3 {
   margin-top: 0;
-  font-size: 24px;
-  margin-bottom: 30px;
-  color: #ffffff;
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #252525;
   line-height: 1.2;
 }
 
 .footer-widget p {
   margin-bottom: 20px;
-  color: #ffffff;
+  color: #252525;
   max-width: 300px;
 }
 
@@ -6301,7 +6301,7 @@ Map Area End
 }
 
 .footer-widget .footer-list li a {
-  color: #ffffff;
+  color: #252525;
   font-weight: 400;
 }
 
@@ -6352,13 +6352,13 @@ Map Area End
 
 .footer-widget .footer-blog li h3 {
   font-size: 16px;
-  color: #ffffff;
+  color: #252525;
   margin-bottom: 5px;
   /* max-width: 200px; */
 }
 
 .footer-widget .footer-blog li h3 a {
-  color: #ffffff;
+  color: #252525;
   line-height: 1.4;
   overflow: hidden;
   white-space: nowrap;
@@ -6430,6 +6430,7 @@ Map Area End
 .copy-right-area {
   padding: 15px 0;
   border-top: 1px solid #0071dc61;
+  background-color: #070b3b;
 }
 
 .copy-right-text {

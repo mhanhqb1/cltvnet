@@ -4,10 +4,10 @@ $products = getLastestPosts(1);
 $cates = getFooterCates();
 ?>
 <footer class="footer-area footer-bg">
-    <div class="container">
+    <div class="container-max">
         <div class="footer-top pt-100 pb-70">
             <div class="row">
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-lg-3 col-sm-6">
                     <div class="footer-widget">
                         <div class="footer-logo">
                             <a href="{{ url('/') }}">
@@ -35,7 +35,44 @@ $cates = getFooterCates();
                 </div>
                 <div class="col-lg-2 col-sm-6">
                     <div class="footer-widget pl-2">
-                        <h3>{{ __('Cates') }}</h3>
+                        <h3>{{ __('Chi Nhánh') }}</h3>
+                        <ul class="footer-list">
+                            <li>
+                                <a href="#">
+                                    <i class="bx bx-chevron-right"></i>
+                                    {{ __('Hà Nội') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="bx bx-chevron-right"></i>
+                                    {{ __('Bắc Ninh') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="bx bx-chevron-right"></i>
+                                    {{ __('Hải Phòng') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="bx bx-chevron-right"></i>
+                                    {{ __('Đà Nẵng') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="bx bx-chevron-right"></i>
+                                    {{ __('Hồ Chí Minh') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-6">
+                    <div class="footer-widget pl-2">
+                        <h3>{{ __('Về VyTech') }}</h3>
                         <ul class="footer-list">
                             <li>
                                 <a href="{{ route('front.home.about_us') }}" target="_blank">
@@ -70,68 +107,107 @@ $cates = getFooterCates();
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="footer-widget pl-5">
-                        <h3>{{ __('Product') }}</h3>
-                        <ul class="footer-blog">
-                            @if (!$products->isEmpty())
-                            @foreach ($products as $p)
-                            @include('layouts.item_post_footer', ['item' => $p])
-                            @endforeach
-                            @endif
+                <div class="col-lg-2 col-sm-6">
+                    <div class="footer-widget pl-2">
+                        <h3>{{ __('Chăm Sóc Khách Hàng') }}</h3>
+                        <ul class="footer-list">
+                            <li>
+                                <a href="#">
+                                    <i class="bx bx-chevron-right"></i>
+                                    {{ __('Dành cho đại lý') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="bx bx-chevron-right"></i>
+                                    {{ __('Hướng dẫn mua hàng') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="bx bx-chevron-right"></i>
+                                    {{ __('Hình thức thanh toán') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="bx bx-chevron-right"></i>
+                                    {{ __('Đổi điểm thưởng') }}
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <div class="footer-widget pl-5">
-                        <h3>{{ __('Post') }}</h3>
-                        <ul class="footer-blog">
-                            @if (!$posts->isEmpty())
-                            @foreach ($posts as $p)
-                            @include('layouts.item_post_footer', ['item' => $p])
-                            @endforeach
-                            @endif
+                    <div class="footer-widget pl-2">
+                        <h3>{{ __('Chính Sách/Điều Khoản') }}</h3>
+                        <ul class="footer-list">
+                            <li>
+                                <a href="#">
+                                    <i class="bx bx-chevron-right"></i>
+                                    {{ __('Chính sách bảo mật') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="bx bx-chevron-right"></i>
+                                    {{ __('Chính sách bảo hành') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="bx bx-chevron-right"></i>
+                                    {{ __('Chính sách vận chuyển, Lắp đặt') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="bx bx-chevron-right"></i>
+                                    {{ __('Chính sách đổi trả, hoàn tiền') }}
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="copy-right-area">
-            <div class="top-footer-social">
-                <ul>
-                    @if (!empty($facebook_url))
-                    <li>
-                        <a href="{{ $facebook_url }}" target="_blank">
-                            <i class='bx bxl-facebook'></i>
-                        </a>
-                    </li>
-                    @endif
-                    @if (!empty($twitter_url))
-                    <li>
-                        <a href="{{ $twitter_url }}" target="_blank">
-                            <i class='bx bxl-twitter'></i>
-                        </a>
-                    </li>
-                    @endif
-                    @if (!empty($instagram_url))
-                    <li>
-                        <a href="{{ $instagram_url }}" target="_blank">
-                            <i class='bx bxl-instagram'></i>
-                        </a>
-                    </li>
-                    @endif
-                </ul>
-            </div>
-            <div class="copy-right-text">
-                <p>
-                    Copyright © <script>
-                        document.write(new Date().getFullYear())
-                    </script> <a href="{{ url('/') }}">{{ env('APP_NAME') }}</a>. All rights reserved.
-                </p>
-            </div>
-        </div>
+
     </div>
 </footer>
+<div class="copy-right-area">
+    <div class="top-footer-social">
+        <ul>
+            @if (!empty($facebook_url))
+            <li>
+                <a href="{{ $facebook_url }}" target="_blank">
+                    <i class='bx bxl-facebook'></i>
+                </a>
+            </li>
+            @endif
+            @if (!empty($twitter_url))
+            <li>
+                <a href="{{ $twitter_url }}" target="_blank">
+                    <i class='bx bxl-twitter'></i>
+                </a>
+            </li>
+            @endif
+            @if (!empty($instagram_url))
+            <li>
+                <a href="{{ $instagram_url }}" target="_blank">
+                    <i class='bx bxl-instagram'></i>
+                </a>
+            </li>
+            @endif
+        </ul>
+    </div>
+    <div class="copy-right-text">
+        <p>
+            Copyright © <script>
+                document.write(new Date().getFullYear())
+            </script> <a href="{{ url('/') }}">{{ env('APP_NAME') }}</a>. All rights reserved.
+        </p>
+    </div>
+</div>
 
 
 <!-- <div class="switch-box">
