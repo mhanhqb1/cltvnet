@@ -95,4 +95,100 @@ class HomeController extends Controller
     {
         return view('front.home.flaticon');
     }
+
+    public function danhChoDaiLy()
+    {
+        $name = 'danh_cho_dai_ly';
+        $pageTitle = __(StaticPage::$pages[$name]);
+        $page = StaticPage::where('name', $name)->first();
+        return view('front.home.static_page', compact(
+            'pageTitle',
+            'name',
+            'page'
+        ));
+    }
+
+    public function huongDanMuaHang()
+    {
+        $name = 'huong_dan_mua_hang';
+        $pageTitle = __(StaticPage::$pages[$name]);
+        $page = StaticPage::where('name', $name)->first();
+        return view('front.home.static_page', compact(
+            'pageTitle',
+            'name',
+            'page'
+        ));
+    }
+
+    public function hinhThucThanhToan()
+    {
+        $name = 'hinh_thuc_thanh_toan';
+        $pageTitle = __(StaticPage::$pages[$name]);
+        $page = StaticPage::where('name', $name)->first();
+        return view('front.home.static_page', compact(
+            'pageTitle',
+            'name',
+            'page'
+        ));
+    }
+
+    public function doiDiemThuong()
+    {
+        $name = 'doi_diem_thuong';
+        $pageTitle = __(StaticPage::$pages[$name]);
+        $page = StaticPage::where('name', $name)->first();
+        return view('front.home.static_page', compact(
+            'pageTitle',
+            'name',
+            'page'
+        ));
+    }
+
+    public function chinhSachBaoMat()
+    {
+        $name = 'chinh_sach_bao_mat';
+        $pageTitle = __(StaticPage::$pages[$name]);
+        $page = StaticPage::where('name', $name)->first();
+        return view('front.home.static_page', compact(
+            'pageTitle',
+            'name',
+            'page'
+        ));
+    }
+
+    public function chinhSachBaoHanh()
+    {
+        $name = 'chinh_sach_bao_hanh';
+        $pageTitle = __(StaticPage::$pages[$name]);
+        $page = StaticPage::where('name', $name)->first();
+        return view('front.home.static_page', compact(
+            'pageTitle',
+            'name',
+            'page'
+        ));
+    }
+
+    public function chinhSachVanChuyenLapDat()
+    {
+        $name = 'chinh_sach_van_chuyen_lap_dat';
+        $pageTitle = __(StaticPage::$pages[$name]);
+        $page = StaticPage::where('name', $name)->first();
+        return view('front.home.static_page', compact(
+            'pageTitle',
+            'name',
+            'page'
+        ));
+    }
+
+    public function chinhSachDoiTraHoanTien()
+    {
+        $name = 'chinh_sach_doi_tra_hoan_tien';
+        $pageTitle = __(StaticPage::$pages[$name]);
+        $page = StaticPage::where('name', $name)->first();
+        return view('front.home.static_page', compact(
+            'pageTitle',
+            'name',
+            'page'
+        ));
+    }
 }

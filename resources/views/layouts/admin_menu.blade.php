@@ -1,4 +1,16 @@
 <?php
+
+use App\Models\StaticPage;
+
+$staticPages = [];
+foreach (StaticPage::$pages as $k => $v) {
+    $staticPages[] = [
+        'name' => $v,
+        'route' => 'admin.static_page.index',
+        'params' => ['name' => $k]
+    ];
+}
+$fullUrl = url()->full();
 $menuData = [
     [
         'name' => 'Dashboard',
@@ -79,18 +91,7 @@ $menuData = [
         'name' => 'Quản lý trang tĩnh',
         'route' => '',
         'className' => 'nav-icon fas fa-edit',
-        'subMenu' => [
-            [
-                'name' => 'About us',
-                'route' => 'admin.static_page.index',
-                'params' => ['name' => 'about_us']
-            ],
-            [
-                'name' => 'Term and Services',
-                'route' => 'admin.static_page.index',
-                'params' => ['name' => 'term_and_services']
-            ]
-        ]
+        'subMenu' => $staticPages
     ],
     [
         'name' => 'Cấu hình website',
@@ -155,10 +156,17 @@ $menuData = [
                     <ul class="nav nav-treeview">
                         @foreach($menu['subMenu'] as $subMenu)
                         <li class="nav-item">
-                            <a href="{{ !empty($subMenu['route']) ? route($subMenu['route'], !empty($subMenu['params']) ? $subMenu['params'] : []) : '#' }}" class="nav-link {{ $routeName == $subMenu['route'] ? 'active' : '' }}">
+                            @if (!empty($subMenu['params']))
+                            <a href="{{ !empty($subMenu['route']) ? route($subMenu['route'], $subMenu['params']) : '#' }}" class="nav-link {{ $fullUrl == route($subMenu['route'], $subMenu['params']) ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ $subMenu['name'] }}</p>
                             </a>
+                            @else
+                            <a href="{{ !empty($subMenu['route']) ? route($subMenu['route']) : '#' }}" class="nav-link {{ $routeName == $subMenu['route'] ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ $subMenu['name'] }}</p>
+                            </a>
+                            @endif
                         </li>
                         @endforeach
                     </ul>

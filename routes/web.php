@@ -50,6 +50,15 @@ Route::get('/du-an', [FrontPost::class, 'productIndex'])->name('front.product.in
 Route::get('/du-an/{slug}', [FrontPost::class, 'productDetail'])->name('front.product.detail');
 Route::get('/danh-muc/{slug}', [FrontPost::class, 'cateDetail'])->name('front.post.cate_detail');
 
+Route::get('/danh-cho-dai-ly', [HomeController::class, 'danhChoDaiLy'])->name('front.home.danhChoDaiLy');
+Route::get('/huong-dan-mua-hang', [HomeController::class, 'huongDanMuaHang'])->name('front.home.huongDanMuaHang');
+Route::get('/hinh-thuc-thanh-toan', [HomeController::class, 'hinhThucThanhToan'])->name('front.home.hinhThucThanhToan');
+Route::get('/doi-diem-thuong', [HomeController::class, 'doiDiemThuong'])->name('front.home.doiDiemThuong');
+Route::get('/chinh-sach-bao-mat', [HomeController::class, 'chinhSachBaoMat'])->name('front.home.chinhSachBaoMat');
+Route::get('/chinh-sach-bao-hanh', [HomeController::class, 'chinhSachBaoHanh'])->name('front.home.chinhSachBaoHanh');
+Route::get('/chinh-sach-van-chuyen-lap-dat', [HomeController::class, 'chinhSachVanChuyenLapDat'])->name('front.home.chinhSachVanChuyenLapDat');
+Route::get('/chinh-sach-doi-tra-hoan-tien', [HomeController::class, 'chinhSachDoiTraHoanTien'])->name('front.home.chinhSachDoiTraHoanTien');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

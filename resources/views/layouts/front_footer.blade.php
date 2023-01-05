@@ -152,25 +152,25 @@ $cates = getFooterCates();
                         <h3>{{ __('Chăm Sóc Khách Hàng') }}</h3>
                         <ul class="footer-list">
                             <li>
-                                <a href="#">
+                                <a href="{{ route('front.home.danhChoDaiLy') }}">
                                     <i class="bx bx-chevron-right"></i>
                                     {{ __('Dành cho đại lý') }}
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{{ route('front.home.huongDanMuaHang') }}">
                                     <i class="bx bx-chevron-right"></i>
                                     {{ __('Hướng dẫn mua hàng') }}
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{{ route('front.home.hinhThucThanhToan') }}">
                                     <i class="bx bx-chevron-right"></i>
                                     {{ __('Hình thức thanh toán') }}
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{{ route('front.home.doiDiemThuong') }}">
                                     <i class="bx bx-chevron-right"></i>
                                     {{ __('Đổi điểm thưởng') }}
                                 </a>
@@ -183,25 +183,25 @@ $cates = getFooterCates();
                         <h3>{{ __('Chính Sách/Điều Khoản') }}</h3>
                         <ul class="footer-list">
                             <li>
-                                <a href="#">
+                                <a href="{{ route('front.home.chinhSachBaoMat') }}">
                                     <i class="bx bx-chevron-right"></i>
                                     {{ __('Chính sách bảo mật') }}
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{{ route('front.home.chinhSachBaoHanh') }}">
                                     <i class="bx bx-chevron-right"></i>
                                     {{ __('Chính sách bảo hành') }}
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{{ route('front.home.chinhSachVanChuyenLapDat') }}">
                                     <i class="bx bx-chevron-right"></i>
-                                    {{ __('Chính sách vận chuyển, Lắp đặt') }}
+                                    {{ __('Chính sách vận chuyển, lắp đặt') }}
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{{ route('front.home.chinhSachDoiTraHoanTien') }}">
                                     <i class="bx bx-chevron-right"></i>
                                     {{ __('Chính sách đổi trả, hoàn tiền') }}
                                 </a>
