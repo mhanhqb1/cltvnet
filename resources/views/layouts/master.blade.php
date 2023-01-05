@@ -54,8 +54,8 @@ $url = url()->full();
     <link rel="stylesheet" href="/css/magnific-popup.css">
     <link rel="stylesheet" href="/css/nice-select.min.css">
     <link rel="stylesheet" href="/css/meanmenu.css">
-    <link rel="stylesheet" href="/css/style.css?{{ date('Y-m-d') }}">
-    <link rel="stylesheet" href="/css/responsive.css?{{ date('Y-m-d') }}">
+    <link rel="stylesheet" href="/css/style.css?{{ time() }}">
+    <link rel="stylesheet" href="/css/responsive.css?{{ time() }}">
     <link rel="stylesheet" href="/css/theme-dark.css">
     @stack('css')
 </head>

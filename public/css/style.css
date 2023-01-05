@@ -6941,6 +6941,42 @@ Home Page Six Css
   opacity: 0.1;
 }
 
+.footer-social {
+    background-color: #0071dc;
+    padding: 24px;
+}
+.footer-social .container-max {
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+.footer-social .footer-social-left {
+    flex: 1;
+}
+.footer-social h3,
+.footer-social ul,
+.footer-social ul li {
+    display: inline-block;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+.footer-social h3 {
+    font-size: 22px;
+}
+.footer-social .footer-widget {
+    margin: 0;
+    padding: 0;
+}
+.footer-social ul li a {
+    color: #fff;
+    font-size: 36px;
+    margin-left: 12px;
+}
+.footer-social ul li a:hover {
+    color: #ffc221;
+}
+
 /*==================================
 Home Page Six Css End
 =====================================*/

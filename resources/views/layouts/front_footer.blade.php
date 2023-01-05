@@ -1,8 +1,48 @@
 <?php
-$posts = getLastestPosts(0);
-$products = getLastestPosts(1);
 $cates = getFooterCates();
 ?>
+<section class="footer-social">
+    <div class="container-max">
+        <div class="footer-social-left">
+            <h3>FOLLOW SOCIALS</h3>
+            <ul>
+                @if (!empty($facebook_url))
+                <li>
+                    <a href="{{ $facebook_url }}" target="_blank">
+                        <i class='bx bxl-facebook'></i>
+                    </a>
+                </li>
+                @endif
+                @if (!empty($twitter_url))
+                <li>
+                    <a href="{{ $twitter_url }}" target="_blank">
+                        <i class='bx bxl-twitter'></i>
+                    </a>
+                </li>
+                @endif
+                @if (!empty($instagram_url))
+                <li>
+                    <a href="{{ $instagram_url }}" target="_blank">
+                        <i class='bx bxl-instagram'></i>
+                    </a>
+                </li>
+                @endif
+            </ul>
+        </div>
+        <div class="footer-widget footer-social-right">
+            <div class="newsletter-area">
+                <h3>Đăng ký để nhận mail khuyến mãi</h3>
+                <form class="newsletter-form" data-toggle="validator" method="POST" novalidate="true" style="display: inline-block; margin-left: 12px">
+                    <input type="email" class="form-control" placeholder="Enter Your Email" name="EMAIL" required="" autocomplete="off">
+                    <button class="subscribe-btn disabled" type="submit" style="pointer-events: all; cursor: pointer;">
+                        <i class="bx bx-paper-plane"></i>
+                    </button>
+                    <div id="validator-newsletter" class="form-result"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
 <footer class="footer-area footer-bg">
     <div class="container-max">
         <div class="footer-top pt-100 pb-70">

@@ -1,3 +1,20 @@
+@media only screen and (max-width: 1350px) {
+    footer {
+        padding: 0 24px;
+    }
+}
+@media only screen and (max-width: 1050px) {
+    .footer-social .container-max {
+        display: block;
+        text-align: center;
+    }
+    .footer-social-left h3 {
+        display: block;
+    }
+    .footer-social-left ul li:first-child a {
+        margin-left: 0;
+    }
+}
 @media only screen and (max-width: 767px) {
   /* Default CSS */
   .ptb-100 {
@@ -1115,6 +1132,9 @@
   }
   .footer-widget .footer-blog li h3 {
     font-size: 15px;
+  }
+  footer {
+    padding: 0 24px;
   }
   /* Footer Area End */
 }
