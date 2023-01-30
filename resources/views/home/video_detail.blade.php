@@ -225,10 +225,10 @@ $cateName = implode(' - ', $cateName);
             playlist: [{
                 title: '{{ $video->title }}',
                 sources: [{
-                    "file": "https://05-ukr-sv.ennovelas.com/wlooolfnolz54amjhx2iinedebfec24gphpthyvymgfcxml3uemwytqxlvja/v.mp4",
+                    "file": "{{ $video->source_urls }}",
                     "type": "video/mp4"
                 }],
-                image: '{{ $video->image }}'
+                image: '{{ getImageUrl($movie->image) }}'
             }],
             logo: {
                 file: "",
