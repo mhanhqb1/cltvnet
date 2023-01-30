@@ -14,12 +14,14 @@ $cateName = implode(' - ', $cateName);
     .panel-body.pprc.active a {
         color: #cd1d1f !important;
     }
+
     .related-movies li {
         display: flex;
         align-items: center;
         padding: 10px 0;
         border-bottom: 1px dashed #ccc;
     }
+
     .related-movies li:first-child {
         padding-top: 0;
     }
@@ -44,8 +46,11 @@ $cateName = implode(' - ', $cateName);
             <div class="row">
                 <div class="col-sm-12">
                     <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;" itemscope itemtype="https://schema.org/VideoObject">
+                        @if ($video->source_type == 3)
+                        <video id="my-video-player" style="width: 100%; height: 100%" class="video-js vjs-default-skin vjs-fluid"></video>
+                        @else:
                         <?php
-                        switch($video->source_type) {
+                        switch ($video->source_type) {
                             case 1:
                                 $iframeUrl = '//ok.ru/videoembed/' . $video->source_urls;
                                 break;
@@ -62,6 +67,7 @@ $cateName = implode(' - ', $cateName);
                         <meta itemprop="thumbnailUrl" content="{{ getImageUrl($movie->image) }}" />
                         <meta itemprop="embedUrl" content="{{ $iframeUrl }}" />
                         <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden" frameborder="0" type="text/html" src="{{ $iframeUrl }}" width="100%" height="100%" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
+                        @endif
                     </div>
                 </div>
                 <div class="col-sm-12">
@@ -83,7 +89,7 @@ $cateName = implode(' - ', $cateName);
         </div>
 
         @if(!$relatedMovies->isEmpty())
-            @include('layouts.related_movies', ['relatedMovies' => $relatedMovies])
+        @include('layouts.related_movies', ['relatedMovies' => $relatedMovies])
         @endif
 
         @include('layouts.detail_ads')
@@ -209,3 +215,34 @@ $cateName = implode(' - ', $cateName);
     </div>
 </div>
 @endsection
+
+@push('scripts')
+@if ($video->source_type == 3)
+<script src="https://content.jwplatform.com/libraries/Jq6HIbgz.js"></script>
+<script>
+    $(document).ready(function() {
+        const playerInstance = jwplayer("my-video-player").setup({
+            playlist: [{
+                title: '{{ $video->title }}',
+                sources: [{
+                    "file": "https://05-ukr-sv.ennovelas.com/wlooolfnolz54amjhx2iinedebfec24gphpthyvymgfcxml3uemwytqxlvja/v.mp4",
+                    "type": "video/mp4"
+                }],
+                image: '{{ $video->image }}'
+            }],
+            logo: {
+                file: "",
+                "link": "{{ route('home') }}",
+                "hide": "false",
+                "position": "top-right"
+            },
+            // "advertising": {
+            //     "client": "vast",
+            //     "schedule": ['.$ads.']
+            //     }
+            // }
+        });
+    });
+</script>
+@endif
+@endpush
