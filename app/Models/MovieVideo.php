@@ -28,12 +28,14 @@ class MovieVideo extends Model
     public static $sourceTypeValue = [
         'daily' => 0,
         'ok.ru' => 1,
-        'abyss' => 2
+        'abyss' => 2,
+        'direct' => 3
     ];
     public static $sourceTypes = [
         0 => 'Dailymotion',
         1 => 'Ok.ru',
-        2 => 'abyss.to'
+        2 => 'abyss.to',
+        3 => 'Direct'
     ];
 
     public function movie() {
