@@ -48,7 +48,7 @@ $cateName = implode(' - ', $cateName);
                     <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;" itemscope itemtype="https://schema.org/VideoObject">
                         @if ($video->source_type == 3)
                         <video id="my-video-player" style="width: 100%; height: 100%" class="video-js vjs-default-skin vjs-fluid"></video>
-                        @else:
+                        @else
                         <?php
                         switch ($video->source_type) {
                             case 1:
