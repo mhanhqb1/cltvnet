@@ -72,6 +72,14 @@ function getNumber($str) {
     return preg_replace('/[^0-9]/', '', $str);
 }
 
+function getStringBetweenTwoStrings($str, $start, $end) {
+    $result = '';
+    if (preg_match('/'.$start.'(.*?)'.$end.'/', $str, $match) == 1) {
+        $result = $match[1];
+    }
+    return $result;
+}
+
 function callApi($url) {
     $curl = curl_init();
 
