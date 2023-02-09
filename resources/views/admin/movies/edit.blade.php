@@ -71,7 +71,25 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="inputImage">Upload ảnh</label>
+                        <label for="video_url">Video</label>
+                        @if (!empty($video))
+                        <input type="text" disabled value="{{ getImageUrl($video->source_urls) }}" class="form-control"/>
+                        @endif
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="video_url" name="video_url">
+                                <label class="custom-file-label" for="video_url">Chọn file</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text">Upload</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputImage">Upload ảnh thumbnail</label>
+                        @if (!empty($item->image))
+                        <div><img src="{{ getImageUrl($item->image) }}" width="200px" /></div>
+                        @endif
                         <div class="input-group">
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="inputImage" name="image">
@@ -83,10 +101,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputImageUrl">Link ảnh</label>
-                        <input type="text" id="inputImageUrl" class="form-control" name="image_url" value="{{ !empty(old('image_url')) ? old('image_url') : $item->image }}">
+                        <label for="total_view">Tổng view</label>
+                        <input type="text" id="total_view" class="form-control" name="total_view" value="{{ old('total_view') ? old('total_view') : $item->total_view }}">
                     </div>
-                    <div class="form-group">
+                    <input type="hidden" name="is_series" value="0" />
+                    <!-- <div class="form-group">
                         <label>Thể loại</label>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" id="radio1" name="is_series" value="0" {!! $item->is_series == 0 ? 'checked="checked"' : '' !!}>
@@ -96,12 +115,12 @@
                             <input class="form-check-input" type="radio" id="radio2" name="is_series" value="1" {!! $item->is_series == 1 ? 'checked="checked"' : '' !!}>
                             <label class="form-check-label" for="radio2">Phim bộ</label>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="inputYear">Năm sản xuất</label>
                         <input type="text" id="inputYear" class="form-control" name="year" value="{{ old('year') ? old('year') : $item->year }}">
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="inputDailyVideoId">Dailymotion Video ID</label>
                         <input type="text" id="inputDailyVideoId" class="form-control" name="daily_video_id" value="{{ old('daily_video_id') ? old('daily_video_id') : $item->daily_video_id }}">
                     </div>
@@ -116,7 +135,7 @@
                     <div class="form-group">
                         <label for="ultra_keyword">Ultra Keyword</label>
                         <input type="text" id="ultra_keyword" class="form-control" name="ultra_keyword" value="{{ old('ultra_keyword') ? old('ultra_keyword') : $item->ultra_keyword }}">
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -137,34 +156,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="card card-secondary">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        Danh sách video
-                        <a href="{{ route('admin.movies.addVideo', ['movie_id' => $item->id]) }}" class="btn btn-primary">Add video</a>
-                    </h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <table class="table table-hover" id="videoDataTable">
-                        <thead>
-                            <tr>
-                                <td>#</td>
-                                <td>Image</td>
-                                <td>Name</td>
-                                <td>Description</td>
-                                <td></td>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-        </div>
     </div>
     <div class="row">
         <div class="col-12">
@@ -182,19 +173,6 @@
     $(document).ready(function() {
         $('.textEditor').summernote();
         $('.select2').select2();
-
-        $('#videoDataTable').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{!! route('admin.movies.indexDataVideo', ['movie_id' => $item->id]) !!}',
-            columns: [
-                { data: 'id', name: 'id' },
-                { data: 'image', name: 'image', orderable: false, searchable: false },
-                { data: 'name', name: 'name' },
-                { data: 'description', name: 'description' },
-                { data: 'action', name: 'action', orderable: false, searchable: false }
-            ]
-        });
     });
 </script>
 @endpush

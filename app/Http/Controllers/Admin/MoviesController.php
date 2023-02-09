@@ -11,7 +11,6 @@ use App\Models\MovieVideo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Yajra\Datatables\Datatables;
-
 class MoviesController extends Controller
 {
     private $model;
@@ -46,9 +45,11 @@ class MoviesController extends Controller
                 }
                 return $html;
             })
+            ->addColumn('total_view', function($item) {
+                return number_format($item->total_view);
+            })
             ->addColumn('action', function ($item) {
                 return '<a href="'.route('admin.movies.edit', $item->id).'" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> Edit</a>
-                <a href="'.route('admin.movies.addVideo', ['movie_id' => $item->id]).'" class="btn btn-xs btn-info"><i class="fas fa-edit"></i> Add video</a>
                 <form action="'.route('admin.movies.delete', $item->id).'" method="POST" style="display:inline-block;">
                     <input type="hidden" name="_method" value="delete"/>
                     '.csrf_field().'
@@ -56,7 +57,7 @@ class MoviesController extends Controller
                 </form>
                 ';
             })
-            ->rawColumns(['image', 'action'])
+            ->rawColumns(['image', 'action', 'total_view'])
             ->make(true);
     }
 
@@ -73,7 +74,8 @@ class MoviesController extends Controller
         $cates = Cate::get();
         $countries = Country::get();
         $movieCates = MovieCate::where('movie_id', $id)->pluck('cate_id')->toArray();
-        return view('admin.movies.edit', compact('item', 'cates', 'movieCates', 'countries'));
+        $video = MovieVideo::where('movie_id', $id)->first();
+        return view('admin.movies.edit', compact('item', 'cates', 'movieCates', 'countries', 'video'));
     }
 
     public function save(Request $request)
@@ -151,7 +153,15 @@ class MoviesController extends Controller
     public function delete($id)
     {
         $this->model->find($id)->delete();
-        MovieVideo::where('movie_id', $id)->delete();
+        $video = MovieVideo::where('movie_id', $id)->first();
+        if (!empty($video)) {
+            if (!empty($video->source_urls) && $video->source_type == MovieVideo::$sourceTypeValue['direct']) {
+                if (\File::exists(public_path('storage/'.$video->source_urls))) {
+                    \File::delete(public_path('storage/'.$video->source_urls));
+                }
+            }
+            $video->delete();
+        }
         return redirect()->route('admin.movies.index')->with('success', 'Dữ liệu đã được xóa thành công');
     }
 
