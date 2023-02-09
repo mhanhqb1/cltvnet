@@ -79,19 +79,24 @@ class MoviesController extends Controller
     public function save(Request $request)
     {
         $image = '';
+        $videoUrl = '';
         $nameValidate = 'required|unique:movies|max:255';
         if (!empty($request->id)) {
             $nameValidate = 'required|unique:movies,name,'.$request->id.'|max:255';
         }
         $request->validate([
             'name' => $nameValidate,
-            'image' => 'nullable|image|max:1024'
+            'image' => 'nullable|image|max:1024',
+            'video_url' => 'nullable|mimes:mp4,ogx,oga,ogv,ogg,webm|max:1024000'
         ]);
         $slug = createSlug($request->name);
         if (!empty($request->image)) {
-            $image = $request->file('image')->storePubliclyAs('phim', $slug.'-'.time().'.jpg', 'public');
+            $image = $request->file('image')->storePubliclyAs('images', $slug.'-'.time().'.jpg', 'public');
         } elseif (!empty($request->image_url)) {
             $image = $request->image_url;
+        }
+        if (!empty($request->video_url)) {
+            $videoUrl = $request->file('video_url')->storePubliclyAs('videos', $slug.'-'.time().'.mp4', 'public');
         }
         if (!empty($request->id)) {
             $item = $this->model->find($request->id);
@@ -110,6 +115,7 @@ class MoviesController extends Controller
         $item->daily_video_id = !empty($request->daily_video_id) ? $request->daily_video_id : '';
         $item->ok_ru_id = !empty($request->ok_ru_id) ? $request->ok_ru_id : '';
         $item->ultra_keyword = !empty($request->ultra_keyword) ? $request->ultra_keyword : '';
+        $item->total_view = !empty($request->total_view) ? $request->total_view : 0;
         if (!empty($image)) {
             $item->image = $image;
         }
@@ -122,6 +128,20 @@ class MoviesController extends Controller
                         'movie_id' => $item->id
                     ]);
                 }
+            }
+            if (!empty($videoUrl)) {
+                MovieVideo::updateOrCreate([
+                    'name' => 'Video',
+                    'position' => 1,
+                    'movie_id' => $item->id
+                ], [
+                    'slug' => 'video-1',
+                    'movie_id' => $item->id,
+                    'name' => 'Video',
+                    'position' => 1,
+                    'source_urls' => $videoUrl,
+                    'source_type' => MovieVideo::$sourceTypeValue['direct']
+                ]);
             }
             return redirect()->route('admin.movies.index')->with('success', 'Dữ liệu đã được cập nhật thành công');
         }

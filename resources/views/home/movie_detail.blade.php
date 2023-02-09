@@ -6,6 +6,7 @@ if (!empty($movie->cates)) {
     }
 }
 $cateName = implode(' - ', $cateName);
+$video = $movie->videos[0];
 ?>
 @extends('layouts.front_master')
 
@@ -43,18 +44,29 @@ $cateName = implode(' - ', $cateName);
             </h2>
             <div class="faq-content">
                 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;" itemscope itemtype="https://schema.org/VideoObject">
-                    <?php
-                    $iframeUrl = 'https://geo.dailymotion.com/player/x9pog.html?video=' . $movie->videos[0]->source_urls;
-                    if (!empty($movie->videos[0]->source_type)) {
-                        $iframeUrl = '//ok.ru/videoembed/' . $movie->videos[0]->source_urls;
-                    }
-                    ?>
                     <meta itemprop="name" content="{{ $pageTitle }}" />
                     <meta itemprop="description" content="{{ $movie->description }}" />
-                    <meta itemprop="uploadDate" content="{{ date('Y-m-d\TH:i:s\Z', strtotime($movie->videos[0]->updated_at)) }}" />
+                    <meta itemprop="uploadDate" content="{{ date('Y-m-d\TH:i:s\Z', strtotime($video->updated_at)) }}" />
                     <meta itemprop="thumbnailUrl" content="{{ getImageUrl($movie->image) }}" />
+                    @if ($video->source_type == 3)
+                    <meta itemprop="contentUrl" content="{{ getImageUrl($video->source_urls) }}" />
+                    <video id="my-video-player" style="width: 100%; height: 100%" class="video-js vjs-default-skin vjs-fluid"></video>
+                    @else
+                    <?php
+                    switch ($video->source_type) {
+                        case 1:
+                            $iframeUrl = '//ok.ru/videoembed/' . $video->source_urls;
+                            break;
+                        case 2:
+                            $iframeUrl = 'https://short.ink/' . $video->source_urls;
+                            break;
+                        default:
+                            $iframeUrl = 'https://geo.dailymotion.com/player/x9pog.html?video=' . $video->source_urls;
+                    }
+                    ?>
                     <meta itemprop="embedUrl" content="{{ $iframeUrl }}" />
                     <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden" frameborder="0" type="text/html" src="{{ $iframeUrl }}" width="100%" height="100%" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
+                    @endif
                 </div>
             </div>
         </div>
@@ -206,3 +218,34 @@ $cateName = implode(' - ', $cateName);
     </div>
 </div>
 @endsection
+
+@push('scripts')
+@if ($video->source_type == 3)
+<script src="https://content.jwplatform.com/libraries/Jq6HIbgz.js"></script>
+<script>
+    $(document).ready(function() {
+        const playerInstance = jwplayer("my-video-player").setup({
+            playlist: [{
+                title: '{{ $video->title }}',
+                sources: [{
+                    "file": "{{ getImageUrl($video->source_urls) }}",
+                    "type": "video/mp4"
+                }],
+                image: '{{ getImageUrl($movie->image) }}'
+            }],
+            logo: {
+                file: "",
+                "link": "{{ route('home') }}",
+                "hide": "false",
+                "position": "top-right"
+            },
+            // "advertising": {
+            //     "client": "vast",
+            //     "schedule": ['.$ads.']
+            //     }
+            // }
+        });
+    });
+</script>
+@endif
+@endpush

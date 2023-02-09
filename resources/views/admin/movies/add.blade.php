@@ -70,7 +70,19 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="inputImage">Upload ảnh</label>
+                        <label for="video_url">Video</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="video_url" name="video_url">
+                                <label class="custom-file-label" for="video_url">Chọn file</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text">Upload</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputImage">Upload ảnh thumbnail</label>
                         <div class="input-group">
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="inputImage" name="image">
@@ -82,10 +94,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputImageUrl">Link ảnh</label>
-                        <input type="text" id="inputImageUrl" class="form-control" name="image_url" value="{{ old('image_url') }}">
+                        <label for="total_view">Tổng view</label>
+                        <input type="text" id="total_view" class="form-control" name="total_view" value="{{ old('total_view') }}">
                     </div>
-                    <div class="form-group">
+                    <input type="hidden" name="is_series" value="0" />
+                    <!-- <div class="form-group">
                         <label>Thể loại</label>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" id="radio1" name="is_series" value="0">
@@ -95,12 +108,12 @@
                             <input class="form-check-input" type="radio" id="radio2" name="is_series" value="1">
                             <label class="form-check-label" for="radio2">Phim bộ</label>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="inputYear">Năm sản xuất</label>
                         <input type="text" id="inputYear" class="form-control" name="year" value="{{ old('year') }}">
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="inputDailyVideoId">Dailymotion Video ID</label>
                         <input type="text" id="inputDailyVideoId" class="form-control" name="daily_video_id" value="{{ old('daily_video_id') }}">
                     </div>
@@ -115,7 +128,7 @@
                     <div class="form-group">
                         <label for="ultra_keyword">Ultra Keyword</label>
                         <input type="text" id="ultra_keyword" class="form-control" name="ultra_keyword" value="{{ old('ultra_keyword') }}">
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
