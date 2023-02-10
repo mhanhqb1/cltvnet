@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CatesController;
 use App\Http\Controllers\Admin\MoviesController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CountriesController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Command
+Route::get('/command/migrate', function () {
+    Artisan::call('migrate');
+});
+Route::get('/command/install', function () {
+    Artisan::call('migrate');
+    Artisan::call('storage:link');
+});
+Route::get('/command/clearAll', function () {
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+});
 
 Auth::routes();
 
