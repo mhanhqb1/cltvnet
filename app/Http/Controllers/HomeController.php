@@ -156,6 +156,8 @@ class HomeController extends Controller
         if (empty($movie)) {
             return redirect()->route('home');
         }
+        $movie->total_view = $movie->total_view + 1;
+        $movie->save();
         $pageTitle = $movie->name;
         $metaDescription = $movie->description;
         $metaKeywords = $movie->tags;
