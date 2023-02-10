@@ -132,7 +132,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
+        <!-- <div class="col-md-12">
             <div class="card card-secondary">
                 <div class="card-header">
                     <h3 class="card-title">Thông tin chi tiết</h3>
@@ -148,7 +148,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="row">
         <div class="col-12">
