@@ -68,6 +68,9 @@ $video = $movie->videos[0];
                     <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden" frameborder="0" type="text/html" src="{{ $iframeUrl }}" width="100%" height="100%" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
                     @endif
                 </div>
+                <div style="margin-top: 12px;">
+                    View: <strong>{{ number_format($movie->total_view) }}</strong>
+                </div>
             </div>
         </div>
         @endif
