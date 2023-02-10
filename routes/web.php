@@ -73,7 +73,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
     });
 
     Route::middleware(['auth:admin'])->group(function() {
-        Route::view('/', 'admin.home')->name('home');
+        Route::get('/', [AdminController::class, 'dashboard'])->name('home');
         Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 
         // Post

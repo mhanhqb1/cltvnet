@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Admin;
+use App\Models\Cate;
+use App\Models\Country;
+use App\Models\Movie;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -26,5 +29,12 @@ class AdminController extends Controller
     public function logout() {
         Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
+    }
+
+    public function dashboard() {
+        $movieCnt = Movie::count();
+        $cateCnt = Cate::count();
+        $countryCnt = Country::count();
+        return view('admin.home', compact('movieCnt', 'cateCnt', 'countryCnt'));
     }
 }
