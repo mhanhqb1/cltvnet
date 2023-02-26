@@ -14,6 +14,7 @@ class Album extends Model
         'slug',
         'description',
         'total_view',
-        'user_id'
+        'user_id',
+        'is_hot'
     ];
 }

@@ -20,6 +20,7 @@ class CreateAlbumsTable extends Migration
             $table->text('description')->nullable();
             $table->integer('total_view')->default(0);
             $table->integer('user_id')->default(0);
+            $table->boolean('is_hot')->default(0);
             $table->timestamps();
         });
     }
