@@ -11,6 +11,7 @@ class Music extends Model
 
     protected $fillable = [
         'name',
+        // 'slug',
         'album_id',
         'image',
         'duration',
@@ -24,5 +25,10 @@ class Music extends Model
     public function cates()
     {
         return $this->hasManyThrough(Category::class, MusicCate::class, 'music_id', 'id', 'id', 'cate_id');
+    }
+
+    public function album()
+    {
+        return $this->belongsTo(Album::class, 'album_id');
     }
 }

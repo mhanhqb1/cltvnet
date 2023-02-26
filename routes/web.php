@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\MusicController;
 
 use App\Http\Controllers\ContactController as FrontContact;
 use App\Http\Controllers\PostController as FrontPost;
@@ -78,6 +79,14 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/posts/update/{id}', [PostController::class, 'update'])->name('post.update');
         Route::post('/posts/save', [PostController::class, 'save'])->name('post.save');
         Route::delete('/posts/{id}', [PostController::class, 'delete'])->name('post.delete');
+
+        // Post
+        Route::get('/music', [MusicController::class, 'index'])->name('music.index');
+        Route::get('/music/indexData', [MusicController::class, 'indexData'])->name('music.indexData');
+        Route::get('/music/add', [MusicController::class, 'add'])->name('music.add');
+        Route::get('/music/update/{id}', [MusicController::class, 'update'])->name('music.update');
+        Route::post('/music/save', [MusicController::class, 'save'])->name('music.save');
+        Route::delete('/music/{id}', [MusicController::class, 'delete'])->name('music.delete');
 
         // Contact
         Route::get('/contacts', [ContactController::class, 'index'])->name('contact.index');

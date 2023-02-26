@@ -21,6 +21,21 @@ $menuData = [
         ]
     ],
     [
+        'name' => 'Quản lý bài hát',
+        'route' => '',
+        'className' => 'nav-icon fas fa-music',
+        'subMenu' => [
+            [
+                'name' => 'Danh sách bài hát',
+                'route' => 'admin.music.index'
+            ],
+            [
+                'name' => 'Danh sách danh mục',
+                'route' => 'admin.category.index'
+            ]
+        ]
+    ],
+    [
         'name' => 'Quản lý liên hệ',
         'route' => 'admin.contact.index',
         'className' => 'nav-icon far fa-envelope'
