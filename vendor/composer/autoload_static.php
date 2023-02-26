@@ -555,6 +555,7 @@ class ComposerStaticInitf8f65ffb8bb2e48f7a89f89adfcc79ae
     );
 
     public static $classMap = array (
+        'App\\Console\\Commands\\MakePassword' => __DIR__ . '/../..' . '/app/Console/Commands/MakePassword.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Enums\\PostStatus' => __DIR__ . '/../..' . '/app/Enums/PostStatus.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -585,8 +586,12 @@ class ComposerStaticInitf8f65ffb8bb2e48f7a89f89adfcc79ae
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\Admin' => __DIR__ . '/../..' . '/app/Models/Admin.php',
+        'App\\Models\\Album' => __DIR__ . '/../..' . '/app/Models/Album.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Contact' => __DIR__ . '/../..' . '/app/Models/Contact.php',
+        'App\\Models\\Mp3User' => __DIR__ . '/../..' . '/app/Models/Mp3User.php',
+        'App\\Models\\Music' => __DIR__ . '/../..' . '/app/Models/Music.php',
+        'App\\Models\\MusicCate' => __DIR__ . '/../..' . '/app/Models/MusicCate.php',
         'App\\Models\\Post' => __DIR__ . '/../..' . '/app/Models/Post.php',
         'App\\Models\\PostCate' => __DIR__ . '/../..' . '/app/Models/PostCate.php',
         'App\\Models\\Setting' => __DIR__ . '/../..' . '/app/Models/Setting.php',

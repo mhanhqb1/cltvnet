@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Console\\Commands\\MakePassword' => $baseDir . '/app/Console/Commands/MakePassword.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Enums\\PostStatus' => $baseDir . '/app/Enums/PostStatus.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
@@ -36,8 +37,12 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Models\\Admin' => $baseDir . '/app/Models/Admin.php',
+    'App\\Models\\Album' => $baseDir . '/app/Models/Album.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
     'App\\Models\\Contact' => $baseDir . '/app/Models/Contact.php',
+    'App\\Models\\Mp3User' => $baseDir . '/app/Models/Mp3User.php',
+    'App\\Models\\Music' => $baseDir . '/app/Models/Music.php',
+    'App\\Models\\MusicCate' => $baseDir . '/app/Models/MusicCate.php',
     'App\\Models\\Post' => $baseDir . '/app/Models/Post.php',
     'App\\Models\\PostCate' => $baseDir . '/app/Models/PostCate.php',
     'App\\Models\\Setting' => $baseDir . '/app/Models/Setting.php',
