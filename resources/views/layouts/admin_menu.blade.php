@@ -32,6 +32,10 @@ $menuData = [
             [
                 'name' => 'Danh sách danh mục',
                 'route' => 'admin.category.index'
+            ],
+            [
+                'name' => 'Danh sách playlist',
+                'route' => 'admin.album.index'
             ]
         ]
     ],

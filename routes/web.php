@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\MusicController;
+use App\Http\Controllers\Admin\AlbumController;
 
 use App\Http\Controllers\ContactController as FrontContact;
 use App\Http\Controllers\PostController as FrontPost;
@@ -80,13 +81,21 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::post('/posts/save', [PostController::class, 'save'])->name('post.save');
         Route::delete('/posts/{id}', [PostController::class, 'delete'])->name('post.delete');
 
-        // Post
+        // Music
         Route::get('/music', [MusicController::class, 'index'])->name('music.index');
         Route::get('/music/indexData', [MusicController::class, 'indexData'])->name('music.indexData');
         Route::get('/music/add', [MusicController::class, 'add'])->name('music.add');
         Route::get('/music/update/{id}', [MusicController::class, 'update'])->name('music.update');
         Route::post('/music/save', [MusicController::class, 'save'])->name('music.save');
         Route::delete('/music/{id}', [MusicController::class, 'delete'])->name('music.delete');
+
+        // Album
+        Route::get('/album', [AlbumController::class, 'index'])->name('album.index');
+        Route::get('/album/indexData', [AlbumController::class, 'indexData'])->name('album.indexData');
+        Route::get('/album/add', [AlbumController::class, 'add'])->name('album.add');
+        Route::get('/album/update/{id}', [AlbumController::class, 'update'])->name('album.update');
+        Route::delete('/album/{id}', [AlbumController::class, 'delete'])->name('album.delete');
+        Route::post('/album/save', [AlbumController::class, 'save'])->name('album.save');
 
         // Contact
         Route::get('/contacts', [ContactController::class, 'index'])->name('contact.index');
