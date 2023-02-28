@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\MusicController;
 use App\Http\Controllers\Admin\AlbumController;
+use App\Http\Controllers\Admin\Mp3UserController;
 
 use App\Http\Controllers\ContactController as FrontContact;
 use App\Http\Controllers\PostController as FrontPost;
@@ -96,6 +97,14 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/album/update/{id}', [AlbumController::class, 'update'])->name('album.update');
         Route::delete('/album/{id}', [AlbumController::class, 'delete'])->name('album.delete');
         Route::post('/album/save', [AlbumController::class, 'save'])->name('album.save');
+
+        // Mp3 User
+        Route::get('/mp3_user', [Mp3UserController::class, 'index'])->name('mp3_user.index');
+        Route::get('/mp3_user/indexData', [Mp3UserController::class, 'indexData'])->name('mp3_user.indexData');
+        Route::get('/mp3_user/add', [Mp3UserController::class, 'add'])->name('mp3_user.add');
+        Route::get('/mp3_user/update/{id}', [Mp3UserController::class, 'update'])->name('mp3_user.update');
+        Route::delete('/mp3_user/{id}', [Mp3UserController::class, 'delete'])->name('mp3_user.delete');
+        Route::post('/mp3_user/save', [Mp3UserController::class, 'save'])->name('mp3_user.save');
 
         // Contact
         Route::get('/contacts', [ContactController::class, 'index'])->name('contact.index');

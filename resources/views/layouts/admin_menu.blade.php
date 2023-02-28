@@ -36,6 +36,10 @@ $menuData = [
             [
                 'name' => 'Danh sách playlist',
                 'route' => 'admin.album.index'
+            ],
+            [
+                'name' => 'Danh sách mp3 user',
+                'route' => 'admin.mp3_user.index'
             ]
         ]
     ],
