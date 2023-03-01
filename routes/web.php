@@ -86,6 +86,8 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/music', [MusicController::class, 'index'])->name('music.index');
         Route::get('/music/indexData', [MusicController::class, 'indexData'])->name('music.indexData');
         Route::get('/music/add', [MusicController::class, 'add'])->name('music.add');
+        Route::get('/music/import', [MusicController::class, 'import'])->name('music.import');
+        Route::post('/music/importCsv', [MusicController::class, 'importCsv'])->name('music.import_csv');
         Route::get('/music/update/{id}', [MusicController::class, 'update'])->name('music.update');
         Route::post('/music/save', [MusicController::class, 'save'])->name('music.save');
         Route::delete('/music/{id}', [MusicController::class, 'delete'])->name('music.delete');

@@ -9,6 +9,7 @@ use App\Models\Mp3User;
 use App\Models\Music;
 use App\Models\MusicCate;
 use Illuminate\Http\Request;
+use Laravel\Ui\Presets\React;
 use Yajra\Datatables\Datatables;
 
 class MusicController extends Controller
@@ -59,6 +60,58 @@ class MusicController extends Controller
             'albums',
             'mp3Users'
         ));
+    }
+
+    public function import()
+    {
+        return view('admin.music.import');
+    }
+
+    public function importCsv(Request $request)
+    {
+        mb_regex_encoding('UTF-8');
+        mb_internal_encoding('UTF-8');
+        $file = $request->file->getClientOriginalName();
+        $ext = pathinfo($file, PATHINFO_EXTENSION);
+        $filename = pathinfo($file, PATHINFO_BASENAME);
+        if ($ext != "csv") {
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Extension not match',
+                'filename'  => $filename
+            ]);
+            exit();
+        }
+        $data = [];
+        $error_status = false;
+        $error_message = "";
+        $source_file = $_FILES["file"]["tmp_name"];
+        $csvData = mb_convert_encoding(file_get_contents($source_file), 'UTF-8', 'UTF-16LE');
+        $lines = explode(PHP_EOL, $csvData);
+        foreach ($lines as $k => $line) {
+            if ($k == 0 || $line == '') {
+                continue;
+            }
+            $tmp = explode("\t", $line);
+            $num = count($tmp);
+            if ($num != 3) {
+                $error_message = "The format of row $k is incorrect";
+                $error_status = true;
+                break;
+            }
+            $mp3PlaylistId = convertAscii($tmp[0]);
+            $name = convertAscii($tmp[2]);
+            $cates = convertAscii($tmp[2]);
+        }
+        if ($error_status) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => $error_message,
+                'filename'  => $filename
+            ]);
+            exit();
+        }
+        die();
     }
 
     public function save(Request $request)

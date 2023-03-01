@@ -18,6 +18,7 @@ $params = $_GET;
 <div class="row" style="margin-bottom: 24px;">
     <div class="col-md-12">
         <a href="{{ route('admin.music.add') }}" class="btn btn-primary">{{ __('Add New') }}</a>
+        <a href="{{ route('admin.music.import') }}" class="btn btn-info">{{ __('Import') }}</a>
     </div>
 </div>
 <div class="row" style="margin-bottom: 24px;">
