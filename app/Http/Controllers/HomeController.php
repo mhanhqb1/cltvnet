@@ -202,6 +202,7 @@ class HomeController extends Controller
         $pageTitle = $movie->name . ' - ' . $video->name;
         $metaDescription = $movie->description;
         $metaKeywords = $movie->tags;
+        $metaKeywords .= ', '.strtolower($movie->name.' '.$video->name);
         $pageImage = getImageUrl($movie->image);
 
         // Get related movies
