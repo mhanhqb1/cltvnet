@@ -53,6 +53,7 @@ class AlbumController extends Controller
         $item->name = $request->name;
         $item->slug = createSlug($request->name);
         $item->description = $request->description;
+        $item->mp3_id = $request->mp3_id;
         $item->is_hot = !empty($request->is_hot) ? 1 : 0;
         if ($item->save()) {
             return redirect()->route('admin.album.index')->with('success', 'Dữ liệu đã được cập nhật thành công');

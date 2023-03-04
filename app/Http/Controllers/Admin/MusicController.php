@@ -82,6 +82,7 @@ class MusicController extends Controller
             ]);
             exit();
         }
+        $mp3Users = Mp3User::pluck('id', 'mp3_user_name')->toArray();
         $data = [];
         $error_status = false;
         $error_message = "";
@@ -94,14 +95,26 @@ class MusicController extends Controller
             }
             $tmp = explode("\t", $line);
             $num = count($tmp);
-            if ($num != 3) {
+            if ($num != 4) {
                 $error_message = "The format of row $k is incorrect";
                 $error_status = true;
                 break;
             }
             $mp3PlaylistId = convertAscii($tmp[0]);
-            $name = convertAscii($tmp[2]);
+            $name = convertAscii($tmp[1]);
             $cates = convertAscii($tmp[2]);
+            $mp3UserName = trim(convertAscii($tmp[3]));
+            if (!array_key_exists($mp3UserName, $mp3Users)) {
+                $error_message = "The mp3 user of row $k is incorrect";
+                $error_status = true;
+                break;
+            }
+            $data[] = [
+                'mp3_id' => $mp3PlaylistId,
+                'name' => $name,
+                'cates' => $cates,
+                'mp3_user_id' => $mp3Users[$mp3UserName]
+            ];
         }
         if ($error_status) {
             echo json_encode([
@@ -111,7 +124,20 @@ class MusicController extends Controller
             ]);
             exit();
         }
-        die();
+        if (!empty($data)) {
+            foreach ($data as $v) {
+                Album::updateOrCreate([
+                    'mp3_id' => $v['mp3_id']
+                ], [
+                    'mp3_id' => $v['mp3_id'],
+                    'name' => $v['name'],
+                    'slug' => createSlug($v['name']),
+                    'mp3_craw_at' => null,
+                    'mp3_user_id' => $v['mp3_user_id']
+                ]);
+            }
+        }
+        return redirect()->route('admin.album.index')->with('success', 'Dữ liệu đã được cập nhật thành công');
     }
 
     public function save(Request $request)

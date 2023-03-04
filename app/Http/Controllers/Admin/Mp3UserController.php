@@ -38,7 +38,7 @@ class Mp3UserController extends Controller
     {
         $nameValidate = 'required|unique:mp3_users|max:255';
         if (!empty($request->id)) {
-            $nameValidate = 'required|unique:albums,mp3_user_name,'.$request->id.'|max:255';
+            $nameValidate = 'required|unique:mp3_users,mp3_user_name,'.$request->id.'|max:255';
         }
         $request->validate([
             'mp3_user_name' => $nameValidate
