@@ -29,6 +29,11 @@ class Music extends Model
 
     public function album()
     {
-        return $this->belongsTo(Album::class, 'album_id');
+        return $this->belongsTo(Album::class, 'album_id', 'id');
+    }
+
+    public function mp3User()
+    {
+        return $this->belongsTo(Mp3User::class, 'mp3_user_id', 'id');
     }
 }

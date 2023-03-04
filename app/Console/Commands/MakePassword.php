@@ -29,7 +29,7 @@ class MakePassword extends Command
      */
     public function handle()
     {
-        Mp3User::getPlaylistInfo();
+        Mp3User::getSongInfo();
         die();
         $pass = 'Manhhung1992';
         echo Hash::make($pass);
