@@ -18,7 +18,7 @@ class CreateMusicTable extends Migration
             $table->string('name', 255);
             $table->integer('album_id');
             $table->string('image', 500)->nullable();
-            $table->string('duration')->nullable();
+            $table->integer('duration')->default(0);
             $table->integer('total_view')->default(0);
             $table->integer('mp3_user_id')->nullable();
             $table->string('mp3_id')->nullable();

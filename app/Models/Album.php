@@ -20,4 +20,9 @@ class Album extends Model
         'mp3_crawl_at',
         'mp3_user_id'
     ];
+
+    public function mp3User()
+    {
+        return $this->belongsTo(Mp3User::class, 'mp3_user_id', 'id');
+    }
 }

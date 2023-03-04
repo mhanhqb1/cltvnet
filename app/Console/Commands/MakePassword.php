@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Mp3User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 
@@ -28,6 +29,8 @@ class MakePassword extends Command
      */
     public function handle()
     {
+        Mp3User::getPlaylistInfo();
+        die();
         $pass = 'Manhhung1992';
         echo Hash::make($pass);
     }

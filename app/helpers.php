@@ -76,11 +76,11 @@ function getNumber($str)
     return preg_replace('/[^0-9]/', '', $str);
 }
 
-function callApi($url)
+function callApi($url, $cookie = '')
 {
     $curl = curl_init();
 
-    curl_setopt_array($curl, array(
+    $curlOptions = array(
         CURLOPT_URL => $url,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
@@ -89,7 +89,13 @@ function callApi($url)
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'GET',
-    ));
+        CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 6.2; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0',
+    );
+    if (!empty($cookie)) {
+        $curlOptions[CURLOPT_HTTPHEADER] = array('Cookie: '.$cookie);
+    }
+
+    curl_setopt_array($curl, $curlOptions);
 
     $response = curl_exec($curl);
 
@@ -109,4 +115,12 @@ function convertAscii($string)
         chr(127)
     );
     return str_replace($badchar, '', $string);
+}
+
+function getHash256($str) {
+	return hash("sha256", $str);
+}
+
+function getHmac512($str, $key) {
+	return hash_hmac("sha512", $str, $key);
 }
