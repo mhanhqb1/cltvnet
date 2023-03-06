@@ -25,7 +25,7 @@ class Mp3User extends Model
 
     public static function getSongInfo() {
         $today = date('Y-m-d H:i:s', time() - 40*60*60); // -40h
-        $limit = 200;
+        $limit = 20;
         $songs = Music::with('mp3User')
             ->whereNotNull('mp3_id')
             ->where('mp3_id', '!=', '')
@@ -96,9 +96,9 @@ class Mp3User extends Model
                         'duration' => $v['duration']
                     ]);
                 }
+                $p->mp3_crawl_at = date('Y-m-d H:i:s');
+                $p->save();
             }
-            $p->mp3_crawl_at = date('Y-m-d H:i:s');
-            $p->save();
         }
     }
 

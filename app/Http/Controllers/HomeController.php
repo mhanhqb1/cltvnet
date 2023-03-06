@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Music;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,6 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('front.home.index');
+        $songs = Music::with('album')->whereNotNull('mp3_source')->get();
+        return view('front.home.index', compact('songs'));
     }
 }

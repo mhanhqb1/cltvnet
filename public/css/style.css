@@ -6,22 +6,31 @@
     --gray: #777777;
     --red: #cd1d1f;
     --maxWidth: 1280px;
+    --primary-color: #ec1f55;
+    --text-color: #333;
 }
+
 * {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
 }
-ol, ul {
-	list-style: none;
+
+ol,
+ul {
+    list-style: none;
 }
+
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
-ol, ul {
-	list-style: none;
+
+ol,
+ul {
+    list-style: none;
 }
+
 body {
     margin: 0;
     padding: 0;
@@ -30,9 +39,12 @@ body {
     line-height: 21px;
     font-family: 'Arial', sans-serif;
 }
-.container, .container-fluid {
+
+.container,
+.container-fluid {
     width: 100%;
 }
+
 .container {
     max-width: var(--maxWidth);
 }
