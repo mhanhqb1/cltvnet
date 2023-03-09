@@ -17,6 +17,7 @@ $url = url()->full();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{ $description }}" />
     <meta name="keywords" content="{{ $keywords }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
     <title>{{ __($title) }}</title>
 
@@ -112,16 +113,16 @@ $url = url()->full();
                 </div>
                 <div class="footer-social-block-three">
                     <a href="#" class="footer-social-link-three w-inline-block">
-                        <img src="https://uploads-ssl.webflow.com/62434fa732124a0fb112aab4/62434fa732124a705912aaeb_facebook%20big%20filled.svg" loading="lazy" alt="" />
+                        <img src="{{ asset('images/icon_facebook.svg') }}" loading="lazy" alt="" />
                     </a>
                     <a href="#" class="footer-social-link-three w-inline-block">
-                        <img src="https://uploads-ssl.webflow.com/62434fa732124a0fb112aab4/62434fa732124ab37a12aaf0_twitter%20big.svg" loading="lazy" alt="" />
+                        <img src="{{ asset('images/icon_twitter.svg') }}" loading="lazy" alt="" />
                     </a>
                     <a href="#" class="footer-social-link-three w-inline-block">
-                        <img src="https://uploads-ssl.webflow.com/62434fa732124a0fb112aab4/62434fa732124a61f512aaed_instagram%20big.svg" loading="lazy" alt="" />
+                        <img src="{{ asset('images/icon_insta.svg') }}" loading="lazy" alt="" />
                     </a>
                     <a href="#" class="footer-social-link-three w-inline-block">
-                        <img src="https://uploads-ssl.webflow.com/62434fa732124a0fb112aab4/62434fa732124a717f12aaea_youtube%20small.svg" loading="lazy" alt="" />
+                        <img src="{{ asset('images/icon_youtube.svg') }}" loading="lazy" alt="" />
                     </a>
                 </div>
             </div>
