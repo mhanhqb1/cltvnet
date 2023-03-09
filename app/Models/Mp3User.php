@@ -25,7 +25,7 @@ class Mp3User extends Model
 
     public static function getSongInfo() {
         $today = date('Y-m-d H:i:s', time() - 40*60*60); // -40h
-        $limit = 20;
+        $limit = 200;
         $songs = Music::with('mp3User')
             ->whereNotNull('mp3_id')
             ->where('mp3_id', '!=', '')

@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Mp3UserController;
 
 use App\Http\Controllers\ContactController as FrontContact;
 use App\Http\Controllers\PostController as FrontPost;
+use App\Http\Controllers\MusicController as FrontMusic;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,7 @@ Route::get('/lien-he', [FrontContact::class, 'index'])->name('front.contact.inde
 Route::post('/lien-he', [FrontContact::class, 'save'])->name('front.contact.save');
 Route::get('/bai-viet', [FrontPost::class, 'index'])->name('front.post.index');
 Route::get('/bai-viet/{slug}', [FrontPost::class, 'detail'])->name('front.post.detail');
+Route::get('/music', [FrontMusic::class, 'index'])->name('front.music.index');
 
 Auth::routes();
 
