@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@push('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/music.css') }}" media="all">
+@endPush
+
 @section('content')
 <section class="hero-heading-left wf-section">
     <div class="container">
@@ -16,37 +20,19 @@
 
 <section class="features-table wf-section">
     <div class="container">
-        <h2 class="centered-heading">Comparison table section</h2>
-        <p class="centered-subheading">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tincidunt sagittis eros. Quisque quis euismod lorem.</p>
-        <div class="comparison-table">
-            <div class="comparison-row-main">
-                <h3 class="comparison-title">Lorem ipsum dolor</h3>
-                <h3 class="comparison-title">Unde omnis iste</h3>
-            </div>
-            <div class="comparison-row">
-                <div id="w-node-_2aaa2f1a-7a5e-94c9-75ee-bba73bad803c-72014555" class="comparison-negative">Etiam sodales ac felis id interdum</div>
-                <div id="w-node-_2aaa2f1a-7a5e-94c9-75ee-bba73bad803e-72014555" class="comparison-positive">Etiam sodales ac felis id interdum</div>
-            </div>
-            <div class="comparison-row">
-                <div id="w-node-_2aaa2f1a-7a5e-94c9-75ee-bba73bad8041-72014555" class="comparison-negative">Etiam sodales ac felis id interdum</div>
-                <div id="w-node-_2aaa2f1a-7a5e-94c9-75ee-bba73bad8043-72014555" class="comparison-positive">Etiam sodales ac felis id interdum</div>
-            </div>
-            <div class="comparison-row">
-                <div id="w-node-_2aaa2f1a-7a5e-94c9-75ee-bba73bad8046-72014555" class="comparison-negative">Etiam sodales ac felis id interdum</div>
-                <div id="w-node-_2aaa2f1a-7a5e-94c9-75ee-bba73bad8048-72014555" class="comparison-positive">Etiam sodales ac felis id interdum</div>
-            </div>
-            <div class="comparison-row">
-                <div id="w-node-_2aaa2f1a-7a5e-94c9-75ee-bba73bad804b-72014555" class="comparison-negative">Etiam sodales ac felis id interdum</div>
-                <div id="w-node-_2aaa2f1a-7a5e-94c9-75ee-bba73bad804d-72014555" class="comparison-positive">Etiam sodales ac felis id interdum</div>
-            </div>
-            <div class="comparison-row">
-                <div id="w-node-_2aaa2f1a-7a5e-94c9-75ee-bba73bad8050-72014555" class="comparison-negative">Etiam sodales ac felis id interdum</div>
-                <div id="w-node-_2aaa2f1a-7a5e-94c9-75ee-bba73bad8052-72014555" class="comparison-positive">Etiam sodales ac felis id interdum</div>
-            </div>
-            <div class="comparison-row">
-                <div id="w-node-_2aaa2f1a-7a5e-94c9-75ee-bba73bad8055-72014555" class="comparison-negative">Etiam sodales ac felis id interdum</div>
-                <div id="w-node-_2aaa2f1a-7a5e-94c9-75ee-bba73bad8057-72014555" class="comparison-positive">Etiam sodales ac felis id interdum</div>
-            </div>
+        <h2 class="centered-heading">Top Music</h2>
+        <p class="centered-subheading">Top những bài hát được nghe nhiều nhất</p>
+        <div class="comparison-table music-top20">
+            @foreach($top20 as $k => $v)
+                <div class="music-top20-content">
+                    <span>{{ $k + 1 }}</span>
+                    <p style="background-image: url('{{ getImageUrl($v->image, 'music') }}');"></p>
+                    <div>
+                        <h3>{{ $v->name }}</h3>
+                        <p>{{ $v->album->name }}</p>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
 </section>

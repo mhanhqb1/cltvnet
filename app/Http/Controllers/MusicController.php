@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Music;
 use Illuminate\Http\Request;
 
 class MusicController extends Controller
@@ -13,6 +14,12 @@ class MusicController extends Controller
      */
     public function index()
     {
-        return view('front.music.index');
+        $top20 = Music::with('album')
+            ->orderBy('total_view', 'desc')
+            ->limit(10)
+            ->get();
+        return view('front.music.index', compact(
+            'top20'
+        ));
     }
 }

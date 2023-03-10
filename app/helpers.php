@@ -61,12 +61,17 @@ function editorUploadImages($html)
     return $html;
 }
 
-function getImageUrl($image)
+function getImageUrl($image, $type = '', $imageType = 'png')
 {
-    if (strpos($image, 'http') !== false) {
-        $imageUrl = $image;
+    $imageUrl = '';
+    if (!empty($type) && empty($image)) {
+        $imageUrl = asset('images/default_'.$type.'.'.$imageType);
     } else {
-        $imageUrl = url('/storage/' . $image);
+        if (strpos($image, 'http') !== false) {
+            $imageUrl = $image;
+        } else {
+            $imageUrl = url('/storage/' . $image);
+        }
     }
     return $imageUrl;
 }
