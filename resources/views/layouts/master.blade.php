@@ -17,7 +17,6 @@ $url = url()->full();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{ $description }}" />
     <meta name="keywords" content="{{ $keywords }}" />
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
     <title>{{ __($title) }}</title>
 
@@ -48,6 +47,8 @@ $url = url()->full();
         }(window, document);
     </script>
 
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+
     @stack('before_css')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" media="all">
     @stack('css')
@@ -67,8 +68,7 @@ $url = url()->full();
                             <li><a href="#" class="nav-link">{{ __('Food') }}</a></li>
                             <li><a href="#" class="nav-link">{{ __('Movies') }}</a></li>
                             <li><a href="#" class="nav-link">{{ __('Entertainment') }}</a></li>
-                            <li><a href="#" class="nav-link">{{ __('About us') }}</a></li>
-                            <li><a href="#" class="nav-link">{{ __('Contact') }}</a></li>
+                            <li><a href="#" class="nav-link">{{ __('Shop') }}</a></li>
                             <!-- <li>
                                 <div data-hover="false" data-delay="0" class="nav-dropdown w-dropdown">
                                     <div class="nav-dropdown-toggle w-dropdown-toggle">
@@ -105,11 +105,13 @@ $url = url()->full();
             </div>
             <div class="footer-wrapper-three">
                 <div class="footer-block-three">
+                    <a href="{{ route('front.home.index') }}" class="nav-link">{{ __('Home') }}</a>
                     <a href="{{ route('front.music.index') }}" class="nav-link">{{ __('Music') }}</a>
                     <a href="#" class="nav-link">{{ __('School') }}</a>
                     <a href="#" class="nav-link">{{ __('Food') }}</a>
                     <a href="#" class="nav-link">{{ __('Movies') }}</a>
                     <a href="#" class="nav-link">{{ __('Entertainment') }}</a>
+                    <a href="#" class="nav-link">{{ __('Shop') }}</a>
                 </div>
                 <div class="footer-social-block-three">
                     <a href="#" class="footer-social-link-three w-inline-block">
@@ -130,14 +132,17 @@ $url = url()->full();
             <div class="footer-bottom">
                 <div class="footer-copyright">© {{ date('Y') }} <a href="https://hoanganhonline.com" target="_blank">HoangAnhOnline.com</a>. All rights reserved</div>
                 <div class="footer-legal-block">
-                    <a href="#" class="footer-legal-link">Terms Of Use</a>
-                    <a href="#" class="footer-legal-link">Privacy Policy</a>
+                    <a href="#" class="nav-link">{{ __('About us') }}</a>
+                    <a href="#" class="nav-link">{{ __('Contact') }}</a>
+                    <a href="#" class="footer-legal-link">{{ __('Terms Of Use') }}</a>
+                    <a href="#" class="footer-legal-link">{{ __('Privacy Policy') }}</a>
                 </div>
             </div>
         </div>
     </section>
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=64098556d8cc0c1d0b014554" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+    <script src="{{ asset('js/js.js') }}" type="text/javascript"></script>
     @stack('scripts')
 </body>
 
