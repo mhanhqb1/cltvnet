@@ -1,5 +1,6 @@
 <?php
-$imageUrl = getImageUrl($item->image);
+$img = !empty($item->thumb_image) ? $item->thumb_image : $item->image;
+$imageUrl = getImageUrl($img);
 ?>
 <div>
     <div class="categ-image" style="background-image:url({!! $imageUrl !!})">

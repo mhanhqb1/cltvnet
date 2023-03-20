@@ -6,9 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Console\\Commands\\AddThumbImages' => $baseDir . '/app/Console/Commands/AddThumbImages.php',
     'App\\Console\\Commands\\DailyPlaylistCrawler' => $baseDir . '/app/Console/Commands/DailyPlaylistCrawler.php',
     'App\\Console\\Commands\\GenerateSitemap' => $baseDir . '/app/Console/Commands/GenerateSitemap.php',
     'App\\Console\\Commands\\OkRuCrawler' => $baseDir . '/app/Console/Commands/OkRuCrawler.php',
+    'App\\Console\\Commands\\UltraNovelasCrawler' => $baseDir . '/app/Console/Commands/UltraNovelasCrawler.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Enums\\PostStatus' => $baseDir . '/app/Enums/PostStatus.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',

@@ -1,5 +1,6 @@
 <?php
-$imageUrl = getImageUrl(!empty($item->lastVideo[0]->image) ? $item->lastVideo[0]->image : $item->image);
+$img = !empty($item->thumb_image) ? $item->thumb_image : $item->image;
+$imageUrl = getImageUrl(!empty($item->lastVideo[0]->image) ? $item->lastVideo[0]->image : $img);
 $name = !empty($item->is_series) ? $item->name.' - '.$item->lastVideo[0]->name : $item->name;
 $label = !empty($item->is_series) ? $item->lastVideo[0]->name : $item->year;
 $url = empty($item->is_series) ? route('home.movie_detail', $item->slug) : route('home.video_detail', ['movieSlug' => $item->slug, 'videoSlug' => $item->lastVideo[0]->slug]);

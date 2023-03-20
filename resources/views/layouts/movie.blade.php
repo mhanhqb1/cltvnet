@@ -1,5 +1,6 @@
 <?php
-$imageUrl = getImageUrl($item->image);
+$img = !empty($item->thumb_image) ? $item->thumb_image : $item->image;
+$imageUrl = getImageUrl($img);
 ?>
 <div class="col-xs-6 col-sm-2  movie-item">
     <span class="movie-label">{{ $item->year }}</span>

@@ -25,7 +25,8 @@ class Movie extends Model
         'daily_video_id',
         'daily_crawl_at',
         'ok_ru_id',
-        'ultra_keyword'
+        'ultra_keyword',
+        'thumb_image'
     ];
 
     public function videos()

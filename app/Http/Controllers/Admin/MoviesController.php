@@ -89,7 +89,7 @@ class MoviesController extends Controller
         ]);
         $slug = createSlug($request->name);
         if (!empty($request->image)) {
-            $image = $request->file('image')->storePubliclyAs('phim', $slug.'-'.time().'.jpg', 'public');
+            $image = $request->file('image')->storePubliclyAs('novelas', $slug.'-'.time().'.jpg', 'public');
         } elseif (!empty($request->image_url)) {
             $image = $request->image_url;
         }
@@ -160,7 +160,7 @@ class MoviesController extends Controller
         ]);
         $slug = createSlug($request->name);
         if (!empty($request->image)) {
-            $image = $request->file('image')->storePubliclyAs('phim', $slug.'-'.time().'.jpg', 'public');
+            $image = $request->file('image')->storePubliclyAs('novelas', $slug.'-'.time().'.jpg', 'public');
         } elseif (!empty($request->image_url)) {
             $image = $request->image_url;
         }
