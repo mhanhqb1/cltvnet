@@ -19,7 +19,7 @@ $countries = getFrontCountries();
                                 <input type="text" name="q" id="autocomplete-ajax" class="keywords form-control input-rel searchtag-input " placeholder="¿Qué serie estás buscando?" value="{{ !empty($_GET['q']) ? $_GET['q'] : '' }}" autocomplete="off" style="width:400px; margin-top:-3px; font-size:15px;" required>
                             </div>
                             <div class="col-lg-4 col-sm-4 search-col pull-right">
-                                <button class="botonb btn btn-primary btn-search btn-block" style="max-width:50px; float:right; background:#292d30; margin-top:-3px;">
+                                <button class="botonb btn btn-primary btn-search btn-block" title="Search" style="max-width:50px; float:right; background:#292d30; margin-top:-3px;">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </div>
