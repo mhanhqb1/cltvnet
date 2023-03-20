@@ -54,6 +54,9 @@ class Mp3User extends Model
                 $s->mp3_source = $res['data'][128];
                 $s->mp3_crawl_at = date('Y-m-d H:i:s');
                 $s->save();
+            } else {
+                print_r($res);
+                die();
             }
         }
     }
@@ -98,6 +101,9 @@ class Mp3User extends Model
                 }
                 $p->mp3_crawl_at = date('Y-m-d H:i:s');
                 $p->save();
+            } else {
+                print_r($res);
+                die();
             }
         }
     }

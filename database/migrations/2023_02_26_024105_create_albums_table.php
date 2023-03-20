@@ -17,6 +17,7 @@ class CreateAlbumsTable extends Migration
             $table->id();
             $table->string('name', 255);
             $table->string('slug', 255);
+            $table->string('image', 255)->nullable();
             $table->text('description')->nullable();
             $table->integer('total_view')->default(0);
             $table->integer('user_id')->default(0);

@@ -24,7 +24,7 @@
         <p class="centered-subheading">Top những bài hát được nghe nhiều nhất</p>
         <div class="comparison-table music-top20">
             @foreach($top20 as $k => $v)
-                <div class="music-top20-content">
+                <div class="music-content">
                     <span>{{ $k + 1 }}</span>
                     <p style="background-image: url('{{ getImageUrl($v->image, 'music') }}');"></p>
                     <div>
@@ -38,112 +38,39 @@
 </section>
 <section class="team-slider wf-section">
     <div class="container">
-        <h2 class="centered-heading">Team section</h2>
-        <p class="centered-subheading">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tincidunt sagittis eros. Quisque quis euismod lorem.</p>
+        <h2 class="centered-heading">Top Album</h2>
+        <p class="centered-subheading">Top những album được nghe nhiều nhất</p>
         <div data-delay="4000" data-animation="slide" class="team-slider-wrapper w-slider" data-autoplay="false" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="12" data-duration="500" data-infinite="true">
             <div class="w-slider-mask">
+                @foreach ($topAlbum as $v)
                 <div class="team-slide-wrapper w-slide">
                     <div class="team-block">
-                        <img src="https://uploads-ssl.webflow.com/62434fa732124a0fb112aab4/62434fa732124af1aa12aadf_placeholder%201.svg" loading="lazy" alt="" class="team-member-image-two" />
+                        <img src="{{ getImageUrl($v->image, 'playlist') }}" loading="lazy" alt="" class="team-member-image-two" />
                         <div class="team-block-info">
-                            <h3 class="team-member-name-two">Full Name</h3>
-                            <p class="team-member-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            <a href="#" class="text-link-arrow w-inline-block">
-                                <div>How we can help you</div>
-                                <div class="arrow-embed w-embed">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.72 15L16.3472 10.357C16.7732 9.92932 16.7732 9.23603 16.3472 8.80962L11.72 4.16667L10.1776 5.71508L12.9425 8.4889H4.16669V10.6774H12.9425L10.1776 13.4522L11.72 15Z" fill="currentColor" />
-                                    </svg>
+                            <h3 class="team-member-name-two">{{ $v->name }}</h3>
+                            <p class="team-member-text">{{ $v->description }}</p>
+                            <div class="album-music">
+                            @foreach($v->music as $k => $m)
+                                @if ($k >= 5)
+                                <div class="music-content">
+                                    <div>
+                                        <h3>...</h3>
+                                    </div>
                                 </div>
-                            </a>
+                                <?php break; ?>
+                                @endif
+
+                                <div class="music-content">
+                                    <div>
+                                        <h3 title="{{ $m->name }}">{{ $k + 1 }}. {{ $m->name }}</h3>
+                                    </div>
+                                </div>
+                            @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="team-slide-wrapper w-slide">
-                    <div class="team-block">
-                        <img src="https://uploads-ssl.webflow.com/62434fa732124a0fb112aab4/62434fa732124af1aa12aadf_placeholder%201.svg" loading="lazy" alt="" class="team-member-image-two" />
-                        <div class="team-block-info">
-                            <h3 class="team-member-name-two">Full Name</h3>
-                            <p class="team-member-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            <a href="#" class="text-link-arrow w-inline-block">
-                                <div>How we can help you</div>
-                                <div class="arrow-embed w-embed">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.72 15L16.3472 10.357C16.7732 9.92932 16.7732 9.23603 16.3472 8.80962L11.72 4.16667L10.1776 5.71508L12.9425 8.4889H4.16669V10.6774H12.9425L10.1776 13.4522L11.72 15Z" fill="currentColor" />
-                                    </svg>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-slide-wrapper w-slide">
-                    <div class="team-block">
-                        <img src="https://uploads-ssl.webflow.com/62434fa732124a0fb112aab4/62434fa732124af1aa12aadf_placeholder%201.svg" loading="lazy" alt="" class="team-member-image-two" />
-                        <div class="team-block-info">
-                            <h3 class="team-member-name-two">Full Name</h3>
-                            <p class="team-member-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            <a href="#" class="text-link-arrow w-inline-block">
-                                <div>How we can help you</div>
-                                <div class="arrow-embed w-embed">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.72 15L16.3472 10.357C16.7732 9.92932 16.7732 9.23603 16.3472 8.80962L11.72 4.16667L10.1776 5.71508L12.9425 8.4889H4.16669V10.6774H12.9425L10.1776 13.4522L11.72 15Z" fill="currentColor" />
-                                    </svg>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-slide-wrapper w-slide">
-                    <div class="team-block">
-                        <img src="https://uploads-ssl.webflow.com/62434fa732124a0fb112aab4/62434fa732124af1aa12aadf_placeholder%201.svg" loading="lazy" alt="" class="team-member-image-two" />
-                        <div class="team-block-info">
-                            <h3 class="team-member-name-two">Full Name</h3>
-                            <p class="team-member-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            <a href="#" class="text-link-arrow w-inline-block">
-                                <div>How we can help you</div>
-                                <div class="arrow-embed w-embed">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.72 15L16.3472 10.357C16.7732 9.92932 16.7732 9.23603 16.3472 8.80962L11.72 4.16667L10.1776 5.71508L12.9425 8.4889H4.16669V10.6774H12.9425L10.1776 13.4522L11.72 15Z" fill="currentColor" />
-                                    </svg>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-slide-wrapper w-slide">
-                    <div class="team-block">
-                        <img src="https://uploads-ssl.webflow.com/62434fa732124a0fb112aab4/62434fa732124af1aa12aadf_placeholder%201.svg" loading="lazy" alt="" class="team-member-image-two" />
-                        <div class="team-block-info">
-                            <h3 class="team-member-name-two">Full Name</h3>
-                            <p class="team-member-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            <a href="#" class="text-link-arrow w-inline-block">
-                                <div>How we can help you</div>
-                                <div class="arrow-embed w-embed">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.72 15L16.3472 10.357C16.7732 9.92932 16.7732 9.23603 16.3472 8.80962L11.72 4.16667L10.1776 5.71508L12.9425 8.4889H4.16669V10.6774H12.9425L10.1776 13.4522L11.72 15Z" fill="currentColor" />
-                                    </svg>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-slide-wrapper w-slide">
-                    <div class="team-block">
-                        <img src="https://uploads-ssl.webflow.com/62434fa732124a0fb112aab4/62434fa732124af1aa12aadf_placeholder%201.svg" loading="lazy" alt="" class="team-member-image-two" />
-                        <div class="team-block-info">
-                            <h3 class="team-member-name-two">Full Name</h3>
-                            <p class="team-member-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            <a href="#" class="text-link-arrow w-inline-block">
-                                <div>How we can help you</div>
-                                <div class="arrow-embed w-embed">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.72 15L16.3472 10.357C16.7732 9.92932 16.7732 9.23603 16.3472 8.80962L11.72 4.16667L10.1776 5.71508L12.9425 8.4889H4.16669V10.6774H12.9425L10.1776 13.4522L11.72 15Z" fill="currentColor" />
-                                    </svg>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="team-slider-arrow w-slider-arrow-left">
                 <div class="w-icon-slider-left"></div>
