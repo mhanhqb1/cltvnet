@@ -54,22 +54,19 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
             -webkit-line-clamp: 3;
             font-size: 14px;
             text-align: left;
-            padding-top: 5px;
-            padding-bottom: 0px !important;
-            font-size: 16px;
+            padding-top:5px;
+            padding-bottom:0px !important;
+            font-size:16px;
             line-height: 1.5;
         }
-
         .movie-item {
-            margin-bottom: 20px;
-            min-height: 330px;
+            margin-bottom:20px;
+            min-height:330px;
             position: relative;
         }
-
         .cate-movie-item {
             position: relative;
         }
-
         .movie-label {
             position: absolute;
             top: 0;
@@ -82,10 +79,9 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
             z-index: 2;
             font-weight: 400;
             background-size: 200% 100%;
-            background-image: linear-gradient(to right, #C02425 0%, #F0CB35 51%, #C02425 100%);
+            background-image: linear-gradient(to right,#C02425 0%,#F0CB35 51%,#C02425 100%);
             transition: .7s;
         }
-
         .movie-label::after {
             content: '';
             border-bottom: 6px solid #dd8b52;
@@ -95,8 +91,8 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
             bottom: -10px;
             left: 50%;
             position: absolute;
-            -webkit-transform: translate(-50%, -50%) rotate(180deg);
-            transform: translate(-50%, -50%) rotate(180deg);
+            -webkit-transform: translate(-50%,-50%) rotate(180deg);
+            transform: translate(-50%,-50%) rotate(180deg);
         }
     </style>
     <?php if (!empty(config('services.google')['ga_key'])) : ?>
@@ -130,48 +126,42 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
             @if(env('APP_ENV') != 'local')
             <div class="container">
                 <center>
-                    <div class="col-sm-12">
-                        <script type="text/javascript">
-                            window.onload = function() {
-                                atOptions = {
-                                    'key': '4d5af8e4f94a1a3fbbac9eeabdbe9a52',
-                                    'format': 'iframe',
-                                    'height': 90,
-                                    'width': 728,
-                                    'params': {}
-                                };
-                                document.write('<scr' + 'ipt type="text/javascript" data-cfasync="false" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/4d5af8e4f94a1a3fbbac9eeabdbe9a52/invoke.js"></scr' + 'ipt>');
-                            };
-                        </script>
-                    </div>
-                    <div class="col-sm-12">
-                        <script type="text/javascript">
-                            window.onload = function() {
-                                atOptions = {
-                                    'key': 'b885faff3de006cdce1d13342d723a57',
-                                    'format': 'iframe',
-                                    'height': 60,
-                                    'width': 468,
-                                    'params': {}
-                                };
-                                document.write('<scr' + 'ipt type="text/javascript" data-cfasync="false" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/b885faff3de006cdce1d13342d723a57/invoke.js"></scr' + 'ipt>');
-                            };
-                        </script>
-                    </div>
-                    <div class="col-sm-12">
-                        <script type="text/javascript">
-                            window.onload = function() {
-                                atOptions = {
-                                    'key': '2beb75141c9acf110403bc7a2eada0f5',
-                                    'format': 'iframe',
-                                    'height': 50,
-                                    'width': 320,
-                                    'params': {}
-                                };
-                                document.write('<scr' + 'ipt type="text/javascript" data-cfasync="false" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/2beb75141c9acf110403bc7a2eada0f5/invoke.js"></scr' + 'ipt>');
-                            };
-                        </script>
-                    </div>
+                <div class="col-sm-12">
+                    <script type="text/javascript">
+                        atOptions = {
+                            'key': '4d5af8e4f94a1a3fbbac9eeabdbe9a52',
+                            'format': 'iframe',
+                            'height': 90,
+                            'width': 728,
+                            'params': {}
+                        };
+                        document.write('<scr' + 'ipt type="text/javascript" data-cfasync="false" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/4d5af8e4f94a1a3fbbac9eeabdbe9a52/invoke.js"></scr' + 'ipt>');
+                    </script>
+                </div>
+                <div class="col-sm-12">
+                    <script type="text/javascript">
+                        atOptions = {
+                            'key': 'b885faff3de006cdce1d13342d723a57',
+                            'format': 'iframe',
+                            'height': 60,
+                            'width': 468,
+                            'params': {}
+                        };
+                        document.write('<scr' + 'ipt type="text/javascript" data-cfasync="false" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/b885faff3de006cdce1d13342d723a57/invoke.js"></scr' + 'ipt>');
+                    </script>
+                </div>
+                <div class="col-sm-12">
+                    <script type="text/javascript">
+                        atOptions = {
+                            'key': '2beb75141c9acf110403bc7a2eada0f5',
+                            'format': 'iframe',
+                            'height': 50,
+                            'width': 320,
+                            'params': {}
+                        };
+                        document.write('<scr' + 'ipt type="text/javascript" data-cfasync="false" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/2beb75141c9acf110403bc7a2eada0f5/invoke.js"></scr' + 'ipt>');
+                    </script>
+                </div>
                 </center>
             </div>
             @endif
