@@ -135,7 +135,7 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
                             'width': 728,
                             'params': {}
                         };
-                        document.write('<scr' + 'ipt type="text/javascript" data-cfasync="false" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/4d5af8e4f94a1a3fbbac9eeabdbe9a52/invoke.js"></scr' + 'ipt>');
+                        document.write('<scr' + 'ipt type="text/javascript" async="async" data-cfasync="false" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/4d5af8e4f94a1a3fbbac9eeabdbe9a52/invoke.js"></scr' + 'ipt>');
                     </script>
                 </div>
                 <div class="col-sm-12">
@@ -147,7 +147,7 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
                             'width': 468,
                             'params': {}
                         };
-                        document.write('<scr' + 'ipt type="text/javascript" data-cfasync="false" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/b885faff3de006cdce1d13342d723a57/invoke.js"></scr' + 'ipt>');
+                        document.write('<scr' + 'ipt type="text/javascript" async="async" data-cfasync="false" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/b885faff3de006cdce1d13342d723a57/invoke.js"></scr' + 'ipt>');
                     </script>
                 </div>
                 <div class="col-sm-12">
@@ -159,7 +159,7 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
                             'width': 320,
                             'params': {}
                         };
-                        document.write('<scr' + 'ipt type="text/javascript" data-cfasync="false" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/2beb75141c9acf110403bc7a2eada0f5/invoke.js"></scr' + 'ipt>');
+                        document.write('<scr' + 'ipt type="text/javascript" async="async" data-cfasync="false" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/2beb75141c9acf110403bc7a2eada0f5/invoke.js"></scr' + 'ipt>');
                     </script>
                 </div>
                 </center>
