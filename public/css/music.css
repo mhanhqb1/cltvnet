@@ -1,6 +1,7 @@
 :root {
     --primary-color: #ec1f55;
     --text-color: #333;
+    --max-width: 1140px;
 }
 
 .music-top20 {
@@ -81,24 +82,26 @@
     display: none;
 }
 
-.dashboard {
+.player .dashboard {
     padding: 16px 16px 14px;
     background-color: #fff;
     position: fixed;
-    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
     width: 100%;
-    max-width: 480px;
     border-bottom: 1px solid #ebebeb;
+    margin: 0 auto;
 }
 
 /* CD */
-.cd {
+.player .cd {
     display: flex;
     margin: auto;
     width: 200px;
 }
 
-.cd-thumb {
+.player .cd-thumb {
     width: 100%;
     padding-top: 100%;
     border-radius: 50%;
@@ -108,24 +111,26 @@
 }
 
 /* CONTROL */
-.control {
+.player .control {
     display: flex;
     align-items: center;
     justify-content: space-around;
     padding: 18px 0 8px 0;
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 
-.control .btn {
+.player .control .btn {
     color: #666;
     padding: 18px;
     font-size: 18px;
 }
 
-.control .btn.active {
+.player .control .btn.active {
     color: var(--primary-color);
 }
 
-.control .btn-toggle-play {
+.player .control .btn-toggle-play {
     width: 56px;
     height: 56px;
     border-radius: 50%;
@@ -137,7 +142,7 @@
     background-color: var(--primary-color);
 }
 
-.progress {
+.player .progress {
     width: 100%;
     -webkit-appearance: none;
     height: 6px;
@@ -148,7 +153,7 @@
     transition: opacity 0.2s;
 }
 
-.progress::-webkit-slider-thumb {
+.player .progress::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 12px;

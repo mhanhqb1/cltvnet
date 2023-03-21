@@ -47,6 +47,9 @@ Route::post('/lien-he', [FrontContact::class, 'save'])->name('front.contact.save
 Route::get('/bai-viet', [FrontPost::class, 'index'])->name('front.post.index');
 Route::get('/bai-viet/{slug}', [FrontPost::class, 'detail'])->name('front.post.detail');
 Route::get('/music', [FrontMusic::class, 'index'])->name('front.music.index');
+Route::get('/music/playlist/{slug}', [FrontMusic::class, 'album_detail'])->name('front.music.album_index');
+
+Route::get('/api/music/playlist', [FrontMusic::class, 'api_album_detail'])->name('front.api.music.album_detail');
 
 Auth::routes();
 

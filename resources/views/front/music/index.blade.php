@@ -29,7 +29,7 @@
                     <p style="background-image: url('{{ getImageUrl($v->image, 'music') }}');"></p>
                     <div>
                         <h3>{{ $v->name }}</h3>
-                        <p>{{ $v->album->name }}</p>
+                        <p><a href="{{ route('front.music.album_index', $v->album->slug) }}">{{ $v->album->name }}</a></p>
                     </div>
                 </div>
             @endforeach

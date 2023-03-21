@@ -28,4 +28,34 @@ class MusicController extends Controller
             'topAlbum'
         ));
     }
+
+    public function album_detail($slug) {
+        $album = Album::with('music')->where('slug', $slug)->first();
+        return view('front.music.album.index', compact(
+            'album'
+        ));
+    }
+
+    public function api_album_detail(Request $request) {
+        $id = !empty($request->id) ? $request->id : '';
+        $result = [
+            'status' => 'OK',
+            'data' => ''
+        ];
+        $album = Album::with('music')->where('id', $id)->first();
+        $songs = [];
+        foreach ($album->music as $k => $v) {
+            $songs[] = [
+                'id' => $v->id,
+                'index' => $k + 1,
+                'name' => $v->name,
+                'singer' => $album->name,
+                'path' => $v->mp3_source,
+                'image' => getImageUrl($v->image, 'music')
+            ];
+        }
+        $result['songs'] = $songs;
+        echo json_encode($result);
+        exit();
+    }
 }

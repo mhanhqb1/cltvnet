@@ -29,6 +29,6 @@ class Album extends Model
 
     public function music()
     {
-        return $this->hasMany(Music::class, 'album_id', 'id');
+        return $this->hasMany(Music::class);
     }
 }
