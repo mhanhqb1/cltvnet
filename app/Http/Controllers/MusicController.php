@@ -85,4 +85,19 @@ class MusicController extends Controller
         echo json_encode($data);
         exit();
     }
+
+    public function api_music_crawler_save(Request $request) {
+        $data = !empty($request->data) ? json_decode($request->data) : [];
+        if (!empty($data)) {
+            foreach ($data as $k => $v) {
+                Music::updateOrCreate([
+                    'mp3_id' => $k
+                ], [
+                    'mp3_id' => $k,
+                    'mp3_source' => $v,
+                    'mp3_crawl_at' => date('Y-m-d H:i:s')
+                ]);
+            }
+        }
+    }
 }

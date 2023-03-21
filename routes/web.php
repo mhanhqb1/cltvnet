@@ -51,6 +51,7 @@ Route::get('/music/playlist/{slug}', [FrontMusic::class, 'album_detail'])->name(
 
 Route::get('/api/music/playlist', [FrontMusic::class, 'api_album_detail'])->name('front.api.music.album_detail');
 Route::get('/api/music/crawler', [FrontMusic::class, 'api_music_crawler'])->name('front.api.music.music_crawler');
+Route::post('/api/music/crawler', [FrontMusic::class, 'api_music_crawler_save'])->name('front.api.music.music_crawler_save');
 
 
 Auth::routes();
