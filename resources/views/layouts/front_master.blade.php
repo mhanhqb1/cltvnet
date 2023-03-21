@@ -159,7 +159,7 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
                             'width': 320,
                             'params': {}
                         };
-                        document.write('<scr' + 'ipt type="text/javascript" async="async" data-cfasync="false" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/2beb75141c9acf110403bc7a2eada0f5/invoke.js"></scr' + 'ipt>');
+                        document.write('<scr' + 'ipt type="text/javascript" data-cfasync="false" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/2beb75141c9acf110403bc7a2eada0f5/invoke.js"></scr' + 'ipt>');
                     </script>
                 </div>
                 </center>
