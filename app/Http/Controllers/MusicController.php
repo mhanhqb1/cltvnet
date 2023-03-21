@@ -58,4 +58,31 @@ class MusicController extends Controller
         echo json_encode($result);
         exit();
     }
+
+    public function api_music_crawler() {
+        $today = date('Y-m-d H:i:s', time() - 30*60*60); // -40h
+        $limit = 200;
+        $data = [
+            'users' => [],
+            'songs' => []
+        ];
+        $songs = Music::with('mp3User')
+            ->whereNotNull('mp3_id')
+            ->where('mp3_id', '!=', '')
+            ->where(function ($q) use ($today){
+                $q->whereNull('mp3_crawl_at')->orWhere('mp3_crawl_at', '<', $today);
+            })
+            ->whereHas('mp3User')
+            ->limit($limit)
+            ->get();
+        foreach ($songs as $v) {
+            $data['users'][$v->mp3User->id] = $v->mp3User->mp3_cookie;
+            $data['songs'][] = [
+                'mp3_user_id' => $v->mp3_user_id,
+                'mp3_id' => $v->mp3_id
+            ];
+        }
+        echo json_encode($data);
+        exit();
+    }
 }
