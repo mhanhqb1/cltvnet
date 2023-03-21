@@ -317,14 +317,21 @@
         }
     };
 
-    function playerPlay(songs) {
+    function playerPlay(songs, idx) {
+        if (typeof idx == 'undefined') {
+            idx = 0;
+        }
         app.reset();
         app.setSongs(songs);
+        app.currentIndex = idx;
         app.start();
         audio.play();
     }
 
-    function albumPlayer(id) {
+    function albumPlayer(id, idx) {
+        if (typeof idx == 'undefined') {
+            idx = 0;
+        }
         jQuery.ajax({
             url: '{{ route('front.api.music.album_detail') }}',
             data: {
@@ -334,7 +341,7 @@
             dataType: "json",
             success: function (data) {
                 if (data.status == 'OK') {
-                    playerPlay(data.songs);
+                    playerPlay(data.songs, idx);
                 } else {
                     alert('Đã có lỗi xảy ra');
                 }

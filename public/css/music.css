@@ -17,7 +17,8 @@
     border-radius: 5px;
     cursor: pointer;
 }
-.music-content:hover {
+.music-content:hover,
+.music-content.active {
     background-color: #f5f7fa;
 }
 .music-content > span {
@@ -50,6 +51,7 @@
 
 .album-music {
     width: 100%;
+    padding: 0 24px;
 }
 .album-music .music-content {
     display: block;
@@ -124,6 +126,7 @@
     color: #666;
     padding: 18px;
     font-size: 18px;
+    cursor: pointer;
 }
 
 .player .control .btn.active {
@@ -221,9 +224,28 @@
     font-size: 18px;
 }
 
+.album-left {
+    width: 30%;
+    float: left;
+}
+.album-right {
+    width: 70%;
+    float: left;
+}
+.clearfix {
+    clear: both;
+}
+
 @media screen and (max-width: 991px) {
     .music-top20 {
         grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media screen and (max-width: 591px) {
+    .album-left,
+    .album-right {
+        width: 100%;
     }
 }
 

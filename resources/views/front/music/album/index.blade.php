@@ -10,14 +10,16 @@
     <div class="container">
         <h2 class="centered-heading">{{ $album->name }}</h2>
         <div class="album-left">
-            <img src="{{ getImageUrl($album->image, 'playlist') }}" loading="lazy" alt="{{ $album->name }}" />
-            <button onclick="return albumPlayer({{ $album->id }})">{{ __('Play all') }}</button>
+            <center>
+                <img src="{{ getImageUrl($album->image, 'playlist') }}" loading="lazy" width="90%" alt="{{ $album->name }}" />
+                <button onclick="return albumPlayer({{ $album->id }})" class="button-primary w-button">{{ __('Play all') }}</button>
+            </center>
         </div>
         <div class="album-right">
             <h3 class="centered-heading">Danh sách bài hát</h3>
             <div class="album-music">
                 @foreach($album->music as $k => $m)
-                <div class="music-content" id="music-{{ $m->id }}">
+                <div class="music-content" id="music-{{ $m->id }}" onclick="return albumPlayer({{ $album->id }}, {{ $k }})">
                     <div>
                         <h3 title="{{ $m->name }}">{{ $k + 1 }}. {{ $m->name }}</h3>
                     </div>
@@ -25,6 +27,7 @@
                 @endforeach
             </div>
         </div>
+        <div class="clearfix"></div>
     </div>
 </section>
 @include('front.music.mp3_player')

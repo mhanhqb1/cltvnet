@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @push('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 <link rel="stylesheet" type="text/css" href="{{ asset('css/music.css') }}" media="all">
 @endPush
 
@@ -45,9 +46,9 @@
                 @foreach ($topAlbum as $v)
                 <div class="team-slide-wrapper w-slide">
                     <div class="team-block">
-                        <img src="{{ getImageUrl($v->image, 'playlist') }}" loading="lazy" alt="" class="team-member-image-two" />
+                        <a href="{{ route('front.music.album_index', $v->slug) }}"><img src="{{ getImageUrl($v->image, 'playlist') }}" loading="lazy" alt="" class="team-member-image-two" /></a>
                         <div class="team-block-info">
-                            <h3 class="team-member-name-two">{{ $v->name }}</h3>
+                            <a href="{{ route('front.music.album_index', $v->slug) }}"><h3 class="team-member-name-two">{{ $v->name }}</h3></a>
                             <p class="team-member-text">{{ $v->description }}</p>
                             <div class="album-music">
                             @foreach($v->music as $k => $m)
@@ -60,7 +61,7 @@
                                 <?php break; ?>
                                 @endif
 
-                                <div class="music-content">
+                                <div class="music-content" id="music-{{ $m->id }}" onclick="return albumPlayer({{ $v->id }}, {{ $k }})">
                                     <div>
                                         <h3 title="{{ $m->name }}">{{ $k + 1 }}. {{ $m->name }}</h3>
                                     </div>
@@ -119,4 +120,6 @@
         </div>
     </div>
 </section>
+
+@include('front.music.mp3_player')
 @endSection
