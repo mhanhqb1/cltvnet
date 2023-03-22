@@ -241,6 +241,31 @@ class Movie extends Model
         }
     }
 
+    public static function ultraNovelas2()
+    {
+        $maxPage = 50;
+        $client = new Client();
+        $movieIds = Movie::whereNotNull('ultra_keyword')->where('ultra_keyword', '!=', '')->pluck('id', 'ultra_keyword')->toArray();
+        for ($page = 1; $page <= $maxPage; $page++) {
+            $url = 'https://ultranovelast.com/page/'.$page.'/?s=';
+            $crawler = $client->request('GET', $url);
+            $crawler->filter('#genesis-content .post .entry-container .entry-title')->each(function ($node) use ($client, $movieIds) {
+                $href = $node->filter('a')->attr('href');
+                if (str_contains($href, "-hd/")) {
+                    $text = explode('/', $href);
+                    $text = explode('-', $text[count($text) - 2]);
+                    $chapter = $text[count($text) - 2];
+                    $name = implode('-', array_slice($text, 0, count($text) - 2));
+                    if (in_array($name, array_keys($movieIds))) {
+                        $movieId = $movieIds[$name];
+                        echo $movieId.' - '.$name.PHP_EOL;
+                        self::ultraNovelasDetail($client, $href, $movieId, $chapter);
+                    }
+                }
+            });
+        }
+    }
+
     public static function ultraNovelasDetail($client, $url, $movieId, $chapter)
     {
         $crawler2 = $client->request('GET', $url);

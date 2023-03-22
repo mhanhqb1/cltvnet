@@ -28,6 +28,6 @@ class UltraNovelasCrawler extends Command
      */
     public function handle()
     {
-        Movie::ultraNovelas();
+        Movie::ultraNovelas2();
     }
 }
