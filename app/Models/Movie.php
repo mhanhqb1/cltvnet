@@ -212,6 +212,13 @@ class Movie extends Model
                                         print_r($e->getMessage());
                                     }
                                 }
+                                if (empty($countries[$movieInfo[1]])) {
+                                    $_newCountry = Country::create([
+                                        'name' => $movieInfo[1],
+                                        'slug' => createSlug($movieInfo[1])
+                                    ]);
+                                    $countries[$movieInfo[1]] = $_newCountry->id;
+                                }
                                 $movie = Movie::create([
                                     'name' => $movieInfo[0],
                                     'slug' => createSlug($movieInfo[0]),
@@ -234,6 +241,16 @@ class Movie extends Model
                                 $_cates = explode(' - ', $movieInfo[3]);
                                 foreach ($_cates as $c) {
                                     if (!empty($cates[$c])) {
+                                        MovieCate::create([
+                                            'movie_id' => $movie->id,
+                                            'cate_id' => $cates[$c]
+                                        ]);
+                                    } else {
+                                        $_newCate = Cate::create([
+                                            'name' => $c,
+                                            'slug' => createSlug($c)
+                                        ]);
+                                        $cates[$c] = $_newCate->id;
                                         MovieCate::create([
                                             'movie_id' => $movie->id,
                                             'cate_id' => $cates[$c]
