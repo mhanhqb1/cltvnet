@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        // $schedule->command('inspire')->hourly();// a
         $schedule->command('generate:sitemap')->daily();
         // $schedule->command('CaLaTV:DailyPlaylistCrawler')->everyThirtyMinutes();
         $schedule->command('CaLaTV:DailymotionCrawler')->everySixHours();
