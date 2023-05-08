@@ -129,30 +129,6 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
                 <div class="col-sm-12">
                     <script type="text/javascript">
                         atOptions = {
-                            'key': '4d5af8e4f94a1a3fbbac9eeabdbe9a52',
-                            'format': 'iframe',
-                            'height': 90,
-                            'width': 728,
-                            'params': {}
-                        };
-                        document.write('<scr' + 'ipt type="text/javascript" data-cfasync="false" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/4d5af8e4f94a1a3fbbac9eeabdbe9a52/invoke.js"></scr' + 'ipt>');
-                    </script>
-                </div>
-                <div class="col-sm-12">
-                    <script type="text/javascript">
-                        atOptions = {
-                            'key': 'b885faff3de006cdce1d13342d723a57',
-                            'format': 'iframe',
-                            'height': 60,
-                            'width': 468,
-                            'params': {}
-                        };
-                        document.write('<scr' + 'ipt type="text/javascript" data-cfasync="false" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.effectivecreativeformats.com/b885faff3de006cdce1d13342d723a57/invoke.js"></scr' + 'ipt>');
-                    </script>
-                </div>
-                <div class="col-sm-12">
-                    <script type="text/javascript">
-                        atOptions = {
                             'key': '2beb75141c9acf110403bc7a2eada0f5',
                             'format': 'iframe',
                             'height': 50,
@@ -189,6 +165,7 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" />
     <script src="{{ asset('/js/scripts.js') }}"></script>
     @stack('scripts')
     @if(env('APP_ENV') != 'local')
