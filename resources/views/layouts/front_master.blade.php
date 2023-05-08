@@ -125,7 +125,7 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
                 </a>
             </div>
             @if(env('APP_ENV') != 'local')
-            <!-- <div class="container">
+            <div class="container">
                 <center>
                 <div class="col-sm-12">
                     <script type="text/javascript">
@@ -140,7 +140,7 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
                     </script>
                 </div>
                 </center>
-            </div> -->
+            </div>
             @endif
             <div class="container">
                 @yield('content')
