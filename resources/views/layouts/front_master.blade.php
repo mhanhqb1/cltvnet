@@ -166,7 +166,6 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" />
     <script src="{{ asset('/js/scripts.js') }}"></script>
     @stack('scripts')
     @if(env('APP_ENV') != 'local')

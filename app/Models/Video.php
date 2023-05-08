@@ -40,7 +40,7 @@ class Video extends Model
     ];
 
     public static function youtubeCrawler($channelId) {
-        $data = self::getListVideoOfChannel($channelId, [], null, 0, 1);
+        $data = self::getListVideoOfChannel($channelId, [], null, 0);
         if (!empty($data)) {
             foreach ($data as $v) {
                 try {

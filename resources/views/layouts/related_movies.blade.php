@@ -65,6 +65,7 @@
     </div>
 </div>
 @push('scripts')
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" />
 <script>
     $(document).ready(function () {
         $('#dataTable').DataTable({
