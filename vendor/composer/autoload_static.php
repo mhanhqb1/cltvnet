@@ -678,6 +678,7 @@ class ComposerStaticInitf8f65ffb8bb2e48f7a89f89adfcc79ae
         'App\\Models\\MovieVideo' => __DIR__ . '/../..' . '/app/Models/MovieVideo.php',
         'App\\Models\\Post' => __DIR__ . '/../..' . '/app/Models/Post.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Models\\Video' => __DIR__ . '/../..' . '/app/Models/Video.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
