@@ -40,7 +40,7 @@ class Video extends Model
     ];
 
     public static function youtubeCrawler($channelId) {
-        $data = self::getListVideoOfChannel($channelId, [], null, 0);
+        $data = self::getListVideoOfChannel($channelId, [], null, 0, 1);
         if (!empty($data)) {
             foreach ($data as $v) {
                 try {
@@ -50,7 +50,7 @@ class Video extends Model
                         'source_type' => 0
                     ], $v);
                 } catch (\Exception $e) {
-                    print_r($e);
+                    print_r($e->getMessage());
                 }
             }
         }
@@ -62,7 +62,7 @@ class Video extends Model
         try {
             # Init
             $today = date('Y-m-d', time());
-            $apiKey = 'AIzaSyB1O9eN2O1kNcWud9UfQnILk5yFSBDFWTs';
+            $apiKey = env('YOUTUBE_KEY');
             $status_stop  = false;
             $apiUrl = self::API_YOUTUBE_URL . 'search?key='.$apiKey.'&part=' . self::PART_VIDEO_YOUTUBE . '&channelId=' . $channelId . '&order=' . self::ORDER_VIDEO . '&maxResults=' . self::MAX_RESULT_VIDEO;
             if (!empty($nextToken)) {
@@ -91,13 +91,15 @@ class Video extends Model
                         ];
                     }
                 }
-                if (!empty($pageLimit) && $pageLimit < $count) {
+                if (!empty($pageLimit) && $pageLimit <= $count) {
                     return $data;
                 }
                 if (!empty($res['nextPageToken']) &&  !$status_stop) {
                     // recursive to get list Video
                     return self::getListVideoOfChannel($channelId, $data, $res['nextPageToken'], $count, $pageLimit);
                 }
+            } else {
+                print_r($res);
             }
         } catch (\Exception $e) {
             print_r($e);
