@@ -32,11 +32,7 @@ $cateName = implode(' - ', $cateName);
     }
 </style>
 <div class="row">
-    <div class="col-sm-4 hidden-xs">
-        @include('layouts.front_left_cates')
-    </div>
-
-    <div class="col-sm-8">
+    <div class="col-sm-12">
         <div class="inner-box category-content" style="padding-bottom:20px;">
             <h1 class="title-2" style="color:#cd1d1f; font-weight:bold;"> <i class="fa fa-video-camera"></i>
                 <font style="vertical-align: inherit;">
