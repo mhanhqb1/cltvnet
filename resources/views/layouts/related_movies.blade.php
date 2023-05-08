@@ -1,3 +1,30 @@
+@push('css')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap.min.css"/>
+<style>
+    .related-movies {
+        width: 100%;
+    }
+    .related-movies td {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px dashed #ccc;
+    }
+
+    /* .related-movies td:first-child {
+        padding-top: 0;
+    } */
+
+    .related-movies td .movie-image img {
+        width: 100px;
+        margin-right: 24px;
+    }
+    .paginate_button {
+        margin: 0 5px;
+    }
+</style>
+@endpush
+
 <div class="inner-box category-content" style="padding-bottom: 15px;">
     <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;">
         <i class="fa fa-star"></i>
@@ -7,6 +34,10 @@
     </h2>
     <div class="faq-content">
         <table id="dataTable" class="data-table related-movies">
+            <thead>
+                <th></th>
+            </thead>
+            <tbody>
             @foreach($relatedMovies as $v)
             <tr>
                 <td>
@@ -29,6 +60,7 @@
                 </td>
             </tr>
             @endforeach
+            </tbody>
         </table>
     </div>
 </div>
@@ -36,7 +68,10 @@
 <script>
     $(document).ready(function () {
         $('#dataTable').DataTable({
-            "pageLength": 1
+            "pageLength": 5,
+            "searching": false,
+            "bInfo": false,
+            "bLengthChange": false,
         });
     });
 </script>

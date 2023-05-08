@@ -174,7 +174,7 @@ class HomeController extends Controller
             })
             ->orderBy('year', 'desc')
             ->orderBy('id', 'desc')
-            ->limit(5)
+            ->limit(30)
             ->get();
         return view('home.movie_detail', compact('relatedMovies', 'movie', 'pageTitle', 'metaDescription', 'metaKeywords', 'pageImage'));
     }
@@ -220,7 +220,7 @@ class HomeController extends Controller
             })
             ->orderBy('year', 'desc')
             ->orderBy('id', 'desc')
-            ->limit(5)
+            ->limit(30)
             ->get();
         return view('home.video_detail', compact(
             'movie',
