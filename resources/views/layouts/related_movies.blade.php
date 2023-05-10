@@ -19,9 +19,6 @@
         width: 100px;
         margin-right: 24px;
     }
-    .paginate_button {
-        margin: 0 5px;
-    }
 </style>
 @endpush
 
@@ -65,7 +62,8 @@
     </div>
 </div>
 @push('scripts')
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" />
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#dataTable').DataTable({
