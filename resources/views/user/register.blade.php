@@ -48,7 +48,7 @@
                         <button type="submit" class="btn btn-primary">Register</button>
                     </div>
                     <br/>
-                    <a href="{{ route('user.login') }}">I already have an account</a>
+                    <a href="{{ route('user.login.index') }}">I already have an account</a>
                 </form>
             </div>
         </div>

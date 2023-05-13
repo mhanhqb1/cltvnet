@@ -17,7 +17,7 @@
                         </td>
                         <td>
                             <a href="#" onclick="event.preventDefault(); document.getElementById('js-logoutForm').submit();">Logout</a>
-                            <form action="{{ route('user.logout') }}" method="POST" id="js-logoutForm">@csrf</form>
+                            <form action="{{ route('user.logout.index') }}" method="POST" id="js-logoutForm">@csrf</form>
                         </td>
                     </tr>
                 </table>

@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-4 offset-md-4" style="margin-top: 45px;">
                 <h4>User Login</h4>
-                <form action="{{ route('user.check') }}" method="POST">
+                <form action="{{ route('user.check.index') }}" method="POST">
                     @if (Session::get('fail'))
                         <div class="alert alert-danger">
                             {{ Session::get('fail') }}
@@ -33,7 +33,7 @@
                         <button type="submit" class="btn btn-primary">Login</button>
                     </div>
                     <br/>
-                    <a href="{{ route('user.register') }}">Create new account</a>
+                    <a href="{{ route('user.register.index') }}">Create new account</a>
                 </form>
             </div>
         </div>

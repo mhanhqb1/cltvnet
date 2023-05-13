@@ -49,15 +49,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix('user')->name('user.')->group(function(){
     Route::middleware(['guest:web'])->group(function(){
-        Route::view('/login', 'user.login')->name('login');
-        Route::view('/register', 'user.register')->name('register');
-        Route::post('/create', [UserController::class, 'create'])->name('create');
-        Route::post('/check', [UserController::class, 'check'])->name('check');
+        Route::view('/login', 'user.login')->name('login.index');
+        Route::view('/register', 'user.register')->name('register.index');
+        Route::post('/create', [UserController::class, 'create'])->name('create.index');
+        Route::post('/check', [UserController::class, 'check'])->name('check.index');
     });
 
     Route::middleware(['auth:web'])->group(function(){
-        Route::view('/home', 'user.home')->name('home');
-        Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+        Route::view('/home', 'user.home')->name('home.index');
+        Route::post('/logout', [UserController::class, 'logout'])->name('logout.index');
     });
 });
 
