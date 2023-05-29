@@ -96,20 +96,20 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
             transform: translate(-50%,-50%) rotate(180deg);
         }
     </style>
-    <?php if (!empty(config('services.google')['ga_key'])) : ?>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.google')['ga_key'] }}"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
+    @if (env('APP_ENV') != 'local')
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C9VY4NQ67Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-            gtag('js', new Date());
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-            gtag('config', "<?php echo config('services.google')['ga_key']; ?>");
-        </script>
-    <?php endif; ?>
+        gtag('config', 'G-C9VY4NQ67Y');
+    </script>
+    @endif
     <!-- <script type='text/javascript' src='//pl17602848.highperformancegate.com/f1/47/cc/f147cc35ec3f391964af36aab05f0448.js'></script> -->
 </head>
 
