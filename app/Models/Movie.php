@@ -274,26 +274,45 @@ class Movie extends Model
         try {
             $crawler2->filter('.wp-block-ub-tabbed-content-tabs-content')->each(function ($node2) use ($movieId, $chapter) {
                 if (!empty($node2)) {
-                    $okRu = $node2->filter('iframe')->attr('src');
-                    $okRu = explode('/', $okRu);
-                    $okRu = $okRu[count($okRu) - 1];
+                    $okRu = '';
+                    try {
+                        $okRu = $node2->filter('iframe');
+                        $okRu = $okRu->attr('src');
+                        $okRu = explode('/', $okRu);
+                        $okRu = $okRu[count($okRu) - 1];
+                    } catch(\Throwable $th) {
+                        $okRu = '';
+                    }
                     $_name = 'Capítulo '.$chapter;
                     $check = MovieVideo::where('movie_id', $movieId)->where('name', $_name)->first();
                     if (!empty($check)) {
-                        $check->source_urls = $okRu;
-                        $check->slug = createSlug($_name);
-                        $check->position = $chapter;
-                        $check->source_type = MovieVideo::$sourceTypeValue['ok.ru'];
-                        $check->save();
-                        echo '1.-'.$movieId.'-'.$_name.PHP_EOL;
+                        if (!empty($okRu)) {
+                            $check->source_urls = $okRu;
+                            $check->slug = createSlug($_name);
+                            $check->position = $chapter;
+                            $check->source_type = MovieVideo::$sourceTypeValue['ok.ru'];
+                            $check->save();
+                            echo '1.-'.$movieId.'-'.$_name.PHP_EOL;
+                        }
                     } else {
+                        $isPre = 0;
+                        $sourceType = MovieVideo::$sourceTypeValue['ok.ru'];
+                        if (empty($okRu)) {
+                            $isPre = 1;
+                            $preVideo = MovieVideo::where('movie_id', $movieId)->where('position', $chapter - 1)->first();
+                            if (!empty($preVideo)) {
+                                $okRu = $preVideo->source_urls;
+                                $sourceType = $preVideo->source_type;
+                            }
+                        }
                         MovieVideo::create([
                             'movie_id' => $movieId,
                             'source_urls' => $okRu,
                             'name' => $_name,
                             'slug' => createSlug($_name),
                             'position' => $chapter,
-                            'source_type' => MovieVideo::$sourceTypeValue['ok.ru']
+                            'source_type' => $sourceType,
+                            'is_pre' => $isPre
                         ]);
                         echo '2.-'.$movieId.'-'.$_name.PHP_EOL;
                         Movie::where('id', $movieId)->update([
@@ -315,6 +334,7 @@ class Movie extends Model
             });
         } catch (\Throwable $th) {
             //throw $th;
+            echo 'aaa';
         }
     }
 
