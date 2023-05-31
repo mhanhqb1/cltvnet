@@ -22,7 +22,8 @@ class MovieVideo extends Model
         'source_type',
         'meta_description',
         'meta_keywords',
-        'status'
+        'status',
+        'is_pre'
     ];
 
     public static $sourceTypeValue = [

@@ -641,6 +641,7 @@ class ComposerStaticInitf8f65ffb8bb2e48f7a89f89adfcc79ae
         'App\\Console\\Commands\\DailyPlaylistCrawler' => __DIR__ . '/../..' . '/app/Console/Commands/DailyPlaylistCrawler.php',
         'App\\Console\\Commands\\GenerateSitemap' => __DIR__ . '/../..' . '/app/Console/Commands/GenerateSitemap.php',
         'App\\Console\\Commands\\OkRuCrawler' => __DIR__ . '/../..' . '/app/Console/Commands/OkRuCrawler.php',
+        'App\\Console\\Commands\\TusNovelasCrawler' => __DIR__ . '/../..' . '/app/Console/Commands/TusNovelasCrawler.php',
         'App\\Console\\Commands\\UltraNovelasCrawler' => __DIR__ . '/../..' . '/app/Console/Commands/UltraNovelasCrawler.php',
         'App\\Console\\Commands\\VideoNewsCrawler' => __DIR__ . '/../..' . '/app/Console/Commands/VideoNewsCrawler.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',

@@ -25,6 +25,16 @@ $cateName = implode(' - ', $cateName);
             </h1>
             <div class="row">
                 <div class="col-sm-12">
+                    @if (!empty($video->is_pre))
+                    <p style="text-align: center; margin: 24px 0;"><span style="font-size: 18pt; font-family: georgia, palatino, serif;"><span style="color: #0000ff;">{{ $pageTitle }} Completo</span></span></p>
+                    <p style="text-align: center;">
+                        <strong><span style="font-size: 20pt;">Disponible después de su transmisión en vivo</span></strong>
+                        <br>
+                        <strong><span style="font-size: 14pt;">Si quieres ser el primero en verlo, sigue nuestra web</span></strong>
+                    </p>
+
+                    <p style="text-align: center; margin: 48px 0 24px;"><span style="font-size: 18pt; font-family: georgia, palatino, serif;"><span style="color: #0000ff;">{{ $movie->name.' - Capítulo '.($video->position - 1) }} Completo</span></span></p>
+                    @endif
                     <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;" itemscope itemtype="https://schema.org/VideoObject">
                         <meta itemprop="name" content="{{ $pageTitle }}" />
                         <meta itemprop="description" content="{{ $movie->description }}" />

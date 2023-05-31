@@ -10,6 +10,7 @@ return array(
     'App\\Console\\Commands\\DailyPlaylistCrawler' => $baseDir . '/app/Console/Commands/DailyPlaylistCrawler.php',
     'App\\Console\\Commands\\GenerateSitemap' => $baseDir . '/app/Console/Commands/GenerateSitemap.php',
     'App\\Console\\Commands\\OkRuCrawler' => $baseDir . '/app/Console/Commands/OkRuCrawler.php',
+    'App\\Console\\Commands\\TusNovelasCrawler' => $baseDir . '/app/Console/Commands/TusNovelasCrawler.php',
     'App\\Console\\Commands\\UltraNovelasCrawler' => $baseDir . '/app/Console/Commands/UltraNovelasCrawler.php',
     'App\\Console\\Commands\\VideoNewsCrawler' => $baseDir . '/app/Console/Commands/VideoNewsCrawler.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',

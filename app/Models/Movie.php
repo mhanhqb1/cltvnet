@@ -27,7 +27,7 @@ class Movie extends Model
         'ok_ru_id',
         'ultra_keyword',
         'thumb_image',
-        'tusnovelas'
+        'tusnovelas',
     ];
 
     public function videos()
@@ -350,8 +350,13 @@ class Movie extends Model
     public static function tusNovelasDetail($client, $url, $movieId, $chapter)
     {
         $crawler2 = $client->request('GET', $url);
+        $a = $crawler2->html();
+        $isPre = 0;
+        if (str_contains($a, 'Disponible después de su transmisión en vivo')) {
+            $isPre = 1;
+        }
         try {
-            $crawler2->filter('#main .entry-content')->each(function ($node2) use ($movieId, $chapter) {
+            $crawler2->filter('#main .entry-content')->each(function ($node2) use ($movieId, $chapter, $isPre) {
                 if (!empty($node2)) {
                     $okRu = $node2->filter('iframe')->attr('data-src');
                     $okRu = explode('/', $okRu);
@@ -365,6 +370,7 @@ class Movie extends Model
                         $check->slug = createSlug($_name);
                         $check->position = $chapter;
                         $check->source_type = MovieVideo::$sourceTypeValue['ok.ru'];
+                        $check->is_pre = $isPre;
                         $check->save();
                         echo '1.-'.$movieId.'-'.$_name.PHP_EOL;
                     } else {
@@ -374,7 +380,8 @@ class Movie extends Model
                             'name' => $_name,
                             'slug' => createSlug($_name),
                             'position' => $chapter,
-                            'source_type' => MovieVideo::$sourceTypeValue['ok.ru']
+                            'source_type' => MovieVideo::$sourceTypeValue['ok.ru'],
+                            'is_pre' => $isPre
                         ]);
                         echo '2.-'.$movieId.'-'.$_name.PHP_EOL;
                         Movie::where('id', $movieId)->update([
