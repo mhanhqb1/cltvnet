@@ -57,6 +57,10 @@
                         <label for="inputSourceUrls">Video ID</label>
                         <input type="text" id="inputSourceUrls" name="source_urls" class="form-control" value="{{ old('source_urls') ? old('source_urls') : $item->source_urls }}">
                     </div>
+                    <div class="form-group">
+                        <label for="twitch_id">Twitch ID</label>
+                        <input type="text" id="twitch_id" name="twitch_id" class="form-control" value="{{ old('twitch_id') ? old('twitch_id') : $item->twitch_id }}">
+                    </div>
                 </div>
 
             </div>

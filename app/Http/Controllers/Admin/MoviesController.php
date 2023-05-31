@@ -181,6 +181,7 @@ class MoviesController extends Controller
         $item->source_type = !empty($request->source_type) ? $request->source_type : 0;
         $item->meta_description = !empty($request->meta_description) ? $request->meta_description : '';
         $item->meta_keywords = !empty($request->meta_keywords) ? $request->meta_keywords : '';
+        $item->twitch_id = !empty($request->twitch_id) ? $request->twitch_id : '';
         if (!empty($image)) {
             $item->image = $image;
         }

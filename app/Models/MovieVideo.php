@@ -23,7 +23,8 @@ class MovieVideo extends Model
         'meta_description',
         'meta_keywords',
         'status',
-        'is_pre'
+        'is_pre',
+        'twitch_id'
     ];
 
     public static $sourceTypeValue = [
