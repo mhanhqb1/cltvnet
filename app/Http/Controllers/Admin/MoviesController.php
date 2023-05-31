@@ -110,6 +110,7 @@ class MoviesController extends Controller
         $item->daily_video_id = !empty($request->daily_video_id) ? $request->daily_video_id : '';
         $item->ok_ru_id = !empty($request->ok_ru_id) ? $request->ok_ru_id : '';
         $item->ultra_keyword = !empty($request->ultra_keyword) ? $request->ultra_keyword : '';
+        $item->tusnovelas = !empty($request->tusnovelas) ? $request->tusnovelas : '';
         if (!empty($image)) {
             $item->image = $image;
         }

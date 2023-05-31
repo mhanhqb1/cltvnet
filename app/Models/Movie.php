@@ -26,7 +26,8 @@ class Movie extends Model
         'daily_crawl_at',
         'ok_ru_id',
         'ultra_keyword',
-        'thumb_image'
+        'thumb_image',
+        'tusnovelas'
     ];
 
     public function videos()
@@ -277,6 +278,88 @@ class Movie extends Model
                     $okRu = $okRu[count($okRu) - 1];
                     $_name = 'Capítulo '.$chapter;
                     $check = MovieVideo::where('movie_id', $movieId)->where('name', $_name)->first();
+                    if (!empty($check)) {
+                        $check->source_urls = $okRu;
+                        $check->slug = createSlug($_name);
+                        $check->position = $chapter;
+                        $check->source_type = MovieVideo::$sourceTypeValue['ok.ru'];
+                        $check->save();
+                        echo '1.-'.$movieId.'-'.$_name.PHP_EOL;
+                    } else {
+                        MovieVideo::create([
+                            'movie_id' => $movieId,
+                            'source_urls' => $okRu,
+                            'name' => $_name,
+                            'slug' => createSlug($_name),
+                            'position' => $chapter,
+                            'source_type' => MovieVideo::$sourceTypeValue['ok.ru']
+                        ]);
+                        echo '2.-'.$movieId.'-'.$_name.PHP_EOL;
+                        Movie::where('id', $movieId)->update([
+                            'daily_crawl_at' => date('Y-m-d H:i:s')
+                        ]);
+                    }
+                    // MovieVideo::updateOrCreate([
+                    //     'movie_id' => $movieId,
+                    //     'name' => $_name,
+                    // ],[
+                    //     'movie_id' => $movieId,
+                    //     'source_urls' => $okRu,
+                    //     'name' => $_name,
+                    //     'slug' => createSlug($_name),
+                    //     'position' => $chapter,
+                    //     'source_type' => MovieVideo::$sourceTypeValue['ok.ru']
+                    // ]);
+                }
+            });
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
+    public static function tusNovelas()
+    {
+        $maxPage = 5;
+        $client = new Client();
+        $movieIds = Movie::whereNotNull('tusnovelas')->where('tusnovelas', '!=', '')->pluck('id', 'tusnovelas')->toArray();
+        for ($page = 1; $page <= $maxPage; $page++) {
+            if ($page == 1) {
+                $url = 'http://www.tusnovelassd.com/';
+            } else {
+                $url = 'http://www.tusnovelassd.com/page/'.$page.'/';
+            }
+            $crawler = $client->request('GET', $url);
+            $crawler->filter('#main .posts-wrap .post')->each(function ($node) use ($client, $movieIds) {
+                $href = $node->filter('a')->attr('href');
+                // echo $href.PHP_EOL;
+                if (str_contains($href, "-capitulo")) {
+                    $text = explode('/', $href);
+                    $text = explode('-', $text[count($text) - 2]);
+                    $chapter = $text[count($text) - 2];
+                    $name = implode('-', array_slice($text, 0, count($text) - 2));
+                    if (in_array($name, array_keys($movieIds))) {
+                        $movieId = $movieIds[$name];
+                        echo $movieId.' - '.$name.PHP_EOL;
+                        self::tusNovelasDetail($client, $href, $movieId, $chapter);
+                    }
+                }
+            });
+        }
+    }
+
+    public static function tusNovelasDetail($client, $url, $movieId, $chapter)
+    {
+        $crawler2 = $client->request('GET', $url);
+        try {
+            $crawler2->filter('#main .entry-content')->each(function ($node2) use ($movieId, $chapter) {
+                if (!empty($node2)) {
+                    $okRu = $node2->filter('iframe')->attr('data-src');
+                    $okRu = explode('/', $okRu);
+                    $okRu = $okRu[count($okRu) - 1];
+                    $_name = 'Capítulo '.$chapter;
+                    $check = MovieVideo::where('movie_id', $movieId)->where('name', $_name)->first();
+
+                    echo $okRu.$_name.PHP_EOL;
                     if (!empty($check)) {
                         $check->source_urls = $okRu;
                         $check->slug = createSlug($_name);

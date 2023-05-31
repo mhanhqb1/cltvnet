@@ -116,6 +116,10 @@
                         <label for="ultra_keyword">Ultra Keyword</label>
                         <input type="text" id="ultra_keyword" class="form-control" name="ultra_keyword" value="{{ old('ultra_keyword') }}">
                     </div>
+                    <div class="form-group">
+                        <label for="tusnovelas">Tusnovelas</label>
+                        <input type="text" id="tusnovelas" class="form-control" name="tusnovelas" value="{{ old('tusnovelas') }}">
+                    </div>
                 </div>
             </div>
         </div>
