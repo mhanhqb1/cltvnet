@@ -26,7 +26,9 @@ $cateName = implode(' - ', $cateName);
             <div class="row">
                 @if (!empty($video->twitch_id) && !empty($video->is_pre))
                 <div class="col-sm-12">
-                <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden" src="https://player.twitch.tv/?channel={{$video->twitch_id}}&parent=hoynovelas.net" frameborder="0" allowfullscreen="true" scrolling="no"></iframe>
+                    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+                        <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden" src="https://player.twitch.tv/?channel={{$video->twitch_id}}&parent=hoynovelas.net" frameborder="0" allowfullscreen="true" scrolling="no"></iframe>
+                    </div>
                 </div>
                 @endif
                 <div class="col-sm-12">
