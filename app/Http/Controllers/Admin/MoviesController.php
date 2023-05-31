@@ -111,6 +111,7 @@ class MoviesController extends Controller
         $item->ok_ru_id = !empty($request->ok_ru_id) ? $request->ok_ru_id : '';
         $item->ultra_keyword = !empty($request->ultra_keyword) ? $request->ultra_keyword : '';
         $item->tusnovelas = !empty($request->tusnovelas) ? $request->tusnovelas : '';
+        $item->twitch_id = !empty($request->twitch_id) ? $request->twitch_id : '';
         if (!empty($image)) {
             $item->image = $image;
         }

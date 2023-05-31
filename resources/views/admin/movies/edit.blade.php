@@ -121,6 +121,10 @@
                         <label for="tusnovelas">Tusnovelas</label>
                         <input type="text" id="tusnovelas" class="form-control" name="tusnovelas" value="{{ old('tusnovelas') ? old('tusnovelas') : $item->tusnovelas }}">
                     </div>
+                    <div class="form-group">
+                        <label for="twitch_id">Twitch ID</label>
+                        <input type="text" id="twitch_id" class="form-control" name="twitch_id" value="{{ old('twitch_id') ? old('twitch_id') : $item->twitch_id }}">
+                    </div>
                 </div>
             </div>
         </div>

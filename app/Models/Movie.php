@@ -28,6 +28,7 @@ class Movie extends Model
         'ultra_keyword',
         'thumb_image',
         'tusnovelas',
+        'twitch_id'
     ];
 
     public function videos()
