@@ -319,7 +319,7 @@ class Movie extends Model
 
     public static function tusNovelas()
     {
-        $maxPage = 5;
+        $maxPage = 2;
         $client = new Client();
         $movieIds = Movie::whereNotNull('tusnovelas')->where('tusnovelas', '!=', '')->pluck('id', 'tusnovelas')->toArray();
         for ($page = 1; $page <= $maxPage; $page++) {
