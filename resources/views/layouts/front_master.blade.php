@@ -190,10 +190,10 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
     @if(env('APP_ENV') != 'local')
     <script type="application/javascript">
         var ad_idzone = "4997250",
-            ad_width = "300",
-            ad_height = "250",
-            v_pos = "bottom",
-            h_pos = "center";
+        ad_width = "728",
+        ad_height = "90",
+        v_pos = "bottom",
+        h_pos = "center";
     </script>
     <script type="application/javascript" src="https://a.exdynsrv.com/js.php?t=17&idzone=4997250"></script>
     <script type="application/javascript" src="https://syndication.exdynsrv.com/splash.php?idzone=4997252"></script>
