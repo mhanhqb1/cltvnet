@@ -143,11 +143,6 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
                         document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.profitabledisplaynetwork.com/4d5af8e4f94a1a3fbbac9eeabdbe9a52/invoke.js"></scr' + 'ipt>');
                     </script>
                 </center>
-                <center>
-                    <script async type="application/javascript" src="https://a.exdynsrv.com/ad-provider.js"></script>
-                    <ins class="adsbyexoclick" data-zoneid="4997262"></ins>
-                    <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
-                </center>
                 @else
                 <center>
                     <div class="col-sm-12">
