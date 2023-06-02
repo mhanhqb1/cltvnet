@@ -211,7 +211,7 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
             "popup_force": false,
             "chrome_enabled": true,
             "new_tab": false,
-            "frequency_period": 720,
+            "frequency_period": 5,
             "frequency_count": 1,
             "trigger_method": 3,
             "trigger_class": "",
