@@ -86,11 +86,11 @@ $cateName = implode(' - ', $cateName);
             </div>
         </div>
 
+        @include('layouts.detail_ads')
+
         @if(!$relatedMovies->isEmpty())
         @include('layouts.related_movies', ['relatedMovies' => $relatedMovies])
         @endif
-
-        @include('layouts.detail_ads')
 
         <div class="inner-box category-content" style="padding-bottom: 5px;">
             <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;"> <i class="fa fa-tags"></i>
