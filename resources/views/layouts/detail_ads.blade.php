@@ -38,7 +38,9 @@
         <div id="container-4d6ca70c3586b0ea4842fdf40ea18b03"></div>
     </div>
 </div> -->
+<center>
 <iframe src="//a.exdynsrv.com/iframe.php?idzone=4999238&size=300x500" width="300" height="500" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+</center>
 <div class="row">
     <div class="col-sm-12">
         <script async="async" data-cfasync="false" src="//pl17602823.highrevenuegate.com/4d6ca70c3586b0ea4842fdf40ea18b03/invoke.js"></script>

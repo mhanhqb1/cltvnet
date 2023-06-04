@@ -129,6 +129,7 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
                 </a>
             </div>
             @if(env('APP_ENV') != 'local')
+
             <script type="application/javascript"
             data-idzone="4999236"  data-ad_frequency_count="1"  data-ad_frequency_period="5"  data-type="desktop"
             data-browser_settings="1"
@@ -136,6 +137,9 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
 
             src="https://a.exdynsrv.com/fp-interstitial.js"></script>
             <div class="container">
+                <center>
+                <iframe src="//a.exdynsrv.com/iframe.php?idzone=4997262&size=728x90" width="728" height="90" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+                </center>
                 @if(!isMobile())
                 <center>
                     <script type="text/javascript">
@@ -149,7 +153,6 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
                         document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.profitabledisplaynetwork.com/4d5af8e4f94a1a3fbbac9eeabdbe9a52/invoke.js"></scr' + 'ipt>');
                     </script>
                 </center>
-                <iframe src="//a.exdynsrv.com/iframe.php?idzone=4997262&size=728x90" width="728" height="90" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
                 @else
                 <center>
                     <div class="col-sm-12">
