@@ -238,4 +238,8 @@ class HomeController extends Controller
     public function okru() {
         Movie::okru();
     }
+
+    public function cssCommon() {
+        return view('css_common');
+    }
 }

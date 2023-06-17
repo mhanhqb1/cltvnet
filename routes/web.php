@@ -38,6 +38,8 @@ Route::get('/video/{movieSlug}', [App\Http\Controllers\HomeController::class, 'g
 Route::get('/video/{movieSlug}/{videoSlug}', [App\Http\Controllers\HomeController::class, 'getVideoDetail2'])->name('home.video_detail2');
 Route::get('/okru', [App\Http\Controllers\HomeController::class, 'okru'])->name('home.okru');
 
+Route::get('/cssCommon', [App\Http\Controllers\HomeController::class, 'cssCommon'])->name('home.cssCommon');
+
 Route::prefix('user')->name('user.')->group(function(){
     Route::middleware(['guest:web'])->group(function(){
         Route::view('/login', 'user.login')->name('login');
