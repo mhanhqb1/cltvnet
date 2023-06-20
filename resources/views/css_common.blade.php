@@ -47,9 +47,7 @@
 
     <div class="container box-container">
         <div class="box">
-            <div class="thumb">
-                <img src="https://randomwordgenerator.com/img/picture-generator/50e8d7454b53b10ff3d8992cc12c30771037dbf85254784a73287bd19f4f_640.jpg"/>
-            </div>
+            <div class="thumb" style="background-image: url('https://randomwordgenerator.com/img/picture-generator/50e8d7454b53b10ff3d8992cc12c30771037dbf85254784a73287bd19f4f_640.jpg');"></div>
             <div class="details">
                 <div class="content">
                     <i class="fa fa-solid fa-utensils"></i>
@@ -59,9 +57,7 @@
             </div>
         </div>
         <div class="box">
-            <div class="thumb">
-                <img src="https://randomwordgenerator.com/img/picture-generator/51e5d5454951b10ff3d8992cc12c30771037dbf85254794e702673d4934f_640.jpg"/>
-            </div>
+            <div class="thumb" style="background-image: url('https://randomwordgenerator.com/img/picture-generator/51e5d5454951b10ff3d8992cc12c30771037dbf85254794e702673d4934f_640.jpg');"></div>
             <div class="details">
                 <div class="content">
                     <i class="fa fa-brands fa-leanpub"></i>
@@ -71,9 +67,7 @@
             </div>
         </div>
         <div class="box">
-            <div class="thumb">
-                <img src="https://randomwordgenerator.com/img/picture-generator/55e6d1464955a514f1dc8460962e33791c3ad6e04e507440702d79d39e49c6_640.jpg"/>
-            </div>
+            <div class="thumb" style="background-image: url('https://randomwordgenerator.com/img/picture-generator/55e6d1464955a514f1dc8460962e33791c3ad6e04e507440702d79d39e49c6_640.jpg');"></div>
             <div class="details">
                 <div class="content">
                     <i class="fa fa-solid fa-tv"></i>
@@ -83,9 +77,7 @@
             </div>
         </div>
         <div class="box">
-            <div class="thumb">
-                <img src="https://randomwordgenerator.com/img/picture-generator/55e0d2424954af14f1dc8460962e33791c3ad6e04e507440772d73d49745c0_640.jpg"/>
-            </div>
+            <div class="thumb" style="background-image: url('https://randomwordgenerator.com/img/picture-generator/55e0d2424954af14f1dc8460962e33791c3ad6e04e507440772d73d49745c0_640.jpg');"></div>
             <div class="details">
                 <div class="content">
                     <i class="fa fa-solid fa-newspaper"></i>

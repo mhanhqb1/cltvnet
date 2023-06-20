@@ -154,6 +154,9 @@ header nav ul li ul li {
     width: 100%;
     height: 250px;
     overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 .box-container .box:nth-child(odd) .thumb {
     bottom: 0;
@@ -238,5 +241,11 @@ header nav ul li ul li {
     .box-container .box {
         width: 50%;
         float: left;
+    }
+    .box-container .box .details .content {
+        top: 50%;
+    }
+    .box-container .box .details .content a {
+        transform: scale(1);
     }
 }
