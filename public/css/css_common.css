@@ -1,5 +1,13 @@
 :root {
-    --aa: 1;
+    --color-white: #fff;
+    --color-black-1: #36474f;
+    --color-black-2: #445964;
+    --color-black-3: #546e7b;
+    --color-blue-1: #43a5f6;
+    --color-blue-2: #2b93e3;
+    --color-orange-1: #fe8f01;
+    --color-purple-1: #8553cb;
+    --color-red-1: #ff3b34;
 }
 * {
     margin: 0px;
@@ -14,20 +22,20 @@ ul, li {
 }
 body {
     min-height: 100vh;
-    background: #36474f;
+    background: var(--color-black-1);
 }
 header {
-    position: absolute;
+    position: relative;
     width: 100%;
     min-height: 66px;
-    background: #43a5f6;
+    background: var(--color-blue-1);
     padding: 0 100px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 header .logo {
-    color: #fff;
+    color: var(--color-white);
     font-size: 1.75em;
     font-weight: 600;
 }
@@ -36,21 +44,22 @@ header nav ul li {
     float: left;
 }
 header nav ul li a {
-    color: #fff;
+    color: var(--color-white);
     font-size: 1.1em;
     padding: 20px 25px;
     display: flex;
     justify-content: space-between;
 }
 header nav ul li a:hover {
-    background-color: #2b93e3;
+    background-color: var(--color-blue-2);
 }
 header nav ul li > ul {
     position: absolute;
     left: 0;
     width: 200px;
-    background: #445964;
+    background: var(--color-black-2);
     display: none;
+    z-index: 99;
 }
 header nav ul li:hover > ul {
     display: block;
@@ -60,7 +69,6 @@ header nav ul li ul li {
     width: 100%;
     border: 1px solid rgba(0,0,0,0.2);
 }
-
 @media (max-width: 900px) {
     header {
         padding: 10px 20px;
@@ -70,8 +78,9 @@ header nav ul li ul li {
         width: 100%;
         top: 66px;
         left: 0;
-        background: #445964;
+        background: var(--color-black-2);
         display: none;
+        z-index: 999;
     }
     header.active nav {
         display: initial;
@@ -85,7 +94,7 @@ header nav ul li ul li {
         left: 0;
     }
     header nav ul li:hover ul li {
-        background: #546e7b;
+        background: var(--color-black-3);
     }
     .menuToggle {
         position: relative;
@@ -101,23 +110,133 @@ header nav ul li ul li {
         position: absolute;
         width: 100%;
         height: 3px;
-        background: #fff;
+        background: var(--color-white);
         transform: translateY(-12px);
-        box-shadow: 0 12px #fff;
+        box-shadow: 0 12px var(--color-white);
     }
     .menuToggle::after {
         content: '';
         position: absolute;
         width: 100%;
         height: 3px;
-        background: #fff;
+        background: var(--color-white);
         transform: translateY(12px);
     }
     header.active .menuToggle::before {
         transform: rotate(45deg);
-        box-shadow: 0 0 #fff;
+        box-shadow: 0 0 var(--color-white);
     }
     header.active .menuToggle::after {
         transform: rotate(315deg);
+    }
+}
+
+
+.box-container {
+    width: 100%;
+    display: flex;
+}
+.box-container .box {
+    position: relative;
+    width: 25%;
+    height: 500px;
+    background-color: var(--color-white);
+    transition: 0.5s;
+    /* padding-bottom: 200%; */
+}
+.box-container .box:hover {
+    transform: scale(0.95);
+    z-index: 1;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+.box-container .box .thumb {
+    position: absolute;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+.box-container .box:nth-child(odd) .thumb {
+    bottom: 0;
+    left: 0;
+}
+.box-container .box .thumb img {
+    width: 100%;
+}
+.box-container .box .details {
+    position: absolute;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background-color: var(--color-black-2);
+}
+.box-container .box:nth-child(even) .details {
+    bottom: 0;
+    left: 0;
+}
+.box-container .box:nth-child(1) .details {
+    background: var(--color-purple-1);
+}
+.box-container .box:nth-child(2) .details {
+    background: var(--color-orange-1);
+}
+.box-container .box:nth-child(3) .details {
+    background: var(--color-blue-2);
+}
+.box-container .box:nth-child(4) .details {
+    background: var(--color-red-1);
+}
+.box-container .box .details .content {
+    position: absolute;
+    top: calc(50% + 16px);
+    transform: translateY(-50%);
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    transition: 0.5s;
+}
+.box-container .box:hover .details .content {
+    top: calc(50%);
+}
+.box-container .box .details .content .fa {
+    font-size: 80px;
+    color: var(--color-white);
+}
+.box-container .box .details .content h3 {
+    padding: 10px 0;
+    color: var(--color-white);
+}
+.box-container .box .details .content a {
+    display: inline-block;
+    padding: 5px 20px;
+    color: var(--color-white);
+    border: 2px solid var(--color-white);
+    transition: 0.5s;
+    border-radius: 20px;
+    transform: scale(0);
+}
+.box-container .box:hover .details .content a {
+    transform: scale(1);
+}
+.box-container .box .details .content a:hover {
+    background-color: var(--color-white);
+    color: var(--color-black-1);
+}
+
+@media (max-width: 900px) {
+    .box-container .box {
+        height: 250px;
+    }
+    .box-container .box .thumb {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .box-container {
+        display: block;
+    }
+    .box-container .box {
+        width: 50%;
+        float: left;
     }
 }
