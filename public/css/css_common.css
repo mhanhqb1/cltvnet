@@ -5,9 +5,11 @@
     --color-black-3: #546e7b;
     --color-blue-1: #43a5f6;
     --color-blue-2: #2b93e3;
+    --color-blue-3: #4b4ded;
     --color-orange-1: #fe8f01;
     --color-purple-1: #8553cb;
     --color-red-1: #ff3b34;
+    --color-pink-1: #ed4b9e;
 }
 * {
     margin: 0px;
@@ -16,6 +18,7 @@
 }
 a {
     text-decoration: none;
+    color: var(--color-blue-2);
 }
 ul, li {
     list-style: none;
@@ -48,7 +51,13 @@ header nav ul li a {
     font-size: 1.1em;
     padding: 20px 25px;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    align-items: center;
+}
+header nav ul li a i {
+    font-size: 0.8em;
+    display: inline-block;
+    margin-right: 5px;
 }
 header nav ul li a:hover {
     background-color: var(--color-blue-2);
@@ -135,6 +144,7 @@ header nav ul li ul li {
 .box-container {
     width: 100%;
     display: flex;
+    justify-content: center;
 }
 .box-container .box {
     position: relative;
@@ -182,11 +192,17 @@ header nav ul li ul li {
 .box-container .box:nth-child(2) .details {
     background: var(--color-orange-1);
 }
-.box-container .box:nth-child(3) .details {
+.box-container .box:nth-child(4) .details {
     background: var(--color-blue-2);
 }
-.box-container .box:nth-child(4) .details {
+.box-container .box:nth-child(3) .details {
     background: var(--color-red-1);
+}
+.box-container:nth-child(3) .box:nth-child(1) .details {
+    background: var(--color-blue-3);
+}
+.box-container:nth-child(3) .box:nth-child(2) .details {
+    background: var(--color-pink-1);
 }
 .box-container .box .details .content {
     position: absolute;
@@ -247,5 +263,27 @@ header nav ul li ul li {
     }
     .box-container .box .details .content a {
         transform: scale(1);
+    }
+}
+@media (max-width: 468px) {
+    .box-container .box {
+        width: 100%;
+    }
+    .box-container .box .thumb {
+        display: block;
+        width: 50%;
+        left: 50%;
+    }
+    .box-container .box .details {
+        width: 50%;
+    }
+    .box-container .box:nth-child(odd) .thumb{
+        left: 50%;
+    }
+    .box-container .box:nth-child(even) .details {
+        left: 50%;
+    }
+    .box-container .box:nth-child(even) .thumb {
+        left: 0;
     }
 }

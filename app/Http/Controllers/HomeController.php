@@ -20,6 +20,11 @@ class HomeController extends Controller
         // $this->middleware('auth');
     }
 
+    public function home()
+    {
+        return view('home');
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -44,7 +49,7 @@ class HomeController extends Controller
             'not_page' => 1,
             'is_series' => 1
         ]);
-        return view('home', compact('videos', 'seriesMovies', 'notSeriesMovies'));
+        return view('home.home', compact('videos', 'seriesMovies', 'notSeriesMovies'));
     }
 
     public function cateIndex($slug, Request $request)

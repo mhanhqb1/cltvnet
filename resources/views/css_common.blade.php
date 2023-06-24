@@ -16,14 +16,14 @@
         <nav>
             <ul>
                 <li>
-                    <a href="#">Home</a>
+                    <a href="#"><i class="fa fa-solid fa-home"></i> Home</a>
                 </li>
                 <li>
-                    <a href="#">About</a>
+                    <a href="#"><i class="fa fa-solid fa-utensils"></i> Ăn uống</a>
                 </li>
                 <li>
-                    <a href="#">Dropdown <b>+</b></a>
-                    <ul>
+                    <a href="#"><i class="fa fa-brands fa-leanpub"></i> Học tập</a>
+                    <!-- <ul>
                         <li>
                             <a href="#">Home</a>
                         </li>
@@ -36,10 +36,13 @@
                         <li>
                             <a href="#">Contact</a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="#"><i class="fa fa-solid fa-tv"></i> Giải trí</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-solid fa-shopping-cart"></i> Mua sắm</a>
                 </li>
             </ul>
         </nav>
@@ -51,7 +54,7 @@
             <div class="details">
                 <div class="content">
                     <i class="fa fa-solid fa-utensils"></i>
-                    <h3>CaLa Food</h3>
+                    <h3>Ăn uống</h3>
                     <a href="#">Read more</a>
                 </div>
             </div>
@@ -61,7 +64,7 @@
             <div class="details">
                 <div class="content">
                     <i class="fa fa-brands fa-leanpub"></i>
-                    <h3>CaLa Learning</h3>
+                    <h3>Học tập</h3>
                     <a href="#">Read more</a>
                 </div>
             </div>
@@ -71,7 +74,7 @@
             <div class="details">
                 <div class="content">
                     <i class="fa fa-solid fa-tv"></i>
-                    <h3>CaLa Entertainment</h3>
+                    <h3>Giải trí</h3>
                     <a href="#">Read more</a>
                 </div>
             </div>
@@ -80,14 +83,13 @@
             <div class="thumb" style="background-image: url('https://randomwordgenerator.com/img/picture-generator/55e0d2424954af14f1dc8460962e33791c3ad6e04e507440772d73d49745c0_640.jpg');"></div>
             <div class="details">
                 <div class="content">
-                    <i class="fa fa-solid fa-newspaper"></i>
-                    <h3>CaLa News</h3>
+                    <i class="fa fa-solid fa-shopping-cart"></i>
+                    <h3>Mua sắm</h3>
                     <a href="#">Read more</a>
                 </div>
             </div>
         </div>
     </div>
-
     <script>
         let menuToggle = document.querySelector('.menuToggle');
         let header = document.querySelector('header');

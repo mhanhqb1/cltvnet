@@ -23,7 +23,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
+Route::get('/giai-tri', [App\Http\Controllers\HomeController::class, 'index'])->name('cala_movies');
 Route::get('/tim-kiem', [App\Http\Controllers\HomeController::class, 'search'])->name('home.search');
 Route::get('/the-loai/{slug}', [App\Http\Controllers\HomeController::class, 'cateIndex'])->name('home.cate.index');
 Route::get('/quoc-gia/{slug}', [App\Http\Controllers\HomeController::class, 'countryIndex'])->name('home.country.index');
