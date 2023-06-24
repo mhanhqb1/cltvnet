@@ -142,6 +142,18 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/cala-banner.jpg');
             </div>
         </div>
     </div>
+    <div class="clearfix"></div>
+    <div class="container box-items">
+        <div class="box-header">
+            <i class="fa fa-solid fa-tv"></i>
+            <h2>Giải trí</h2>
+        </div>
+        <div class="box-movies">
+            @foreach($videos as $video)
+                @include('layouts.movies.video', ['item' => $video])
+            @endforeach
+        </div>
+    </div>
     <script>
         let menuToggle = document.querySelector('.menuToggle');
         let header = document.querySelector('header');

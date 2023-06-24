@@ -22,7 +22,14 @@ class HomeController extends Controller
 
     public function home()
     {
-        return view('home');
+        $limit = 12;
+        $videos = Movie::with('lastVideo', 'country')
+            ->whereHas('lastVideo')
+            ->where('cate_type', 0)
+            ->orderBy('updated_at', 'desc')
+            ->limit($limit)
+            ->get();
+        return view('home', compact('videos'));
     }
 
     /**

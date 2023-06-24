@@ -98,7 +98,7 @@
         </div>
         <div class="box-movies">
             <div class="card-movie">
-                <div class="poster" onclick="return window.open('{{ route('home') }}');">
+                <div class="poster" onclick="return window.open('{{ route('home') }}', '_self');">
                     <img src="{{ asset('images/cala-learning-banner.jpg') }}" />
                 </div>
                 <div class="details">
