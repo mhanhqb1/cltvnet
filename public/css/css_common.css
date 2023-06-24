@@ -442,4 +442,26 @@ header nav ul li ul li {
     .box-movies {
         grid-template-columns: calc(50% - 10px) calc(50% - 10px);
     }
+    .card-movie:hover .poster::before {
+        bottom: -30%;
+    }
+    .card-movie:hover .poster img {
+        transform: none;
+        filter: none;
+    }
+    .card-movie .details .rating {
+        font-size: 0.8em;
+    }
+    .card-movie:hover .details .info {
+        display: none;
+    }
+    .card-movie .details h3 {
+        font-size: 1em;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        word-break: break-all;
+        -webkit-box-orient: vertical;
+        white-space: normal;
+        display: -webkit-box;
+    }
 }
