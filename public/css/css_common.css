@@ -10,6 +10,8 @@
     --color-purple-1: #8553cb;
     --color-red-1: #ff3b34;
     --color-pink-1: #ed4b9e;
+    --color-yellow-1: #f7f406;
+    --max-width: 1440px;
 }
 * {
     margin: 0px;
@@ -23,9 +25,17 @@ a {
 ul, li {
     list-style: none;
 }
+.clearfix {
+    clear: both;
+}
 body {
     min-height: 100vh;
-    background: var(--color-black-1);
+    background: var(--color-white);
+}
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 header {
     position: relative;
@@ -286,5 +296,150 @@ header nav ul li ul li {
     }
     .box-container .box:nth-child(even) .thumb {
         left: 0;
+    }
+}
+
+.box-items {
+    background: var(--color-white);
+    padding: 20px;
+}
+.box-items .box-header {
+    font-size: 1.5em;
+    color: var(--color-black-1);
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--color-black-1);
+}
+.box-items .box-header h2 {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.box-movies {
+    display: grid;
+    grid-template-columns: calc(16.66% - 16.66px) calc(16.66% - 16.66px) calc(16.66% - 16.66px) calc(16.66% - 16.66px) calc(16.66% - 16.66px) calc(16.66% - 16.66px);
+    grid-gap: 20px;
+    grid-auto-rows: minmax(min-content, max-content);
+    height: 100%;
+    background-color: transparent;
+    width: 100%;
+    overflow: hidden;
+}
+.card-movie {
+    position: relative;
+    width: 100%;
+    padding-bottom: 140%;
+    background: var(--color-white);
+    border-radius: 20px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.25);
+    overflow: hidden;
+}
+.card-movie .poster {
+    position: absolute;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+.card-movie .poster::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: 0.5s;
+    z-index: 2;
+    background: linear-gradient(0deg, var(--color-red-1) 40%, transparent);
+    bottom: -25%;
+}
+.card-movie:hover .poster::before {
+    bottom: 0;
+}
+.card-movie .poster img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    transition: 0.5s;
+}
+.card-movie:hover .poster img {
+    transform: translateY(-50px);
+    filter: blur(5px);
+}
+.card-movie .details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    padding: 20px;
+    transition: 0.5s;
+}
+.card-movie .details h3 {
+    font-size: 1.2em;
+    color: var(--color-white);
+    margin: 7px 0;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.card-movie .details h3 a {
+    color: var(--color-white);
+}
+.card-movie .details .rating {
+    position: relative;
+    font-size: 1em;
+    margin-top: 10px;
+}
+.card-movie .details .rating .fa-star {
+    color: var(--color-yellow-1);
+}
+.card-movie .details .rating span {
+    color: var(--color-white);
+    font-size: 1em;
+    font-weight: 500;
+    display: inline-block;
+}
+.card-movie .details .tags {
+    position: relative;
+}
+.card-movie .details .tags span {
+    padding: 5px;
+    color: var(--color-white);
+    background: var(--color-blue-2);
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 5px;
+}
+.card-movie .details .tags span:nth-child(2) {
+    background: var(--color-orange-1);
+}
+.card-movie .details .info {
+    color: var(--color-white);
+    display: none;
+    transition: 0.5s;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+}
+.card-movie:hover .details .info {
+    display: -webkit-box;
+}
+@media (max-width: 1200px) {
+    .box-movies {
+        grid-template-columns: calc(25% - 15px) calc(25% - 15px) calc(25% - 15px) calc(25% - 15px);
+    }
+}
+@media (max-width: 768px) {
+    .box-movies {
+        grid-template-columns: calc(33.33% - 13.33px) calc(33.33% - 13.33px) calc(33.33% - 13.33px);
+    }
+}
+@media (max-width: 468px) {
+    .box-movies {
+        grid-template-columns: calc(50% - 10px) calc(50% - 10px);
     }
 }

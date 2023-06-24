@@ -48,7 +48,7 @@
         </nav>
     </header>
 
-    <div class="container box-container">
+    <div class="container-fluid box-container">
         <div class="box">
             <div class="thumb" style="background-image: url('https://randomwordgenerator.com/img/picture-generator/50e8d7454b53b10ff3d8992cc12c30771037dbf85254784a73287bd19f4f_640.jpg');"></div>
             <div class="details">
@@ -86,6 +86,153 @@
                     <i class="fa fa-solid fa-shopping-cart"></i>
                     <h3>Mua sắm</h3>
                     <a href="#">Read more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="container box-items">
+        <div class="box-header">
+            <i class="fa fa-solid fa-tv"></i>
+            <h2>Giải trí</h2>
+        </div>
+        <div class="box-movies">
+            <div class="card-movie">
+                <div class="poster" onclick="return window.open('{{ route('home') }}');">
+                    <img src="{{ asset('images/cala-learning-banner.jpg') }}" />
+                </div>
+                <div class="details">
+                    <div class="tags">
+                        <span>2020</span>
+                        <span>United State</span>
+                    </div>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <span>4/5</span>
+                    </div>
+                    <h3><a href="#">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi dolorum cum</a></h3>
+                    <div class="info">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi dolorum cum laboriosam officia iusto quo tenetur iste eaque, odit officiis autem dicta aliquid repellendus doloribus sint ratione porro ipsum expedita.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-movie">
+                <div class="poster">
+                    <img src="{{ asset('images/cala-learning-banner.jpg') }}" />
+                </div>
+                <div class="details">
+                    <div class="tags">
+                        <span>2020</span>
+                        <span>United State</span>
+                    </div>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <span>4/5</span>
+                    </div>
+                    <h3>Aaaaa</h3>
+                    <div class="info">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi dolorum cum laboriosam officia iusto quo tenetur iste eaque, odit officiis autem dicta aliquid repellendus doloribus sint ratione porro ipsum expedita.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-movie">
+                <div class="poster">
+                    <img src="{{ asset('images/cala-learning-banner.jpg') }}" />
+                </div>
+                <div class="details">
+                    <div class="tags">
+                        <span>2020</span>
+                        <span>United State</span>
+                    </div>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <span>4/5</span>
+                    </div>
+                    <h3>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi dolorum cum laboriosam off</h3>
+                    <div class="info">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi dolorum cum laboriosam officia iusto quo tenetur iste eaque, odit officiis autem dicta aliquid repellendus doloribus sint ratione porro ipsum expedita.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-movie">
+                <div class="poster">
+                    <img src="{{ asset('images/cala-learning-banner.jpg') }}" />
+                </div>
+                <div class="details">
+                    <div class="tags">
+                        <span>2020</span>
+                        <span>United State</span>
+                    </div>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <span>4/5</span>
+                    </div>
+                    <h3>Aaaaa</h3>
+                    <div class="info">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi dolorum cum laboriosam officia iusto quo tenetur iste eaque, odit officiis autem dicta aliquid repellendus doloribus sint ratione porro ipsum expedita.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-movie">
+                <div class="poster">
+                    <img src="{{ asset('images/cala-learning-banner.jpg') }}" />
+                </div>
+                <div class="details">
+                    <div class="tags">
+                        <span>2020</span>
+                        <span>United State</span>
+                    </div>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <span>4/5</span>
+                    </div>
+                    <h3>Aaaaa</h3>
+                    <div class="info">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi dolorum cum laboriosam officia iusto quo tenetur iste eaque, odit officiis autem dicta aliquid repellendus doloribus sint ratione porro ipsum expedita.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-movie">
+                <div class="poster">
+                    <img src="{{ asset('images/cala-learning-banner.jpg') }}" />
+                </div>
+                <div class="details">
+                    <div class="tags">
+                        <span>2020</span>
+                        <span>United State</span>
+                    </div>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <span>4/5</span>
+                    </div>
+                    <h3>Aaaaa</h3>
+                    <div class="info">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi dolorum cum laboriosam officia iusto quo tenetur iste eaque, odit officiis autem dicta aliquid repellendus doloribus sint ratione porro ipsum expedita.</p>
+                    </div>
                 </div>
             </div>
         </div>
