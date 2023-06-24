@@ -36,6 +36,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background: linear-gradient(90deg, #01698C 0%, var(--color-purple-1) 100%), var(--color-orange-1);
 }
 header .logo {
     color: var(--color-white);

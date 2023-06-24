@@ -100,7 +100,7 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/cala-banner.jpg');
         </nav>
     </header>
 
-    <div class="container box-container">
+    <div class="container-fluid box-container">
         <div class="box">
             <div class="thumb" style="background-image: url('{{ asset('images/cala-food-banner.jpg') }}');"></div>
             <div class="details">
