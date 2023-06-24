@@ -6,7 +6,7 @@ $url = empty($item->is_series) ? route('home.movie_detail', $item->slug) : route
 ?>
 <div class="card-movie">
     <div class="poster" onclick="return window.open('{{ $url }}', '_self');">
-        <img src="{{ $imageUrl }}" />
+        <img src="{{ $imageUrl }}" alt="{{ $name }}"/>
     </div>
     <div class="details">
         <div class="tags">
@@ -25,7 +25,7 @@ $url = empty($item->is_series) ? route('home.movie_detail', $item->slug) : route
             <i class="fa-regular fa-star"></i>
             <span>4/5</span>
         </div>
-        <h3><a href="{{ $url }}">{{ $name }}</a></h3>
+        <h3 title="{{ $name }}"><a href="{{ $url }}">{{ $name }}</a></h3>
         <div class="info">
             <p>{{ $description }}</p>
         </div>
