@@ -32,13 +32,24 @@ class PostController extends Controller
         $cates = Category::get();
         $postStatus = PostStatus::getInstances();
         $postCates = PostCate::where('post_id', $id)->pluck('cate_id')->toArray();
-        return view('admin.post.add_update', compact('item', 'cates', 'postStatus', 'postCates'));
+        return view('admin.post.add_update', compact(
+            'item',
+            'cates',
+            'postStatus',
+            'postCates'
+        ));
     }
 
     public function add()
     {
         $cates = Category::get();
-        return view('admin.post.add_update', compact('cates'));
+        $postStatus = PostStatus::getInstances();
+        $postCates = [];
+        return view('admin.post.add_update', compact(
+            'cates',
+            'postCates',
+            'postStatus'
+        ));
     }
 
     public function save(Request $request)
@@ -101,6 +112,7 @@ class PostController extends Controller
                 $q->where('categories.id', $request->cate_id);
             });
         }
+        $data = $data->orderBy('id', 'desc');
         return Datatables::of($data)
             ->addColumn('image', function ($item) {
                 $html = '';

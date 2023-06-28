@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Console\\Commands\\EvaNewsCrawler' => $baseDir . '/app/Console/Commands/EvaNewsCrawler.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Enums\\PostStatus' => $baseDir . '/app/Enums/PostStatus.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',

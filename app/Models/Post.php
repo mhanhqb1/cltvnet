@@ -18,6 +18,7 @@ class Post extends Model
         'image',
         'meta_keyword',
         'meta_description',
+        'total_view',
         'status'
     ];
 

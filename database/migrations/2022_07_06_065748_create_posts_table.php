@@ -23,6 +23,7 @@ class CreatePostsTable extends Migration
             $table->string('image')->nullable();
             $table->string('meta_keyword')->nullable();
             $table->string('meta_description')->nullable();
+            $table->integer('total_view')->default(0);
             $table->boolean('status')->default(PostStatus::Hide);
             $table->timestamps();
         });

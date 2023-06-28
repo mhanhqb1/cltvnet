@@ -27,6 +27,8 @@ class PostController extends Controller
         $item = Post::with('cates')
             ->where('slug', $slug)
             ->first();
+        $item->total_view = $item->total_view + 1;
+        $item->save();
         return view('front.post.detail', compact('item'));
     }
 }
