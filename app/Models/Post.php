@@ -38,7 +38,7 @@ class Post extends Model
         if (!empty($params['page']) && !empty($params['limit'])) {
             $data = $data->offset(($params['page'] - 1)*$params['limit'])->limit($params['limit']);
         }
-        $data = $data->get();
+        $data = $data->orderBy('id', 'desc')->get();
         return $data;
     }
 
