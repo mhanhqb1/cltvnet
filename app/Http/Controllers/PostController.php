@@ -29,6 +29,22 @@ class PostController extends Controller
             ->first();
         $item->total_view = $item->total_view + 1;
         $item->save();
-        return view('front.post.detail', compact('item'));
+        $related = Post::where('id', '!=', $item->id)
+            ->orderBy('total_view', 'desc')
+            ->orderBy('id', 'desc')
+            ->limit(5)
+            ->get();
+        $pageDescription = $item->description;
+        $pageTitle = $item->name;
+        $pageKeywords = !empty($item->meta_keywords) ? $item->meta_keywords : 'tin tức, tin tuc, tin tuc 24h, tin tuc trong ngay, tin moi nhat, tin tuc moi';
+        $pageImage = getImageUrl($item->image);
+        return view('front.post.detail', compact(
+            'item',
+            'related',
+            'pageTitle',
+            'pageDescription',
+            'pageKeywords',
+            'pageImage'
+        ));
     }
 }

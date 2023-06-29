@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap'); */
 
 :root {
     --color-white: #fff;
@@ -36,10 +36,15 @@ li {
     clear: both;
 }
 
+.text-center {
+    text-align: center;
+}
+
 body {
     min-height: 100vh;
     background: #e8e8e8;
     font-family: 'Comfortaa', sans-serif;
+    line-height: 24px;
 }
 
 .container {
@@ -181,7 +186,7 @@ header nav ul li ul li {
     }
 }
 
-.box-cards {
+.box-cards, .grid {
     display: grid;
     grid-template-columns: calc(25% - 15px) calc(25% - 15px) calc(25% - 15px) calc(25% - 15px);
     grid-gap: 20px;
@@ -192,7 +197,9 @@ header nav ul li ul li {
     overflow: hidden;
     padding: 20px;
 }
-
+.grid-2 {
+    grid-template-columns: calc(70% - 10px) calc(30% - 10px);
+}
 .card {
     border-radius: 0.5rem;
     background-color: #fff;
@@ -232,14 +239,41 @@ header nav ul li ul li {
     bottom: 10px;
     width: calc(100% - 20px);
 }
-
+.sidebar {
+    padding: 20px;
+    border: 1px solid #fff;
+    border-radius: 0.5em;
+}
+.sidebar > h2 {
+    padding: 0 10px;
+}
+.sidebar .card {
+    margin-top: 20px;
+}
+.sidebar .card:first-child {
+    margin-top: 10px;
+}
+.post-detail .main-content h2 {
+    padding: 20px 20px 0;
+}
+.post-detail .main-content .card-content {
+    padding: 20px;
+}
+.post-detail .eva-cont-art__cap-img {
+    margin: 10px 0;
+}
+.post-detail .card-content p strong {
+    display: block;
+    margin: 7px 0;
+}
 @media (max-width: 1100px) {
     .box-cards {
         grid-template-columns: calc(50% - 10px) calc(50% - 10px);
     }
 }
 @media (max-width: 600px) {
-    .box-cards {
+    .box-cards,
+    .grid-2 {
         grid-template-columns: calc(100%);
     }
     .card .card-content {
