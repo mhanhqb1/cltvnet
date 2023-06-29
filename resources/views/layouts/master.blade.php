@@ -7,6 +7,7 @@ $description = !empty($pageDescription) ? $pageDescription : $webDescription;
 $keywords = !empty($pageKeywords) ? $pageKeywords : '';
 $image = !empty($pageImage) ? $pageImage : $webBanner;
 $url = url()->full();
+$baseUrl = route('front.home.index');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,14 +40,47 @@ $url = url()->full();
     <meta name="twitter:image:alt" content="{{ $title }}">
 
     @stack('before_css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" media="all">
     @stack('css')
 </head>
 
 <body>
-
+<header>
+        <a href="{{ $baseUrl }}" class="logo">{{ $webName }}</a>
+        <div class="menuToggle"></div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{{ $baseUrl }}"><i class="fa fa-solid fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="{{ $baseUrl }}"><i class="fa-solid fa-circle-info"></i> Tin tức</a>
+                </li>
+                <li>
+                    <a href="{{ $baseUrl }}"><i class="fa fa-solid fa-tv"></i> Giải trí</a>
+                </li>
+                <li>
+                    <a href="{{ $baseUrl }}"><i class="fa-solid fa-shirt"></i> Thời trang</a>
+                </li>
+                <li>
+                    <a href="{{ $baseUrl }}"><i class="fa-solid fa-fan"></i> Làm đẹp</a>
+                </li>
+                <li>
+                    <a href="{{ $baseUrl }}"><i class="fa fa-solid fa-shopping-cart"></i> Mua sắm</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
     @yield('content')
 
+    <script>
+        let menuToggle = document.querySelector('.menuToggle');
+        let header = document.querySelector('header');
+        menuToggle.onclick = function() {
+            header.classList.toggle('active');
+        };
+    </script>
     @stack('scripts')
 </body>
 </html>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,6 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('front.home.index');
+        $data = Post::front_get_list([
+            'page' => 1,
+            'limit' => 24
+        ]);
+        return view('front.home.index', compact(
+            'data'
+        ));
     }
 }
