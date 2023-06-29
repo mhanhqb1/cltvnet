@@ -107,6 +107,9 @@ $baseUrl = route('front.home.index');
         });
     </script>
     @stack('scripts')
+
+    @if (env('APP_ENV') != 'local')
     <script async="async" data-cfasync="false" src="//ophoacit.com/1?z=5982523"></script>
+    @endif
 </body>
 </html>
