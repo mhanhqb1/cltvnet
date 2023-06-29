@@ -81,7 +81,7 @@ class Post extends Model
                         $description = $node->filter('.eva-cont-art__sum')->text();
                         $detail = $node->filter('#baiviet-container')->html();
                         $v->description = $description;
-                        $v->detail = $detail;
+                        $v->detail = customEvaHtml($detail);
                         $v->status = PostStatus::Show;
                         $v->save();
                     });

@@ -32,6 +32,28 @@ function createSlug($str, $delimiter = '-')
     return strtolower($str);
 }
 
+function customEvaHtml($html)
+{
+    $html = preg_replace('/<script type="text\/javascript">[\s\S]+?<\/script>/', '', $html);
+    $html = preg_replace('/onclick="[\s\S]+?"/', '', $html);
+    $html = preg_replace('/<a href="[\s\S]+?"/', '<a href="javascript:void(0)"', $html);
+    // $dom = new \DomDocument();
+    // try {
+    //     $dom->loadHtml($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+    // } catch (\Exception $e) {
+    //     return $html;
+    // }
+    // $urls = $dom->getElementsByTagName('a');
+    // foreach ($urls as $k => $url) {
+    //     $a = $url->getAttribute('href');
+    //     if (strpos('https://eva.vn', $a) !== false) {
+    //         $url->setAttribute('href', 'javascript:void(0)');
+    //     }
+    // }
+    // $html = $dom->saveHTML();
+    return $html;
+}
+
 function editorUploadImages($html)
 {
     $dom = new \DomDocument();

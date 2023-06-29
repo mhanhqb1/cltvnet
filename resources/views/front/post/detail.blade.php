@@ -11,7 +11,7 @@
             <img src="{{ getImageUrl($item->image) }}" alt="{{ $postTitle }}" rel="noopener noreferrer" />
         </div>
         <h2>{{ $postTitle }}</h2>
-        <div class="card-content">{!! $item->detail !!}</div>
+        <div class="card-content">{!! customEvaHtml($item->detail) !!}</div>
     </div>
     <div class="sidebar">
         <h2>Xem nhiều</h2>

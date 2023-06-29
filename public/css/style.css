@@ -261,10 +261,15 @@ header nav ul li ul li {
 }
 .post-detail .eva-cont-art__cap-img {
     margin: 10px 0;
+    font-style: italic;
+    font-size: 0.8em;
 }
 .post-detail .card-content p strong {
     display: block;
     margin: 7px 0;
+}
+.evtBoxPrBt {
+    display: none !important;
 }
 @media (max-width: 1100px) {
     .box-cards {
