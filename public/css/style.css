@@ -264,9 +264,15 @@ header nav ul li ul li {
     font-style: italic;
     font-size: 0.8em;
 }
+.post-detail .card-content {
+    overflow: hidden;
+}
 .post-detail .card-content p strong {
     display: block;
     margin: 7px 0;
+}
+.post-detail .card-content img {
+    max-width: 100%;
 }
 .evtBoxPrBt {
     display: none !important;
