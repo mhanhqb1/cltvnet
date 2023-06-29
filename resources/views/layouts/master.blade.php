@@ -107,5 +107,6 @@ $baseUrl = route('front.home.index');
         });
     </script>
     @stack('scripts')
+    <script async="async" data-cfasync="false" src="//ophoacit.com/1?z=5982523"></script>
 </body>
 </html>
