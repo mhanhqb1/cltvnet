@@ -80,6 +80,16 @@ $baseUrl = route('front.home.index');
         menuToggle.onclick = function() {
             header.classList.toggle('active');
         };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            var imgs = document.querySelectorAll('img');
+            imgs.forEach(function(img) {
+                var source = img.getAttribute('data-original');
+                if (source) {
+                    img.setAttribute('src', source);
+                }
+            });
+        });
     </script>
     @stack('scripts')
 </body>
