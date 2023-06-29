@@ -39,7 +39,7 @@ class EvaNewsCrawler extends Command
             } catch (Exception $e) {
                 echo $e->getMessage().PHP_EOL;
             }
-
         }
+        Post::evaDetailCrawler();
     }
 }

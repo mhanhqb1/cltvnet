@@ -219,6 +219,7 @@ header nav ul li ul li {
     font-size: 18px;
     line-height: 24px;
     font-weight: 600;
+    margin-bottom: 5px;
 }
 .card .card-content h2 a {
     color: #000;

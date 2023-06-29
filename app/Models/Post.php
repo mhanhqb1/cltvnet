@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Enums\PostStatus;
+use Exception;
 use Goutte\Client;
 
 class Post extends Model
@@ -58,9 +59,41 @@ class Post extends Model
                     'slug' => createSlug($title),
                     'image' => $img,
                     'source_id' => $href,
-                    'status' => PostStatus::Show
+                    'status' => PostStatus::Hide
                 ]);
             }
         });
+    }
+
+    public static function evaDetailCrawler() {
+        $limit = 200;
+        $data = Post::whereNull('detail')
+            ->whereNotNull('source_id')
+            ->limit($limit)
+            ->get();
+        $client = new Client();
+        foreach ($data as $v) {
+            try {
+                $crawler = $client->request('GET', $v->source_id);
+                $htmlContent = $crawler->filter('article.eva-cont-art')->text();
+                if (!empty($htmlContent)) {
+                    $crawler->filter('article.eva-cont-art')->each(function ($node) use($v){
+                        $description = $node->filter('.eva-cont-art__sum')->text();
+                        $detail = $node->filter('#baiviet-container')->html();
+                        $v->description = $description;
+                        $v->detail = $detail;
+                        $v->status = PostStatus::Show;
+                        $v->save();
+                    });
+                }
+            } catch(Exception $e) {
+                echo $e->getMessage().PHP_EOL;
+                echo $v->source_id.PHP_EOL;
+                $v->detail = '';
+                $v->status = PostStatus::Hide;
+                $v->save();
+            }
+        }
+
     }
 }
