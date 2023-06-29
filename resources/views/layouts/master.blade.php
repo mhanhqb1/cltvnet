@@ -41,7 +41,7 @@ $baseUrl = route('front.home.index');
 
     @stack('before_css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" media="all">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css?v=1.0.1') }}" media="all">
     @stack('css')
 
     @if (env('APP_ENV') != 'local' && env('GA'))

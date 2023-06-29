@@ -272,7 +272,7 @@ header nav ul li ul li {
     margin: 7px 0;
 }
 .post-detail .card-content img {
-    max-width: 100%;
+    max-width: 100% !important;
 }
 .evtBoxPrBt {
     display: none !important;
