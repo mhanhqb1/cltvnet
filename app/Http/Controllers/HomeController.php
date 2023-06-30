@@ -29,8 +29,10 @@ class HomeController extends Controller
             'page' => 1,
             'limit' => 24
         ]);
+        $pageTitle = 'Trang chủ';
         return view('front.home.index', compact(
-            'data'
+            'data',
+            'pageTitle'
         ));
     }
 }
