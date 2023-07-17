@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\NutritionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,16 @@ Route::get('/', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
+
+Route::middleware('auth')
+    ->name('admin.')
+    ->prefix('admin')
+    ->group(function () {
+        Route::controller(NutritionController::class)
+            ->prefix('nutritions')
+            ->name('nutritions.')
+            ->group(function () {
+                Route::get('/', 'index')
+                    ->name('index');
+            });
+});

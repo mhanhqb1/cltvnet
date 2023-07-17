@@ -2,154 +2,129 @@
 
 namespace App\Repositories;
 
-use Illuminate\Container\Container as Application;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use App\Contracts\RepositoryInterface;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
-abstract class BaseRepository
+abstract class BaseRepository implements RepositoryInterface
 {
-    /**
-     * @var Model
-     */
-    protected $model;
-
-    /**
-     * @throws \Exception
-     */
-    public function __construct()
+    public function __construct(private Model $model)
     {
-        $this->makeModel();
     }
 
     /**
-     * Get searchable fields array
+     * @return Model
+     * TODO:delelte
+     * 何用？
      */
-    abstract public function getFieldsSearchable(): array;
+    public function model()
+    {
+        return $this->model;
+    }
 
     /**
-     * Configure the Model
+     * @param $id
+     * @return Model|null
      */
-    abstract public function model(): string;
+    public function find($id): ?Model
+    {
+        return $this->model->find($id);
+    }
+
+    public function select(array $field)
+    {
+        return $this->model->select($field);
+        $this->model->select($field);
+        return $this;
+    }
+
+    public function findOrFail($id)
+    {
+        return $this->model->findOrFail($id);
+    }
+
+    public function all()
+    {
+        return $this->model->all();
+    }
 
     /**
-     * Make Model instance
-     *
-     * @throws \Exception
-     *
+     * @param array $data
+     * @return mixed
+     */
+    public function create(array $data): Model
+    {
+        return $this->model->create($data);
+    }
+
+    /**
+     * @param int $id
+     * @param array $data
      * @return Model
      */
-    public function makeModel()
+    public function update(int $id, array $data): Model
     {
-        $model = app($this->model());
+        $model = $this->findOrFail($id);
+        $model->update($data);
 
-        if (!$model instanceof Model) {
-            throw new \Exception("Class {$this->model()} must be an instance of Illuminate\\Database\\Eloquent\\Model");
-        }
+        return $model;
+    }
 
-        return $this->model = $model;
+    public function delete($id)
+    {
+        return $this->model->destroy($id);
     }
 
     /**
-     * Paginate records for scaffold.
+     * Add a basic where clause to the query.
+     *
+     * @param  mixed  $column
+     * @param  mixed  $operator
+     * @param  mixed  $value
+     * @param  string  $logic
+     * @return Model
      */
-    public function paginate(int $perPage, array $columns = ['*']): LengthAwarePaginator
+    public function where()
     {
-        $query = $this->allQuery();
+        $args = func_get_args();
+        $count = count($args);
 
-        return $query->paginate($perPage, $columns);
-    }
-
-    /**
-     * Build a query for retrieving all records.
-     */
-    public function allQuery(array $search = [], int $skip = null, int $limit = null): Builder
-    {
-        $query = $this->model->newQuery();
-
-        if (count($search)) {
-            foreach($search as $key => $value) {
-                if (in_array($key, $this->getFieldsSearchable())) {
-                    $query->where($key, $value);
+        switch ($count) {
+            case 1:
+                if (is_array($args[0])) {
+                    foreach ($args[0] as $key => $value) {
+                        if (is_array($value)) {
+                            $this->where($key, $value[0], $value[1]);
+                        } else {
+                            $this->model->where($key, '=', $value);
+                        }
+                    }
                 }
-            }
+                break;
+            case 2:
+                if (is_array($args[1])) {
+                    $this->model->whereIn($args[0], $args[1]);
+                } else {
+                    $this->model->where($args[0], $args[1]);
+                }
+                break;
+            case 3:
+                $this->model->where($args[0], $args[1], $args[2]);
+                break;
+            case 4:
+                if ($args[3] == 'or') {
+                    $this->model->orWhere($args[0], $args[1], $args[2]);
+                }
+                break;
+            default:
+                break;
         }
 
-        if (!is_null($skip)) {
-            $query->skip($skip);
-        }
-
-        if (!is_null($limit)) {
-            $query->limit($limit);
-        }
-
-        return $query;
+        return $this->model;
     }
 
-    /**
-     * Retrieve all records with given filter criteria
-     */
-    public function all(array $search = [], int $skip = null, int $limit = null, array $columns = ['*']): Collection
+    public function paginate($perPage = 10)
     {
-        $query = $this->allQuery($search, $skip, $limit);
-
-        return $query->get($columns);
-    }
-
-    /**
-     * Create model record
-     */
-    public function create(array $input): Model
-    {
-        $model = $this->model->newInstance($input);
-
-        $model->save();
-
-        return $model;
-    }
-
-    /**
-     * Find model record for given id
-     *
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|Model|null
-     */
-    public function find(int $id, array $columns = ['*'])
-    {
-        $query = $this->model->newQuery();
-
-        return $query->find($id, $columns);
-    }
-
-    /**
-     * Update model record for given id
-     *
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|Model
-     */
-    public function update(array $input, int $id)
-    {
-        $query = $this->model->newQuery();
-
-        $model = $query->findOrFail($id);
-
-        $model->fill($input);
-
-        $model->save();
-
-        return $model;
-    }
-
-    /**
-     * @throws \Exception
-     *
-     * @return bool|mixed|null
-     */
-    public function delete(int $id)
-    {
-        $query = $this->model->newQuery();
-
-        $model = $query->findOrFail($id);
-
-        return $model->delete();
+        return $this->model->paginate($perPage);
     }
 }
