@@ -5,7 +5,10 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-12">
-                <h1 class="text-black-50">{{ __('nutrition_menu') }}</h1>
+                <h1 class="text-black-50">
+                    {{ __('nutrition_menu') }}
+                    <a href="{{ route('admin.nutritions.create') }}" class="btn btn-primary float-right">{{ __('add_new') }}</a>
+                </h1>
             </div>
         </div>
     </div>
@@ -55,7 +58,9 @@
                                 @foreach ($nutritions as $nutrition)
                                 <tr>
                                     <td>{{ $nutrition->nutrition_id }}</td>
-                                    <td></td>
+                                    <td>
+                                        {!! $nutrition->getImageFormat() !!}
+                                    </td>
                                     <td>{{ $nutrition->name }}</td>
                                     <td>{{ $nutrition->description }}</td>
                                     <td class="project-actions text-center">

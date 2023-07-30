@@ -6,8 +6,10 @@ use App\Common\Definition\FileDefs;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NutritionRegisterRequest;
 use App\Http\Requests\NutritionSearchRequest;
+use App\Services\Nutrition\NutritionCreator;
 use App\Services\Nutrition\NutritionEditor;
 use App\Services\Nutrition\NutritionFinder;
+use App\Services\Nutrition\NutritionInitialization;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -42,6 +44,15 @@ class NutritionController extends Controller
         ]);
     }
 
+    public function create(NutritionInitialization $nutritionInitialization, NutritionFinder $nutritionFinder): View
+    {
+        return view('admin.nutritions.input', [
+            'nutrition' => $nutritionInitialization->initNutrition(),
+            'attrNames' => $nutritionFinder->getAttributeNames(),
+            'attrInputTypes' => $nutritionFinder->getAttributeInputTypes(),
+        ]);
+    }
+
     /**
      * @return RedirectResponse
      */
@@ -54,12 +65,21 @@ class NutritionController extends Controller
             $nutritionRegisterRequest->file('image')->storeAs(FileDefs::IMAGE_STORE_PATH, $fileName);
             $params['image'] = FileDefs::IMAGE_PUBLIC_PATH . $fileName;
         }
+        $params['slug'] = createSlug($params['name']);
         $nutritionEditor->update($nutrition, $params);
-        return redirect()->route('admin.nutritions.index',);
+        return redirect()->route('admin.nutritions.index');
     }
 
-    public function store()
+    public function store(NutritionRegisterRequest $nutritionRegisterRequest, NutritionCreator $nutritionCreator): RedirectResponse
     {
-
+        $params = $nutritionRegisterRequest->validated();
+        if (!empty($nutritionRegisterRequest->file('image'))) {
+            $fileName = time().$nutritionRegisterRequest->file('image')->getClientOriginalName();
+            $nutritionRegisterRequest->file('image')->storeAs(FileDefs::IMAGE_STORE_PATH, $fileName);
+            $params['image'] = FileDefs::IMAGE_PUBLIC_PATH . $fileName;
+        }
+        $params['slug'] = createSlug($params['name']);
+        $nutritionCreator->save($params);
+        return redirect()->route('admin.nutritions.index');
     }
 }

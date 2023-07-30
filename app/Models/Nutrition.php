@@ -82,6 +82,10 @@ class Nutrition extends BaseModel
         });
     }
 
+    public function getImageFormat() {
+        return $this->image ? "<img src='".getImageUrl($this->image)."' width='100px' />" : "";
+    }
+
     public static function scopeWhereMultiConditions(Builder $builder, array $conditions): Builder
     {
         return self::setWhereClause($builder, $conditions, self::mapWhere());
