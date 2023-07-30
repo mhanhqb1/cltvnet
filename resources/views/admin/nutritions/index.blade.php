@@ -68,10 +68,6 @@
                                             <i class="fas fa-pencil-alt"></i>
                                             Edit
                                         </a>
-                                        <a class="btn btn-danger btn-xs" href="#">
-                                            <i class="fas fa-trash"></i>
-                                            Delete
-                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach

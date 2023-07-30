@@ -41,7 +41,7 @@ class InputTypes extends Component
                 $view = 'textarea';
                 break;
             case 'text_editor':
-                $view = 'text_editor';
+                $view = 'text-editor';
                 break;
             case 'file':
                 $view = 'file';

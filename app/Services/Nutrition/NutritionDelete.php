@@ -8,17 +8,17 @@ use App\Repositories\NutritionRepository;
 use App\Services\AbstractFinder;
 use Illuminate\Support\Facades\Log;
 
-class NutritionEditor extends AbstractFinder
+class NutritionDelete extends AbstractFinder
 {
     public function __construct(private NutritionRepository $nutritionRepository)
     {
         parent::__construct($nutritionRepository);
     }
 
-    public function update(Nutrition $nutrition, array $params)
+    public function destroy(Nutrition $nutrition): int
     {
         try {
-            return $this->nutritionRepository->update($nutrition->nutrition_id, $params);
+            return $this->nutritionRepository->delete($nutrition->nutrition_id);
         } catch (\Throwable $e) {
             Log::error($e->getMessage());
             throw new ServiceException(__('update_failed'));

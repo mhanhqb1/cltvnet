@@ -28,3 +28,13 @@ if (!function_exists('getImageUrl')) {
         return url($image);
     }
 }
+
+if (!function_exists('deleteFile')) {
+    function deleteFile($file)
+    {
+        if ($file) {
+            \File::delete(public_path($file));
+        }
+        return $file;
+    }
+}

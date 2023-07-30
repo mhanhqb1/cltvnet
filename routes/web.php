@@ -40,5 +40,7 @@ Route::middleware('auth')
                     ->name('update');
                 Route::post('/', 'store')
                     ->name('store');
+                Route::delete('/{nutritionId}', 'destroy')
+                    ->name('destroy');
             });
 });

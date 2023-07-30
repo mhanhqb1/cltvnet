@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\NutritionRegisterRequest;
 use App\Http\Requests\NutritionSearchRequest;
 use App\Services\Nutrition\NutritionCreator;
+use App\Services\Nutrition\NutritionDelete;
 use App\Services\Nutrition\NutritionEditor;
 use App\Services\Nutrition\NutritionFinder;
 use App\Services\Nutrition\NutritionInitialization;
@@ -59,27 +60,41 @@ class NutritionController extends Controller
     public function update(NutritionRegisterRequest $nutritionRegisterRequest, int $nutritionId, NutritionFinder $nutritionFinder, NutritionEditor $nutritionEditor): RedirectResponse
     {
         $nutrition = $nutritionFinder->getOne(['nutrition_id' => $nutritionId]);
+        $oldImage = '';
         $params = $nutritionRegisterRequest->validated();
+        $params['slug'] = createSlug($params['name']);
         if (!empty($nutritionRegisterRequest->file('image'))) {
-            $fileName = time().$nutritionRegisterRequest->file('image')->getClientOriginalName();
+            $fileName = time().'-'.$params['slug'].'.'.$nutritionRegisterRequest->file('image')->getClientOriginalExtension();
             $nutritionRegisterRequest->file('image')->storeAs(FileDefs::IMAGE_STORE_PATH, $fileName);
             $params['image'] = FileDefs::IMAGE_PUBLIC_PATH . $fileName;
+            $oldImage = $nutrition->image;
         }
-        $params['slug'] = createSlug($params['name']);
         $nutritionEditor->update($nutrition, $params);
+        if ($oldImage) {
+            deleteFile($oldImage);
+        }
         return redirect()->route('admin.nutritions.index');
     }
 
     public function store(NutritionRegisterRequest $nutritionRegisterRequest, NutritionCreator $nutritionCreator): RedirectResponse
     {
         $params = $nutritionRegisterRequest->validated();
+        $params['slug'] = createSlug($params['name']);
         if (!empty($nutritionRegisterRequest->file('image'))) {
-            $fileName = time().$nutritionRegisterRequest->file('image')->getClientOriginalName();
+            $fileName = time().'-'.$params['slug'].'.'.$nutritionRegisterRequest->file('image')->getClientOriginalExtension();
             $nutritionRegisterRequest->file('image')->storeAs(FileDefs::IMAGE_STORE_PATH, $fileName);
             $params['image'] = FileDefs::IMAGE_PUBLIC_PATH . $fileName;
         }
-        $params['slug'] = createSlug($params['name']);
         $nutritionCreator->save($params);
+        return redirect()->route('admin.nutritions.index');
+    }
+
+    public function destroy(int $nutritionId, NutritionFinder $nutritionFinder, NutritionDelete $nutritionDelete): RedirectResponse
+    {
+        $nutrition = $nutritionFinder->getOne(['nutrition_id' => $nutritionId]);
+        deleteFile($nutrition->image);
+        $nutritionDelete->destroy($nutrition);
+
         return redirect()->route('admin.nutritions.index');
     }
 }

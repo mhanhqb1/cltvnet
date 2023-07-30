@@ -44,10 +44,16 @@
         <div class="row">
             <div class="col-12 mb-5">
                 <a href="{{ route('admin.nutritions.index') }}" class="btn btn-secondary">{{ __('cancel') }}</a>
-                <input type="submit" value="{{ __('save') }}" class="btn btn-success float-right">
+                <input type="submit" value="{{ __('save') }}" class="btn btn-primary float-right">
+                @if ($nutrition->nutrition_id)
+                    <button type="button" data-toggle="modal" data-target="#modalDelete" class="btn btn-danger mr-2 float-right">{{ __('delete') }}</button>
+                @endif
             </div>
         </div>
     </form>
     </div>
 </section>
+@if ($nutrition->nutrition_id)
+<x-delete-modal id="{{ $nutrition->nutrition_id }}" url="{{ route('admin.nutritions.destroy', $nutrition->nutrition_id) }}"></x-delete-modal>
+@endif
 @endsection
