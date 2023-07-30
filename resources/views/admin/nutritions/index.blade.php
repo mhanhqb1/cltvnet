@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-12">
-                <h1 class="text-black-50">Nutrition</h1>
+                <h1 class="text-black-50">{{ __('nutrition_menu') }}</h1>
             </div>
         </div>
     </div>
@@ -41,14 +41,14 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered projects">
                             <thead>
                                 <tr>
                                     <th style="width: 10px">#</th>
                                     <th>{{ $attrNames['image'] }}</th>
                                     <th>{{ $attrNames['name'] }}</th>
                                     <th>{{ $attrNames['description'] }}</th>
-                                    <th style="width: 40px"></th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,7 +58,16 @@
                                     <td></td>
                                     <td>{{ $nutrition->name }}</td>
                                     <td>{{ $nutrition->description }}</td>
-                                    <td></td>
+                                    <td class="project-actions text-center">
+                                        <a class="btn btn-info btn-xs" href="{{ route('admin.nutritions.edit', $nutrition->nutrition_id) }}">
+                                            <i class="fas fa-pencil-alt"></i>
+                                            Edit
+                                        </a>
+                                        <a class="btn btn-danger btn-xs" href="#">
+                                            <i class="fas fa-trash"></i>
+                                            Delete
+                                        </a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

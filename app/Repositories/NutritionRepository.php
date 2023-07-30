@@ -21,4 +21,12 @@ class NutritionRepository extends BaseRepository
             ->orderBy('nutrition_id', 'desc')
             ->paginate($perPage);
     }
+
+    public function fetchOne(array $searchConditions): ?Nutrition
+    {
+        return $this
+            ->nutrition
+            ->whereMultiConditions($searchConditions)
+            ->firstOrFail();
+    }
 }

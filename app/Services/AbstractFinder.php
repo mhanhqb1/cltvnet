@@ -87,4 +87,9 @@ abstract class AbstractFinder extends AbstractService
     {
         return $this->model->getAttributeNames();
     }
+
+    public function getAttributeInputTypes()
+    {
+        return $this->model->getAttributeInputTypes();
+    }
 }

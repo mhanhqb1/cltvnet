@@ -59,6 +59,15 @@ class Nutrition extends BaseModel
         ];
     }
 
+    public static function getAttributeInputTypes() {
+        return [
+            'name' => 'text',
+            'image' => 'file',
+            'description' => 'textarea',
+            'detail' => 'text_editor',
+        ];
+    }
+
     protected static function boot()
     {
         parent::boot();

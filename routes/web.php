@@ -32,5 +32,11 @@ Route::middleware('auth')
             ->group(function () {
                 Route::get('/', 'index')
                     ->name('index');
+                Route::get('/{nutritionId}/edit', 'edit')
+                    ->name('edit');
+                Route::put('/{nutritionId}', 'update')
+                    ->name('update');
+                Route::post('/', 'store')
+                    ->name('store');
             });
 });
