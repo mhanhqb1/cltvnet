@@ -22,7 +22,7 @@ class NutritionFactory extends Factory
         $user = User::first();
         return [
             'name' => $name,
-            'slug' => $this->createSlug($name),
+            'slug' => createSlug($name),
             'image' => $this->faker->imageUrl(),
             'description' => $this->faker->sentence,
             'detail' => $this->faker->paragraph,
