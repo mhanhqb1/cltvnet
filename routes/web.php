@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CateController;
 use App\Http\Controllers\Admin\NutritionController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,24 @@ Route::middleware('auth')
                 Route::post('/', 'store')
                     ->name('store');
                 Route::delete('/{nutritionId}', 'destroy')
+                    ->name('destroy');
+            });
+
+        Route::controller(CateController::class)
+            ->prefix('cates')
+            ->name('cates.')
+            ->group(function () {
+                Route::get('/', 'index')
+                    ->name('index');
+                Route::get('/create', 'create')
+                    ->name('create');
+                Route::get('/{cateId}/edit', 'edit')
+                    ->name('edit');
+                Route::put('/{cateId}', 'update')
+                    ->name('update');
+                Route::post('/', 'store')
+                    ->name('store');
+                Route::delete('/{cateId}', 'destroy')
                     ->name('destroy');
             });
 });

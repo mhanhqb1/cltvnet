@@ -10,4 +10,8 @@
         <i class="nav-icon fas fa-home"></i>
         <p>{{ __('nutrition_menu') }}</p>
     </a>
+    <a href="{{ route('admin.cates.index') }}" class="nav-link {{ request()->route()->named('admin.cates.*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-home"></i>
+        <p>{{ __('cate_menu') }}</p>
+    </a>
 </li>
