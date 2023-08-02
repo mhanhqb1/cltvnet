@@ -15,6 +15,7 @@ class InputTypes extends Component
         public string $type,
         public string $label,
         public ?string $value = '',
+        public array $options = [],
         public mixed $renderData = null,
     )
     {}
@@ -31,6 +32,7 @@ class InputTypes extends Component
             'label' => $this->label,
             'value' => $this->value,
             'renderData' => $this->renderData,
+            'options' => $this->options,
         ];
         $view = '';
         switch ($this->type) {
@@ -45,6 +47,9 @@ class InputTypes extends Component
                 break;
             case 'file':
                 $view = 'file';
+                break;
+            case 'select':
+                $view = 'select';
                 break;
             default:
                 $view = 'input';

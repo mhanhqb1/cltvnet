@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-12">
-                <h1 class="text-black-50">{{ __('nutrition_edit') }}</h1>
+                <h1 class="text-black-50">{{ __('cate_edit') }}</h1>
             </div>
         </div>
     </div>
@@ -14,9 +14,9 @@
 @section('content')
 <section class="content">
     <div class="container-fluid">
-    <form action="{{ $nutrition->nutrition_id ? route('admin.nutritions.update', $nutrition->nutrition_id) : route('admin.nutritions.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ $cate->cate_id ? route('admin.cates.update', $cate->cate_id) : route('admin.cates.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @if($nutrition->nutrition_id)
+        @if($cate->cate_id)
             @method('PUT')
         @endif
         <div class="row">
@@ -32,7 +32,7 @@
                     </div>
                     <div class="card-body">
                         @foreach ($attrInputTypes as $attr => $inputType)
-                        <x-input-types name="{{ $attr }}" type="{{ $inputType }}" label="{{ $attrNames[$attr] }}" value="{{ old($attr, $nutrition->$attr) }}"></x-input-types>
+                        <x-input-types name="{{ $attr }}" type="{{ $inputType }}" label="{{ $attrNames[$attr] }}" value="{{ old($attr, $cate->$attr) }}" :options="!empty($options[$attr]) ? $options[$attr] : []" ></x-input-types>
                         @if ($errors->has($attr))
                             <div class="text-danger">{{ $errors->first($attr) }}</div>
                         @endif
@@ -43,9 +43,9 @@
         </div>
         <div class="row">
             <div class="col-12 mb-5">
-                <a href="{{ route('admin.nutritions.index') }}" class="btn btn-secondary">{{ __('cancel') }}</a>
+                <a href="{{ route('admin.cates.index') }}" class="btn btn-secondary">{{ __('cancel') }}</a>
                 <input type="submit" value="{{ __('save') }}" class="btn btn-primary float-right">
-                @if ($nutrition->nutrition_id)
+                @if ($cate->cate_id)
                     <button type="button" data-toggle="modal" data-target="#modalDelete" class="btn btn-danger mr-2 float-right">{{ __('delete') }}</button>
                 @endif
             </div>
@@ -53,7 +53,7 @@
     </form>
     </div>
 </section>
-@if ($nutrition->nutrition_id)
-<x-delete-modal id="{{ $nutrition->nutrition_id }}" url="{{ route('admin.nutritions.destroy', $nutrition->nutrition_id) }}"></x-delete-modal>
+@if ($cate->cate_id)
+<x-delete-modal id="{{ $cate->cate_id }}" url="{{ route('admin.cates.destroy', $cate->cate_id) }}"></x-delete-modal>
 @endif
 @endsection
