@@ -23,7 +23,7 @@ class NutritionFactory extends Factory
         return [
             'name' => $name,
             'slug' => $this->createSlug($name),
-            'image' => '',
+            'image' => $this->faker->imageUrl(),
             'description' => $this->faker->sentence,
             'detail' => $this->faker->paragraph,
             'created_by' => $user->id,
