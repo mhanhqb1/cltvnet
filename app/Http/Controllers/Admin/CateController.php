@@ -30,6 +30,9 @@ class CateController extends Controller
         return view('admin.cates.index')->with([
             'cates' => $cateFinder->getPaginator($cateSearchRequest->validated()),
             'attrNames' => $cateFinder->getAttributeNames(),
+            'options' => [
+                'type' => CateType::i18n(),
+            ],
         ]);
     }
 

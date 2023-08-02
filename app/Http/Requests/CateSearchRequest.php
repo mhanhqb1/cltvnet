@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Common\Definition\CateType;
 use App\Models\Cate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Enum;
 
 class CateSearchRequest extends FormRequest
 {
@@ -27,6 +29,7 @@ class CateSearchRequest extends FormRequest
     {
         return [
             'cate_id' => ['nullable', 'regex:/^\d{0,7}$/', Rule::exists('cates', 'cate_id')],
+            'type' => ['nullable', new Enum(CateType::class)],
             'name' => 'nullable',
             'slug' => 'nullable'
         ];

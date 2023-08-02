@@ -81,6 +81,7 @@ class Cate extends BaseModel
         return [
             'cate_id' => fn (Builder $builder, $value) => $builder->where('cate_id', $value),
             'slug' => fn (Builder $builder, $value) => $builder->where('slug', $value),
+            'type' => fn (Builder $builder, $value) => $builder->where('type', $value),
         ];
     }
 }
