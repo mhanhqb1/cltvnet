@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use App\Common\Definition\CateType;
+use App\Common\Definition\Unit;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Auth;
 
-class Cate extends BaseModel
+class Ingredient extends BaseModel
 {
     use HasFactory;
 
@@ -15,14 +16,14 @@ class Cate extends BaseModel
      *
      * @var string
      */
-    protected $table = 'cates';
+    protected $table = 'ingredients';
 
     /**
      * The primary key associated with the table.
      *
      * @var int
      */
-    protected $primaryKey = 'cate_id';
+    protected $primaryKey = 'ingredient_id';
 
     /**
      * The attributes that are mass assignable.
@@ -34,25 +35,33 @@ class Cate extends BaseModel
         'slug',
         'image',
         'description',
-        'type'
+        'detail',
+        'total_view',
+        'total_food',
+        'unit',
+        'price_unit',
+        'price',
+        'created_by',
+        'updated_by',
     ];
 
     /**
      * @var string[]
      */
     protected $casts = [
-        'type' => CateType::class,
+        'unit' => Unit::class,
     ];
 
     public static function getAttributeNames() {
-        return [
+        $self = new self;
+        $attrNames = [
+            $self->primaryKey => __($self->primaryKey),
             'cate_id' => __('cate_id'),
-            'name' => __('name'),
-            'slug' => __('slug'),
-            'image' => __('image'),
-            'description' => __('description'),
-            'type' => __('type'),
         ];
+        foreach ($self->fillable as $field) {
+            $attrNames[$field] = __($field);
+        }
+        return $attrNames;
     }
 
     public static function getAttributeInputTypes() {
@@ -60,16 +69,26 @@ class Cate extends BaseModel
             'name' => 'text',
             'image' => 'file',
             'description' => 'textarea',
-            'type' => 'select',
+            'detail' => 'text_editor',
         ];
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->created_by = Auth::user()->id;
+            $model->updated_by = Auth::user()->id;
+        });
+
+        static::updating(function ($model) {
+            $model->updated_by = Auth::user()->id;
+        });
     }
 
     public function getImageFormat() {
         return $this->image ? "<img src='".getImageUrl($this->image)."' width='100px' />" : "";
-    }
-
-    public function getName() {
-        return $this->cate_id.': '.$this->name.' - '.$this->type?->getName();
     }
 
     public static function scopeWhereMultiConditions(Builder $builder, array $conditions): Builder
@@ -83,9 +102,8 @@ class Cate extends BaseModel
     private static function mapWhere(): array
     {
         return [
-            'cate_id' => fn (Builder $builder, $value) => $builder->where('cate_id', $value),
+            'ingredient_id' => fn (Builder $builder, $value) => $builder->where('ingredient_id', $value),
             'slug' => fn (Builder $builder, $value) => $builder->where('slug', $value),
-            'type' => fn (Builder $builder, $value) => $builder->where('type', $value),
         ];
     }
 }

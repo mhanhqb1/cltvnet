@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Common\Definition\PaginationDefs;
 use App\Models\Cate;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Collection;
 
 class CateRepository extends BaseRepository
 {
@@ -29,5 +30,13 @@ class CateRepository extends BaseRepository
             ->cate
             ->whereMultiConditions($searchConditions)
             ->firstOrFail();
+    }
+
+    public function fetchAll(array $searchConditions): Collection
+    {
+        return $this
+            ->cate
+            ->whereMultiConditions($searchConditions)
+            ->get();
     }
 }

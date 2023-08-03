@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CateController;
+use App\Http\Controllers\Admin\IngredientController;
 use App\Http\Controllers\Admin\NutritionController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,6 +49,24 @@ Route::middleware('auth')
         Route::controller(CateController::class)
             ->prefix('cates')
             ->name('cates.')
+            ->group(function () {
+                Route::get('/', 'index')
+                    ->name('index');
+                Route::get('/create', 'create')
+                    ->name('create');
+                Route::get('/{cateId}/edit', 'edit')
+                    ->name('edit');
+                Route::put('/{cateId}', 'update')
+                    ->name('update');
+                Route::post('/', 'store')
+                    ->name('store');
+                Route::delete('/{cateId}', 'destroy')
+                    ->name('destroy');
+            });
+
+        Route::controller(IngredientController::class)
+            ->prefix('ingredients')
+            ->name('ingredients.')
             ->group(function () {
                 Route::get('/', 'index')
                     ->name('index');

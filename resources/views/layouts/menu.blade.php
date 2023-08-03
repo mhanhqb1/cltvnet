@@ -14,4 +14,8 @@
         <i class="nav-icon fas fa-home"></i>
         <p>{{ __('cate_menu') }}</p>
     </a>
+    <a href="{{ route('admin.ingredients.index') }}" class="nav-link {{ request()->route()->named('admin.ingredients.*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-home"></i>
+        <p>{{ __('ingredient_menu') }}</p>
+    </a>
 </li>
