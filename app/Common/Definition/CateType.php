@@ -8,7 +8,7 @@ enum CateType: string
 
     case Menu = '0';
     case Food = '1';
-    case Nutrition = '2';
+    case Ingredient = '2';
 
     /**
      * {@inheritDoc}
@@ -18,7 +18,7 @@ enum CateType: string
         return [
             self::Menu->value => __('menu'),
             self::Food->value => __('food'),
-            self::Nutrition->value => __('nutrition'),
+            self::Ingredient->value => __('ingredient'),
         ];
     }
 }
