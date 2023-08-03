@@ -18,7 +18,7 @@ enum Unit: string
     public static function i18n(): array
     {
         return [
-            self::Default->value => '',
+            self::Default->value => '-',
             self::Gram->value => __('g'),
             self::Kilogram->value => __('kg'),
             self::Package->value => __('package'),

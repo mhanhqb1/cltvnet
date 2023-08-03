@@ -55,6 +55,7 @@
                                     <th style="width: 10px">#</th>
                                     <th>{{ $attrNames['image'] }}</th>
                                     <th>{{ $attrNames['name'] }}</th>
+                                    <th>{{ $attrNames['cate'] }}</th>
                                     <th>{{ $attrNames['description'] }}</th>
                                     <th>{{ $attrNames['unit'] }}</th>
                                     <th></th>
@@ -68,6 +69,7 @@
                                         {!! $ingredient->getImageFormat() !!}
                                     </td>
                                     <td>{{ $ingredient->name }}</td>
+                                    <td>{{ $ingredient->getCates() }}</td>
                                     <td>{{ $ingredient->description }}</td>
                                     <td>{{ $ingredient->unit?->getName() }}</td>
                                     <td class="project-actions text-center">

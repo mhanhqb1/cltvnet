@@ -17,6 +17,7 @@ class IngredientRepository extends BaseRepository
     {
         return $this
             ->ingredient
+            ->with('cates')
             ->whereMultiConditions($searchConditions)
             ->orderBy('ingredient_id', 'desc')
             ->paginate($perPage);

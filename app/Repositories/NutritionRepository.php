@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Common\Definition\PaginationDefs;
 use App\Models\Nutrition;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Collection;
 
 class NutritionRepository extends BaseRepository
 {
@@ -28,5 +29,13 @@ class NutritionRepository extends BaseRepository
             ->nutrition
             ->whereMultiConditions($searchConditions)
             ->firstOrFail();
+    }
+
+    public function fetchAll(array $searchConditions): Collection
+    {
+        return $this
+            ->nutrition
+            ->whereMultiConditions($searchConditions)
+            ->get();
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Nutrition;
 use App\Repositories\NutritionRepository;
 use App\Services\AbstractFinder;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Collection;
 
 class NutritionFinder extends AbstractFinder
 {
@@ -26,5 +27,25 @@ class NutritionFinder extends AbstractFinder
         return $this
             ->nutritionRepository
             ->fetchOne($conditions);
+    }
+
+    public function getAll(array $conditions, bool $inputFormat = false): mixed
+    {
+        $nutritions = $this
+            ->nutritionRepository
+            ->fetchAll($conditions);
+        if ($inputFormat) {
+            $nutritions = $this->inputFormat($nutritions);
+        }
+        return $nutritions;
+    }
+
+    public function inputFormat(Collection $nutritions): array
+    {
+        $data = [];
+        foreach ($nutritions as $nutrition) {
+            $data[$nutrition->nutrition_id] = $nutrition->getName();
+        }
+        return $data;
     }
 }

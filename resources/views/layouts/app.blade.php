@@ -93,7 +93,11 @@
 </div>
 
 <script src="{{ mix('js/app.js') }}"></script>
-
+<script>
+    $(document).ready(function() {
+        $('.select2').select2();
+    });
+</script>
 @stack('third_party_scripts')
 
 @stack('page_scripts')

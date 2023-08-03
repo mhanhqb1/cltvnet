@@ -68,6 +68,10 @@ class Nutrition extends BaseModel
         ];
     }
 
+    public function getName() {
+        return $this->nutrition_id.': '.$this->name;
+    }
+
     protected static function boot()
     {
         parent::boot();
