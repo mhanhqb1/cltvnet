@@ -32,11 +32,17 @@
                     </div>
                     <div class="card-body">
                         @foreach ($attrInputTypes as $attr => $inputType)
+                        @php
+                            $oldVal = old($attr, $ingredient->$attr);
+                            if (is_array($oldVal)) {
+                                $oldVal = implode(',', $oldVal);
+                            }
+                        @endphp
                         <x-input-types
                             name="{{ $attr }}"
                             type="{{ $inputType }}"
                             label="{{ $attrNames[$attr] }}"
-                            value="{{ old($attr, $ingredient->$attr) }}"
+                            value="{{ $oldVal }}"
                             :options="!empty($options[$attr]) ? $options[$attr] : []"
                             :multi="!empty($multi[$attr]) ? $multi[$attr] : false"
                             ></x-input-types>

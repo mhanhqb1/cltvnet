@@ -32,6 +32,7 @@ class IngredientRegisterRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255', Rule::unique('ingredients', 'name')->ignore($this->ingredientId, 'ingredient_id')],
             'cate_id' => ['nullable'],
+            'nutrition_id' => ['nullable'],
             'image' => ['nullable', 'image', 'max:'.FileDefs::IMAGE_MAX_SIZE],
             'description' => ['nullable'],
             'detail' => ['nullable'],

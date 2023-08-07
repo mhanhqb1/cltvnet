@@ -56,6 +56,7 @@
                                     <th>{{ $attrNames['image'] }}</th>
                                     <th>{{ $attrNames['name'] }}</th>
                                     <th>{{ $attrNames['cate'] }}</th>
+                                    <th>{{ $attrNames['nutrition'] }}</th>
                                     <th>{{ $attrNames['description'] }}</th>
                                     <th>{{ $attrNames['unit'] }}</th>
                                     <th></th>
@@ -70,6 +71,7 @@
                                     </td>
                                     <td>{{ $ingredient->name }}</td>
                                     <td>{{ $ingredient->getCates() }}</td>
+                                    <td>{{ $ingredient->getNutritions() }}</td>
                                     <td>{{ $ingredient->description }}</td>
                                     <td>{{ $ingredient->unit?->getName() }}</td>
                                     <td class="project-actions text-center">

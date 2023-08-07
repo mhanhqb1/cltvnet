@@ -61,6 +61,7 @@ class Ingredient extends BaseModel
             'cate_id' => __('cate_id'),
             'cate' => __('cate'),
             'nutrition_id' => __('nutrition_id'),
+            'nutrition' => __('nutrition'),
         ];
         foreach ($self->fillable as $field) {
             $attrNames[$field] = __($field);
@@ -101,6 +102,11 @@ class Ingredient extends BaseModel
         return $this->hasManyThrough(Cate::class, IngredientCate::class, 'ingredient_id', 'cate_id', 'ingredient_id', 'cate_id');
     }
 
+    public function nutritions(): HasManyThrough
+    {
+        return $this->hasManyThrough(Nutrition::class, IngredientNutrition::class, 'ingredient_id', 'nutrition_id', 'ingredient_id', 'nutrition_id');
+    }
+
     public function getImageFormat(): string
     {
         return $this->image ? "<img src='".getImageUrl($this->image)."' width='100px' />" : "";
@@ -115,6 +121,17 @@ class Ingredient extends BaseModel
             }
         }
         return implode(' - ', $cates);
+    }
+
+    public function getNutritions(): string
+    {
+        $nutritions = [];
+        if (!$this->nutritions->isEmpty()) {
+            foreach ($this->nutritions as $nutrition) {
+                $nutritions[] = $nutrition->name;
+            }
+        }
+        return implode(' - ', $nutritions);
     }
 
     public static function scopeWhereMultiConditions(Builder $builder, array $conditions): Builder

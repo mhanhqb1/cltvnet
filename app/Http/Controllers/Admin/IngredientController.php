@@ -17,6 +17,7 @@ use App\Services\Ingredient\IngredientCreator;
 use App\Services\Ingredient\IngredientFinder;
 use App\Services\Ingredient\IngredientInitialization;
 use App\Services\IngredientCate\IngredientCateCreator;
+use App\Services\IngredientNutrition\IngredientNutritionCreator;
 use App\Services\Nutrition\NutritionFinder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
@@ -78,7 +79,8 @@ class IngredientController extends Controller
     public function store(
         IngredientRegisterRequest $ingredientRegisterRequest,
         IngredientCreator $ingredientCreator,
-        IngredientCateCreator $ingredientCateCreator
+        IngredientCateCreator $ingredientCateCreator,
+        IngredientNutritionCreator $ingredientNutritionCreator
         ): RedirectResponse
     {
         $params = $ingredientRegisterRequest->validated();
@@ -95,6 +97,14 @@ class IngredientController extends Controller
                 foreach ($params['cate_id'] as $cateId) {
                     $ingredientCateCreator->save([
                         'cate_id' => $cateId,
+                        'ingredient_id' => $ingredient->ingredient_id,
+                    ]);
+                }
+            }
+            if (!empty($params['nutrition_id'])) {
+                foreach ($params['nutrition_id'] as $nutritionId) {
+                    $ingredientNutritionCreator->save([
+                        'nutrition_id' => $nutritionId,
                         'ingredient_id' => $ingredient->ingredient_id,
                     ]);
                 }
