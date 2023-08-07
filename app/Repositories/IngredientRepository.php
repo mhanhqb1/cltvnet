@@ -17,7 +17,7 @@ class IngredientRepository extends BaseRepository
     {
         return $this
             ->ingredient
-            ->with('cates')
+            ->with(['cates', 'nutritions'])
             ->whereMultiConditions($searchConditions)
             ->orderBy('ingredient_id', 'desc')
             ->paginate($perPage);
@@ -27,6 +27,7 @@ class IngredientRepository extends BaseRepository
     {
         return $this
             ->ingredient
+            ->with(['cates', 'nutritions'])
             ->whereMultiConditions($searchConditions)
             ->firstOrFail();
     }

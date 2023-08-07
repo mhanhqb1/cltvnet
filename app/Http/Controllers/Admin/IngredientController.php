@@ -14,10 +14,14 @@ use App\Http\Requests\StoreIngredientRequest;
 use App\Http\Requests\UpdateIngredientRequest;
 use App\Services\Cate\CateFinder;
 use App\Services\Ingredient\IngredientCreator;
+use App\Services\Ingredient\IngredientDelete;
+use App\Services\Ingredient\IngredientEditor;
 use App\Services\Ingredient\IngredientFinder;
 use App\Services\Ingredient\IngredientInitialization;
 use App\Services\IngredientCate\IngredientCateCreator;
+use App\Services\IngredientCate\IngredientCateDelete;
 use App\Services\IngredientNutrition\IngredientNutritionCreator;
+use App\Services\IngredientNutrition\IngredientNutritionDelete;
 use App\Services\Nutrition\NutritionFinder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
@@ -118,48 +122,113 @@ class IngredientController extends Controller
         return redirect()->route('admin.ingredients.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Ingredient  $ingredient
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Ingredient $ingredient)
+    public function edit(
+        int $ingredientId,
+        IngredientFinder $ingredientFinder,
+        CateFinder $cateFinder,
+        NutritionFinder $nutritionFinder
+    ): View
     {
-        //
+        return view('admin.ingredients.input', [
+            'ingredient' => $ingredientFinder->getOne([
+                'ingredient_id' => $ingredientId,
+            ]),
+            'attrNames' => $ingredientFinder->getAttributeNames(),
+            'attrInputTypes' => $ingredientFinder->getAttributeInputTypes(),
+            'options' => [
+                'unit' => Unit::i18n(),
+                'cate_id' => $cateFinder->getAll([
+                    'type' => CateType::Ingredient->value,
+                ], true),
+                'nutrition_id' => $nutritionFinder->getAll([], true),
+            ],
+            'multi' => [
+                'cate_id' => true,
+                'nutrition_id' => true,
+            ],
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Ingredient  $ingredient
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Ingredient $ingredient)
+    public function update(
+        IngredientRegisterRequest $ingredientRegisterRequest,
+        int $ingredientId,
+        IngredientFinder $ingredientFinder,
+        IngredientEditor $ingredientEditor,
+        IngredientCateCreator $ingredientCateCreator,
+        IngredientNutritionCreator $ingredientNutritionCreator,
+        IngredientCateDelete $ingredientCateDelete,
+        IngredientNutritionDelete $ingredientNutritionDelete
+    )
     {
-        //
+        $ingredient = $ingredientFinder->getOne(['ingredient_id' => $ingredientId]);
+        $params = $ingredientRegisterRequest->validated();
+        $params['slug'] = createSlug($params['name']);
+        if (!empty($ingredientRegisterRequest->file('image'))) {
+            $fileName = time().'-'.$params['slug'].'.'.$ingredientRegisterRequest->file('image')->getClientOriginalExtension();
+            $ingredientRegisterRequest->file('image')->storeAs(FileDefs::IMAGE_STORE_PATH, $fileName);
+            $params['image'] = FileDefs::IMAGE_PUBLIC_PATH . $fileName;
+        }
+        try {
+            DB::beginTransaction();
+            $ingredientEditor->update($ingredient, $params);
+
+            $ingredientCateDelete->deleteByConditions([
+                'ingredient_id' => $ingredientId
+            ]);
+            $ingredientNutritionDelete->deleteByConditions([
+                'ingredient_id' => $ingredientId
+            ]);
+
+            if (!empty($params['cate_id'])) {
+                foreach ($params['cate_id'] as $cateId) {
+                    $ingredientCateCreator->save([
+                        'cate_id' => $cateId,
+                        'ingredient_id' => $ingredient->ingredient_id,
+                    ]);
+                }
+            }
+            if (!empty($params['nutrition_id'])) {
+                foreach ($params['nutrition_id'] as $nutritionId) {
+                    $ingredientNutritionCreator->save([
+                        'nutrition_id' => $nutritionId,
+                        'ingredient_id' => $ingredient->ingredient_id,
+                    ]);
+                }
+            }
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e->getMessage());
+            throw new ServiceException(__('register_failed'));
+        }
+        return redirect()->route('admin.ingredients.index');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateIngredientRequest  $request
-     * @param  \App\Models\Ingredient  $ingredient
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateIngredientRequest $request, Ingredient $ingredient)
+    public function destroy(
+        int $ingredientId,
+        IngredientFinder $ingredientFinder,
+        IngredientDelete $ingredientDelete,
+        IngredientCateDelete $ingredientCateDelete,
+        IngredientNutritionDelete $ingredientNutritionDelete)
     {
-        //
-    }
+        $ingredient = $ingredientFinder->getOne(['ingredient_id' => $ingredientId]);
+        deleteFile($ingredient->image);
+        try {
+            DB::beginTransaction();
+            $ingredientCateDelete->deleteByConditions([
+                'ingredient_id' => $ingredientId
+            ]);
+            $ingredientNutritionDelete->deleteByConditions([
+                'ingredient_id' => $ingredientId
+            ]);
+            $ingredientDelete->destroy($ingredient);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Ingredient  $ingredient
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Ingredient $ingredient)
-    {
-        //
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e->getMessage());
+            throw new ServiceException(__('delete_failed'));
+        }
+        return redirect()->route('admin.ingredients.index');
     }
 }

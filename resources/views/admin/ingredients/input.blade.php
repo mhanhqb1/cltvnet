@@ -18,6 +18,7 @@
         @csrf
         @if($ingredient->ingredient_id)
             @method('PUT')
+            <input type="hidden" name="ingredient_id" value="{{ $ingredient->ingredient_id }}" />
         @endif
         <div class="row">
             <div class="col-12">

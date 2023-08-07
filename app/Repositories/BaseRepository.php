@@ -75,6 +75,11 @@ abstract class BaseRepository implements RepositoryInterface
         return $this->model->destroy($id);
     }
 
+    public function deleteByConditions(array $conditions): int
+    {
+        return $this->model->whereMultiConditions($conditions)->delete();
+    }
+
     /**
      * Add a basic where clause to the query.
      *

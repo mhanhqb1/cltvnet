@@ -23,6 +23,5 @@ class CateDelete extends AbstractFinder
             Log::error($e->getMessage());
             throw new ServiceException(__('update_failed'));
         }
-
     }
 }

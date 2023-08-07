@@ -96,6 +96,27 @@ class Ingredient extends BaseModel
             $model->updated_by = Auth::user()->id;
         });
     }
+    public function getCateIdAttribute()
+    {
+        $cateIds = [];
+        if (!$this->cates->isEmpty()) {
+            foreach ($this->cates as $cate) {
+                $cateIds[] = $cate->cate_id;
+            }
+        }
+        return $cateIds;
+    }
+
+    public function getNutritionIdAttribute()
+    {
+        $nutritionIds = [];
+        if (!$this->nutritions->isEmpty()) {
+            foreach ($this->nutritions as $nutrition) {
+                $nutritionIds[] = $nutrition->nutrition_id;
+            }
+        }
+        return $nutritionIds;
+    }
 
     public function cates(): HasManyThrough
     {
