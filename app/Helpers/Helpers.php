@@ -59,3 +59,25 @@ if (!function_exists('deleteFile')) {
         return $file;
     }
 }
+
+if (!function_exists('editorUploadImages')) {
+    function editorUploadImages($html)
+    {
+        if (preg_match_all('/src="(.*?)"/', $html, $match) >= 1) {
+            foreach ($match[1] as $k => $v) {
+                $image = explode('data:image', $v);
+                if (!empty($image[1])) {
+                    $image = explode(',', $image[1]);
+                    if (!empty($image[1])) {
+                        $data = base64_decode($image[1]);
+                        $image_name = time() . $k. '.jpg';
+                        $image_path = "/public/upload/" .  $image_name;
+                        Storage::put($image_path, $data);
+                        $html = str_replace($v, url('/storage/upload').'/'.$image_name, $html);
+                    }
+                }
+            }
+        }
+        return $html;
+    }
+}

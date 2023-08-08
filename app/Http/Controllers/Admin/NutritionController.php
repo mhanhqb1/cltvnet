@@ -69,6 +69,7 @@ class NutritionController extends Controller
             $params['image'] = FileDefs::IMAGE_PUBLIC_PATH . $fileName;
             $oldImage = $nutrition->image;
         }
+        $params['detail'] = editorUploadImages($params['detail']);
         $nutritionEditor->update($nutrition, $params);
         if ($oldImage) {
             deleteFile($oldImage);
@@ -85,6 +86,7 @@ class NutritionController extends Controller
             $nutritionRegisterRequest->file('image')->storeAs(FileDefs::IMAGE_STORE_PATH, $fileName);
             $params['image'] = FileDefs::IMAGE_PUBLIC_PATH . $fileName;
         }
+        $params['detail'] = editorUploadImages($params['detail']);
         $nutritionCreator->save($params);
         return redirect()->route('admin.nutritions.index');
     }

@@ -7,7 +7,6 @@ use App\Common\Definition\FileDefs;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CateRegisterRequest;
 use App\Http\Requests\CateSearchRequest;
-use App\Models\Cate;
 use App\Services\Cate\CateCreator;
 use App\Services\Cate\CateDelete;
 use App\Services\Cate\CateEditor;

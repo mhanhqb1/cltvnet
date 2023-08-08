@@ -96,6 +96,7 @@ class IngredientController extends Controller
         }
         try {
             DB::beginTransaction();
+            $params['detail'] = editorUploadImages($params['detail']);
             $ingredient = $ingredientCreator->save($params);
             if (!empty($params['cate_id'])) {
                 foreach ($params['cate_id'] as $cateId) {
@@ -170,6 +171,7 @@ class IngredientController extends Controller
         }
         try {
             DB::beginTransaction();
+            $params['detail'] = editorUploadImages($params['detail']);
             $ingredientEditor->update($ingredient, $params);
 
             $ingredientCateDelete->deleteByConditions([
