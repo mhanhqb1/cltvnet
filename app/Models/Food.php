@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use App\Common\Definition\FoodType;
+use App\Common\Definition\Level;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Auth;
 
-class Food extends Model
+class Food extends BaseModel
 {
     use HasFactory;
 
@@ -38,6 +38,8 @@ class Food extends Model
         'description',
         'detail',
         'type',
+        'time',
+        'level',
         'created_by',
         'updated_by',
     ];
@@ -47,6 +49,7 @@ class Food extends Model
      */
     protected $casts = [
         'type' => FoodType::class,
+        'level' => Level::class,
     ];
 
     public static function getAttributeNames() {
@@ -59,17 +62,20 @@ class Food extends Model
         foreach ($self->fillable as $field) {
             $attrNames[$field] = __($field);
         }
+        $attrNames['time'] = __('time_min');
         return $attrNames;
     }
 
     public static function getAttributeInputTypes() {
         return [
             'name' => 'text',
-            'cate_id' => 'select2',
+            // 'cate_id' => 'select2',
             'image' => 'file',
             'description' => 'textarea',
             'detail' => 'text_editor',
             'type' => 'select',
+            'time' => 'text',
+            'level' => 'select',
         ];
     }
 

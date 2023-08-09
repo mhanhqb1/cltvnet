@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('ingredient_nutritions', function (Blueprint $table) {
             $table->increments('ingredient_nutrition_id')->unsigned();
-            $table->integer('nutrition_id');
-            $table->integer('ingredient_id');
+            $table->integer('nutrition_id')->unsigned();
+            $table->integer('ingredient_id')->unsigned();
             $table->timestamps();
         });
     }
