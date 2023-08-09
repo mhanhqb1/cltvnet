@@ -23,3 +23,9 @@
         <p>{{ __('ingredient_menu') }}</p>
     </a>
 </li>
+<li class="nav-item">
+    <a href="{{ route('admin.foods.index') }}" class="nav-link {{ request()->route()->named('admin.foods.*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-home"></i>
+        <p>{{ __('food_menu') }}</p>
+    </a>
+</li>
