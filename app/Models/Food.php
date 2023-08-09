@@ -6,6 +6,7 @@ use App\Common\Definition\FoodType;
 use App\Common\Definition\Level;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Support\Facades\Auth;
 
 class Food extends BaseModel
@@ -69,7 +70,7 @@ class Food extends BaseModel
     public static function getAttributeInputTypes() {
         return [
             'name' => 'text',
-            // 'cate_id' => 'select2',
+            'cate_id' => 'select2',
             'image' => 'file',
             'description' => 'textarea',
             'detail' => 'text_editor',
@@ -91,6 +92,11 @@ class Food extends BaseModel
         static::updating(function ($model) {
             $model->updated_by = Auth::user()->id;
         });
+    }
+
+    public function cates(): HasManyThrough
+    {
+        return $this->hasManyThrough(Cate::class, FoodCate::class, 'food_id', 'cate_id', 'food_id', 'cate_id');
     }
 
     public function getCateIdAttribute()

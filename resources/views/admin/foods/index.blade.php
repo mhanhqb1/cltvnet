@@ -68,7 +68,7 @@
                                         {!! $food->getImageFormat() !!}
                                     </td>
                                     <td>{{ $food->name }}</td>
-                                    <td></td>
+                                    <td>{{ $food->getCates() }}</td>
                                     <td>{{ $food->description }}</td>
                                     <td class="project-actions text-center">
                                         <a class="btn btn-info btn-xs" href="{{ route('admin.foods.edit', $food->food_id) }}">

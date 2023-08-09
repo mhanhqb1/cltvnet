@@ -1,3 +1,8 @@
+@if (!empty($value) && strpos($name, 'image') >= 0)
+<div class="form-group">
+    <img src="{{ getImageUrl($value) }}" width="200px" />
+</div>
+@endif
 <div class="form-group">
     <label for="{{ $name }}">{{ $label }}</label>
     <div class="input-group">
