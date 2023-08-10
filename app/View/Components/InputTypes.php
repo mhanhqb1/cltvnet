@@ -18,6 +18,7 @@ class InputTypes extends Component
         public array $options = [],
         public mixed $renderData = null,
         public bool $multi = false,
+        public bool $multiLines = false,
     )
     {}
 
@@ -35,6 +36,7 @@ class InputTypes extends Component
             'renderData' => $this->renderData,
             'options' => $this->options,
             'multi' => $this->multi,
+            'multiLines' => $this->multiLines,
         ];
         $view = '';
         switch ($this->type) {

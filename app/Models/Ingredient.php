@@ -155,6 +155,11 @@ class Ingredient extends BaseModel
         return implode(' - ', $nutritions);
     }
 
+    public function getNameForRecipe(): string
+    {
+        return $this->name.' - '.$this->unit?->getName();
+    }
+
     public static function scopeWhereMultiConditions(Builder $builder, array $conditions): Builder
     {
         return self::setWhereClause($builder, $conditions, self::mapWhere());

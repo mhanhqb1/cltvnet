@@ -38,6 +38,7 @@ class FoodRegisterRequest extends FormRequest
             'type' => ['required', new Enum(FoodType::class)],
             'level' => ['required', new Enum(Level::class)],
             'time' => ['nullable', 'integer'],
+            'food_recipes' => ['nullable'],
         ];
     }
 
@@ -54,5 +55,16 @@ class FoodRegisterRequest extends FormRequest
     public function attributes(): array
     {
         return Food::getAttributeNames();
+    }
+
+    public function multiValidated()
+    {
+        $params = $this->validated();
+        if (!empty($params['food_recipes'])) {
+            $params['food_recipes'] = json_decode($params['food_recipes'], true);
+
+            // Todo validate detail
+        }
+        return $params;
     }
 }

@@ -6,10 +6,12 @@ use App\Common\Definition\CateType;
 use App\Common\Definition\FileDefs;
 use App\Common\Definition\FoodType;
 use App\Common\Definition\Level;
+use App\Common\Definition\RecipeType;
 use App\Exceptions\ServiceException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FoodRegisterRequest;
 use App\Http\Requests\FoodSearchRequest;
+use App\Models\Ingredient;
 use App\Services\Cate\CateFinder;
 use App\Services\Food\FoodCreator;
 use App\Services\Food\FoodDelete;
@@ -18,6 +20,10 @@ use App\Services\Food\FoodFinder;
 use App\Services\Food\FoodInitialization;
 use App\Services\FoodCate\FoodCateCreator;
 use App\Services\FoodCate\FoodCateDelete;
+use App\Services\FoodRecipe\FoodRecipeCreator;
+use App\Services\FoodRecipe\FoodRecipeDelete;
+use App\Services\FoodRecipe\FoodRecipeFinder;
+use App\Services\Ingredient\IngredientFinder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -137,7 +143,9 @@ class FoodController extends Controller
     public function edit(
         int $foodId,
         FoodFinder $foodFinder,
-        CateFinder $cateFinder
+        CateFinder $cateFinder,
+        FoodRecipeFinder $foodRecipeFinder,
+        IngredientFinder $ingredientFinder
     ): View
     {
         return view('admin.foods.input', [
@@ -146,12 +154,21 @@ class FoodController extends Controller
             ]),
             'attrNames' => $foodFinder->getAttributeNames(),
             'attrInputTypes' => $foodFinder->getAttributeInputTypes(),
+            'recipeAttrNames' => $foodRecipeFinder->getAttributeNames(),
+            'recipeAttrInputTypes' => $foodRecipeFinder->getAttributeInputTypes(),
             'options' => [
                 'type' => FoodType::i18n(),
                 'level' => Level::i18n(),
                 'cate_id' => $cateFinder->getAll([
                     'type' => CateType::Food->value,
                 ], true),
+            ],
+            'recipeOptions' => [
+                'recipe_type' => RecipeType::i18n(),
+                'ingredient_id' => array_merge([
+                        '' => ''
+                    ], $ingredientFinder->getAll([], true)
+                ),
             ],
             'multi' => [
                 'cate_id' => true,
@@ -176,11 +193,13 @@ class FoodController extends Controller
         FoodEditor $foodEditor,
         FoodFinder $foodFinder,
         FoodCateDelete $foodCateDelete,
-        FoodCateCreator $foodCateCreator
+        FoodCateCreator $foodCateCreator,
+        FoodRecipeDelete $foodRecipeDelete,
+        FoodRecipeCreator $foodRecipeCreator
     ): RedirectResponse
     {
         $food = $foodFinder->getOne(['food_id' => $foodId]);
-        $params = $foodRegisterRequest->validated();
+        $params = $foodRegisterRequest->multiValidated();
         $params['slug'] = createSlug($params['name']);
         if (!empty($foodRegisterRequest->file('image'))) {
             $fileName = time().'-'.$params['slug'].'.'.$foodRegisterRequest->file('image')->getClientOriginalExtension();
@@ -202,6 +221,12 @@ class FoodController extends Controller
                         'cate_id' => $cateId,
                         'food_id' => $food->food_id,
                     ]);
+                }
+            }
+            if (!empty($params['food_recipes'])) {
+                foreach ($params['food_recipes'] as $foodRecipe) {
+                    $foodRecipe['food_id'] = $food->food_id;
+                    $foodRecipeCreator->save($foodRecipe);
                 }
             }
             DB::commit();

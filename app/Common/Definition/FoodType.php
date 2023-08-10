@@ -10,7 +10,8 @@ enum FoodType: string
     case Secondary = '2';
     case Soup = '3';
     case Desserts = '4';
-    case Other = '5';
+    case Juice = '5';
+    case Other = '6';
 
     /**
      * {@inheritDoc}
@@ -22,6 +23,7 @@ enum FoodType: string
             self::Secondary->value => 'Mon phu (xao, rau luoc, ...)',
             self::Soup->value => 'Mon canh',
             self::Desserts->value => 'Mon trang mieng (trai cay, sua chua, banh ngot, ...)',
+            self::Juice->value => 'Nuoc ep',
             self::Other->value => 'Mon an kem (ca phao, kieu, ...)',
         ];
     }
