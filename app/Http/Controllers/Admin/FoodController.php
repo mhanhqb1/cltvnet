@@ -66,24 +66,37 @@ class FoodController extends Controller
      * @param FoodInitialization $foodInitialization
      * @param FoodFinder $foodFinder
      * @param CateFinder $cateFinder
+     * @param FoodRecipeFinder $foodRecipeFinder
+     * @param IngredientFinder $ingredientFinder
      * @return View
      */
     public function create(
         FoodInitialization $foodInitialization,
         FoodFinder $foodFinder,
-        CateFinder $cateFinder
+        CateFinder $cateFinder,
+        FoodRecipeFinder $foodRecipeFinder,
+        IngredientFinder $ingredientFinder
     ): View
     {
         return view('admin.foods.input', [
             'food' => $foodInitialization->initFood(),
             'attrNames' => $foodFinder->getAttributeNames(),
             'attrInputTypes' => $foodFinder->getAttributeInputTypes(),
+            'recipeAttrNames' => $foodRecipeFinder->getAttributeNames(),
+            'recipeAttrInputTypes' => $foodRecipeFinder->getAttributeInputTypes(),
             'options' => [
                 'type' => FoodType::i18n(),
                 'level' => Level::i18n(),
                 'cate_id' => $cateFinder->getAll([
                     'type' => CateType::Food->value,
                 ], true),
+            ],
+            'recipeOptions' => [
+                'recipe_type' => RecipeType::i18n(),
+                'ingredient_id' => array_merge([
+                        '' => ''
+                    ], $ingredientFinder->getAll([], true)
+                ),
             ],
             'multi' => [
                 'cate_id' => true,
@@ -101,10 +114,11 @@ class FoodController extends Controller
     public function store(
         FoodRegisterRequest $foodRegisterRequest,
         FoodCreator $foodCreator,
-        FoodCateCreator $foodCateCreator
+        FoodCateCreator $foodCateCreator,
+        FoodRecipeCreator $foodRecipeCreator
     ): RedirectResponse
     {
-        $params = $foodRegisterRequest->validated();
+        $params = $foodRegisterRequest->multiValidated();
         $params['slug'] = createSlug($params['name']);
         if (!empty($foodRegisterRequest->file('image'))) {
             $fileName = time().'-'.$params['slug'].'.'.$foodRegisterRequest->file('image')->getClientOriginalExtension();
@@ -121,6 +135,12 @@ class FoodController extends Controller
                         'cate_id' => $cateId,
                         'food_id' => $food->food_id,
                     ]);
+                }
+            }
+            if (!empty($params['food_recipes'])) {
+                foreach ($params['food_recipes'] as $foodRecipe) {
+                    $foodRecipe['food_id'] = $food->food_id;
+                    $foodRecipeCreator->save($foodRecipe);
                 }
             }
             DB::commit();
@@ -185,6 +205,8 @@ class FoodController extends Controller
      * @param FoodFinder $foodFinder
      * @param FoodCateDelete $foodCateDelete
      * @param FoodCateCreator $foodCateCreator
+     * @param FoodRecipeDelete $foodRecipeDelete
+     * @param FoodRecipeCreator $foodRecipeCreator
      * @return RedirectResponse
      */
     public function update(
@@ -212,6 +234,9 @@ class FoodController extends Controller
             $foodEditor->update($food, $params);
 
             $foodCateDelete->deleteByConditions([
+                'food_id' => $foodId
+            ]);
+            $foodRecipeDelete->deleteByConditions([
                 'food_id' => $foodId
             ]);
 

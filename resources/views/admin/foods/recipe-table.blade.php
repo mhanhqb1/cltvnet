@@ -18,7 +18,7 @@
                 :multi="!empty($multi[$attr]) ? $multi[$attr] : false"
                 :multiLines="true"
                 ></x-input-types>
-            @if ($errors->has($attr))
+            @if (!empty($hasError) && $errors->has($attr))
                 <div class="text-danger">{{ $errors->first($attr) }}</div>
             @endif
         </td>

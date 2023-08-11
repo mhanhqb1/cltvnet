@@ -5,10 +5,14 @@ namespace App\Http\Requests;
 use App\Common\Definition\FoodType;
 use App\Common\Definition\FileDefs;
 use App\Common\Definition\Level;
+use App\Common\Definition\RecipeType;
 use App\Models\Food;
+use App\Models\FoodRecipe;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Enum;
+use Illuminate\Validation\ValidationException;
 
 class FoodRegisterRequest extends FormRequest
 {
@@ -62,8 +66,21 @@ class FoodRegisterRequest extends FormRequest
         $params = $this->validated();
         if (!empty($params['food_recipes'])) {
             $params['food_recipes'] = json_decode($params['food_recipes'], true);
-
             // Todo validate detail
+            $rules = [
+                'ingredient_id' => ['required', Rule::exists('ingredients', 'ingredient_id')],
+                'weight' => ['required', 'numeric', 'between:0,9999999.99'],
+                'recipe_type' => ['required', new Enum(RecipeType::class)],
+                'note' => ['nullable'],
+            ];
+            $messages = [];
+            $attributes = FoodRecipe::getAttributeNames();
+            foreach ($params['food_recipes'] as $k => $foodRecipe) {
+                $validator = Validator::make($foodRecipe, $rules, $messages, $attributes);
+                if ($validator->fails()) {
+                    throw ValidationException::withMessages(array_merge($validator->errors()->toArray(), ['row' => $k]));
+                }
+            }
         }
         return $params;
     }
