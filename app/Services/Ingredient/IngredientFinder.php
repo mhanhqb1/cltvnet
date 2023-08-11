@@ -35,9 +35,9 @@ class IngredientFinder extends AbstractFinder
             ->ingredientRepository
             ->fetchAll($conditions);
         if ($inputFormat) {
-            $cates = $this->inputFormat($ingredients);
+            $ingredients = $this->inputFormat($ingredients);
         }
-        return $cates;
+        return $ingredients;
     }
 
     public function inputFormat(Collection $ingredients): array

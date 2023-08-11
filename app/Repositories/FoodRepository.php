@@ -26,6 +26,7 @@ class FoodRepository extends BaseRepository
     {
         return $this
             ->food
+            ->with(['mealTypes', 'cates', 'recipes'])
             ->whereMultiConditions($searchConditions)
             ->firstOrFail();
     }

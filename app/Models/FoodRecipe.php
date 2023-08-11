@@ -64,6 +64,15 @@ class FoodRecipe extends BaseModel
         ];
     }
 
+    public function getRecipeData() {
+        return [
+            'ingredient_id' => $this->ingredient_id,
+            'weight' => $this->weight,
+            'recipe_type' => $this->recipe_type?->value,
+            'note' => $this->note,
+        ];
+    }
+
     public static function scopeWhereMultiConditions(Builder $builder, array $conditions): Builder
     {
         return self::setWhereClause($builder, $conditions, self::mapWhere());

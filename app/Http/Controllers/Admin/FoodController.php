@@ -6,12 +6,12 @@ use App\Common\Definition\CateType;
 use App\Common\Definition\FileDefs;
 use App\Common\Definition\FoodType;
 use App\Common\Definition\Level;
+use App\Common\Definition\MealType;
 use App\Common\Definition\RecipeType;
 use App\Exceptions\ServiceException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FoodRegisterRequest;
 use App\Http\Requests\FoodSearchRequest;
-use App\Models\Ingredient;
 use App\Services\Cate\CateFinder;
 use App\Services\Food\FoodCreator;
 use App\Services\Food\FoodDelete;
@@ -20,6 +20,8 @@ use App\Services\Food\FoodFinder;
 use App\Services\Food\FoodInitialization;
 use App\Services\FoodCate\FoodCateCreator;
 use App\Services\FoodCate\FoodCateDelete;
+use App\Services\FoodMealType\FoodMealTypeCreator;
+use App\Services\FoodMealType\FoodMealTypeDelete;
 use App\Services\FoodRecipe\FoodRecipeCreator;
 use App\Services\FoodRecipe\FoodRecipeDelete;
 use App\Services\FoodRecipe\FoodRecipeFinder;
@@ -87,6 +89,7 @@ class FoodController extends Controller
             'options' => [
                 'type' => FoodType::i18n(),
                 'level' => Level::i18n(),
+                'meal_type' => MealType::i18n(),
                 'cate_id' => $cateFinder->getAll([
                     'type' => CateType::Food->value,
                 ], true),
@@ -95,11 +98,13 @@ class FoodController extends Controller
                 'recipe_type' => RecipeType::i18n(),
                 'ingredient_id' => array_merge([
                         '' => ''
-                    ], $ingredientFinder->getAll([], true)
+                    ],
+                    $ingredientFinder->getAll([], true)
                 ),
             ],
             'multi' => [
                 'cate_id' => true,
+                'meal_type' => true,
             ],
         ]);
     }
@@ -109,13 +114,17 @@ class FoodController extends Controller
      *
      * @param FoodRegisterRequest $foodRegisterRequest
      * @param FoodCreator $foodCreator
+     * @param FoodCateCreator $foodCateCreator
+     * @param FoodRecipeCreator $foodRecipeCreator
+     * @param FoodMealTypeCreator $foodMealTypeCreator
      * @return RedirectResponse
      */
     public function store(
         FoodRegisterRequest $foodRegisterRequest,
         FoodCreator $foodCreator,
         FoodCateCreator $foodCateCreator,
-        FoodRecipeCreator $foodRecipeCreator
+        FoodRecipeCreator $foodRecipeCreator,
+        FoodMealTypeCreator $foodMealTypeCreator
     ): RedirectResponse
     {
         $params = $foodRegisterRequest->multiValidated();
@@ -133,6 +142,14 @@ class FoodController extends Controller
                 foreach ($params['cate_id'] as $cateId) {
                     $foodCateCreator->save([
                         'cate_id' => $cateId,
+                        'food_id' => $food->food_id,
+                    ]);
+                }
+            }
+            if (!empty($params['meal_type'])) {
+                foreach ($params['meal_type'] as $mealType) {
+                    $foodMealTypeCreator->save([
+                        'meal_type' => $mealType,
                         'food_id' => $food->food_id,
                     ]);
                 }
@@ -179,6 +196,7 @@ class FoodController extends Controller
             'options' => [
                 'type' => FoodType::i18n(),
                 'level' => Level::i18n(),
+                'meal_type' => MealType::i18n(),
                 'cate_id' => $cateFinder->getAll([
                     'type' => CateType::Food->value,
                 ], true),
@@ -192,6 +210,7 @@ class FoodController extends Controller
             ],
             'multi' => [
                 'cate_id' => true,
+                'meal_type' => true,
             ],
         ]);
     }
@@ -207,6 +226,8 @@ class FoodController extends Controller
      * @param FoodCateCreator $foodCateCreator
      * @param FoodRecipeDelete $foodRecipeDelete
      * @param FoodRecipeCreator $foodRecipeCreator
+     * @param FoodMealTypeDelete $foodMealTypeDelete
+     * @param FoodMealTypeCreator $foodMealTypeCreator
      * @return RedirectResponse
      */
     public function update(
@@ -217,7 +238,9 @@ class FoodController extends Controller
         FoodCateDelete $foodCateDelete,
         FoodCateCreator $foodCateCreator,
         FoodRecipeDelete $foodRecipeDelete,
-        FoodRecipeCreator $foodRecipeCreator
+        FoodRecipeCreator $foodRecipeCreator,
+        FoodMealTypeDelete $foodMealTypeDelete,
+        FoodMealTypeCreator $foodMealTypeCreator
     ): RedirectResponse
     {
         $food = $foodFinder->getOne(['food_id' => $foodId]);
@@ -239,11 +262,22 @@ class FoodController extends Controller
             $foodRecipeDelete->deleteByConditions([
                 'food_id' => $foodId
             ]);
+            $foodMealTypeDelete->deleteByConditions([
+                'food_id' => $foodId
+            ]);
 
             if (!empty($params['cate_id'])) {
                 foreach ($params['cate_id'] as $cateId) {
                     $foodCateCreator->save([
                         'cate_id' => $cateId,
+                        'food_id' => $food->food_id,
+                    ]);
+                }
+            }
+            if (!empty($params['meal_type'])) {
+                foreach ($params['meal_type'] as $mealType) {
+                    $foodMealTypeCreator->save([
+                        'meal_type' => $mealType,
                         'food_id' => $food->food_id,
                     ]);
                 }

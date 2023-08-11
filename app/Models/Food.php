@@ -6,6 +6,7 @@ use App\Common\Definition\FoodType;
 use App\Common\Definition\Level;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Support\Facades\Auth;
 
@@ -59,6 +60,7 @@ class Food extends BaseModel
             $self->primaryKey => __($self->primaryKey),
             'cate_id' => __('cate_id'),
             'cate' => __('cate'),
+            'meal_type' => __('meal_type'),
         ];
         foreach ($self->fillable as $field) {
             $attrNames[$field] = __($field);
@@ -74,6 +76,7 @@ class Food extends BaseModel
             'image' => 'file',
             'description' => 'textarea',
             'detail' => 'text_editor',
+            'meal_type' => 'select2',
             'type' => 'select',
             'time' => 'text',
             'level' => 'select',
@@ -99,6 +102,16 @@ class Food extends BaseModel
         return $this->hasManyThrough(Cate::class, FoodCate::class, 'food_id', 'cate_id', 'food_id', 'cate_id');
     }
 
+    public function mealTypes(): HasMany
+    {
+        return $this->HasMany(FoodMealType::class, 'food_id', 'food_id');
+    }
+
+    public function recipes(): HasMany
+    {
+        return $this->HasMany(FoodRecipe::class, 'food_id', 'food_id');
+    }
+
     public function getCateIdAttribute()
     {
         $cateIds = [];
@@ -108,6 +121,17 @@ class Food extends BaseModel
             }
         }
         return $cateIds;
+    }
+
+    public function getMealTypeAttribute()
+    {
+        $mealTypes = [];
+        if (!$this->mealTypes->isEmpty()) {
+            foreach ($this->mealTypes as $mealType) {
+                $mealTypes[] = $mealType->meal_type->value;
+            }
+        }
+        return $mealTypes;
     }
 
     public function getImageFormat(): string

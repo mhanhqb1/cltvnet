@@ -36,6 +36,7 @@ class FoodRegisterRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255', Rule::unique('foods', 'name')->ignore($this->foodId, 'food_id')],
             'cate_id' => ['nullable'],
+            'meal_type' => ['nullable'],
             'image' => ['nullable', 'image', 'max:'.FileDefs::IMAGE_MAX_SIZE],
             'description' => ['nullable'],
             'detail' => ['nullable'],

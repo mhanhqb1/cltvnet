@@ -80,6 +80,10 @@
                                 @endif
                                 @include('admin.foods.recipe-table', $oldFoodRecipe)
                             @endforeach
+                        @elseif(!$food->recipes->isEmpty())
+                            @foreach($food->recipes as $recipe)
+                                @include('admin.foods.recipe-table', $recipe->getRecipeData())
+                            @endforeach
                         @else
                             @include('admin.foods.recipe-table')
                         @endif
