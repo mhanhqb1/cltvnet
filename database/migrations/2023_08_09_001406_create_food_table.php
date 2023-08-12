@@ -24,6 +24,7 @@ return new class extends Migration
             $table->tinyInteger('type')->unsigned()->nullable();
             $table->integer('time')->unsigned()->default(0);
             $table->tinyInteger('level')->unsigned()->default(Level::Easy->value);
+            $table->integer('total_view')->default(0);
             $table->integer('created_by')->unsigned();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->timestamps();

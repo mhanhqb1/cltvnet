@@ -96,7 +96,8 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="card card-secondary">
+                <div class="card card-secondary" id="foodVideoCard">
+                    <input type="hidden" name="food_videos" value="" id="inputFoodVideos"/>
                     <div class="card-header">
                         <h3 class="card-title">{{ __('videos_info') }}</h3>
                         <div class="card-tools">
@@ -106,7 +107,25 @@
                         </div>
                     </div>
                     <div class="card-body">
-
+                        @if (old('food_videos'))
+                            @php
+                                $oldFoodVideos = json_decode(old('food_videos'), true);
+                            @endphp
+                            @foreach($oldFoodVideos as $k => $oldFoodVideo)
+                                @if ($errors->has('row') && $errors->first('row') == $k)
+                                    @php
+                                        $oldFoodVideo['hasError'] = true;
+                                    @endphp
+                                @endif
+                                @include('admin.foods.video-table', $oldFoodVideo)
+                            @endforeach
+                        @elseif(!$food->videos->isEmpty())
+                            @foreach($food->videos as $video)
+                                @include('admin.foods.video-table', $video->getVideoData())
+                            @endforeach
+                        @else
+                            @include('admin.foods.video-table')
+                        @endif
                     </div>
                     <div class="card-footer">
                         <div class="btn btn-info" id="addNewVideo">{{ __('add_new') }}</div>
@@ -132,6 +151,9 @@
 <div id="recipeTableBlank" style="display: none;">
 @include('admin.foods.recipe-table')
 </div>
+<div id="videoTableBlank" style="display: none;">
+@include('admin.foods.video-table')
+</div>
 @endsection
 
 @push('page_scripts')
@@ -140,6 +162,10 @@
     const recipeTableBlankHtml = $('#recipeTableBlank').html();
     const recipeContainer = $('#foodRecipeCard .card-body');
     const addNewRecipeBtn = $('#addNewRecipe');
+    const inputFoodVideos = $('#inputFoodVideos');
+    const videoTableBlankHtml = $('#videoTableBlank').html();
+    const videoContainer = $('#foodVideoCard .card-body');
+    const addNewVideoBtn = $('#addNewVideo');
     const registerForm = $('#registerForm');
     $(document).ready(function() {
         recipeCommon();
@@ -148,10 +174,25 @@
             recipeCommon();
         });
 
+        videoCommon();
+        addNewVideoBtn.on('click', function(){
+            videoContainer.append(videoTableBlankHtml);
+            videoCommon();
+        });
+
         registerForm.on('submit', function() {
             getRecipeData();
+            getVideoData();
         });
     });
+
+    function videoCommon() {
+        const deleteVideoBtn = $('#foodVideoCard .card-body .btn-delete');
+        deleteVideoBtn.on('click', function() {
+            const parent = $(this).closest('table');
+            parent.remove();
+        });
+    }
 
     function recipeCommon() {
         $('.select2').select2();
@@ -173,6 +214,18 @@
             });
         });
         inputFoodRecipes.val(JSON.stringify(recipes));
+    }
+
+    function getVideoData() {
+        let videos = [];
+        $('#foodVideoCard .card-body table').each(function() {
+            videos.push({
+                video_name: $(this).find('input[name="video_name[]"]').val(),
+                video_type: $(this).find('select[name="video_type[]"]').val(),
+                source_id: $(this).find('input[name="source_id[]"]').val(),
+            });
+        });
+        inputFoodVideos.val(JSON.stringify(videos));
     }
 </script>
 @endpush

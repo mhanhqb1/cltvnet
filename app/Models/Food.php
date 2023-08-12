@@ -42,6 +42,7 @@ class Food extends BaseModel
         'type',
         'time',
         'level',
+        'total_view',
         'created_by',
         'updated_by',
     ];
@@ -110,6 +111,11 @@ class Food extends BaseModel
     public function recipes(): HasMany
     {
         return $this->HasMany(FoodRecipe::class, 'food_id', 'food_id');
+    }
+
+    public function videos(): HasMany
+    {
+        return $this->HasMany(FoodVideo::class, 'food_id', 'food_id');
     }
 
     public function getCateIdAttribute()

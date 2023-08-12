@@ -6,6 +6,7 @@ use App\Common\Definition\FoodType;
 use App\Common\Definition\FileDefs;
 use App\Common\Definition\Level;
 use App\Common\Definition\RecipeType;
+use App\Common\Definition\VideoType;
 use App\Models\Food;
 use App\Models\FoodRecipe;
 use Illuminate\Foundation\Http\FormRequest;
@@ -44,6 +45,7 @@ class FoodRegisterRequest extends FormRequest
             'level' => ['required', new Enum(Level::class)],
             'time' => ['nullable', 'integer'],
             'food_recipes' => ['nullable'],
+            'food_videos' => ['nullable'],
         ];
     }
 
@@ -81,6 +83,25 @@ class FoodRegisterRequest extends FormRequest
                 if ($validator->fails()) {
                     throw ValidationException::withMessages(array_merge($validator->errors()->toArray(), ['row' => $k]));
                 }
+            }
+        }
+
+        if (!empty($params['food_videos'])) {
+            $params['food_videos'] = json_decode($params['food_videos'], true);
+            // Todo validate detail
+            $rules = [
+                'video_type' => ['required', new Enum(VideoType::class)],
+                'video_name' => ['required'],
+                'source_id' => ['required'],
+            ];
+            $messages = [];
+            $attributes = FoodRecipe::getAttributeNames();
+            foreach ($params['food_videos'] as $k => &$foodVideo) {
+                $validator = Validator::make($foodVideo, $rules, $messages, $attributes);
+                if ($validator->fails()) {
+                    throw ValidationException::withMessages(array_merge($validator->errors()->toArray(), ['row' => $k]));
+                }
+                $foodVideo['slug'] = createSlug($foodVideo['video_name']);
             }
         }
         return $params;
