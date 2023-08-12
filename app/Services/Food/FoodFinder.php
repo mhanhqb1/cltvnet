@@ -6,6 +6,7 @@ use App\Models\Food;
 use App\Repositories\FoodRepository;
 use App\Services\AbstractFinder;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Collection;
 
 class FoodFinder extends AbstractFinder
 {
@@ -26,5 +27,25 @@ class FoodFinder extends AbstractFinder
         return $this
             ->foodRepository
             ->fetchOne($conditions);
+    }
+
+    public function getAll(array $conditions, bool $inputFormat = false): Collection|array
+    {
+        $foods = $this
+            ->foodRepository
+            ->fetchAll($conditions);
+        if ($inputFormat) {
+            $foods = $this->inputFormat($foods);
+        }
+        return $foods;
+    }
+
+    public function inputFormat(Collection $foods): array
+    {
+        $data = [];
+        foreach ($foods as $food) {
+            $data[$food->food_id] = $food->name;
+        }
+        return $data;
     }
 }

@@ -348,7 +348,10 @@ class FoodController extends Controller
         int $foodId,
         FoodFinder $foodFinder,
         FoodDelete $foodDelete,
-        FoodCateDelete $foodCateDelete
+        FoodCateDelete $foodCateDelete,
+        FoodRecipeDelete $foodRecipeDelete,
+        FoodMealTypeDelete $foodMealTypeDelete,
+        FoodVideoDelete $foodVideoDelete
     ): RedirectResponse
     {
         $food = $foodFinder->getOne(['food_id' => $foodId]);
@@ -356,6 +359,15 @@ class FoodController extends Controller
         try {
             DB::beginTransaction();
             $foodCateDelete->deleteByConditions([
+                'food_id' => $foodId
+            ]);
+            $foodRecipeDelete->deleteByConditions([
+                'food_id' => $foodId
+            ]);
+            $foodMealTypeDelete->deleteByConditions([
+                'food_id' => $foodId
+            ]);
+            $foodVideoDelete->deleteByConditions([
                 'food_id' => $foodId
             ]);
             $foodDelete->destroy($food);
