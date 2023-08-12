@@ -87,21 +87,37 @@ class Menu extends BaseModel
             $model->updated_by = Auth::user()->id;
         });
     }
-    // public function getFoodIdAttribute()
-    // {
-    //     $foodIds = [];
-    //     if (!$this->foods->isEmpty()) {
-    //         foreach ($this->foods as $food) {
-    //             $foodIds[] = $food->food_id;
-    //         }
-    //     }
-    //     return $foodIds;
-    // }
+    public function getFoodIdAttribute()
+    {
+        $foodIds = [];
+        if (!$this->foods->isEmpty()) {
+            foreach ($this->foods as $food) {
+                $foodIds[] = $food->food_id;
+            }
+        }
+        return $foodIds;
+    }
 
-    // public function foods(): HasManyThrough
-    // {
-    //     return $this->hasManyThrough(Food::class, MenuFood::class, 'menu_id', 'food_id', 'menu_id', 'food_id');
-    // }
+    public function getCateIdAttribute()
+    {
+        $cateIds = [];
+        if (!$this->cates->isEmpty()) {
+            foreach ($this->cates as $cate) {
+                $cateIds[] = $cate->cate_id;
+            }
+        }
+        return $cateIds;
+    }
+
+    public function foods(): HasManyThrough
+    {
+        return $this->hasManyThrough(Food::class, MenuFood::class, 'menu_id', 'food_id', 'menu_id', 'food_id');
+    }
+
+    public function cates(): HasManyThrough
+    {
+        return $this->hasManyThrough(Cate::class, MenuCate::class, 'menu_id', 'cate_id', 'menu_id', 'cate_id');
+    }
 
     public function getImageFormat(): string
     {
@@ -113,10 +129,21 @@ class Menu extends BaseModel
         $foods = [];
         if (!$this->foods->isEmpty()) {
             foreach ($this->foods as $food) {
-                $foods[] = $food->name;
+                $foods[] = '<li>'.$food->name.'</li>';
             }
         }
-        return implode(' - ', $foods);
+        return '<ul>'.implode('', $foods).'</ul>';
+    }
+
+    public function getCates(): string
+    {
+        $cates = [];
+        if (!$this->cates->isEmpty()) {
+            foreach ($this->cates as $cate) {
+                $cates[] = $cate->name;
+            }
+        }
+        return implode(' - ', $cates);
     }
 
     public static function scopeWhereMultiConditions(Builder $builder, array $conditions): Builder

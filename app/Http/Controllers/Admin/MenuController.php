@@ -16,6 +16,10 @@ use App\Services\Menu\MenuDelete;
 use App\Services\Menu\MenuEditor;
 use App\Services\Menu\MenuFinder;
 use App\Services\Menu\MenuInitialization;
+use App\Services\MenuCate\MenuCateCreator;
+use App\Services\MenuCate\MenuCateDelete;
+use App\Services\MenuFood\MenuFoodCreator;
+use App\Services\MenuFood\MenuFoodDelete;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
@@ -81,7 +85,9 @@ class MenuController extends Controller
      */
     public function store(
         MenuRegisterRequest $menuRegisterRequest,
-        MenuCreator $menuCreator
+        MenuCreator $menuCreator,
+        MenuCateCreator $menuCateCreator,
+        MenuFoodCreator $menuFoodCreator
     ): RedirectResponse
     {
         $params = $menuRegisterRequest->validated();
@@ -95,6 +101,22 @@ class MenuController extends Controller
             DB::beginTransaction();
             $params['detail'] = editorUploadImages($params['detail']);
             $menu = $menuCreator->save($params);
+            if (!empty($params['cate_id'])) {
+                foreach ($params['cate_id'] as $cateId) {
+                    $menuCateCreator->save([
+                        'cate_id' => $cateId,
+                        'menu_id' => $menu->menu_id,
+                    ]);
+                }
+            }
+            if (!empty($params['food_id'])) {
+                foreach ($params['food_id'] as $foodId) {
+                    $menuFoodCreator->save([
+                        'food_id' => $foodId,
+                        'menu_id' => $menu->menu_id,
+                    ]);
+                }
+            }
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
@@ -144,7 +166,11 @@ class MenuController extends Controller
         MenuRegisterRequest $menuRegisterRequest,
         int $menuId,
         MenuEditor $menuEditor,
-        MenuFinder $menuFinder
+        MenuFinder $menuFinder,
+        MenuCateDelete $menuCateDelete,
+        MenuCateCreator $menuCateCreator,
+        MenuFoodDelete $menuFoodDelete,
+        MenuFoodCreator $menuFoodCreator
     ): RedirectResponse
     {
         $menu = $menuFinder->getOne(['menu_id' => $menuId]);
@@ -160,29 +186,29 @@ class MenuController extends Controller
             $params['detail'] = editorUploadImages($params['detail']);
             $menuEditor->update($menu, $params);
 
-            // $menuCateDelete->deleteByConditions([
-            //     'menu_id' => $menuId
-            // ]);
-            // $menuFoodDelete->deleteByConditions([
-            //     'menu_id' => $menuId
-            // ]);
+            $menuCateDelete->deleteByConditions([
+                'menu_id' => $menuId
+            ]);
+            $menuFoodDelete->deleteByConditions([
+                'menu_id' => $menuId
+            ]);
 
-            // if (!empty($params['cate_id'])) {
-            //     foreach ($params['cate_id'] as $cateId) {
-            //         $menuCateCreator->save([
-            //             'cate_id' => $cateId,
-            //             'menu_id' => $menu->menu_id,
-            //         ]);
-            //     }
-            // }
-            // if (!empty($params['food_id'])) {
-            //     foreach ($params['food_id'] as $foodId) {
-            //         $menuFoodCreator->save([
-            //             'food_id' => $foodId,
-            //             'menu_id' => $menu->menu_id,
-            //         ]);
-            //     }
-            // }
+            if (!empty($params['cate_id'])) {
+                foreach ($params['cate_id'] as $cateId) {
+                    $menuCateCreator->save([
+                        'cate_id' => $cateId,
+                        'menu_id' => $menu->menu_id,
+                    ]);
+                }
+            }
+            if (!empty($params['food_id'])) {
+                foreach ($params['food_id'] as $foodId) {
+                    $menuFoodCreator->save([
+                        'food_id' => $foodId,
+                        'menu_id' => $menu->menu_id,
+                    ]);
+                }
+            }
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
@@ -200,19 +226,21 @@ class MenuController extends Controller
     public function destroy(
         int $menuId,
         MenuFinder $menuFinder,
-        MenuDelete $menuDelete
+        MenuDelete $menuDelete,
+        MenuCateDelete $menuCateDelete,
+        MenuFoodDelete $menuFoodDelete
     ): RedirectResponse
     {
         $menu = $menuFinder->getOne(['menu_id' => $menuId]);
         deleteFile($menu->image);
         try {
             DB::beginTransaction();
-            // $menuCateDelete->deleteByConditions([
-            //     'menu_id' => $menuId
-            // ]);
-            // $menuNutritionDelete->deleteByConditions([
-            //     'menu_id' => $menuId
-            // ]);
+            $menuCateDelete->deleteByConditions([
+                'menu_id' => $menuId
+            ]);
+            $menuFoodDelete->deleteByConditions([
+                'menu_id' => $menuId
+            ]);
             $menuDelete->destroy($menu);
 
             DB::commit();

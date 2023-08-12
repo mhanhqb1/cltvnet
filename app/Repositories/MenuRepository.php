@@ -17,6 +17,7 @@ class MenuRepository extends BaseRepository
     {
         return $this
             ->menu
+            ->with(['cates', 'foods'])
             ->whereMultiConditions($searchConditions)
             ->orderBy('menu_id', 'desc')
             ->paginate($perPage);
@@ -26,6 +27,7 @@ class MenuRepository extends BaseRepository
     {
         return $this
             ->menu
+            ->with(['cates', 'foods'])
             ->whereMultiConditions($searchConditions)
             ->firstOrFail();
     }

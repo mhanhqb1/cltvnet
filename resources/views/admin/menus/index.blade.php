@@ -56,6 +56,7 @@
                                     <th>{{ $attrNames['image'] }}</th>
                                     <th>{{ $attrNames['name'] }}</th>
                                     <th>{{ $attrNames['cate'] }}</th>
+                                    <th>{{ $attrNames['food'] }}</th>
                                     <th>{{ $attrNames['description'] }}</th>
                                     <th></th>
                                 </tr>
@@ -68,7 +69,8 @@
                                         {!! $menu->getImageFormat() !!}
                                     </td>
                                     <td>{{ $menu->name }}</td>
-                                    <td></td>
+                                    <td>{{ $menu->getCates() }}</td>
+                                    <td>{!! $menu->getFoods() !!}</td>
                                     <td>{{ $menu->description }}</td>
                                     <td class="project-actions text-center">
                                         <a class="btn btn-info btn-xs" href="{{ route('admin.menus.edit', $menu->menu_id) }}">
