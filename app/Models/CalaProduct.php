@@ -43,7 +43,8 @@ class CalaProduct extends BaseModel
      */
     protected $casts = [];
 
-    public static function getAttributeNames() {
+    public static function getAttributeNames(): array
+    {
         $self = new self;
         $attrNames = [
             $self->primaryKey => __($self->primaryKey),
@@ -54,7 +55,8 @@ class CalaProduct extends BaseModel
         return $attrNames;
     }
 
-    public static function getAttributeInputTypes() {
+    public static function getAttributeInputTypes(): array
+    {
         return [
             'name' => 'text',
             'image' => 'file',
@@ -65,8 +67,14 @@ class CalaProduct extends BaseModel
         ];
     }
 
-    public function getImageFormat() {
-        return $this->image ? "<img src='".getImageUrl($this->image)."' width='100px' />" : "";
+    public function getImageFormat($width = '100px'): string
+    {
+        return $this->image ? "<img src='".getImageUrl($this->image)."' width='".$width."' />" : "";
+    }
+
+    public function getProductFormat(): string
+    {
+        return $this->getImageFormat('20px').'|'.$this->name;
     }
 
     public static function scopeWhereMultiConditions(Builder $builder, array $conditions): Builder

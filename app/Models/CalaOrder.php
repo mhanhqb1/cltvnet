@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use App\Common\Definition\OrderStatus;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class CalaCustomer extends BaseModel
+class CalaOrder extends BaseModel
 {
     use HasFactory;
 
@@ -15,14 +15,14 @@ class CalaCustomer extends BaseModel
      *
      * @var string
      */
-    protected $table = 'cala_customers';
+    protected $table = 'cala_orders';
 
     /**
      * The primary key associated with the table.
      *
      * @var int
      */
-    protected $primaryKey = 'customer_id';
+    protected $primaryKey = 'order_id';
 
     /**
      * The attributes that are mass assignable.
@@ -30,13 +30,15 @@ class CalaCustomer extends BaseModel
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'slug',
-        'phone',
-        'address',
-        'image',
-        'facebook',
-        'zalo',
+        'customer_id',
+        'status',
+        'order_date',
+        'delivery_date',
+        'paid_date',
+        'total_cost',
+        'total_price',
+        'total_profit',
+        'shipping_time',
         'shipping_address',
         'transporter_id',
     ];
@@ -44,12 +46,15 @@ class CalaCustomer extends BaseModel
     /**
      * @var string[]
      */
-    protected $casts = [];
+    protected $casts = [
+        'status' => OrderStatus::class,
+    ];
 
     public static function getAttributeNames() {
         $self = new self;
         $attrNames = [
             $self->primaryKey => __($self->primaryKey),
+            'product_id' => 'product_id',
         ];
         foreach ($self->fillable as $field) {
             $attrNames[$field] = __($field);
@@ -59,20 +64,14 @@ class CalaCustomer extends BaseModel
 
     public static function getAttributeInputTypes() {
         return [
-            'name' => 'text',
-            'image' => 'file',
-            'address' => 'text',
-            'phone' => 'text',
-            'facebook' => 'text',
-            'zalo' => 'text',
-            'shipping_address' => 'text',
-            'transporter_id' => 'select',
+            'customer_id' => 'select',
+            'status' => 'select',
+            'product_id' => 'select2',
+            'order_date' => 'datepicker',
+            'delivery_date' => 'datepicker',
+            'shipping_time' => 'text',
+            'paid_date' => 'datepicker',
         ];
-    }
-
-    public function transporter(): BelongsTo
-    {
-        return $this->belongsTo(CalaTransporter::class, 'transporter_id', 'transporter_id');
     }
 
     public static function scopeWhereMultiConditions(Builder $builder, array $conditions): Builder
@@ -86,7 +85,7 @@ class CalaCustomer extends BaseModel
     private static function mapWhere(): array
     {
         return [
-            'customer_id' => fn (Builder $builder, $value) => $builder->where('customer_id', $value),
+            'order_id' => fn (Builder $builder, $value) => $builder->where('order_id', $value),
         ];
     }
 }

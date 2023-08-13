@@ -58,6 +58,9 @@ class InputTypes extends Component
             case 'select2':
                 $view = 'select2';
                 break;
+            case 'datepicker':
+                $view = 'datepicker';
+                break;
             default:
                 $view = 'input';
                 break;

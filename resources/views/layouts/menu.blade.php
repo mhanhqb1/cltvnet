@@ -62,5 +62,11 @@
                 <p>{{ __('customer_menu') }}</p>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="{{ route('admin.cala.orders.index') }}" class="nav-link {{ request()->route()->named('admin.cala.orders.*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-home"></i>
+                <p>{{ __('order_menu') }}</p>
+            </a>
+        </li>
     </ul>
 </li>
