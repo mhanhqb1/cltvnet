@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\FoodController;
 use App\Http\Controllers\Admin\IngredientController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\NutritionController;
+use App\Http\Controllers\Cala\CalaProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -118,5 +119,27 @@ Route::middleware('auth')
                     ->name('store');
                 Route::delete('/{foodId}', 'destroy')
                     ->name('destroy');
+            });
+
+        Route::name('cala.')
+            ->prefix('mecala')
+            ->group(function () {
+                Route::controller(CalaProductController::class)
+                    ->prefix('products')
+                    ->name('products.')
+                    ->group(function () {
+                        Route::get('/', 'index')
+                            ->name('index');
+                        Route::get('/create', 'create')
+                            ->name('create');
+                        Route::get('/{productId}/edit', 'edit')
+                            ->name('edit');
+                        Route::put('/{productId}', 'update')
+                            ->name('update');
+                        Route::post('/', 'store')
+                            ->name('store');
+                        Route::delete('/{productId}', 'destroy')
+                            ->name('destroy');
+                    });
             });
 });

@@ -35,3 +35,10 @@
         <p>{{ __('menu_menu') }}</p>
     </a>
 </li>
+
+<li class="nav-item">
+    <a href="{{ route('admin.cala.products.index') }}" class="nav-link {{ request()->route()->named('admin.cala.products.*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-home"></i>
+        <p>{{ __('product_menu') }}</p>
+    </a>
+</li>
