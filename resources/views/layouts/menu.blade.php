@@ -35,10 +35,20 @@
         <p>{{ __('menu_menu') }}</p>
     </a>
 </li>
-
-<li class="nav-item">
-    <a href="{{ route('admin.cala.products.index') }}" class="nav-link {{ request()->route()->named('admin.cala.products.*') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-home"></i>
-        <p>{{ __('product_menu') }}</p>
+<li class="nav-item {{ request()->route()->named('admin.cala.*') ? 'menu-open' : '' }}">
+    <a href="#" class="nav-link {{ request()->route()->named('admin.cala.*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-shopping-cart"></i>
+        <p>
+            MeCaLa
+            <i class="fas fa-angle-left right"></i>
+        </p>
     </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="{{ route('admin.cala.products.index') }}" class="nav-link {{ request()->route()->named('admin.cala.products.*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-home"></i>
+                <p>{{ __('product_menu') }}</p>
+            </a>
+        </li>
+    </ul>
 </li>
