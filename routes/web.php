@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Cala\CalaCustomerController;
 use App\Http\Controllers\Admin\Cala\CalaProductController;
 use App\Http\Controllers\Admin\Cala\CalaTransporterController;
 use App\Http\Controllers\Admin\CateController;
@@ -157,6 +158,23 @@ Route::middleware('auth')
                         Route::post('/', 'store')
                             ->name('store');
                         Route::delete('/{transporterId}', 'destroy')
+                            ->name('destroy');
+                    });
+                Route::controller(CalaCustomerController::class)
+                    ->prefix('customers')
+                    ->name('customers.')
+                    ->group(function () {
+                        Route::get('/', 'index')
+                            ->name('index');
+                        Route::get('/create', 'create')
+                            ->name('create');
+                        Route::get('/{customerId}/edit', 'edit')
+                            ->name('edit');
+                        Route::put('/{customerId}', 'update')
+                            ->name('update');
+                        Route::post('/', 'store')
+                            ->name('store');
+                        Route::delete('/{customerId}', 'destroy')
                             ->name('destroy');
                     });
             });
