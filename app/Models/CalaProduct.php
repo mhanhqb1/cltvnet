@@ -33,6 +33,7 @@ class CalaProduct extends BaseModel
         'slug',
         'image',
         'description',
+        'detail',
         'cost',
         'price',
     ];
@@ -57,10 +58,10 @@ class CalaProduct extends BaseModel
         return [
             'name' => 'text',
             'image' => 'file',
-            'description' => 'textarea',
-            'detail' => 'text_editor',
             'cost' => 'text',
             'price' => 'text',
+            'description' => 'textarea',
+            'detail' => 'text_editor',
         ];
     }
 

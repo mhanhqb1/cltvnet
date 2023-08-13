@@ -1,11 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\Cala\CalaProductController;
 use App\Http\Controllers\Admin\CateController;
 use App\Http\Controllers\Admin\FoodController;
 use App\Http\Controllers\Admin\IngredientController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\NutritionController;
-use App\Http\Controllers\Cala\CalaProductController;
 use Illuminate\Support\Facades\Route;
 
 /*

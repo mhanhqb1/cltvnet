@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Services\Cate;
+namespace App\Services\Cala\Product;
 
 use App\Exceptions\ServiceException;
-use App\Models\Cate;
-use App\Repositories\CateRepository;
+use App\Models\CalaProduct;
+use App\Repositories\Cala\ProductRepository;
 use App\Services\AbstractFinder;
 use Illuminate\Support\Facades\Log;
 
-class CateEditor extends AbstractFinder
+class ProductEditor extends AbstractFinder
 {
-    public function __construct(private CateRepository $cateRepository)
+    public function __construct(private ProductRepository $productRepository)
     {
-        parent::__construct($cateRepository);
+        parent::__construct($productRepository);
     }
 
-    public function update(Cate $cate, array $params)
+    public function update(CalaProduct $product, array $params)
     {
         try {
-            return $this->cateRepository->update($cate->cate_id, $params);
+            return $this->productRepository->update($product->product_id, $params);
         } catch (\Throwable $e) {
             Log::error($e->getMessage());
             throw new ServiceException(__('update_failed'));

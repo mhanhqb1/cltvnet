@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Services\Cate;
+namespace App\Services\Cala\Product;
 
 use App\Exceptions\ServiceException;
-use App\Models\Cate;
-use App\Repositories\CateRepository;
+use App\Models\CalaProduct;
+use App\Repositories\Cala\ProductRepository;
 use App\Services\AbstractFinder;
 use Illuminate\Support\Facades\Log;
 
-class CateCreator extends AbstractFinder
+class ProductCreator extends AbstractFinder
 {
-    public function __construct(private CateRepository $cateRepository)
+    public function __construct(private ProductRepository $productRepository)
     {
-        parent::__construct($cateRepository);
+        parent::__construct($productRepository);
     }
 
-    public function save(array $params): Cate
+    public function save(array $params): CalaProduct
     {
         try {
-            return $this->cateRepository->create($params);
+            return $this->productRepository->create($params);
         } catch (\Throwable $e) {
             Log::error($e->getMessage());
             throw new ServiceException(__('create_failed'));

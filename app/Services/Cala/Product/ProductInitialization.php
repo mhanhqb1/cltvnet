@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Services\Cate;
+namespace App\Services\Cala\Product;
 
-use App\Models\Cate;
+use App\Models\CalaProduct;
 use App\Services\AbstractService;
 
-class CateInitialization extends AbstractService
+class ProductInitialization extends AbstractService
 {
-    public function initCate(): object
+    public function initProduct(): object
     {
-        $newCate = new Cate();
+        $newProduct = new CalaProduct();
 
-        return $newCate;
+        return $newProduct;
     }
 }
