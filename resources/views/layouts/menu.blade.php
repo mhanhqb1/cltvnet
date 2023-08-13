@@ -50,5 +50,11 @@
                 <p>{{ __('product_menu') }}</p>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="{{ route('admin.cala.transporters.index') }}" class="nav-link {{ request()->route()->named('admin.cala.transporters.*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-home"></i>
+                <p>{{ __('transporter_menu') }}</p>
+            </a>
+        </li>
     </ul>
 </li>

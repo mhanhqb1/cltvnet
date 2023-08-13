@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests\Cala;
 
-use App\Models\CalaProduct;
+use App\Models\CalaTransporter;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ProductSearchRequest extends FormRequest
+class TransporterSearchRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class ProductSearchRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'product_id' => ['nullable', 'regex:/^\d{0,7}$/', Rule::exists('products', 'product_id')],
+            'transporter_id' => ['nullable', 'regex:/^\d{0,7}$/', Rule::exists('transporters', 'transporter_id')],
             'name' => 'nullable',
             'slug' => 'nullable'
         ];
@@ -44,6 +44,6 @@ class ProductSearchRequest extends FormRequest
 
     public function attributes(): array
     {
-        return CalaProduct::getAttributeNames();
+        return CalaTransporter::getAttributeNames();
     }
 }
