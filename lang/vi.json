@@ -746,5 +746,7 @@
     "ingredient_menu": "Danh sách nguyên liệu",
     "food_menu": "Danh sách món ăn",
     "menu_menu": "Danh sách thực đơn",
-    "order_id": "ID đơn hàng"
+    "order_id": "ID đơn hàng",
+    "food_id": "ID món ăn",
+    "cate_id": "ID danh mục"
 }
