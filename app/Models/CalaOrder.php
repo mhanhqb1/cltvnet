@@ -56,7 +56,7 @@ class CalaOrder extends BaseModel
         $self = new self;
         $attrNames = [
             $self->primaryKey => __($self->primaryKey),
-            'product_id' => 'product_id',
+            'product_id' => __('product_id'),
         ];
         foreach ($self->fillable as $field) {
             $attrNames[$field] = __($field);
