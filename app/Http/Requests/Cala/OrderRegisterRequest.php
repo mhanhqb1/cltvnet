@@ -34,7 +34,7 @@ class OrderRegisterRequest extends FormRequest
             'delivery_date' => ['nullable', 'date', 'date_format:Y-m-d'],
             'paid_date' => ['nullable', 'date', 'date_format:Y-m-d'],
             'shipping_time' => ['nullable'],
-            'products' => ['nullable'],
+            'product_id' => ['nullable'],
         ];
     }
 

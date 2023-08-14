@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Common\Definition\OrderStatus;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class CalaOrder extends BaseModel
 {
@@ -72,6 +74,40 @@ class CalaOrder extends BaseModel
             'shipping_time' => 'text',
             'paid_date' => 'datepicker',
         ];
+    }
+
+    public function products(): HasManyThrough
+    {
+        return $this->hasManyThrough(CalaProduct::class, CalaOrderProduct::class, 'order_id', 'product_id', 'order_id', 'product_id');
+    }
+
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(CalaCustomer::class, 'customer_id', 'customer_id');
+    }
+
+    public function getProductIdAttribute(): array
+    {
+        $productIds = [];
+        if (!$this->products->isEmpty()) {
+            foreach ($this->products as $product) {
+                $productIds[] = $product->product_id;
+            }
+        }
+        return $productIds;
+    }
+
+    public function getProductHtml(): string
+    {
+        $html = '';
+        if (!$this->products->isEmpty()) {
+            $html .= '<ul class="list-unstyled">';
+            foreach ($this->products as $product) {
+                $html .= '<li>'.$product->getProductFormat().'</li>';
+            }
+            $html .= '</ul>';
+        }
+        return $html;
     }
 
     public static function scopeWhereMultiConditions(Builder $builder, array $conditions): Builder

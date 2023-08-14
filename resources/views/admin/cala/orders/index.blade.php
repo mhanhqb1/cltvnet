@@ -47,6 +47,13 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px">#</th>
+                                    <th>{{ __('customer_name') }}</th>
+                                    <th>{{ __('product_list') }}</th>
+                                    <th>{{ __('total_price') }}</th>
+                                    <th>{{ __('order_date') }}</th>
+                                    <th>{{ __('delivery_date') }}</th>
+                                    <th>{{ __('paid_date') }}</th>
+                                    <th>{{ __('status') }}</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -54,6 +61,13 @@
                                 @foreach ($orders as $order)
                                 <tr>
                                     <td>{{ $order->order_id }}</td>
+                                    <th>{{ $order->customer->name }}</th>
+                                    <th>{!! $order->getProductHtml() !!}</th>
+                                    <th>{{ number_format($order->total_price) }}</th>
+                                    <th>{{ $order->order_date }}</th>
+                                    <th>{{ $order->delivery_date }}</th>
+                                    <th>{{ $order->paid_date }}</th>
+                                    <th>{{ $order->status->getName() }}</th>
                                     <td class="project-actions text-center">
                                         <a class="btn btn-info btn-xs" href="{{ route('admin.cala.orders.edit', $order->order_id) }}">
                                             <i class="fas fa-pencil-alt"></i>

@@ -42,9 +42,7 @@ class ProductFinder extends AbstractFinder
 
     public function inputFormat(Collection $products): array
     {
-        $data = [
-            '' => ''
-        ];
+        $data = [];
         foreach ($products as $product) {
             $data[$product->product_id] = $product->name;
         }

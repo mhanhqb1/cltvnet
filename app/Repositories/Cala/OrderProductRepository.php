@@ -3,33 +3,32 @@
 namespace App\Repositories\Cala;
 
 use App\Common\Definition\PaginationDefs;
-use App\Models\CalaOrder;
+use App\Models\CalaOrderProduct;
 use App\Repositories\BaseRepository;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
 
-class OrderRepository extends BaseRepository
+class OrderProductRepository extends BaseRepository
 {
-    public function __construct(private CalaOrder $order)
+    public function __construct(private CalaOrderProduct $orderProduct)
     {
-        parent::__construct($order);
+        parent::__construct($orderProduct);
     }
 
     public function fetchPaginator(array $searchConditions, int $perPage = PaginationDefs::LIMIT_DEFAULT): Paginator
     {
         return $this
-            ->order
-            ->with(['customer', 'products'])
+            ->orderProduct
             ->whereMultiConditions($searchConditions)
-            ->orderBy('order_id', 'desc')
+            ->orderBy('order_product_id', 'desc')
             ->paginate($perPage)
             ->appends($searchConditions);
     }
 
-    public function fetchOne(array $searchConditions): ?CalaOrder
+    public function fetchOne(array $searchConditions): ?CalaOrderProduct
     {
         return $this
-            ->order
+            ->orderProduct
             ->whereMultiConditions($searchConditions)
             ->firstOrFail();
     }
@@ -37,7 +36,7 @@ class OrderRepository extends BaseRepository
     public function fetchAll(array $searchConditions): Collection
     {
         return $this
-            ->order
+            ->orderProduct
             ->whereMultiConditions($searchConditions)
             ->get();
     }

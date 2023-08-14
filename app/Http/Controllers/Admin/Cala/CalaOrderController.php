@@ -14,6 +14,8 @@ use App\Services\Cala\Order\OrderDelete;
 use App\Services\Cala\Order\OrderEditor;
 use App\Services\Cala\Order\OrderFinder;
 use App\Services\Cala\Order\OrderInitialization;
+use App\Services\Cala\OrderProduct\OrderProductCreator;
+use App\Services\Cala\OrderProduct\OrderProductDelete;
 use App\Services\Cala\Product\ProductFinder;
 use App\Services\Cala\Transporter\TransporterFinder;
 use Illuminate\Http\RedirectResponse;
@@ -61,6 +63,9 @@ class CalaOrderController extends Controller
                 'status' => OrderStatus::i18n(),
                 'product_id' => $productFinder->getAll([], true),
             ],
+            'multi' => [
+                'product_id' => true,
+            ],
         ]);
     }
 
@@ -71,11 +76,54 @@ class CalaOrderController extends Controller
      */
     public function store(
         OrderRegisterRequest $orderRegisterRequest,
-        OrderCreator $orderCreator
+        OrderCreator $orderCreator,
+        OrderEditor $orderEditor,
+        CustomerFinder $customerFinder,
+        ProductFinder $productFinder,
+        OrderProductCreator $orderProductCreator
     ): RedirectResponse
     {
         $params = $orderRegisterRequest->validated();
-        $orderCreator->save($params);
+        $customer = $customerFinder->getOne([
+            'customer_id' => $params['customer_id'],
+        ]);
+        $params['shipping_address'] = $customer->shipping_address;
+        $params['transporter_id'] = $customer->transporter_id;
+        if (empty($params['shipping_time']) && !empty($customer->transporter?->time_start)) {
+            $params['shipping_time'] = $customer->transporter->time_start;
+        }
+        try {
+            $order = $orderCreator->save($params);
+            if (!empty($params['product_id'])) {
+                $totalPrice = 0;
+                $totalCost = 0;
+                $totalProfit = 0;
+                foreach($params['product_id'] as $productId) {
+                    $product = $productFinder->getOne([
+                        'product_id' => $productId,
+                    ]);
+                    $orderProductCreator->save([
+                        'order_id' => $order->order_id,
+                        'product_id' => $product->product_id,
+                        'cost' => $product->cost,
+                        'price' => $product->price,
+                        'profit' => $product->getProfit(),
+                    ]);
+                    $totalPrice += $product->price;
+                    $totalCost += $product->cost;
+                    $totalProfit += $product->getProfit();
+                }
+                $params['total_price'] = $totalPrice;
+                $params['total_cost'] = $totalCost;
+                $params['total_profit'] = $totalProfit;
+            }
+            $orderEditor->update($order, $params);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e->getMessage());
+            throw new ServiceException(__('register_failed'));
+        }
         return redirect()->route('admin.cala.orders.index');
     }
 
@@ -102,6 +150,9 @@ class CalaOrderController extends Controller
                 'product_id' => $productFinder->getAll([], true),
                 'status' => OrderStatus::i18n(),
             ],
+            'multi' => [
+                'product_id' => true,
+            ],
         ]);
     }
 
@@ -115,7 +166,10 @@ class CalaOrderController extends Controller
         int $orderId,
         OrderFinder $orderFinder,
         OrderEditor $orderEditor,
-        CustomerFinder $customerFinder
+        CustomerFinder $customerFinder,
+        ProductFinder $productFinder,
+        OrderProductDelete $orderProductDelete,
+        OrderProductCreator $orderProductCreator
     ): RedirectResponse
     {
         try {
@@ -125,10 +179,39 @@ class CalaOrderController extends Controller
                 'customer_id' => $params['customer_id'],
             ]);
             $params['shipping_address'] = $customer->shipping_address;
-            if (empty($params['shipping_time']) && !empty($customer->transporter->time_start)) {
+            $params['transporter_id'] = $customer->transporter_id;
+            if (empty($params['shipping_time']) && !empty($customer->transporter?->time_start)) {
                 $params['shipping_time'] = $customer->transporter->time_start;
             }
+            DB::beginTransaction();
+            $orderProductDelete->deleteByConditions([
+                'order_id' => $order->order_id
+            ]);
+            if (!empty($params['product_id'])) {
+                $totalPrice = 0;
+                $totalCost = 0;
+                $totalProfit = 0;
+                foreach($params['product_id'] as $productId) {
+                    $product = $productFinder->getOne([
+                        'product_id' => $productId,
+                    ]);
+                    $orderProductCreator->save([
+                        'order_id' => $order->order_id,
+                        'product_id' => $product->product_id,
+                        'cost' => $product->cost,
+                        'price' => $product->price,
+                        'profit' => $product->getProfit(),
+                    ]);
+                    $totalPrice += $product->price;
+                    $totalCost += $product->cost;
+                    $totalProfit += $product->getProfit();
+                }
+                $params['total_price'] = $totalPrice;
+                $params['total_cost'] = $totalCost;
+                $params['total_profit'] = $totalProfit;
+            }
             $orderEditor->update($order, $params);
+            DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
             Log::error($e->getMessage());

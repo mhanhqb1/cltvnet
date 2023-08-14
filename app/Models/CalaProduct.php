@@ -74,7 +74,12 @@ class CalaProduct extends BaseModel
 
     public function getProductFormat(): string
     {
-        return $this->getImageFormat('20px').'|'.$this->name;
+        return $this->getImageFormat('50px').' '.$this->name;
+    }
+
+    public function getProfit(): int
+    {
+        return $this->price - $this->cost;
     }
 
     public static function scopeWhereMultiConditions(Builder $builder, array $conditions): Builder
