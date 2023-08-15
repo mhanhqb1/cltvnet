@@ -43,6 +43,7 @@ class CalaOrder extends BaseModel
         'shipping_time',
         'shipping_address',
         'transporter_id',
+        'note',
     ];
 
     /**
@@ -73,6 +74,7 @@ class CalaOrder extends BaseModel
             'delivery_date' => 'datepicker',
             'shipping_time' => 'text',
             'paid_date' => 'datepicker',
+            'note' => 'textarea',
         ];
     }
 

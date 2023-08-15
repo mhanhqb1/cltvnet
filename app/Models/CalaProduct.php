@@ -69,7 +69,7 @@ class CalaProduct extends BaseModel
 
     public function getImageFormat($width = '100px'): string
     {
-        return $this->image ? "<img src='".getImageUrl($this->image)."' width='".$width."' />" : "";
+        return $this->image ? "<a href='".getImageUrl($this->image)."' class='fresco'><img src='".getImageUrl($this->image)."' width='".$width."' /></a>" : "";
     }
 
     public function getProductFormat(): string

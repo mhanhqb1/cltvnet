@@ -1,5 +1,15 @@
 @extends('layouts.app')
 @section('content-header')
+<style>
+    .todo-order {
+        display: flex;
+        align-items: center;
+    }
+
+    .todo-order > div {
+        margin: 5px 12px;
+    }
+</style>
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -39,7 +49,7 @@
                 <div class="icon">
                     <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="{{ route('admin.cala.orders.index') }}" class="small-box-footer">{{ __('more_info') }}  <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('admin.cala.orders.index') }}" class="small-box-footer">{{ __('more_info') }} <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -84,12 +94,25 @@
 
                 <div class="card-body">
                     <ul class="todo-list ui-sortable" data-widget="todo-list">
+                        @foreach($newOrders as $order)
                         <li>
-                            <div class="icheck-primary d-inline ml-2">
-                                <input type="checkbox" value="" name="todo1" id="todoCheck1">
-                                <label for="todoCheck1">Design a nice theme</label>
+                            <div class="icheck-primary todo-order ml-2">
+                                <div>
+                                    <input type="checkbox" value="" name="todo1" id="todoCheck1">
+                                    <label for="todoCheck1"></label>
+                                </div>
+                                <div>
+                                    {!! $order->getProductHtml() !!}
+                                </div>
+                                <div>
+                                    <span>{{ $order->customer->name }}</span>
+                                </div>
+                                <div>
+                                    <span>{{ $order->delivery_date }}</span>
+                                </div>
                             </div>
                         </li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="card-footer clearfix">
