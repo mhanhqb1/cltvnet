@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CalaProduct;
 use App\Models\Cate;
 use App\Models\Nutrition;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;

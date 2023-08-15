@@ -748,5 +748,11 @@
     "menu_menu": "Danh sách thực đơn",
     "order_id": "ID đơn hàng",
     "food_id": "ID món ăn",
-    "cate_id": "ID danh mục"
+    "cate_id": "ID danh mục",
+    "new_order": "Đơn hàng mới",
+    "total_order_completed": "Đơn hàng đã hoàn thành",
+    "total_product": "Sản phẩm",
+    "total_customer": "Khách hàng",
+    "more_info": "Xem thêm",
+    "to_do_list": "Việc cần làm"
 }

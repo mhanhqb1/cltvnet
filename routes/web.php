@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Cala\CalaCustomerController;
+use App\Http\Controllers\Admin\Cala\CalaHomeController;
 use App\Http\Controllers\Admin\Cala\CalaOrderController;
 use App\Http\Controllers\Admin\Cala\CalaProductController;
 use App\Http\Controllers\Admin\Cala\CalaTransporterController;
@@ -127,6 +128,13 @@ Route::middleware('auth')
         Route::name('cala.')
             ->prefix('mecala')
             ->group(function () {
+                Route::controller(CalaHomeController::class)
+                    ->prefix('home')
+                    ->name('home.')
+                    ->group(function () {
+                        Route::get('/', 'index')
+                            ->name('index');
+                    });
                 Route::controller(CalaProductController::class)
                     ->prefix('products')
                     ->name('products.')

@@ -122,6 +122,8 @@ class CalaOrder extends BaseModel
     {
         return [
             'order_id' => fn (Builder $builder, $value) => $builder->where('order_id', $value),
+            'customer_id' => fn (Builder $builder, $value) => $builder->where('customer_id', $value),
+            'status' => fn (Builder $builder, $value) => $builder->where('status', $value),
         ];
     }
 }

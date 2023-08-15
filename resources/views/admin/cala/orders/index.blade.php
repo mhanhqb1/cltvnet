@@ -30,6 +30,20 @@
                                     <span class="text-danger">{{ $errors->first('order_id') }}</span>
                                     @endif
                                 </div>
+                                <div class="col-sm-6">
+                                    <x-input-types type="select" name="customer_id" label="{{ $attrNames['customer_id'] }}" value="{{ old('customer_id', request('customer_id')) }}" :options="$options['customer_id']"></x-input-types>
+                                    @if ($errors->has('customer_id'))
+                                    <span class="text-danger">{{ $errors->first('customer_id') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <x-input-types type="select" name="status" label="{{ $attrNames['status'] }}" value="{{ old('status', request('status')) }}" :options="$options['status']"></x-input-types>
+                                    @if ($errors->has('status'))
+                                    <span class="text-danger">{{ $errors->first('status') }}</span>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                         <div class="card-footer">

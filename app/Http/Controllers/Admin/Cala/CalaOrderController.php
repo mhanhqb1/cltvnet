@@ -32,13 +32,17 @@ class CalaOrderController extends Controller
      */
     public function index(
         OrderSearchRequest $orderSearchRequest,
+        CustomerFinder $customerFinder,
         OrderFinder $orderFinder
     ): View
     {
         return view('admin.cala.orders.index')->with([
             'orders' => $orderFinder->getPaginator($orderSearchRequest->validated()),
             'attrNames' => $orderFinder->getAttributeNames(),
-            'options' => [],
+            'options' => [
+                'customer_id' => $customerFinder->getAll([], true),
+                'status' => OrderStatus::i18n(),
+            ],
         ]);
     }
 

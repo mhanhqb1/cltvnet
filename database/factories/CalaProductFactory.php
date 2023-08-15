@@ -16,8 +16,15 @@ class CalaProductFactory extends Factory
      */
     public function definition()
     {
+        $name = $this->faker->name();
         return [
-            //
+            'name' => $name,
+            'slug' => createSlug($name),
+            'image' => $this->faker->imageUrl(),
+            'cost' => $this->faker->numberBetween(70000, 100000),
+            'price' => $this->faker->numberBetween(170000, 250000),
+            'description' => $this->faker->sentence,
+            'detail' => $this->faker->paragraph,
         ];
     }
 }

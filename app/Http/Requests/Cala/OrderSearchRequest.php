@@ -28,6 +28,7 @@ class OrderSearchRequest extends FormRequest
         return [
             'order_id' => ['nullable', 'regex:/^\d{0,7}$/', Rule::exists('cala_orders', 'order_id')],
             'customer_id' => ['nullable', 'regex:/^\d{0,7}$/', Rule::exists('cala_customers', 'customer_id')],
+            'status' => ['nullable'],
         ];
     }
 

@@ -19,7 +19,7 @@ class DefaultDataSeeder extends Seeder
         DB::beginTransaction();
         try {
             DB::table('users')->insert([
-                'user_name' => 'Admin',
+                'name' => 'Admin',
                 'email' => env('DEFAULT_ADMIN_EMAIL'),
                 'password' => Hash::make(env('DEFAULT_ADMIN_PASSWORD')),
                 'user_authority_code' => UserAuthority::Administrator->value,
