@@ -6,7 +6,7 @@
         align-items: center;
     }
 
-    .todo-order > div {
+    .todo-order>div {
         margin: 5px 12px;
     }
 </style>
@@ -104,6 +104,9 @@
                                 <div>
                                     {!! $order->getProductHtml() !!}
                                 </div>
+                                @if (!empty($order->note))
+                                <div>{{ $order->note }}</div>
+                                @endif
                                 <div>
                                     <span>{{ $order->customer->name }}</span>
                                 </div>
@@ -116,7 +119,7 @@
                     </ul>
                 </div>
                 <div class="card-footer clearfix">
-                    <button type="button" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add item</button>
+                    <a href="{{ route('admin.cala.orders.create') }}" class="btn btn-primary float-right"><i class="fas fa-plus"></i> {{ __('add_new') }}</a>
                 </div>
             </div>
         </section>

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\FoodController;
 use App\Http\Controllers\Admin\IngredientController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\NutritionController;
+use App\Http\Controllers\FrontController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::controller(FrontController::class)
+            ->prefix('mecala')
+            ->name('mecala.')
+            ->group(function () {
+                Route::get('/pending-orders/{customerId}', 'customerPendingOrders')
+                    ->name('customerPendingOrders');
+            });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
