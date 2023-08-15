@@ -32,4 +32,18 @@ class FrontController extends Controller
             'orders'
         ));
     }
+
+    public function customerDeliveryOrders(int $customerId): View
+    {
+        $customer = CalaCustomer::find($customerId);
+        $orders = CalaOrder::with(['customer', 'products'])
+            ->where('customer_id', $customerId)
+            ->where('status', OrderStatus::Delivered)
+            ->orderBy('delivery_date', 'asc')
+            ->get();
+        return view('front.cala.delivery-orders', compact(
+            'customer',
+            'orders'
+        ));
+    }
 }

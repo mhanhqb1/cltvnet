@@ -725,6 +725,7 @@
     "status": "Trạng thái",
     "order_pending": "Đang chờ",
     "order_doing": "Đang làm",
+    "order_done": "Đã xong",
     "order_delivered": "Đã giao",
     "order_paid": "Đã thanh toán",
     "order_completed": "Hoàn thành",

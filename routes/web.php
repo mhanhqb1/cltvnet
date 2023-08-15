@@ -34,6 +34,8 @@ Route::controller(FrontController::class)
             ->group(function () {
                 Route::get('/pending-orders/{customerId}', 'customerPendingOrders')
                     ->name('customerPendingOrders');
+                Route::get('/delivery-orders/{customerId}', 'customerDeliveryOrders')
+                    ->name('customerDeliveryOrders');
             });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
