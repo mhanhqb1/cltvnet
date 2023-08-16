@@ -34,7 +34,7 @@ class CalaHomeController extends Controller
         $doneOrders = [];
         $deliveredOrders = [];
         foreach ($newOrders as $order) {
-            if (in_array($order->status, [OrderStatus::Pending, OrderStatus::Doing])) {
+            if (in_array($order->status, [OrderStatus::Pending])) {
                 $pendingOrders[] = $order;
             }
             if (in_array($order->status, [OrderStatus::Doing])) {
