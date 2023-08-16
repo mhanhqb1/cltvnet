@@ -159,7 +159,7 @@
                                             <div>{{ $order->note }}</div>
                                             @endif
                                             <div>
-                                                <span>{{ $order->customer->name }}</span>
+                                                <span><a href="{{ route('mecala.customerPendingOrders', $order->customer_id) }}">{{ $order->customer->name }}</a></span>
                                             </div>
                                             <div>
                                                 <span>{{ $order->delivery_date }}</span>

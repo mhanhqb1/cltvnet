@@ -74,5 +74,11 @@
                 <p>{{ __('order_menu') }}</p>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="{{ route('admin.cala.cost_orders.index') }}" class="nav-link {{ request()->route()->named('admin.cala.cost_orders.*') ? 'active' : '' }}">
+                <i class="nav-icon fa fa-cart-arrow-down"></i>
+                <p>{{ __('cost_order_menu') }}</p>
+            </a>
+        </li>
     </ul>
 </li>
