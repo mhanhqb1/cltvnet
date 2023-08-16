@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('cala_orders', function (Blueprint $table) {
-            $table->text('note')->nullable();
-            $table->date('shipping_date')->nullable();
-            $table->string('shipping_name')->nullable();
+        Schema::table('cala_customers', function (Blueprint $table) {
             $table->string('shipping_phone')->nullable();
+            $table->string('shipping_name')->nullable();
         });
     }
 
@@ -28,11 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('cala_orders', function (Blueprint $table) {
-            $table->dropColumn('note');
-            $table->dropColumn('shipping_date');
-            $table->dropColumn('shipping_name');
+        Schema::table('cala_customers', function (Blueprint $table) {
             $table->dropColumn('shipping_phone');
+            $table->dropColumn('shipping_name');
         });
     }
 };

@@ -33,6 +33,8 @@ class CustomerRegisterRequest extends FormRequest
             'phone' => ['required'],
             'facebook' => ['nullable'],
             'zalo' => ['nullable'],
+            'shipping_name' => ['required'],
+            'shipping_phone' => ['required'],
             'shipping_address' => ['required'],
             'transporter_id' => ['nullable', Rule::exists('cala_transporters', 'transporter_id')],
         ];

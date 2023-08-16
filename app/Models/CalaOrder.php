@@ -35,13 +35,16 @@ class CalaOrder extends BaseModel
         'customer_id',
         'status',
         'order_date',
-        'delivery_date',
+        'delivery_date', // ngày khách hàng muốn nhận hàng
+        'shipping_date',// Ngày gửi hàng
         'paid_date',
         'total_cost',
         'total_price',
         'total_profit',
+        'shipping_name',
         'shipping_time',
         'shipping_address',
+        'shipping_phone',
         'transporter_id',
         'note',
     ];

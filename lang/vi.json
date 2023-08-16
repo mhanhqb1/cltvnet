@@ -711,6 +711,8 @@
     "address": "Địa chỉ",
     "phone": "Số điện thoại",
     "shipping_address": "Địa chỉ giao hàng",
+    "shipping_name": "Tên nhận hàng",
+    "shipping_phone": "Số điện thoại nhận hàng",
     "transporter_id": "Đơn vị vận chuyển",
     "cancel": "Hủy",
     "delete": "Xóa",

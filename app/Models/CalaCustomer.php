@@ -37,7 +37,9 @@ class CalaCustomer extends BaseModel
         'image',
         'facebook',
         'zalo',
+        'shipping_name',
         'shipping_address',
+        'shipping_phone',
         'transporter_id',
     ];
 
@@ -65,6 +67,8 @@ class CalaCustomer extends BaseModel
             'phone' => 'text',
             'facebook' => 'text',
             'zalo' => 'text',
+            'shipping_name' => 'text',
+            'shipping_phone' => 'text',
             'shipping_address' => 'text',
             'transporter_id' => 'select',
         ];

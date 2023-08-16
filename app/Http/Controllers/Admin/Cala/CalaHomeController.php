@@ -30,11 +30,15 @@ class CalaHomeController extends Controller
             OrderStatus::Delivered
         ])->orderBy('delivery_date', 'asc')->get();
         $pendingOrders = [];
+        $doingOrders = [];
         $doneOrders = [];
         $deliveredOrders = [];
         foreach ($newOrders as $order) {
             if (in_array($order->status, [OrderStatus::Pending, OrderStatus::Doing])) {
                 $pendingOrders[] = $order;
+            }
+            if (in_array($order->status, [OrderStatus::Doing])) {
+                $doingOrders[] = $order;
             }
             if (in_array($order->status, [OrderStatus::Done])) {
                 $doneOrders[] = $order;
@@ -49,6 +53,7 @@ class CalaHomeController extends Controller
             'totalCustomer',
             'newOrders',
             'pendingOrders',
+            'doingOrders',
             'doneOrders',
             'deliveredOrders'
         ));
@@ -62,11 +67,15 @@ class CalaHomeController extends Controller
         if (!empty($orderId) && $status !== '') {
             $order = CalaOrder::find($orderId);
             if (!empty($order)) {
-                if (in_array($status, [OrderStatus::Pending->value, OrderStatus::Doing->value])) {
+                if (in_array($status, [OrderStatus::Pending->value])) {
+                    $order->status = OrderStatus::Doing->value;
+                }
+                if (in_array($status, [OrderStatus::Doing->value])) {
                     $order->status = OrderStatus::Done->value;
                 }
                 if (in_array($status, [OrderStatus::Done->value])) {
                     $order->status = OrderStatus::Delivered->value;
+                    $order->shipping_date = date('Y-m-d');
                 }
                 if (in_array($status, [OrderStatus::Delivered->value])) {
                     $order->status = OrderStatus::Completed->value;

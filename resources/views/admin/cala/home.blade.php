@@ -95,6 +95,9 @@
                             <a class="nav-link active" id="orderPendingTab" data-toggle="pill" href="#orderPending" role="tab" aria-controls="orderPending" aria-selected="true">{{ __('order_pending').' ('.count($pendingOrders).')' }}</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" id="orderDoingTab" data-toggle="pill" href="#orderDoing" role="tab" aria-controls="orderDoing" aria-selected="false">{{ __('order_doing').'('.count($doingOrders).')' }}</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" id="orderDoneTab" data-toggle="pill" href="#orderDone" role="tab" aria-controls="orderDone" aria-selected="false">{{ __('order_done').' (Chưa giao)'.' ('.count($doneOrders).')' }}</a>
                         </li>
                         <li class="nav-item">
@@ -126,6 +129,37 @@
                                             @endif
                                             <div>
                                                 <span><a href="{{ route('mecala.customerPendingOrders', $order->customer_id) }}">{{ $order->customer->name }}</a></span>
+                                            </div>
+                                            <div>
+                                                <span>{{ $order->delivery_date }}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="orderDoing" role="tabpanel" aria-labelledby="orderDoingTab">
+                            <div class="overlay-wrapper">
+                                <div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                                    <div class="text-bold pt-2">Loading...</div>
+                                </div>
+                                <ul class="todo-list ui-sortable" data-widget="todo-list">
+                                    @foreach($doingOrders as $order)
+                                    <li>
+                                        <div class="icheck-primary todo-order ml-2">
+                                            <div>
+                                                <input type="checkbox" value="{{ $order->order_id }}" data-status="{{ $order->status }}" name="todo" id="todoCheck{{ $order->order_id }}">
+                                                <label for="todoCheck{{ $order->order_id }}"></label>
+                                            </div>
+                                            <div>
+                                                {!! $order->getProductHtml() !!}
+                                            </div>
+                                            @if (!empty($order->note))
+                                            <div>{{ $order->note }}</div>
+                                            @endif
+                                            <div>
+                                                <span>{{ $order->customer->name }}</span>
                                             </div>
                                             <div>
                                                 <span>{{ $order->delivery_date }}</span>
@@ -214,7 +248,8 @@
     const loading = $('.overlay');
     loading.hide();
     $(document).ready(function() {
-        updateOrderStatus('orderPending', 'orderDone', 'orderDelivery');
+        updateOrderStatus('orderPending', 'orderDoing', 'orderDone');
+        updateOrderStatus('orderDoing', 'orderDone', 'orderDelivery');
         updateOrderStatus('orderDone', 'orderDelivery', '');
         updateOrderStatus('orderDelivery', '', '');
     });
