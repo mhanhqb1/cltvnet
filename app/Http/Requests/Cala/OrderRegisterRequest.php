@@ -36,6 +36,7 @@ class OrderRegisterRequest extends FormRequest
             'shipping_time' => ['nullable'],
             'product_id' => ['nullable'],
             'note' => ['nullable'],
+            'shipping_date' => ['nullable'],
         ];
     }
 

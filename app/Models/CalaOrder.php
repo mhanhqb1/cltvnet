@@ -75,6 +75,7 @@ class CalaOrder extends BaseModel
             'product_id' => 'select2',
             'order_date' => 'datepicker',
             'delivery_date' => 'datepicker',
+            'shipping_date' => 'datepicker',
             'shipping_time' => 'text',
             'paid_date' => 'datepicker',
             'note' => 'textarea',
