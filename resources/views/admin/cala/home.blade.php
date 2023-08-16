@@ -92,13 +92,13 @@
                 <div class="card-header p-0 pt-1">
                     <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="orderPendingTab" data-toggle="pill" href="#orderPending" role="tab" aria-controls="orderPending" aria-selected="true">{{ __('order_pending') }}</a>
+                            <a class="nav-link active" id="orderPendingTab" data-toggle="pill" href="#orderPending" role="tab" aria-controls="orderPending" aria-selected="true">{{ __('order_pending').' ('.count($pendingOrders).')' }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="orderDoneTab" data-toggle="pill" href="#orderDone" role="tab" aria-controls="orderDone" aria-selected="false">{{ __('order_done').' (Chưa giao)' }}</a>
+                            <a class="nav-link" id="orderDoneTab" data-toggle="pill" href="#orderDone" role="tab" aria-controls="orderDone" aria-selected="false">{{ __('order_done').' (Chưa giao)'.' ('.count($doneOrders).')' }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="orderDeliveryTab" data-toggle="pill" href="#orderDelivery" role="tab" aria-controls="orderDelivery" aria-selected="false">{{ __('order_delivered').' (Chưa thanh toán)' }}</a>
+                            <a class="nav-link" id="orderDeliveryTab" data-toggle="pill" href="#orderDelivery" role="tab" aria-controls="orderDelivery" aria-selected="false">{{ __('order_delivered').' (Chưa thanh toán)'.' ('.count($deliveredOrders).')' }}</a>
                         </li>
                     </ul>
                 </div>
@@ -137,56 +137,66 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="orderDone" role="tabpanel" aria-labelledby="orderDoneTab">
-                            <ul class="todo-list ui-sortable" data-widget="todo-list">
-                                @foreach($doneOrders as $order)
-                                <li>
-                                    <div class="icheck-primary todo-order ml-2">
-                                        <div>
-                                            <input type="checkbox" value="{{ $order->order_id }}" data-status="{{ $order->status }}" name="todo" id="todoCheck{{ $order->order_id }}">
-                                            <label for="todoCheck{{ $order->order_id }}"></label>
+                            <div class="overlay-wrapper">
+                                <div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                                    <div class="text-bold pt-2">Loading...</div>
+                                </div>
+                                <ul class="todo-list ui-sortable" data-widget="todo-list">
+                                    @foreach($doneOrders as $order)
+                                    <li>
+                                        <div class="icheck-primary todo-order ml-2">
+                                            <div>
+                                                <input type="checkbox" value="{{ $order->order_id }}" data-status="{{ $order->status }}" name="todo" id="todoCheck{{ $order->order_id }}">
+                                                <label for="todoCheck{{ $order->order_id }}"></label>
+                                            </div>
+                                            <div>
+                                                {!! $order->getProductHtml() !!}
+                                            </div>
+                                            @if (!empty($order->note))
+                                            <div>{{ $order->note }}</div>
+                                            @endif
+                                            <div>
+                                                <span>{{ $order->customer->name }}</span>
+                                            </div>
+                                            <div>
+                                                <span>{{ $order->delivery_date }}</span>
+                                            </div>
                                         </div>
-                                        <div>
-                                            {!! $order->getProductHtml() !!}
-                                        </div>
-                                        @if (!empty($order->note))
-                                        <div>{{ $order->note }}</div>
-                                        @endif
-                                        <div>
-                                            <span>{{ $order->customer->name }}</span>
-                                        </div>
-                                        <div>
-                                            <span>{{ $order->delivery_date }}</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                @endforeach
-                            </ul>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="orderDelivery" role="tabpanel" aria-labelledby="orderDeliveryTab">
-                            <ul class="todo-list ui-sortable" data-widget="todo-list">
-                                @foreach($deliveredOrders as $order)
-                                <li>
-                                    <div class="icheck-primary todo-order ml-2">
-                                        <div>
-                                            <input type="checkbox" value="{{ $order->order_id }}" data-status="{{ $order->status }}" name="todo" id="todoCheck{{ $order->order_id }}">
-                                            <label for="todoCheck{{ $order->order_id }}"></label>
+                            <div class="overlay-wrapper">
+                                <div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                                    <div class="text-bold pt-2">Loading...</div>
+                                </div>
+                                <ul class="todo-list ui-sortable" data-widget="todo-list">
+                                    @foreach($deliveredOrders as $order)
+                                    <li>
+                                        <div class="icheck-primary todo-order ml-2">
+                                            <div>
+                                                <input type="checkbox" value="{{ $order->order_id }}" data-status="{{ $order->status }}" name="todo" id="todoCheck{{ $order->order_id }}">
+                                                <label for="todoCheck{{ $order->order_id }}"></label>
+                                            </div>
+                                            <div>
+                                                {!! $order->getProductHtml() !!}
+                                            </div>
+                                            @if (!empty($order->note))
+                                            <div>{{ $order->note }}</div>
+                                            @endif
+                                            <div>
+                                                <span>{{ $order->customer->name }}</span>
+                                            </div>
+                                            <div>
+                                                <span>{{ $order->delivery_date }}</span>
+                                            </div>
                                         </div>
-                                        <div>
-                                            {!! $order->getProductHtml() !!}
-                                        </div>
-                                        @if (!empty($order->note))
-                                        <div>{{ $order->note }}</div>
-                                        @endif
-                                        <div>
-                                            <span>{{ $order->customer->name }}</span>
-                                        </div>
-                                        <div>
-                                            <span>{{ $order->delivery_date }}</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                @endforeach
-                            </ul>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -230,7 +240,7 @@
                             const parent = $this.closest('li');
                             if (newElement != '') {
                                 const parentHtml = '<li>' + parent.html() + '</li>';
-                                $('#'+newElement+' .todo-list').prepend(parentHtml);
+                                $('#' + newElement + ' .todo-list').prepend(parentHtml);
                                 updateOrderStatus(newElement, newElement2, '');
                             }
                             parent.remove();
