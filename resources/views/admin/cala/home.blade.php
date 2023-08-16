@@ -26,7 +26,6 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-3 col-6">
-
             <div class="small-box bg-primary">
                 <div class="inner">
                     <h3>{{ count($newOrders) }}</h3>
@@ -83,46 +82,169 @@
     </div>
 
     <div class="row">
+        <div class="col-12">
+            <h4>{{ __('to_do_list') }}</h4>
+        </div>
+    </div>
+    <div class="row">
         <section class="col-12 connectedSortable ui-sortable">
-            <div class="card">
-                <div class="card-header ui-sortable-handle" style="cursor: move;">
-                    <h3 class="card-title">
-                        <i class="ion ion-clipboard mr-1"></i>
-                        {{ __('to_do_list') }}
-                    </h3>
+            <div class="card card-primary card-tabs">
+                <div class="card-header p-0 pt-1">
+                    <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="orderPendingTab" data-toggle="pill" href="#orderPending" role="tab" aria-controls="orderPending" aria-selected="true">{{ __('order_pending') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="orderDoneTab" data-toggle="pill" href="#orderDone" role="tab" aria-controls="orderDone" aria-selected="false">{{ __('order_done').' (Chưa giao)' }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="orderDeliveryTab" data-toggle="pill" href="#orderDelivery" role="tab" aria-controls="orderDelivery" aria-selected="false">{{ __('order_delivered').' (Chưa thanh toán)' }}</a>
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="card-body">
-                    <ul class="todo-list ui-sortable" data-widget="todo-list">
-                        @foreach($newOrders as $order)
-                        <li>
-                            <div class="icheck-primary todo-order ml-2">
-                                <div>
-                                    <input type="checkbox" value="" name="todo1" id="todoCheck1">
-                                    <label for="todoCheck1"></label>
+                    <div class="tab-content" id="orderTabContent">
+                        <div class="tab-pane fade active show" id="orderPending" role="tabpanel" aria-labelledby="orderPendingTab">
+                            <div class="overlay-wrapper">
+                                <div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                                    <div class="text-bold pt-2">Loading...</div>
                                 </div>
-                                <div>
-                                    {!! $order->getProductHtml() !!}
-                                </div>
-                                @if (!empty($order->note))
-                                <div>{{ $order->note }}</div>
-                                @endif
-                                <div>
-                                    <span>{{ $order->customer->name }}</span>
-                                </div>
-                                <div>
-                                    <span>{{ $order->delivery_date }}</span>
-                                </div>
+                                <ul class="todo-list ui-sortable" data-widget="todo-list">
+                                    @foreach($pendingOrders as $order)
+                                    <li>
+                                        <div class="icheck-primary todo-order ml-2">
+                                            <div>
+                                                <input type="checkbox" value="{{ $order->order_id }}" data-status="{{ $order->status }}" name="todo" id="todoCheck{{ $order->order_id }}">
+                                                <label for="todoCheck{{ $order->order_id }}"></label>
+                                            </div>
+                                            <div>
+                                                {!! $order->getProductHtml() !!}
+                                            </div>
+                                            @if (!empty($order->note))
+                                            <div>{{ $order->note }}</div>
+                                            @endif
+                                            <div>
+                                                <span>{{ $order->customer->name }}</span>
+                                            </div>
+                                            <div>
+                                                <span>{{ $order->delivery_date }}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    @endforeach
+                                </ul>
                             </div>
-                        </li>
-                        @endforeach
-                    </ul>
+                        </div>
+                        <div class="tab-pane fade" id="orderDone" role="tabpanel" aria-labelledby="orderDoneTab">
+                            <ul class="todo-list ui-sortable" data-widget="todo-list">
+                                @foreach($doneOrders as $order)
+                                <li>
+                                    <div class="icheck-primary todo-order ml-2">
+                                        <div>
+                                            <input type="checkbox" value="{{ $order->order_id }}" data-status="{{ $order->status }}" name="todo" id="todoCheck{{ $order->order_id }}">
+                                            <label for="todoCheck{{ $order->order_id }}"></label>
+                                        </div>
+                                        <div>
+                                            {!! $order->getProductHtml() !!}
+                                        </div>
+                                        @if (!empty($order->note))
+                                        <div>{{ $order->note }}</div>
+                                        @endif
+                                        <div>
+                                            <span>{{ $order->customer->name }}</span>
+                                        </div>
+                                        <div>
+                                            <span>{{ $order->delivery_date }}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="orderDelivery" role="tabpanel" aria-labelledby="orderDeliveryTab">
+                            <ul class="todo-list ui-sortable" data-widget="todo-list">
+                                @foreach($deliveredOrders as $order)
+                                <li>
+                                    <div class="icheck-primary todo-order ml-2">
+                                        <div>
+                                            <input type="checkbox" value="{{ $order->order_id }}" data-status="{{ $order->status }}" name="todo" id="todoCheck{{ $order->order_id }}">
+                                            <label for="todoCheck{{ $order->order_id }}"></label>
+                                        </div>
+                                        <div>
+                                            {!! $order->getProductHtml() !!}
+                                        </div>
+                                        @if (!empty($order->note))
+                                        <div>{{ $order->note }}</div>
+                                        @endif
+                                        <div>
+                                            <span>{{ $order->customer->name }}</span>
+                                        </div>
+                                        <div>
+                                            <span>{{ $order->delivery_date }}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer clearfix">
-                    <a href="{{ route('admin.cala.orders.create') }}" class="btn btn-primary float-right"><i class="fas fa-plus"></i> {{ __('add_new') }}</a>
+                    <a href="{{ route('admin.cala.orders.create') }}" class="btn btn-primary float-right"><i class="fas fa-plus"></i> {{ __('add_new_order') }}</a>
                 </div>
             </div>
         </section>
     </div>
 </div>
 @endsection
+
+@push('page_scripts')
+<script>
+    const loading = $('.overlay');
+    loading.hide();
+    $(document).ready(function() {
+        updateOrderStatus('orderPending', 'orderDone', 'orderDelivery');
+        updateOrderStatus('orderDone', 'orderDelivery', '');
+        updateOrderStatus('orderDelivery', '', '');
+    });
+
+    function updateOrderStatus(element, newElement, newElement2) {
+        $('#' + element + ' input[name="todo"]').on('change', function() {
+            const $this = $(this);
+            if (this.checked) {
+                const orderId = $this.val();
+                const status = $this.attr('data-status');
+                loading.show();
+                $.ajax('{{ route("admin.cala.home.updateOrderStatus") }}', {
+                    type: 'POST',
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        order_id: orderId,
+                        status: status
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.new_status !== '') {
+                            $this.attr('data-status', data.new_status);
+                            const parent = $this.closest('li');
+                            if (newElement != '') {
+                                const parentHtml = '<li>' + parent.html() + '</li>';
+                                $('#'+newElement+' .todo-list').prepend(parentHtml);
+                                updateOrderStatus(newElement, newElement2, '');
+                            }
+                            parent.remove();
+                        }
+                    },
+                    error: function(jqXhr, textStatus, errorMessage) {
+                        alert('Lỗi');
+                    },
+                    complete: function() {
+                        loading.hide();
+                    }
+                });
+            }
+        });
+    }
+</script>
+@endpush
