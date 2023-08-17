@@ -99,8 +99,8 @@
                     <table class="table">
                         <tbody>
                             <tr>
-                                <th>Tổng tiền:</th>
-                                <td><strong style="font-size: 1.3em;">{{ number_format($totalPrice) }} vnđ</strong></td>
+                                <th style="padding: 0;">Tổng tiền:</th>
+                                <td style="padding: 0;"><strong style="font-size: 1.3em;">{{ number_format($totalPrice) }} vnđ</strong></td>
                             </tr>
                         </tbody>
                     </table>
