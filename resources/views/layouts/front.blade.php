@@ -15,6 +15,24 @@
     @stack('third_party_stylesheets')
 
     @stack('page_css')
+    <style>
+        .invoice-header {
+            display: flex;
+            align-items: center;
+        }
+        .invoice-header .invoice-header-info {
+            flex: 1;
+            padding-left: 12px;
+        }
+        .invoice-header .invoice-header-info h1 {
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+        .contact-info span {
+            display: inline-block;
+            margin: 0 7px;
+        }
+    </style>
 </head>
 
 <body>

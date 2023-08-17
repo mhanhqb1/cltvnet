@@ -1,24 +1,6 @@
 @extends('layouts.front')
 
 @section('content')
-<style>
-    .invoice-header {
-        display: flex;
-        align-items: center;
-    }
-    .invoice-header .invoice-header-info {
-        flex: 1;
-        padding-left: 12px;
-    }
-    .invoice-header .invoice-header-info h1 {
-        margin-bottom: 10px;
-        line-height: 1;
-    }
-    .contact-info span {
-        display: inline-block;
-        margin: 0 7px;
-    }
-</style>
 <div class="container">
     <div class="invoice p-3 mb-3">
         <div class="row">
