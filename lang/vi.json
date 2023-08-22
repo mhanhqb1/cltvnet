@@ -759,5 +759,8 @@
     "more_info": "Xem thêm",
     "to_do_list": "Việc cần làm",
     "note": "Ghi chú",
-    "add_new_order": "Thêm mới đơn hàng"
+    "add_new_order": "Thêm mới đơn hàng",
+    "cost_order_menu": "Danh sách chi phí",
+    "cost_order_id": "ID chi phí",
+    "sales_menu": "Quản lý doanh thu"
 }

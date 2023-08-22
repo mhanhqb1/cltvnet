@@ -45,7 +45,7 @@
     </a>
     <ul class="nav nav-treeview">
         <li class="nav-item">
-            <a href="{{ route('admin.cala.home.index') }}" class="nav-link {{ request()->route()->named('admin.cala.home.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.cala.home.index') }}" class="nav-link {{ request()->route()->named('admin.cala.home.index') ? 'active' : '' }}">
                 <i class="nav-icon fa fa-home"></i>
                 <p>{{ __('dashboard') }}</p>
             </a>
@@ -78,6 +78,12 @@
             <a href="{{ route('admin.cala.cost_orders.index') }}" class="nav-link {{ request()->route()->named('admin.cala.cost_orders.*') ? 'active' : '' }}">
                 <i class="nav-icon fa fa-cart-arrow-down"></i>
                 <p>{{ __('cost_order_menu') }}</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('admin.cala.home.sales') }}" class="nav-link {{ request()->route()->named('admin.cala.home.sales') ? 'active' : '' }}">
+                <i class="nav-icon fa fa-home"></i>
+                <p>{{ __('sales_menu') }}</p>
             </a>
         </li>
     </ul>

@@ -45,7 +45,7 @@
                             <th>ID</th>
                             <th>Sản phẩm</th>
                             <th>Ngày nhận hàng</th>
-                            <th>Tổng tiền</th>
+                            <th>Trạng thái</th>
                         </tr>
                     </thead>
                     <tbody>

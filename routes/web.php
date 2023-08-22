@@ -148,6 +148,8 @@ Route::middleware('auth')
                             ->name('index');
                         Route::post('/update-order-status', 'updateOrderStatus')
                             ->name('updateOrderStatus');
+                        Route::get('/sales', 'sales')
+                            ->name('sales');
                     });
                 Route::controller(CalaProductController::class)
                     ->prefix('products')

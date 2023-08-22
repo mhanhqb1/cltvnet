@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Cala;
 
 use App\Common\Definition\OrderStatus;
 use App\Http\Controllers\Controller;
+use App\Models\CalaCostOrder;
 use App\Models\CalaCustomer;
 use App\Models\CalaOrder;
 use App\Models\CalaProduct;
@@ -90,5 +91,27 @@ class CalaHomeController extends Controller
             'new_status' => $newStatus
         ]);
         die();
+    }
+
+    public function sales(Request $request): View
+    {
+        $startDate = !empty($request->start_date) ? $request->start_date : date('Y-m-01');
+        $endDate = !empty($request->end_date) ? $request->end_date : date('Y-m-d');
+        $orders = CalaOrder::where('status', OrderStatus::Completed->value)
+            ->where('delivery_date', '>=', $startDate)
+            ->where('delivery_date', '<=', $endDate);
+        $totalSales = $orders->sum('total_price');
+        $orders = $orders->get();
+
+        $costOrders = CalaCostOrder::where('order_date', '>=', $startDate)
+            ->where('order_date', '<=', $endDate);
+        $totalCost = $costOrders->sum('total_price');
+        $costOrders = $costOrders->get();
+        return view('admin.cala.sales', compact(
+            'orders',
+            'totalSales',
+            'costOrders',
+            'totalCost',
+        ));
     }
 }
