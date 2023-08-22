@@ -100,7 +100,8 @@
             });
             $('#summernote').summernote();
             $('.datetimepicker-input').datepicker({
-                format: 'yyyy-mm-dd'
+                format: 'yyyy-mm-dd',
+                autoclose: true,
             });
             $('.data-table').DataTable({
                 "paging": true,

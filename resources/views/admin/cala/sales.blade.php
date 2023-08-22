@@ -18,16 +18,16 @@
 <div class="container-fluid">
     <div class="row mb-2">
         <div class="col-12">
-            <form action="{{ route('admin.cala.customers.index') }}" method="GET">
+            <form action="{{ route('admin.cala.home.sales') }}" method="GET">
                 <div class="card">
                     <div class="card-body">
                         @csrf
                         <div class="row">
                             <div class="col-sm-6">
-                                <x-input-types type="datepicker" name="start_date" label="Ngày bắt đầu" value="{{ old('start_date', date('Y-m-01')) }}"></x-input-types>
+                                <x-input-types type="datepicker" name="start_date" label="Ngày bắt đầu" value="{{ old('start_date', request('start_date') ?? date('Y-m-01')) }}"></x-input-types>
                             </div>
                             <div class="col-sm-6">
-                                <x-input-types type="datepicker" name="end_date" label="Ngày kết thúc" value="{{ old('end_date', date('Y-m-d')) }}"></x-input-types>
+                                <x-input-types type="datepicker" name="end_date" label="Ngày kết thúc" value="{{ old('end_date', request('end_date') ?? date('Y-m-d')) }}"></x-input-types>
                             </div>
                         </div>
                     </div>
