@@ -91,12 +91,41 @@
     <script src="https://cdn.jsdelivr.net/npm/@staaky/fresco@2.3.2/dist/js/fresco.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('.select2').select2();
+            $('.select2').select2({
+                matcher: function(params, data) {
+                    return ignoreSpecialCharAndWhitespace(params, data);
+                }
+            });
             $('#summernote').summernote();
             $('.datetimepicker-input').datepicker({
                 format: 'yyyy-mm-dd'
             });
         });
+
+        function ignoreSpecialCharAndWhitespace(params, data) {
+            params.term = params.term || '';
+            terms = params.term.split(',');
+            text1 = slugify(data.text);
+            for (let i = 0; i < terms.length; i++) {
+                term = slugify(terms[i]);
+                if (text1.indexOf(term) < 0 ) {
+                    return false;
+                }
+            }
+            return data;
+        }
+
+        function slugify(str) {
+            return String(str)
+                .normalize('NFKD') // split accented characters into their base characters and diacritical marks
+                .replace(/[\u0300-\u036f]/g, '') // remove all the accents, which happen to be all in the \u03xx UNICODE block.
+                .trim() // trim leading or trailing whitespace
+                .toLowerCase() // convert to lowercase
+                .replace(/[^a-z0-9 -]/g, '') // remove non-alphanumeric characters
+                .replace(/\s+/g, '-') // replace spaces with hyphens
+                .replace(/-+/g, '-'); // remove consecutive hyphens
+        }
+
     </script>
     @stack('third_party_scripts')
 
