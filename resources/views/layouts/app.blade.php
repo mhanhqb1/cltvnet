@@ -104,7 +104,7 @@
 
         function ignoreSpecialCharAndWhitespace(params, data) {
             params.term = params.term || '';
-            terms = params.term.split(',');
+            terms = params.term.split(' ');
             text1 = slugify(data.text);
             for (let i = 0; i < terms.length; i++) {
                 term = slugify(terms[i]);
