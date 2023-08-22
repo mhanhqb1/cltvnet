@@ -39,7 +39,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-6">
+        <div class="col-lg-6">
             <div class="small-box bg-primary">
                 <div class="inner">
                     <h3>{{ number_format($totalSales) }}</h3>
@@ -51,7 +51,7 @@
                 <a href="{{ route('admin.cala.orders.index') }}" class="small-box-footer">{{ __('more_info') }} <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-lg-6">
             <div class="small-box bg-danger">
                 <div class="inner">
                     <h3>{{ number_format($totalCost) }}</h3>

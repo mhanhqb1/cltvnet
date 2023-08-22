@@ -76,13 +76,13 @@
         </li>
         <li class="nav-item">
             <a href="{{ route('admin.cala.cost_orders.index') }}" class="nav-link {{ request()->route()->named('admin.cala.cost_orders.*') ? 'active' : '' }}">
-                <i class="nav-icon fa fa-cart-arrow-down"></i>
+                <i class="nav-icon fas fa-chart-pie"></i>
                 <p>{{ __('cost_order_menu') }}</p>
             </a>
         </li>
         <li class="nav-item">
             <a href="{{ route('admin.cala.home.sales') }}" class="nav-link {{ request()->route()->named('admin.cala.home.sales') ? 'active' : '' }}">
-                <i class="nav-icon fa fa-home"></i>
+                <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>{{ __('sales_menu') }}</p>
             </a>
         </li>
