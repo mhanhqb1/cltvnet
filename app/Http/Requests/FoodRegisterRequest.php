@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Common\Definition\FoodType;
 use App\Common\Definition\FileDefs;
 use App\Common\Definition\Level;
+use App\Common\Definition\MealType;
 use App\Common\Definition\RecipeType;
 use App\Common\Definition\VideoType;
 use App\Models\Food;
@@ -37,7 +38,7 @@ class FoodRegisterRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255', Rule::unique('foods', 'name')->ignore($this->foodId, 'food_id')],
             'cate_id' => ['nullable'],
-            'meal_type' => ['nullable'],
+            'meal_type' => ['required'],
             'image' => ['nullable', 'image', 'max:'.FileDefs::IMAGE_MAX_SIZE],
             'description' => ['nullable'],
             'detail' => ['nullable'],

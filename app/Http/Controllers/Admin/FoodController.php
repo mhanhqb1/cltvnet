@@ -147,8 +147,8 @@ class FoodController extends Controller
             $foodRegisterRequest->file('image')->storeAs(FileDefs::IMAGE_STORE_PATH, $fileName);
             $params['image'] = FileDefs::IMAGE_PUBLIC_PATH . $fileName;
         }
+        DB::beginTransaction();
         try {
-            DB::beginTransaction();
             $params['detail'] = editorUploadImages($params['detail']);
             $food = $foodCreator->save($params);
             if (!empty($params['cate_id'])) {
@@ -183,7 +183,6 @@ class FoodController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
             Log::error($e->getMessage());
-            throw new ServiceException(__('register_failed'));
         }
         return redirect()->route('admin.foods.index');
     }

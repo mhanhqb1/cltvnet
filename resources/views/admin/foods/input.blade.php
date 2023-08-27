@@ -84,8 +84,6 @@
                             @foreach($food->recipes as $recipe)
                                 @include('admin.foods.recipe-table', $recipe->getRecipeData())
                             @endforeach
-                        @else
-                            @include('admin.foods.recipe-table')
                         @endif
                     </div>
                     <div class="card-footer">
@@ -123,8 +121,6 @@
                             @foreach($food->videos as $video)
                                 @include('admin.foods.video-table', $video->getVideoData())
                             @endforeach
-                        @else
-                            @include('admin.foods.video-table')
                         @endif
                     </div>
                     <div class="card-footer">

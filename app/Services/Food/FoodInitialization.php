@@ -10,7 +10,7 @@ class FoodInitialization extends AbstractService
     public function initFood(): object
     {
         $newFood = new Food();
-
+        $newFood->time = 0;
         return $newFood;
     }
 }
