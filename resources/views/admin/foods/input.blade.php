@@ -130,6 +130,43 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-12">
+                <div class="card card-secondary" id="foodArticleCard">
+                    <input type="hidden" name="food_articles" value="" id="inputFoodArticles"/>
+                    <div class="card-header">
+                        <h3 class="card-title">{{ __('articles_info') }}</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @if (old('food_articles'))
+                            @php
+                                $oldFoodArticles = json_decode(old('food_articles'), true);
+                            @endphp
+                            @foreach($oldFoodArticles as $k => $oldFoodArticle)
+                                @if ($errors->has('row') && $errors->first('row') == $k)
+                                    @php
+                                        $oldFoodArticle['hasError'] = true;
+                                    @endphp
+                                @endif
+                                @include('admin.foods.article-table', $oldFoodArticle)
+                            @endforeach
+                        @elseif(!$food->articles->isEmpty())
+                            @foreach($food->articles as $article)
+                                @include('admin.foods.article-table', $article->getArticleData())
+                            @endforeach
+                        @endif
+                    </div>
+                    <div class="card-footer">
+                        <div class="btn btn-info" id="addNewArticle">{{ __('add_new') }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-12 mb-5">
                 <a href="{{ route('admin.foods.index') }}" class="btn btn-secondary">{{ __('cancel') }}</a>
                 <input type="submit" value="{{ __('save') }}" class="btn btn-primary float-right">
@@ -150,6 +187,9 @@
 <div id="videoTableBlank" style="display: none;">
 @include('admin.foods.video-table')
 </div>
+<div id="articleTableBlank" style="display: none;">
+@include('admin.foods.article-table')
+</div>
 @endsection
 
 @push('page_scripts')
@@ -163,6 +203,11 @@
     const videoContainer = $('#foodVideoCard .card-body');
     const addNewVideoBtn = $('#addNewVideo');
     const registerForm = $('#registerForm');
+
+    const inputFoodArticles = $('#inputFoodArticles');
+    const articleTableBlankHtml = $('#articleTableBlank').html();
+    const articleContainer = $('#foodArticleCard .card-body');
+    const addNewArticleBtn = $('#addNewArticle');
     $(document).ready(function() {
         recipeCommon();
         addNewRecipeBtn.on('click', function(){
@@ -179,12 +224,27 @@
         registerForm.on('submit', function() {
             getRecipeData();
             getVideoData();
+            getArticleData();
+        });
+
+        articleCommon();
+        addNewArticleBtn.on('click', function(){
+            articleContainer.append(articleTableBlankHtml);
+            articleCommon();
         });
     });
 
     function videoCommon() {
         const deleteVideoBtn = $('#foodVideoCard .card-body .btn-delete');
         deleteVideoBtn.on('click', function() {
+            const parent = $(this).closest('table');
+            parent.remove();
+        });
+    }
+
+    function articleCommon() {
+        const deleteArticleBtn = $('#foodArticleCard .card-body .btn-delete');
+        deleteArticleBtn.on('click', function() {
             const parent = $(this).closest('table');
             parent.remove();
         });
@@ -222,6 +282,18 @@
             });
         });
         inputFoodVideos.val(JSON.stringify(videos));
+    }
+
+    function getArticleData() {
+        let articles = [];
+        $('#foodArticleCard .card-body table').each(function() {
+            articles.push({
+                article_name: $(this).find('input[name="article_name[]"]').val(),
+                article_url: $(this).find('input[name="article_url[]"]').val(),
+                article_description: $(this).find('textarea[name="article_description[]"]').val(),
+            });
+        });
+        inputFoodArticles.val(JSON.stringify(articles));
     }
 </script>
 @endpush

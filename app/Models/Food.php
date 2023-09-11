@@ -118,6 +118,11 @@ class Food extends BaseModel
         return $this->HasMany(FoodVideo::class, 'food_id', 'food_id');
     }
 
+    public function articles(): HasMany
+    {
+        return $this->HasMany(FoodArticle::class, 'food_id', 'food_id');
+    }
+
     public function getCateIdAttribute()
     {
         $cateIds = [];

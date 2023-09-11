@@ -19,6 +19,9 @@ use App\Services\Food\FoodDelete;
 use App\Services\Food\FoodEditor;
 use App\Services\Food\FoodFinder;
 use App\Services\Food\FoodInitialization;
+use App\Services\FoodArticle\FoodArticleCreator;
+use App\Services\FoodArticle\FoodArticleDelete;
+use App\Services\FoodArticle\FoodArticleFinder;
 use App\Services\FoodCate\FoodCateCreator;
 use App\Services\FoodCate\FoodCateDelete;
 use App\Services\FoodMealType\FoodMealTypeCreator;
@@ -83,7 +86,8 @@ class FoodController extends Controller
         CateFinder $cateFinder,
         FoodRecipeFinder $foodRecipeFinder,
         IngredientFinder $ingredientFinder,
-        FoodVideoFinder $foodVideoFinder
+        FoodVideoFinder $foodVideoFinder,
+        FoodArticleFinder $foodArticleFinder
     ): View
     {
         return view('admin.foods.input', [
@@ -94,6 +98,8 @@ class FoodController extends Controller
             'recipeAttrInputTypes' => $foodRecipeFinder->getAttributeInputTypes(),
             'videoAttrNames' => $foodVideoFinder->getAttributeNames(),
             'videoAttrInputTypes' => $foodVideoFinder->getAttributeInputTypes(),
+            'articleAttrNames' => $foodArticleFinder->getAttributeNames(),
+            'articleAttrInputTypes' => $foodArticleFinder->getAttributeInputTypes(),
             'options' => [
                 'type' => FoodType::i18n(),
                 'level' => Level::i18n(),
@@ -137,7 +143,8 @@ class FoodController extends Controller
         FoodCateCreator $foodCateCreator,
         FoodRecipeCreator $foodRecipeCreator,
         FoodMealTypeCreator $foodMealTypeCreator,
-        FoodVideoCreator $foodVideoCreator
+        FoodVideoCreator $foodVideoCreator,
+        FoodArticleCreator $foodArticleCreator
     ): RedirectResponse
     {
         $params = $foodRegisterRequest->multiValidated();
@@ -179,6 +186,12 @@ class FoodController extends Controller
                     $foodVideoCreator->save($foodVideo);
                 }
             }
+            if (!empty($params['food_articles'])) {
+                foreach ($params['food_articles'] as $foodArticle) {
+                    $foodArticle['food_id'] = $food->food_id;
+                    $foodArticleCreator->save($foodArticle);
+                }
+            }
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
@@ -201,7 +214,8 @@ class FoodController extends Controller
         CateFinder $cateFinder,
         FoodRecipeFinder $foodRecipeFinder,
         IngredientFinder $ingredientFinder,
-        FoodVideoFinder $foodVideoFinder
+        FoodVideoFinder $foodVideoFinder,
+        FoodArticleFinder $foodArticleFinder
     ): View
     {
         return view('admin.foods.input', [
@@ -214,6 +228,8 @@ class FoodController extends Controller
             'recipeAttrInputTypes' => $foodRecipeFinder->getAttributeInputTypes(),
             'videoAttrNames' => $foodVideoFinder->getAttributeNames(),
             'videoAttrInputTypes' => $foodVideoFinder->getAttributeInputTypes(),
+            'articleAttrNames' => $foodArticleFinder->getAttributeNames(),
+            'articleAttrInputTypes' => $foodArticleFinder->getAttributeInputTypes(),
             'options' => [
                 'type' => FoodType::i18n(),
                 'level' => Level::i18n(),
@@ -268,7 +284,9 @@ class FoodController extends Controller
         FoodMealTypeDelete $foodMealTypeDelete,
         FoodMealTypeCreator $foodMealTypeCreator,
         FoodVideoDelete $foodVideoDelete,
-        FoodVideoCreator $foodVideoCreator
+        FoodVideoCreator $foodVideoCreator,
+        FoodArticleCreator $foodArticleCreator,
+        FoodArticleDelete $foodArticleDelete
     ): RedirectResponse
     {
         $food = $foodFinder->getOne(['food_id' => $foodId]);
@@ -294,6 +312,9 @@ class FoodController extends Controller
                 'food_id' => $foodId
             ]);
             $foodVideoDelete->deleteByConditions([
+                'food_id' => $foodId
+            ]);
+            $foodArticleDelete->deleteByConditions([
                 'food_id' => $foodId
             ]);
 
@@ -323,6 +344,12 @@ class FoodController extends Controller
                 foreach ($params['food_videos'] as $foodVideo) {
                     $foodVideo['food_id'] = $food->food_id;
                     $foodVideoCreator->save($foodVideo);
+                }
+            }
+            if (!empty($params['food_articles'])) {
+                foreach ($params['food_articles'] as $foodArticle) {
+                    $foodArticle['food_id'] = $food->food_id;
+                    $foodArticleCreator->save($foodArticle);
                 }
             }
             DB::commit();

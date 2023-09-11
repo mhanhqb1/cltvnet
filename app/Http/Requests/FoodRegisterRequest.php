@@ -9,7 +9,9 @@ use App\Common\Definition\MealType;
 use App\Common\Definition\RecipeType;
 use App\Common\Definition\VideoType;
 use App\Models\Food;
+use App\Models\FoodArticle;
 use App\Models\FoodRecipe;
+use App\Models\FoodVideo;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -47,6 +49,7 @@ class FoodRegisterRequest extends FormRequest
             'time' => ['nullable', 'integer'],
             'food_recipes' => ['nullable'],
             'food_videos' => ['nullable'],
+            'food_articles' => ['nullable'],
         ];
     }
 
@@ -96,13 +99,29 @@ class FoodRegisterRequest extends FormRequest
                 'source_id' => ['required'],
             ];
             $messages = [];
-            $attributes = FoodRecipe::getAttributeNames();
+            $attributes = FoodVideo::getAttributeNames();
             foreach ($params['food_videos'] as $k => &$foodVideo) {
                 $validator = Validator::make($foodVideo, $rules, $messages, $attributes);
                 if ($validator->fails()) {
                     throw ValidationException::withMessages(array_merge($validator->errors()->toArray(), ['row' => $k]));
                 }
                 $foodVideo['slug'] = createSlug($foodVideo['video_name']);
+            }
+        }
+
+        if (!empty($params['food_articles'])) {
+            $params['food_articles'] = json_decode($params['food_articles'], true);
+            // Todo validate detail
+            $rules = [
+                'article_url' => ['required'],
+            ];
+            $messages = [];
+            $attributes = FoodArticle::getAttributeNames();
+            foreach ($params['food_articles'] as $k => $foodArticle) {
+                $validator = Validator::make($foodArticle, $rules, $messages, $attributes);
+                if ($validator->fails()) {
+                    throw ValidationException::withMessages(array_merge($validator->errors()->toArray(), ['row' => $k]));
+                }
             }
         }
         return $params;
