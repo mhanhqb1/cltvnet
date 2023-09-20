@@ -95,16 +95,18 @@
     <section class="tstbite-components my-4 my-md-5">
         <h5 class="py-3 mb-0">Danh mục phổ biến</h5>
         <div class="row">
+            @foreach ($mealTypes as $type => $mealType)
             <div class="col-lg-2 col-md-4 col-4">
                 <figure class="my-3 text-center tstbite-card">
                     <a href="category.html" class="tstbite-animation stretched-link rounded-circle">
-                        <img src="{{ asset('images/menu1.jpg') }}" class="rounded-circle" alt="Menu">
+                        <img src="{{ asset('images/menu1.jpg') }}" class="rounded-circle" alt="{{ $mealType['title'] }}">
                     </a>
                     <figcaption class="mt-2">
-                        <a href="category.html" class="tstbite-category-title">Pasta</a>
+                        <a href="category.html" class="tstbite-category-title">{{ $mealType['title'] }}</a>
                     </figcaption>
                 </figure>
             </div>
+            @endforeach
         </div>
     </section>
 </div>

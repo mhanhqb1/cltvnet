@@ -27,4 +27,40 @@ enum MealType: string
             self::EatWeaning->value => __('eat_weaning'),
         ];
     }
+
+    public static function all(): array
+    {
+        return [
+            self::Breakfast->value => [
+                'title' => __('breakfast'),
+                'image' => '',
+                'slug' => '',
+            ],
+            self::Lunch->value => [
+                'title' => __('lunch'),
+                'image' => '',
+                'slug' => '',
+            ],
+            self::Dinner->value => [
+                'title' => __('dinner'),
+                'image' => '',
+                'slug' => '',
+            ],
+            self::Snacks->value => [
+                'title' => __('snacks'),
+                'image' => '',
+                'slug' => '',
+            ],
+            self::Party->value => [
+                'title' => __('party'),
+                'image' => '',
+                'slug' => '',
+            ],
+            self::EatWeaning->value => [
+                'title' => __('eat_weaning'),
+                'image' => '',
+                'slug' => '',
+            ],
+        ];
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Common\Definition\MealType;
 use App\Common\Definition\OrderStatus;
 use App\Models\CalaCustomer;
 use App\Models\CalaOrder;
@@ -45,5 +46,13 @@ class FrontController extends Controller
             'customer',
             'orders'
         ));
+    }
+
+    public function home(): View
+    {
+
+        return view('front.home', [
+            'mealTypes' => MealType::all(),
+        ]);
     }
 }
