@@ -63,32 +63,34 @@
     <section class="tstbite-components my-4 my-md-5">
         <h5 class="py-3 mb-0">Món ăn yêu thích</h5>
         <div class="row">
+            @foreach($favoriteFood as $food)
             <div class="col-md-4">
                 <figure class="my-3 tstbite-card">
                     <a href="#0" class="tstbite-animation rounded-6">
-                        <img src="{{ asset('images/menu1.jpg') }}" class="w-100" alt="Menu">
+                        <img src="{{ $food->image }}" class="w-100" alt="Menu">
                     </a>
                     <figcaption class="mt-2">
                         <div class="w-100 float-left">
                             <div class="float-left">
                                 <div class="fabrx-ratings has-rating rating">
-                                    <input type="radio" id="radio16" name="rate4" value="1" checked="checked">
-                                    <label for="radio16" class="custom-starboxes"></label>
-                                    <input type="radio" id="radio17" name="rate4" value="2">
-                                    <label for="radio17" class="custom-starboxes"></label>
-                                    <input type="radio" id="radio18" name="rate4" value="3">
-                                    <label for="radio18" class="custom-starboxes"></label>
-                                    <input type="radio" id="radio19" name="rate4" value="4">
-                                    <label for="radio19" class="custom-starboxes"></label>
-                                    <input type="radio" id="radio20" name="rate4" value="5">
-                                    <label for="radio20" class="custom-starboxes"></label>
+                                    <input type="radio" id="radio_{{ $food->food_id }}_1" name="rate_{{ $food->food_id }}" value="1" checked="checked">
+                                    <label for="radio_{{ $food->food_id }}_1" class="custom-starboxes"></label>
+                                    <input type="radio" id="radio_{{ $food->food_id }}_2" name="rate_{{ $food->food_id }}" value="2">
+                                    <label for="radio_{{ $food->food_id }}_2" class="custom-starboxes"></label>
+                                    <input type="radio" id="radio_{{ $food->food_id }}_3" name="rate_{{ $food->food_id }}" value="3">
+                                    <label for="radio_{{ $food->food_id }}_3" class="custom-starboxes"></label>
+                                    <input type="radio" id="radio_{{ $food->food_id }}_4" name="rate_{{ $food->food_id }}" value="4">
+                                    <label for="radio_{{ $food->food_id }}_4" class="custom-starboxes"></label>
+                                    <input type="radio" id="radio_{{ $food->food_id }}_5" name="rate_{{ $food->food_id }}" value="5">
+                                    <label for="radio_{{ $food->food_id }}_5" class="custom-starboxes"></label>
                                 </div>
                             </div>
                         </div>
-                        <a href="#0" class="f-size-20 text-black d-block mt-1 font-weight-semibold">Caramel Strawberry Milkshake</a>
+                        <a href="#0" class="f-size-20 text-black d-block mt-1 font-weight-semibold">{{ $food->name }}</a>
                     </figcaption>
                 </figure>
             </div>
+            @endforeach
         </div>
     </section>
     <!-- Tstbite Components, My 4, My Md 5 -->
@@ -133,35 +135,39 @@
     <section class="tstbite-components my-4 my-md-5">
         <h5 class="py-3 h3 mb-0">Thực đơn mới cập nhật</h5>
         <div class="row">
+            @foreach($lastestMenu as $menu)
             <div class="col-md-6">
                 <figure class="my-3 tstbite-card">
                     <a href="#0" class="tstbite-animation stretched-link rounded-top-6">
-                        <img src="{{ asset('images/menu1.jpg') }}" class="w-100" alt="Menu">
+                        <img src="{{ $menu->image }}" class="w-100" alt="Menu">
                     </a>
                     <figcaption class="tstbite-collection border-top-0 rounded-bottom-6">
                         <div class="text-black pt-3 pb-4 px-4 d-lg-flex align-items-end justify-content-between text-right">
-                            <h5 class="mb-3 md-lg-0 pr-0 pr-lg-4 text-left"><a href="#0" class="stretched-link">Sushi Combos for your Next Party</a></h5>
+                            <h5 class="mb-3 md-lg-0 pr-0 pr-lg-4 text-left"><a href="#0" class="stretched-link">{{ $menu->name }}</a></h5>
                             <span class="btn btn-sm btn-outline-dark text-nowrap">156 Recipes</span>
                         </div>
                     </figcaption>
                 </figure>
             </div>
+            @endforeach
         </div>
     </section>
     <!-- Tstbite Components, My 4, My Md 5 -->
     <section class="tstbite-components my-4 my-md-5">
         <h5 class="py-3 mb-0">Món ăn mới cập nhật</h5>
         <div class="row">
+            @foreach($lastestFood as $food)
             <div class="col-lg-3 col-md-4 col-6">
                 <figure class="my-3 my-md-4 tstbite-card">
                     <a href="recipe-sidebar.html" class="tstbite-animation stretched-link rounded-6">
-                        <img src="{{ asset('images/menu1.jpg') }}" class="w-100" alt="Menu">
+                        <img src="{{ $food->image }}" class="w-100" alt="Menu">
                     </a>
                     <figcaption class="mt-2">
-                        <a href="recipe-sidebar.html" class="text-black d-block mt-1 font-weight-semibold big">Caramel Strawberry Milkshake</a>
+                        <a href="recipe-sidebar.html" class="text-black d-block mt-1 font-weight-semibold big">{{ $food->name }}</a>
                     </figcaption>
                 </figure>
             </div>
+            @endforeach
         </div>
         <div class="text-center py-5">
             <a href="#0" class="btn btn-outline-dark px-4 px-md-5 py-1 py-md-2 big font-weight-medium">Load More</a>
