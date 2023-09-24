@@ -35,7 +35,7 @@
         <p>{{ __('menu_menu') }}</p>
     </a>
 </li>
-<li class="nav-item {{ request()->route()->named('admin.cala.*') ? 'menu-open' : '' }}">
+<!-- <li class="nav-item {{ request()->route()->named('admin.cala.*') ? 'menu-open' : '' }}">
     <a href="#" class="nav-link {{ request()->route()->named('admin.cala.*') ? 'active' : '' }}">
         <i class="nav-icon fas fa-shopping-cart"></i>
         <p>
@@ -87,4 +87,4 @@
             </a>
         </li>
     </ul>
-</li>
+</li> -->

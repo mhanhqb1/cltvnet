@@ -25,13 +25,7 @@ $baseUrl = '';
 
     @include('layouts.elements.footer')
 
-    <!-- Tastebite Scripts -->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/html5.min.js"></script>
-    <script src="assets/js/sticky.min.js"></script>
-    <script src="assets/js/swiper-bundle.min.js"></script>
-    <script src="assets/js/masonry.min.js"></script>
-    <script src="assets/js/tastebite-scripts.js"></script>
+
 </body>
 
 </html>

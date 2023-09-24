@@ -93,13 +93,13 @@
     </section>
     <!-- Tstbite Components, My 4, My Md 5 -->
     <section class="tstbite-components my-4 my-md-5">
-        <h5 class="py-3 mb-0">Danh mục phổ biến</h5>
+        <h5 class="py-3 mb-0">Danh mục món ăn phổ biến</h5>
         <div class="row">
             @foreach ($mealTypes as $type => $mealType)
             <div class="col-lg-2 col-md-4 col-4">
                 <figure class="my-3 text-center tstbite-card">
                     <a href="category.html" class="tstbite-animation stretched-link rounded-circle">
-                        <img src="{{ asset('images/menu1.jpg') }}" class="rounded-circle" alt="{{ $mealType['title'] }}">
+                        <img src="{{ $mealType['image'] }}" class="rounded-circle" alt="{{ $mealType['title'] }}">
                     </a>
                     <figcaption class="mt-2">
                         <a href="category.html" class="tstbite-category-title">{{ $mealType['title'] }}</a>
@@ -118,7 +118,7 @@
                 <h2 class="mb-3 h1">Deliciousness to your inbox</h2>
                 <p class="f-size-24 font-weight-regular">Enjoy weekly hand picked recipes <br>and recommendations</p>
                 <div class="input-group custom-input-group mt-4">
-                    <input type="text" class="form-control" placeholder="Email Address">
+                    <input type="text" class="form-control" name="email" placeholder="Email Address" autocomplete="off">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button">JOIN</button>
                     </div>

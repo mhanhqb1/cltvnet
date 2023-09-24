@@ -6,6 +6,7 @@
  * @return response()
  */
 
+use App\Models\Cate;
 use Carbon\Carbon;
 
 if (!function_exists('convertYmdToMdy')) {
@@ -79,5 +80,17 @@ if (!function_exists('editorUploadImages')) {
             }
         }
         return $html;
+    }
+}
+
+if (!function_exists('getFrontCates')) {
+    function getFrontCates()
+    {
+        $data = [];
+        $cates = Cate::get();
+        foreach ($cates as $cate) {
+            $data[$cate->type->value][] = $cate;
+        }
+        return $data;
     }
 }

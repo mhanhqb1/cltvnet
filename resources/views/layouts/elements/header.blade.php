@@ -1,3 +1,12 @@
+<?php
+
+use App\Common\Definition\CateType;
+
+$cates = getFrontCates();
+$menuCates = $cates[CateType::Menu->value];
+$foodCates = $cates[CateType::Food->value];
+$ingredientCates = $cates[CateType::Ingredient->value];
+?>
 <section class="tstbite-section p-0">
     <div class="container">
         <header class="tstbite-header bg-white">
@@ -22,12 +31,64 @@
                     <ul class="navbar-nav m-auto pt-3 pt-lg-0">
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="{{ $baseUrl }}" role="button" id="HomePage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span>{{ __('home_page') }}</span>
+                                <span>Trang chủ</span>
                             </a>
                         </li>
                         <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" role="button" id="menuCategory" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span>Danh mục</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="9.333" height="5.333" viewBox="0 0 9.333 5.333">
+                                    <path d="M1.138.2A.667.667,0,0,0,.2,1.138l4,4a.667.667,0,0,0,.943,0l4-4A.667.667,0,1,0,8.2.2L4.667,3.724Z" />
+                                </svg>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="menuCategory">
+                                @foreach ($mealTypes as $type => $mealType)
+                                <a class="dropdown-item" href="recipe-full-width.html">{{ $mealType['title'] }}</a>
+                                @endforeach
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
                             <a class="nav-link" href="#" role="button" id="RecipePage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span>Recipe Page</span>
+                                <span>Thực đơn</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="9.333" height="5.333" viewBox="0 0 9.333 5.333">
+                                    <path d="M1.138.2A.667.667,0,0,0,.2,1.138l4,4a.667.667,0,0,0,.943,0l4-4A.667.667,0,1,0,8.2.2L4.667,3.724Z" />
+                                </svg>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="RecipePage">
+                                @foreach($menuCates as $cate)
+                                <a class="dropdown-item" href="recipe-full-width.html">{{ $cate->name }}</a>
+                                @endforeach
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" role="button" id="RecipePage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span>Món ăn</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="9.333" height="5.333" viewBox="0 0 9.333 5.333">
+                                    <path d="M1.138.2A.667.667,0,0,0,.2,1.138l4,4a.667.667,0,0,0,.943,0l4-4A.667.667,0,1,0,8.2.2L4.667,3.724Z" />
+                                </svg>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="RecipePage">
+                                @foreach($foodCates as $cate)
+                                <a class="dropdown-item" href="recipe-full-width.html">{{ $cate->name }}</a>
+                                @endforeach
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" role="button" id="RecipePage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span>Nguyên liệu</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="9.333" height="5.333" viewBox="0 0 9.333 5.333">
+                                    <path d="M1.138.2A.667.667,0,0,0,.2,1.138l4,4a.667.667,0,0,0,.943,0l4-4A.667.667,0,1,0,8.2.2L4.667,3.724Z" />
+                                </svg>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="RecipePage">
+                                @foreach($ingredientCates as $cate)
+                                <a class="dropdown-item" href="recipe-full-width.html">{{ $cate->name }}</a>
+                                @endforeach
+                            </div>
+                        </li>
+                        <!-- <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" role="button" id="RecipePage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span>Dinh dưỡng</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="9.333" height="5.333" viewBox="0 0 9.333 5.333">
                                     <path d="M1.138.2A.667.667,0,0,0,.2,1.138l4,4a.667.667,0,0,0,.943,0l4-4A.667.667,0,1,0,8.2.2L4.667,3.724Z" />
                                 </svg>
@@ -35,7 +96,7 @@
                             <div class="dropdown-menu" aria-labelledby="RecipePage">
                                 <a class="dropdown-item" href="recipe-full-width.html">Full Width</a>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
@@ -45,12 +106,12 @@
             <div class="container">
                 <div class="input-group search-box">
                     <input type="text" name="Search" placeholder="Search" class="form-control" id="Search">
-                    <button type="button"><img src="assets/images/icons/close.svg" alt="img"></button>
+                    <button type="button"><img src="{{ asset('images/close.svg') }}" alt="img"></button>
                 </div>
                 <div class="search-results" id="SearchList">
                     <div class="tstbite-search-list">
                         <a href="#0">
-                            <figure><img src="assets/images/menus/menu111.png" class="rounded-circle" alt="Menu"></figure>
+                            <figure><img src="{{ asset('images/menu1.jpg') }}" class="rounded-circle" alt="Menu"></figure>
                             <div class="tstbite-search-name">
                                 <strong class="small">Cake</strong>
                                 <span class="tiny">Category</span>

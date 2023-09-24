@@ -50,7 +50,6 @@ class FrontController extends Controller
 
     public function home(): View
     {
-
         return view('front.home', [
             'mealTypes' => MealType::all(),
         ]);

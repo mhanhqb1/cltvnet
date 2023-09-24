@@ -7,8 +7,8 @@ enum MealType: string
     use EnumEx;
 
     case Breakfast = '1';
-    case Lunch = '2';
-    case Dinner = '3';
+    case Meal = '2';
+    case EatClean = '3';
     case Snacks = '4'; // an vat
     case Party = '5'; // an nhau
     case EatWeaning = '6'; // an dam
@@ -20,8 +20,8 @@ enum MealType: string
     {
         return [
             self::Breakfast->value => __('breakfast'),
-            self::Lunch->value => __('lunch'),
-            self::Dinner->value => __('dinner'),
+            self::Meal->value => __('lunch_dinner'),
+            self::EatClean->value => __('eat_clean'),
             self::Snacks->value => __('snacks'),
             self::Party->value => __('party'),
             self::EatWeaning->value => __('eat_weaning'),
@@ -33,32 +33,32 @@ enum MealType: string
         return [
             self::Breakfast->value => [
                 'title' => __('breakfast'),
-                'image' => '',
+                'image' => asset('images/menu_breakfast.jpg'),
                 'slug' => '',
             ],
-            self::Lunch->value => [
-                'title' => __('lunch'),
-                'image' => '',
+            self::Meal->value => [
+                'title' => __('lunch_dinner'),
+                'image' => asset('images/menu_meal.jpg'),
                 'slug' => '',
             ],
-            self::Dinner->value => [
-                'title' => __('dinner'),
-                'image' => '',
+            self::EatClean->value => [
+                'title' => __('eat_clean'),
+                'image' => asset('images/menu_eat_clean.jpg'),
                 'slug' => '',
             ],
             self::Snacks->value => [
                 'title' => __('snacks'),
-                'image' => '',
+                'image' => asset('images/menu_snack.jpg'),
                 'slug' => '',
             ],
             self::Party->value => [
                 'title' => __('party'),
-                'image' => '',
+                'image' => asset('images/menu_party.jpg'),
                 'slug' => '',
             ],
             self::EatWeaning->value => [
                 'title' => __('eat_weaning'),
-                'image' => '',
+                'image' => asset('images/menu_eat_weaning.jpg'),
                 'slug' => '',
             ],
         ];

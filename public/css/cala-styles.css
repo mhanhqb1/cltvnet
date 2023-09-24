@@ -12204,26 +12204,26 @@ button.close {
 }
 
 .has-rating:not(:checked)>label {
-    background: url(../images/icons/star.svg);
+    background: url(../images/star.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
 
 .has-rating:not(:checked)>label:hover {
-    background: url(../images/icons/star-fill.svg);
+    background: url(../images/star-fill.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
 
 .has-rating:not(:checked)>label:hover~label {
-    background: url(../images/icons/star-fill.svg);
+    background: url(../images/star-fill.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
 
 .has-rating>input:checked+label:hover,
 .has-rating>input:checked~label:hover {
-    background: url(../images/icons/star-fill.svg);
+    background: url(../images/star-fill.svg);
     background-repeat: no-repeat;
     background-size: contain;
     opacity: 0.8;
@@ -12231,21 +12231,21 @@ button.close {
 
 .has-rating>input:checked+label:hover~label,
 .has-rating>input:checked~label:hover~label {
-    background: url(../images/icons/star-fill.svg);
+    background: url(../images/star-fill.svg);
     background-repeat: no-repeat;
     background-size: contain;
     opacity: 0.8;
 }
 
 .has-rating>label:hover~input:checked~label {
-    background: url(../images/icons/star-fill.svg);
+    background: url(../images/star-fill.svg);
     background-repeat: no-repeat;
     background-size: contain;
     opacity: 0.8;
 }
 
 .has-rating>input:checked~label {
-    background: url(../images/icons/star-fill.svg);
+    background: url(../images/star-fill.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
