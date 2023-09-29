@@ -6,9 +6,13 @@ if (!empty($item->type)) {
 ?>
 <div class="col-lg-4 col-md-6">
     <div class="blog-card">
-        <div class="blog-img">
+        <div class="blog-img" style="padding-bottom: 56.25%;">
             <a href="{{ $urlDetail }}">
-                <img src="{{ getImageUrl($item->image) }}" alt="{{ $item->name }}">
+                <img style="position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    object-fit: cover;" src="{{ getImageUrl($item->image) }}" alt="{{ $item->name }}">
             </a>
             <div class="blog-tag">
                 <h3>{{ date('d', strtotime($item->created_at)) }}</h3>
