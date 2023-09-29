@@ -32,12 +32,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $posts = Post::front_get_list([
-        //     'limit' => 3,
-        //     'page' => 1,
-        //     'type' => Post::$postTypes['post']
-        // ]);
-        $posts = [];
+        $posts = Post::front_get_list([
+            'limit' => 3,
+            'page' => 1,
+            'type' => Post::$postTypes['post']
+        ]);
         $products = Post::front_get_list([
             'limit' => 5,
             'page' => 1,

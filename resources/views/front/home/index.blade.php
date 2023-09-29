@@ -331,8 +331,7 @@
 <div class="blog-area pt-100 pb-70">
     <div class="container">
         <div class="section-title text-center">
-            <span class="sp-color2">Latest Blog</span>
-            <h2>Let’s Check Some Latest Blog</h2>
+            <h2 style="color: #fff">Bài viết mới cập nhật</h2>
         </div>
         <div class="row pt-45">
             @if (!$posts->isEmpty())
