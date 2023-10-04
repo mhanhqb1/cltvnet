@@ -5,7 +5,7 @@
     <div class="card rounded-16 overflow-hidden border-0 bg-secondary mt-0 mt-md-4">
         <div class="row g-0">
             <div class="col-lg-7">
-                <img src="{{ asset('images/menu1.jpg') }}" class="w-100" alt="Menu">
+                <img src="{{ $favoriteMenu[0]->image }}" class="w-100" alt="Menu">
             </div>
             <div class="col-lg-5">
                 <div class="p-4 p-md-5 d-flex flex-column justify-content-center h-100 position-relative">
@@ -16,8 +16,8 @@
                         </svg>
                         <span class="ml-2 caption font-weight-medium">85% would make this again</span>
                     </strong>
-                    <h4 class="my-3">Mighty Super Cheesecake</h4>
-                    <p class="big pr-0 pr-md-5 pb-3 pb-sm-5 pb-lg-0">Look no further for a creamy and ultra smooth classic cheesecake recipe! no one can deny its simple decadence.</p>
+                    <h4 class="my-3">{{ $favoriteMenu[0]->name }}</h4>
+                    <p class="big pr-0 pr-md-5 pb-3 pb-sm-5 pb-lg-0">{{ $favoriteMenu[0]->description }}</p>
                     <a href="#0" class="circle circle-lg tstbite-arrow">
                         <svg xmlns="http://www.w3.org/2000/svg" width="13.333" height="13.333" viewBox="0 0 13.333 13.333">
                             <path d="M6.077,13.089a.833.833,0,0,1,0-1.178L10.488,7.5H.833a.833.833,0,0,1,0-1.667h9.655L6.077,1.423A.834.834,0,0,1,7.256.244l5.829,5.83a.833.833,0,0,1,0,1.186L7.256,13.089a.834.834,0,0,1-1.179,0Z" fill="#ff642f" />
@@ -31,10 +31,12 @@
     <section class="tstbite-components my-4 my-md-5">
         <h5 class="py-3 mb-0">Thực đơn yêu thích</h5>
         <div class="row">
+            @foreach ($favoriteMenu as $k => $menu)
+            @if ($k != 0)
             <div class="col-md-4">
                 <figure class="my-3 tstbite-card">
                     <a href="#0" class="tstbite-animation rounded-6">
-                        <img src="{{ asset('images/menu1.jpg') }}" class="w-100" alt="Menu">
+                        <img src="{{ $menu->image }}" class="w-100" alt="Menu">
                     </a>
                     <figcaption class="mt-2">
                         <div class="w-100 float-left">
@@ -53,10 +55,12 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#0" class="f-size-20 text-black d-block mt-1 font-weight-semibold">Spinach and Cheese Pasta</a>
+                        <a href="#0" class="f-size-20 text-black d-block mt-1 font-weight-semibold">{{ $menu->name }}</a>
                     </figcaption>
                 </figure>
             </div>
+            @endif
+            @endforeach
         </div>
     </section>
     <!-- Tstbite Components, My 4, My Md 5 -->
