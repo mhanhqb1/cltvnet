@@ -6,7 +6,7 @@
                     <a href="index.html">
                         <h1 style="font-size: 1.5em;">CaLaFood</h1>
                     </a>
-                    <p class="mt-3 text-gray-300 pr-0 pr-lg-5 mr-0 mr-lg-4">"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment</p>
+                    <p class="mt-3 text-gray-300 pr-0 pr-lg-5 mr-0 mr-lg-4">Khám phá thế giới ẩm thực tuyệt vời ngay tại website của chúng tôi. Tại đây, bạn sẽ tìm thấy hàng ngàn công thức nấu ăn độc đáo và đa dạng. Với hướng dẫn chi tiết và mẹo hữu ích, bạn sẽ trở thành đầu bếp tài ba trong nhà. Tạo tài khoản cá nhân và chia sẻ đam mê của bạn với cộng đồng nấu ăn. Khám phá, nấu, và thưởng thức các món ngon đặc biệt từ trên toàn thế giới ngay hôm nay!</p>
                 </div>
             </div>
             <div class="col-md-2">

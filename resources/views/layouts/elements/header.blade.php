@@ -6,6 +6,7 @@ $cates = getFrontCates();
 $menuCates = $cates[CateType::Menu->value];
 $foodCates = $cates[CateType::Food->value];
 $ingredientCates = $cates[CateType::Ingredient->value];
+$baseUrl = route('front.home');
 ?>
 <section class="tstbite-section p-0">
     <div class="container">
@@ -43,7 +44,7 @@ $ingredientCates = $cates[CateType::Ingredient->value];
                             </a>
                             <div class="dropdown-menu" aria-labelledby="menuCategory">
                                 @foreach ($mealTypes as $type => $mealType)
-                                <a class="dropdown-item" href="recipe-full-width.html">{{ $mealType['title'] }}</a>
+                                <a class="dropdown-item" href="{{ route('front.foods.mealtype', $mealType['slug']) }}">{{ $mealType['title'] }}</a>
                                 @endforeach
                             </div>
                         </li>

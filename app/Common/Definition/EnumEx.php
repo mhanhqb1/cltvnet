@@ -39,4 +39,16 @@ trait EnumEx
 
         return '';
     }
+
+    public static function findBySlug(string $slug): string
+    {
+        $data = '';
+        $all = self::all();
+        foreach ($all as $id => $item) {
+            if ($item['slug'] == $slug) {
+                return $id;
+            }
+        }
+        return $data;
+    }
 }

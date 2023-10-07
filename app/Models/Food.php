@@ -173,6 +173,9 @@ class Food extends BaseModel
     {
         return [
             'food_id' => fn (Builder $builder, $value) => $builder->where('food_id', $value),
+            'meal_type' => fn (Builder $builder, $value) => $builder->whereHas('mealTypes', function($q) use($value){
+                $q->where('meal_type', $value);
+            }),
         ];
     }
 }

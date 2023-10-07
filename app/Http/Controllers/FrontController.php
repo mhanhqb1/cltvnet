@@ -8,6 +8,7 @@ use App\Models\CalaCustomer;
 use App\Models\CalaOrder;
 use App\Models\Food;
 use App\Models\Menu;
+use App\Services\Food\FoodFinder;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -57,11 +58,23 @@ class FrontController extends Controller
         $favoriteMenu = Menu::orderBy('total_view', 'desc')->limit(4)->get();
         $favoriteFood = Food::orderBy('total_view', 'desc')->limit(3)->get();
         return view('front.home', [
-            'mealTypes' => MealType::all(),
             'lastestFood' => $lastestFood,
             'lastestMenu' => $lastestMenu,
             'favoriteMenu' => $favoriteMenu,
             'favoriteFood' => $favoriteFood,
+        ]);
+    }
+
+    public function getFoodByMealType(string $mealTypeSlug, FoodFinder $foodFinder): View
+    {
+        $mealTypeId = MealType::findBySlug($mealTypeSlug);
+        $foods = $foodFinder->getPaginator([
+            'meal_type' => $mealTypeId
+        ]);
+        $mealType = MealType::all()[$mealTypeId];
+        return view('front.foods.mealtype', [
+            'foods' => $foods,
+            'mealType' => $mealType,
         ]);
     }
 }

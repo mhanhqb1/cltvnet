@@ -104,11 +104,11 @@
             @foreach ($mealTypes as $type => $mealType)
             <div class="col-lg-2 col-md-4 col-4">
                 <figure class="my-3 text-center tstbite-card">
-                    <a href="category.html" class="tstbite-animation stretched-link rounded-circle">
+                    <a href="{{ route('front.foods.mealtype', $mealType['slug']) }}" class="tstbite-animation stretched-link rounded-circle">
                         <img src="{{ $mealType['image'] }}" class="rounded-circle" alt="{{ $mealType['title'] }}">
                     </a>
                     <figcaption class="mt-2">
-                        <a href="category.html" class="tstbite-category-title">{{ $mealType['title'] }}</a>
+                        <a href="{{ route('front.foods.mealtype', $mealType['slug']) }}" class="tstbite-category-title">{{ $mealType['title'] }}</a>
                     </figcaption>
                 </figure>
             </div>
@@ -162,14 +162,7 @@
         <div class="row">
             @foreach($lastestFood as $food)
             <div class="col-lg-3 col-md-4 col-6">
-                <figure class="my-3 my-md-4 tstbite-card">
-                    <a href="recipe-sidebar.html" class="tstbite-animation stretched-link rounded-6">
-                        <img src="{{ $food->image }}" class="w-100" alt="Menu">
-                    </a>
-                    <figcaption class="mt-2">
-                        <a href="recipe-sidebar.html" class="text-black d-block mt-1 font-weight-semibold big">{{ $food->name }}</a>
-                    </figcaption>
-                </figure>
+                @include('front.foods.elements.food-item', ['food' => $food])
             </div>
             @endforeach
         </div>

@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\FrontController::class, 'home'])->name('front.home');
+Route::get('/danh-muc/{slug}', [App\Http\Controllers\FrontController::class, 'getFoodByMealType'])->name('front.foods.mealtype');
 
 Route::controller(FrontController::class)
             ->prefix('mecala')

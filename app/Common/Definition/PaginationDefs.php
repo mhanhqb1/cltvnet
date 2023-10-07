@@ -4,5 +4,5 @@ namespace App\Common\Definition;
 
 class PaginationDefs
 {
-    const LIMIT_DEFAULT = 10;
+    const LIMIT_DEFAULT = 24;
 }
