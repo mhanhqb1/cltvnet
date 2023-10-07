@@ -6,6 +6,7 @@ use App\Common\Definition\MealType;
 use App\Common\Definition\OrderStatus;
 use App\Models\CalaCustomer;
 use App\Models\CalaOrder;
+use App\Models\Cate;
 use App\Models\Food;
 use App\Models\Menu;
 use App\Services\Food\FoodFinder;
@@ -75,6 +76,18 @@ class FrontController extends Controller
         return view('front.foods.mealtype', [
             'foods' => $foods,
             'mealType' => $mealType,
+        ]);
+    }
+
+    public function getFoodByCate(string $cateSlug, FoodFinder $foodFinder): View
+    {
+        $cate = Cate::where('slug', $cateSlug)->first();
+        $foods = $foodFinder->getPaginator([
+            'cate_id' => $cate->cate_id
+        ]);
+        return view('front.foods.cate', [
+            'foods' => $foods,
+            'cate' => $cate,
         ]);
     }
 }

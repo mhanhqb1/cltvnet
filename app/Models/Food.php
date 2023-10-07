@@ -98,6 +98,11 @@ class Food extends BaseModel
         });
     }
 
+    public function foodCates(): HasMany
+    {
+        return $this->HasMany(FoodCate::class, 'food_id', 'food_id');
+    }
+
     public function cates(): HasManyThrough
     {
         return $this->hasManyThrough(Cate::class, FoodCate::class, 'food_id', 'cate_id', 'food_id', 'cate_id');
@@ -175,6 +180,9 @@ class Food extends BaseModel
             'food_id' => fn (Builder $builder, $value) => $builder->where('food_id', $value),
             'meal_type' => fn (Builder $builder, $value) => $builder->whereHas('mealTypes', function($q) use($value){
                 $q->where('meal_type', $value);
+            }),
+            'cate_id' => fn (Builder $builder, $value) => $builder->whereHas('foodCates', function($q) use($value){
+                $q->where('cate_id', $value);
             }),
         ];
     }

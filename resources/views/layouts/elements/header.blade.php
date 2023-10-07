@@ -70,7 +70,7 @@ $baseUrl = route('front.home');
                             </a>
                             <div class="dropdown-menu" aria-labelledby="RecipePage">
                                 @foreach($foodCates as $cate)
-                                <a class="dropdown-item" href="recipe-full-width.html">{{ $cate->name }}</a>
+                                <a class="dropdown-item" href="{{ route('front.foods.cate', $cate->slug) }}">{{ $cate->name }}</a>
                                 @endforeach
                             </div>
                         </li>
