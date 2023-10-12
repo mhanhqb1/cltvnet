@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Common\Definition\CateType;
 use App\Common\Definition\MealType;
 use App\Common\Definition\OrderStatus;
 use App\Models\CalaCustomer;
 use App\Models\CalaOrder;
 use App\Models\Cate;
 use App\Models\Food;
+use App\Models\Ingredient;
+use App\Models\IngredientCate;
 use App\Models\Menu;
 use App\Services\Food\FoodFinder;
 use Illuminate\Http\Request;
@@ -100,21 +103,36 @@ class FrontController extends Controller
         ]);
     }
 
+    public function getFoodByIngredient(string $slug, FoodFinder $foodFinder): View
+    {
+        $cate = Cate::where('slug', $slug)->where('type', CateType::Ingredient->value)->first();
+        $ingredientIds = IngredientCate::where('cate_id', $cate->cate_id)
+            ->pluck('ingredient_id')
+            ->toArray();
+        $foods = $foodFinder->getPaginator([
+            'ingredient_ids' => $ingredientIds
+        ]);
+        return view('front.foods.ingredient', [
+            'foods' => $foods,
+            'cate' => $cate,
+        ]);
+    }
+
     public function getFoodIndex()
     {
         echo 'food index';
         die();
     }
 
-    public function getFoodDetail(int $id, string $slug)
+    public function getFoodDetail(string $slug)
     {
-        echo 'food detail'.$slug.$id;
+        echo 'food detail'.$slug;
         die();
     }
 
-    public function getMenuDetail(int $id, string $slug)
+    public function getMenuDetail(string $slug)
     {
-        echo 'menu detail'.$slug.' - '.$id;
+        echo 'menu detail'.$slug;
         die();
     }
 

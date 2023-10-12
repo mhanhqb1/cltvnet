@@ -76,7 +76,7 @@ class FoodRegisterRequest extends FormRequest
             // Todo validate detail
             $rules = [
                 'ingredient_id' => ['required', Rule::exists('ingredients', 'ingredient_id')],
-                'weight' => ['required', 'numeric', 'between:0,9999999.99'],
+                'weight' => ['nullable', 'numeric', 'between:0,9999999.99'],
                 'recipe_type' => ['required', new Enum(RecipeType::class)],
                 'note' => ['nullable'],
             ];

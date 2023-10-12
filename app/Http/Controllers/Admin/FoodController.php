@@ -110,9 +110,7 @@ class FoodController extends Controller
             ],
             'recipeOptions' => [
                 'recipe_type' => RecipeType::i18n(),
-                'ingredient_id' => array_merge([
-                        '' => ''
-                    ],
+                'ingredient_id' => array_merge(
                     $ingredientFinder->getAll([], true)
                 ),
             ],
@@ -240,10 +238,7 @@ class FoodController extends Controller
             ],
             'recipeOptions' => [
                 'recipe_type' => RecipeType::i18n(),
-                'ingredient_id' => array_merge([
-                        '' => ''
-                    ], $ingredientFinder->getAll([], true)
-                ),
+                'ingredient_id' => $ingredientFinder->getAll([], true),
             ],
             'videoOptions' => [
                 'video_type' => VideoType::i18n(),

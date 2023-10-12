@@ -39,15 +39,20 @@ Route::controller(FrontController::class)
                     ->name('mealtype');
                 Route::get('/cach-nau/{slug}', 'getFoodByCate')
                     ->name('cate');
-                Route::get('/mon-an/{id}-{slug}', 'getFoodDetail')
+                Route::get('/mon-an/{slug}', 'getFoodDetail')
                     ->name('detail');
             });
         Route::name('menu.')
             ->group(function() {
-                Route::get('/thuc-don/{id}-{slug}', 'getMenuDetail')
+                Route::get('/thuc-don/{slug}', 'getMenuDetail')
                     ->name('detail');
                 Route::get('/thuc-don-ngau-nhien', 'getMenuRandom')
                     ->name('random');
+            });
+        Route::name('ingredients.')
+            ->group(function() {
+                Route::get('/nguyen-lieu/{slug}', 'getFoodByIngredient')
+                    ->name('detail');
             });
     });
 

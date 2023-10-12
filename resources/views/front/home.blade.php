@@ -18,7 +18,7 @@
                     </strong>
                     <h4 class="my-3">{{ $favoriteMenu[0]->name }}</h4>
                     <p class="big pr-0 pr-md-5 pb-3 pb-sm-5 pb-lg-0">{{ $favoriteMenu[0]->description }}</p>
-                    <a href="{{ route('front.menu.detail', ['slug' => $favoriteMenu[0]->slug, 'id' => $favoriteMenu[0]->menu_id]) }}" class="circle circle-lg tstbite-arrow">
+                    <a href="{{ route('front.menu.detail', ['slug' => $favoriteMenu[0]->slug]) }}" class="circle circle-lg tstbite-arrow">
                         <svg xmlns="http://www.w3.org/2000/svg" width="13.333" height="13.333" viewBox="0 0 13.333 13.333">
                             <path d="M6.077,13.089a.833.833,0,0,1,0-1.178L10.488,7.5H.833a.833.833,0,0,1,0-1.667h9.655L6.077,1.423A.834.834,0,0,1,7.256.244l5.829,5.83a.833.833,0,0,1,0,1.186L7.256,13.089a.834.834,0,0,1-1.179,0Z" fill="#ff642f" />
                         </svg>
@@ -35,7 +35,7 @@
             @if ($k != 0)
             <div class="col-md-4">
                 <figure class="my-3 tstbite-card">
-                    <a href="{{ route('front.menu.detail', ['slug' => $menu->slug, 'id' => $menu->menu_id]) }}" class="tstbite-animation rounded-6 card-image">
+                    <a href="{{ route('front.menu.detail', ['slug' => $menu->slug]) }}" class="tstbite-animation rounded-6 card-image">
                         <img src="{{ $menu->image }}" class="w-100" alt="Menu">
                     </a>
                     <figcaption class="mt-2">
@@ -55,7 +55,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{{ route('front.menu.detail', ['slug' => $menu->slug, 'id' => $menu->menu_id]) }}" class="f-size-20 text-black d-block mt-1 font-weight-semibold">{{ $menu->name }}</a>
+                        <a href="{{ route('front.menu.detail', ['slug' => $menu->slug]) }}" class="f-size-20 text-black d-block mt-1 font-weight-semibold">{{ $menu->name }}</a>
                     </figcaption>
                 </figure>
             </div>
@@ -70,7 +70,7 @@
             @foreach($favoriteFood as $food)
             <div class="col-md-4">
                 <figure class="my-3 tstbite-card">
-                    <a href="{{ route('front.foods.detail', ['slug' => $food->slug, 'id' => $food->food_id]) }}" class="tstbite-animation rounded-6 card-image">
+                    <a href="{{ route('front.foods.detail', ['slug' => $food->slug]) }}" class="tstbite-animation rounded-6 card-image">
                         <img src="{{ $food->image }}" class="w-100" alt="Menu">
                     </a>
                     <figcaption class="mt-2">
@@ -90,7 +90,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{{ route('front.foods.detail', ['slug' => $food->slug, 'id' => $food->food_id]) }}" class="f-size-20 text-black d-block mt-1 font-weight-semibold">{{ $food->name }}</a>
+                        <a href="{{ route('front.foods.detail', ['slug' => $food->slug]) }}" class="f-size-20 text-black d-block mt-1 font-weight-semibold">{{ $food->name }}</a>
                     </figcaption>
                 </figure>
             </div>
@@ -139,12 +139,12 @@
             @foreach($lastestMenu as $menu)
             <div class="col-md-6">
                 <figure class="my-3 tstbite-card">
-                    <a href="{{ route('front.menu.detail', ['slug' => $menu->slug, 'id' => $menu->menu_id]) }}" class="tstbite-animation stretched-link rounded-top-6 card-image">
+                    <a href="{{ route('front.menu.detail', ['slug' => $menu->slug]) }}" class="tstbite-animation stretched-link rounded-top-6 card-image">
                         <img src="{{ $menu->image }}" class="w-100" alt="Menu">
                     </a>
                     <figcaption class="tstbite-collection border-top-0 rounded-bottom-6">
                         <div class="text-black pt-3 pb-4 px-4 d-lg-flex align-items-end justify-content-between text-right">
-                            <h5 class="mb-3 md-lg-0 pr-0 pr-lg-4 text-left"><a href="{{ route('front.menu.detail', ['slug' => $menu->slug, 'id' => $menu->menu_id]) }}" class="stretched-link">{{ $menu->name }}</a></h5>
+                            <h5 class="mb-3 md-lg-0 pr-0 pr-lg-4 text-left"><a href="{{ route('front.menu.detail', ['slug' => $menu->slug]) }}" class="stretched-link">{{ $menu->name }}</a></h5>
                             <span class="btn btn-sm btn-outline-dark text-nowrap">{{ $menu->menu_foods_count ?? 0 }} món ăn</span>
                         </div>
                     </figcaption>

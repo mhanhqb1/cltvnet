@@ -184,6 +184,9 @@ class Food extends BaseModel
             'cate_id' => fn (Builder $builder, $value) => $builder->whereHas('foodCates', function($q) use($value){
                 $q->where('cate_id', $value);
             }),
+            'ingredient_ids' => fn (Builder $builder, $value) => $builder->whereHas('recipes', function($q) use($value){
+                $q->whereIn('ingredient_id', $value);
+            }),
         ];
     }
 }
