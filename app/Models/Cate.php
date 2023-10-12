@@ -34,7 +34,8 @@ class Cate extends BaseModel
         'slug',
         'image',
         'description',
-        'type'
+        'type',
+        'banner'
     ];
 
     /**
@@ -50,6 +51,7 @@ class Cate extends BaseModel
             'name' => __('name'),
             'slug' => __('slug'),
             'image' => __('image'),
+            'banner' => __('banner'),
             'description' => __('description'),
             'type' => __('type'),
         ];
@@ -59,6 +61,7 @@ class Cate extends BaseModel
         return [
             'name' => 'text',
             'image' => 'file',
+            'banner' => 'file',
             'description' => 'textarea',
             'type' => 'select',
         ];

@@ -56,6 +56,11 @@ class CateController extends Controller
             $cateRegisterRequest->file('image')->storeAs(FileDefs::IMAGE_STORE_PATH, $fileName);
             $params['image'] = FileDefs::IMAGE_PUBLIC_PATH . $fileName;
         }
+        if (!empty($cateRegisterRequest->file('banner'))) {
+            $fileName = time().'-banner-'.$params['slug'].'.'.$cateRegisterRequest->file('banner')->getClientOriginalExtension();
+            $cateRegisterRequest->file('banner')->storeAs(FileDefs::IMAGE_STORE_PATH, $fileName);
+            $params['banner'] = FileDefs::IMAGE_PUBLIC_PATH . $fileName;
+        }
         $cateCreator->save($params);
         return redirect()->route('admin.cates.index');
     }
@@ -84,6 +89,7 @@ class CateController extends Controller
     {
         $cate = $cateFinder->getOne(['cate_id' => $cateId]);
         $oldImage = '';
+        $oldImage2 = '';
         $params = $cateRegisterRequest->validated();
         $params['slug'] = createSlug($params['name']);
         if (!empty($cateRegisterRequest->file('image'))) {
@@ -92,9 +98,18 @@ class CateController extends Controller
             $params['image'] = FileDefs::IMAGE_PUBLIC_PATH . $fileName;
             $oldImage = $cate->image;
         }
+        if (!empty($cateRegisterRequest->file('banner'))) {
+            $fileName = time().'-banner-'.$params['slug'].'.'.$cateRegisterRequest->file('banner')->getClientOriginalExtension();
+            $cateRegisterRequest->file('banner')->storeAs(FileDefs::IMAGE_STORE_PATH, $fileName);
+            $params['banner'] = FileDefs::IMAGE_PUBLIC_PATH . $fileName;
+            $oldImage2 = $cate->banner;
+        }
         $cateEditor->update($cate, $params);
         if ($oldImage) {
             deleteFile($oldImage);
+        }
+        if ($oldImage2) {
+            deleteFile($oldImage2);
         }
         return redirect()->route('admin.cates.index');
     }
