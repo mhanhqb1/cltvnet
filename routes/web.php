@@ -25,9 +25,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\FrontController::class, 'home'])->name('front.home');
-Route::get('/danh-muc/{slug}', [App\Http\Controllers\FrontController::class, 'getFoodByMealType'])->name('front.foods.mealtype');
-Route::get('/cach-nau/{slug}', [App\Http\Controllers\FrontController::class, 'getFoodByCate'])->name('front.foods.cate');
+Route::controller(FrontController::class)
+    ->prefix('')
+    ->name('front.')
+    ->group(function() {
+        Route::get('/', 'home')
+            ->name('home');
+        Route::name('foods.')
+            ->group(function() {
+                Route::get('/danh-sach-mon-an', 'getFoodIndex')
+                    ->name('index');
+                Route::get('/danh-muc/{slug}', 'getFoodByMealType')
+                    ->name('mealtype');
+                Route::get('/cach-nau/{slug}', 'getFoodByCate')
+                    ->name('cate');
+                Route::get('/mon-an/{id}-{slug}', 'getFoodDetail')
+                    ->name('detail');
+            });
+        Route::name('menu.')
+            ->group(function() {
+                Route::get('/thuc-don/{id}-{slug}', 'getMenuDetail')
+                    ->name('detail');
+                Route::get('/thuc-don-ngau-nhien', 'getMenuRandom')
+                    ->name('random');
+            });
+    });
 
 Route::controller(FrontController::class)
             ->prefix('mecala')

@@ -13999,4 +13999,23 @@ hr {
     }
 }
 
-/*# sourceMappingURL=tastebite-styles.css.map */
+.card-image {
+    display: block;
+    position: relative;
+    padding-bottom: 56.25%;
+}
+.card-image-top {
+    padding-bottom: 40%;
+}
+.card-image img {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+@media screen and (max-width: 768px) {
+    .card-image-top {
+        padding-bottom: 56.25%;
+    }
+}

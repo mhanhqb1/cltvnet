@@ -54,10 +54,19 @@ class FrontController extends Controller
 
     public function home(): View
     {
-        $lastestMenu = Menu::orderBy('menu_id', 'desc')->limit(6)->get();
-        $lastestFood = Food::orderBy('food_id', 'desc')->limit(24)->get();
-        $favoriteMenu = Menu::orderBy('total_view', 'desc')->limit(4)->get();
-        $favoriteFood = Food::orderBy('total_view', 'desc')->limit(3)->get();
+        $lastestMenu = Menu::withCount('menuFoods')
+            ->orderBy('menu_id', 'desc')
+            ->limit(6)
+            ->get();
+        $lastestFood = Food::orderBy('food_id', 'desc')
+            ->limit(24)
+            ->get();
+        $favoriteMenu = Menu::orderBy('total_view', 'desc')
+            ->limit(4)
+            ->get();
+        $favoriteFood = Food::orderBy('total_view', 'desc')
+            ->limit(3)
+            ->get();
         return view('front.home', [
             'lastestFood' => $lastestFood,
             'lastestMenu' => $lastestMenu,
@@ -89,5 +98,29 @@ class FrontController extends Controller
             'foods' => $foods,
             'cate' => $cate,
         ]);
+    }
+
+    public function getFoodIndex()
+    {
+        echo 'food index';
+        die();
+    }
+
+    public function getFoodDetail(int $id, string $slug)
+    {
+        echo 'food detail'.$slug.$id;
+        die();
+    }
+
+    public function getMenuDetail(int $id, string $slug)
+    {
+        echo 'menu detail'.$slug.' - '.$id;
+        die();
+    }
+
+    public function getMenuRandom()
+    {
+        echo 'menu random';
+        die();
     }
 }

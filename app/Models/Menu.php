@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Support\Facades\Auth;
 
@@ -107,6 +108,11 @@ class Menu extends BaseModel
             }
         }
         return $cateIds;
+    }
+
+    public function menuFoods(): HasMany
+    {
+        return $this->hasMany(MenuFood::class, 'menu_id', 'menu_id');
     }
 
     public function foods(): HasManyThrough
