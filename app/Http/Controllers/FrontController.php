@@ -135,8 +135,16 @@ class FrontController extends Controller
 
     public function getMenuDetail(string $slug)
     {
-        echo 'menu detail'.$slug;
-        die();
+        $menu = Menu::with(['foods'])
+            ->where('slug', $slug)
+            ->firstOrFail();
+        $otherMenus = Menu::where('menu_id', '!=', $menu->menu_id)
+            ->limit(8)
+            ->get();
+        return view('front.menu.detail', [
+            'menu' => $menu,
+            'otherMenus' => $otherMenus,
+        ]);
     }
 
     public function getMenuRandom()
