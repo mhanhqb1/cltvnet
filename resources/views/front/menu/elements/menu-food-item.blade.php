@@ -1,6 +1,6 @@
 <figure class="my-3 row align-items-center tstbite-card">
     <div class="col-md-4">
-        <a href="#0" class="tstbite-animation stretched-link rounded-left-6 rounded-sm-top-6 card-image">
+        <a href="{{ route('front.foods.detail', ['slug' => $food->slug]) }}" class="tstbite-animation stretched-link rounded-left-6 rounded-sm-top-6 card-image">
             <img src="{{ $food->image }}" class="w-100" alt="Menu">
         </a>
     </div>
@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            <h6 class="inter-font f-size-20 pr-0 pr-lg-5 mt-2 mb-3"><a href="#0" class="text-black">{{ $food->name }}</a></h6>
+            <h6 class="inter-font f-size-20 pr-0 pr-lg-5 mt-2 mb-3"><a href="{{ route('front.foods.detail', ['slug' => $food->slug]) }}" class="text-black">{{ $food->name }}</a></h6>
             <div>
                 <img src="{{ asset('images/avatar1.png') }}" class="rounded-circle" alt="Avatar">
                 <small class="pl-1">Admin</small>
