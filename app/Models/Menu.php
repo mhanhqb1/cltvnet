@@ -120,6 +120,11 @@ class Menu extends BaseModel
         return $this->hasManyThrough(Food::class, MenuFood::class, 'menu_id', 'food_id', 'menu_id', 'food_id');
     }
 
+    public function menuCates(): HasMany
+    {
+        return $this->hasMany(MenuCate::class, 'menu_id', 'menu_id');
+    }
+
     public function cates(): HasManyThrough
     {
         return $this->hasManyThrough(Cate::class, MenuCate::class, 'menu_id', 'cate_id', 'menu_id', 'cate_id');
@@ -165,6 +170,9 @@ class Menu extends BaseModel
         return [
             'menu_id' => fn (Builder $builder, $value) => $builder->where('menu_id', $value),
             'slug' => fn (Builder $builder, $value) => $builder->where('slug', $value),
+            'cate_id' => fn (Builder $builder, $value) => $builder->whereHas('menuCates', function($q) use($value){
+                $q->where('cate_id', $value);
+            }),
             // 'food_id' => fn (Builder $builder, $value) => $builder->whereHas('foods', function($q) use($value) {
             //     $q->where('foods.food_id', $value);
             // }),

@@ -44,6 +44,10 @@ Route::controller(FrontController::class)
             });
         Route::name('menu.')
             ->group(function() {
+                Route::get('/danh-sach-thuc-don', 'getMenuIndex')
+                    ->name('index');
+                Route::get('/loai-thuc-don/{slug}', 'getMenuByCate')
+                    ->name('cate');
                 Route::get('/thuc-don/{slug}', 'getMenuDetail')
                     ->name('detail');
                 Route::get('/thuc-don-ngau-nhien', 'getMenuRandom')

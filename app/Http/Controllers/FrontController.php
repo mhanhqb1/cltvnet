@@ -13,6 +13,7 @@ use App\Models\Ingredient;
 use App\Models\IngredientCate;
 use App\Models\Menu;
 use App\Services\Food\FoodFinder;
+use App\Services\Menu\MenuFinder;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -140,5 +141,23 @@ class FrontController extends Controller
     {
         echo 'menu random';
         die();
+    }
+
+    public function getMenuIndex()
+    {
+        echo 'menu index';
+        die();
+    }
+
+    public function getMenuByCate(string $cateSlug, MenuFinder $menuFinder): View
+    {
+        $cate = Cate::where('slug', $cateSlug)->first();
+        $menus = $menuFinder->getPaginator([
+            'cate_id' => $cate->cate_id
+        ]);
+        return view('front.menu.cate', [
+            'menus' => $menus,
+            'cate' => $cate,
+        ]);
     }
 }
