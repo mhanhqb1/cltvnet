@@ -119,10 +119,12 @@ class FrontController extends Controller
         ]);
     }
 
-    public function getFoodIndex()
+    public function getFoodIndex(FoodFinder $foodFinder)
     {
-        echo 'food index';
-        die();
+        $foods = $foodFinder->getPaginator([]);
+        return view('front.foods.index', [
+            'foods' => $foods,
+        ]);
     }
 
     public function getFoodDetail(string $slug)
