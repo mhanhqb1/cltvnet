@@ -9,6 +9,9 @@ use App\Models\CalaCustomer;
 use App\Models\CalaOrder;
 use App\Models\Cate;
 use App\Models\Food;
+use App\Models\FoodArticle;
+use App\Models\FoodRecipe;
+use App\Models\FoodVideo;
 use App\Models\Ingredient;
 use App\Models\IngredientCate;
 use App\Models\Menu;
@@ -129,8 +132,25 @@ class FrontController extends Controller
 
     public function getFoodDetail(string $slug)
     {
-        echo 'food detail'.$slug;
-        die();
+        $food = Food::where('slug', $slug)
+            ->firstOrFail();
+        $foodRecipes = FoodRecipe::with('ingredient')
+            ->where('food_id', $food->food_id)
+            ->get();
+        $foodVideos = FoodVideo::where('food_id', $food->food_id)
+            ->get();
+        $foodArticles = FoodArticle::where('food_id', $food->food_id)
+            ->get();
+        $otherFoods = Food::where('food_id', '!=', $food->food_id)
+            ->limit(8)
+            ->get();
+        return view('front.foods.detail', [
+            'food' => $food,
+            'otherFoods' => $otherFoods,
+            'foodRecipes' => $foodRecipes,
+            'foodVideos' => $foodVideos,
+            'foodArticles' => $foodArticles,
+        ]);
     }
 
     public function getMenuDetail(string $slug)

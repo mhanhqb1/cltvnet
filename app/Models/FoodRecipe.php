@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Common\Definition\RecipeType;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class FoodRecipe extends BaseModel
 {
@@ -71,6 +72,11 @@ class FoodRecipe extends BaseModel
             'recipe_type' => $this->recipe_type?->value,
             'note' => $this->note,
         ];
+    }
+
+    public function ingredient(): BelongsTo
+    {
+        return $this->belongsTo(Ingredient::class, 'ingredient_id', 'ingredient_id');
     }
 
     public static function scopeWhereMultiConditions(Builder $builder, array $conditions): Builder
