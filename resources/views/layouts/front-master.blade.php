@@ -26,6 +26,16 @@ $baseUrl = '';
     @include('layouts.elements.footer')
 
 
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/html5.min.js') }}"></script>
+    <script src="{{ asset('js/hover-animation.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.malihu.PageScroll2id.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.mCustomScrollbar.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.sticky.js') }}"></script>
+    <script src="{{ asset('js/masonry.min.js') }}"></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
+
 </body>
 
 </html>
