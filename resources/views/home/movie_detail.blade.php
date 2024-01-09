@@ -43,34 +43,10 @@ $video = $movie->videos[0];
                 </font>
             </h2>
             <div class="faq-content">
-                <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;" itemscope itemtype="https://schema.org/VideoObject">
-                    <meta itemprop="name" content="{{ $pageTitle }}" />
-                    <meta itemprop="description" content="{{ $movie->description }}" />
-                    <meta itemprop="uploadDate" content="{{ date('Y-m-d\TH:i:s\Z', strtotime($video->updated_at)) }}" />
-                    <meta itemprop="thumbnailUrl" content="{{ getImageUrl($movie->image) }}" />
-                    @if ($video->source_type == 3)
-                    <video style="width: 100%; height: 100%" class="video-js vjs-default-skin vjs-fluid" controls>
-                        <source src="{{ $video->source_urls }}" type="video/mp4">
+                <video style="width: 100%;" class="video-js vjs-default-skin vjs-fluid" controls>
+                        <source src="{{ getImageUrl($video->source_urls) }}" type="video/mp4">
                         Your browser does not support the video tag.
-                    </video>
-                    <!-- <video id="my-video-player" style="width: 100%; height: 100%" class="video-js vjs-default-skin vjs-fluid"></video> -->
-                    @else
-                    <?php
-                    switch ($video->source_type) {
-                        case 1:
-                            $iframeUrl = '//ok.ru/videoembed/' . $video->source_urls;
-                            break;
-                        case 2:
-                            $iframeUrl = 'https://short.ink/' . $video->source_urls;
-                            break;
-                        default:
-                            $iframeUrl = 'https://geo.dailymotion.com/player/x9pog.html?video=' . $video->source_urls;
-                    }
-                    ?>
-                    <meta itemprop="embedUrl" content="{{ $iframeUrl }}" />
-                    <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden" frameborder="0" type="text/html" src="{{ $iframeUrl }}" width="100%" height="100%" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
-                    @endif
-                </div>
+                </video>
                 <div style="margin-top: 12px;">
                     View: <strong>{{ number_format($movie->total_view) }}</strong>
                 </div>
