@@ -49,8 +49,11 @@ $video = $movie->videos[0];
                     <meta itemprop="uploadDate" content="{{ date('Y-m-d\TH:i:s\Z', strtotime($video->updated_at)) }}" />
                     <meta itemprop="thumbnailUrl" content="{{ getImageUrl($movie->image) }}" />
                     @if ($video->source_type == 3)
-                    <meta itemprop="contentUrl" content="{{ getImageUrl($video->source_urls) }}" />
-                    <video id="my-video-player" style="width: 100%; height: 100%" class="video-js vjs-default-skin vjs-fluid"></video>
+                    <video style="width: 100%; height: 100%" class="video-js vjs-default-skin vjs-fluid" controls>
+                        <source src="{{ $video->source_urls }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- <video id="my-video-player" style="width: 100%; height: 100%" class="video-js vjs-default-skin vjs-fluid"></video> -->
                     @else
                     <?php
                     switch ($video->source_type) {
@@ -223,7 +226,7 @@ $video = $movie->videos[0];
 @endsection
 
 @push('scripts')
-@if ($video->source_type == 3)
+@if ($video->source_type == 99)
 <script src="https://content.jwplatform.com/libraries/Jq6HIbgz.js"></script>
 <script>
     $(document).ready(function() {
