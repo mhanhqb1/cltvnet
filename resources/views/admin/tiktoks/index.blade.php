@@ -27,6 +27,15 @@ $params = $_GET;
                 <label>{{ __('Name') }}</label>
                 <input type="text" class="form-control" name="name" value="{{ !empty($_GET['name']) ? $_GET['name'] : '' }}" />
             </div>
+            <div class="form-group form-inline">
+                <label>{{ __('Type') }}</label>
+                <select name="type" class="form-control">
+                    <option value="">{{ __('All') }}</option>
+                    @foreach($types as $type => $typeLabel)
+                    <option value="{{ $type }}" {{ !empty($_GET['type']) && $type == $_GET['type'] ? "selected='selected'" : '' }}>{{ $typeLabel }}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-info" value="{{ __('Search') }}" />
             </div>

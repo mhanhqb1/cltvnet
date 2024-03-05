@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Common\Definition\TiktokType;
 use App\Http\Controllers\Controller;
 use App\Services\TiktokServices;
 use Illuminate\Http\Request;
@@ -16,7 +17,10 @@ class TiktoksController extends Controller
 
     public function index()
     {
-        return view('admin.tiktoks.index');
+        $types = TiktokType::i18n();
+        return view('admin.tiktoks.index', compact(
+            'types'
+        ));
     }
 
     public function add()
@@ -26,7 +30,6 @@ class TiktoksController extends Controller
 
     public function indexData(Request $request)
     {
-        $limit = 10;
         $data = TiktokServices::get_list($request->all());
         return Datatables::of($data)
             ->addColumn('image', function ($item) {
