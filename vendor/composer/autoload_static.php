@@ -555,7 +555,6 @@ class ComposerStaticInitf8f65ffb8bb2e48f7a89f89adfcc79ae
     );
 
     public static $classMap = array (
-        'App\\Console\\Commands\\EvaNewsCrawler' => __DIR__ . '/../..' . '/app/Console/Commands/EvaNewsCrawler.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Enums\\PostStatus' => __DIR__ . '/../..' . '/app/Enums/PostStatus.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
