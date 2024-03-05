@@ -13,4 +13,9 @@ trait EnumEx
     {
         return array_column(self::cases(), 'value');
     }
+
+    public function getName(): string
+    {
+        return self::i18n()[$this->value];
+    }
 }

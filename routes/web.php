@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SettingController;
-
+use App\Http\Controllers\Admin\TiktoksController;
 use App\Http\Controllers\ContactController as FrontContact;
 use App\Http\Controllers\PostController as FrontPost;
 use App\Http\Controllers\HomeController;
@@ -95,5 +95,15 @@ Route::prefix('admin')->name('admin.')->group(function() {
         // Setting
         Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
         Route::post('/setting/save', [SettingController::class, 'save'])->name('setting.save');
+
+        // Tiktok
+        Route::prefix('tiktoks')->name('tiktoks.')->group(function() {
+            Route::get('/', [TiktoksController::class, 'index'])->name('index');
+            Route::get('/indexData', [TiktoksController::class, 'indexData'])->name('indexData');
+            Route::get('/add', [TiktoksController::class, 'add'])->name('add');
+            // Route::get('/update/{id}', [TiktoksController::class, 'update'])->name('update');
+            // Route::post('/save', [TiktoksController::class, 'save'])->name('save');
+            // Route::delete('/{id}', [TiktoksController::class, 'delete'])->name('delete');
+        });
     });
 });
