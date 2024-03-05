@@ -45,7 +45,7 @@ Route::get('/bai-viet/{slug}', [FrontPost::class, 'detail'])->name('front.post.d
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('user')->name('user.')->group(function(){
     Route::middleware(['guest:web'])->group(function(){
@@ -56,7 +56,7 @@ Route::prefix('user')->name('user.')->group(function(){
     });
 
     Route::middleware(['auth:web'])->group(function(){
-        Route::view('/home', 'user.home')->name('home.index');
+        Route::get('/home', [HomeController::class, 'index'])->name('home.index');
         Route::post('/logout', [UserController::class, 'logout'])->name('logout.index');
     });
 });
