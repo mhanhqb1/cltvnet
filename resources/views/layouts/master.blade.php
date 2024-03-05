@@ -39,6 +39,7 @@ $url = url()->full();
     <meta name="twitter:image:alt" content="{{ $title }}">
 
     @stack('before_css')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" media="all">
     @stack('css')
 </head>
