@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TiktoksController;
+use App\Http\Controllers\Api\TiktokApiController;
 use App\Http\Controllers\ContactController as FrontContact;
 use App\Http\Controllers\PostController as FrontPost;
 use App\Http\Controllers\HomeController;
@@ -42,6 +43,13 @@ Route::get('/lien-he', [FrontContact::class, 'index'])->name('front.contact.inde
 Route::post('/lien-he', [FrontContact::class, 'save'])->name('front.contact.save');
 Route::get('/bai-viet', [FrontPost::class, 'index'])->name('front.post.index');
 Route::get('/bai-viet/{slug}', [FrontPost::class, 'detail'])->name('front.post.detail');
+
+Route::prefix('api')->name('api.')->group(function(){
+    Route::middleware([])->group(function(){
+        Route::get('/tiktoks', [TiktokApiController::class, 'index'])->name('tiktoks.index');
+        Route::post('/tiktoks', [TiktokApiController::class, 'update'])->name('tiktoks.update');
+    });
+});
 
 Auth::routes();
 

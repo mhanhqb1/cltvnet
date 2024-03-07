@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('tiktok_id')->unique();
             $table->string('image', 500)->nullable();
             $table->text('description')->nullable();
-            $table->text('tag')->nullable();
+            $table->text('tags')->nullable();
             $table->date('crawl_at')->nullable();
             $table->timestamps();
         });
