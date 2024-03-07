@@ -16,6 +16,7 @@ class Tiktok extends Model
         'tiktok_id',
         'image',
         'type',
+        'note',
         'crawl_at',
     ];
 

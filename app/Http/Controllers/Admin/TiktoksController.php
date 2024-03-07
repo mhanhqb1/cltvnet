@@ -25,7 +25,22 @@ class TiktoksController extends Controller
 
     public function add()
     {
-        return view('admin.tiktoks.add_update');
+        $types = TiktokType::i18n();
+        return view('admin.tiktoks.add_update', compact(
+            'types'
+        ));
+    }
+
+    public function update($id)
+    {
+        $item = TiktokServices::get_one([
+            'id' => $id,
+        ]);
+        $types = TiktokType::i18n();
+        return view('admin.tiktoks.add_update', compact(
+            'item',
+            'types'
+        ));
     }
 
     public function indexData(Request $request)
@@ -46,7 +61,7 @@ class TiktoksController extends Controller
                 return date('Y-m-d H:i:s', strtotime($item->created_at));
             })
             ->addColumn('action', function ($item) {
-                return '<a href="' . route('admin.post.update', $item->id) . '" class="btn btn-xs btn-info">' . __('Update') . '</a> <form action="' . route('admin.post.delete', $item->id) . '" method="POST" style="display:inline-block;">
+                return '<a href="' . route('admin.tiktoks.update', $item->id) . '" class="btn btn-xs btn-info">' . __('Update') . '</a> <form action="' . route('admin.tiktoks.delete', $item->id) . '" method="POST" style="display:inline-block;">
                     <input type="hidden" name="_method" value="delete"/>
                     ' . csrf_field() . '
                     <input type="submit" class="btn btn-xs btn-danger" onclick="return window.confirm(\'Bạn muốn xóa item này không?\')" value="' . __('Delete') . '"/>
@@ -54,5 +69,21 @@ class TiktoksController extends Controller
             })
             ->rawColumns(['status', 'action', 'image'])
             ->make(true);
+    }
+
+    public function save(Request $request)
+    {
+        if (TiktokServices::add_update($request)) {
+            return redirect()->route('admin.tiktoks.index')->with('success', 'Dữ liệu đã được cập nhật thành công');
+        }
+        return redirect()->route('admin.tiktoks.index')->with('error', 'Dữ liệu cập nhật bị lỗi');
+    }
+
+    public function delete($id)
+    {
+        TiktokServices::delete([
+            'id' => $id,
+        ]);
+        return redirect()->route('admin.tiktoks.index')->with('success', 'Dữ liệu đã được xóa thành công');
     }
 }

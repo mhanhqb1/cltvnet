@@ -6,6 +6,21 @@ $menuData = [
         'className' => 'nav-icon fas fa-tachometer-alt'
     ],
     [
+        'name' => 'Quản lý tiktoks',
+        'route' => '',
+        'className' => 'nav-icon fab fa-tiktok',
+        'subMenu' => [
+            [
+                'name' => 'Danh sách channel',
+                'route' => 'admin.tiktoks.index'
+            ],
+            [
+                'name' => 'Danh sách video',
+                'route' => 'admin.category.index'
+            ]
+        ]
+    ],
+    [
         'name' => 'Quản lý bài viết',
         'route' => '',
         'className' => 'nav-icon fas fa-book',

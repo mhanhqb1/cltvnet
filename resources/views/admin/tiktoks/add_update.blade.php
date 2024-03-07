@@ -10,21 +10,21 @@
     <div class="col-md-12">
         <div class="card card-primary">
             <div class="card-body">
-                <form action="{{ route('admin.post.save') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.tiktoks.save') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @if (!empty($item->id))
                         <input type="hidden" value="{{ $item->id }}" name="id"/>
                     @endif
                     <div class="form-group">
-                        <label for="inputName">{{ __('Name') }}</label>
-                        <input type="text" id="inputName" name="name" class="form-control" value="{{ !empty($item->name) ? $item->name : '' }}">
+                        <label for="inputName">{{ __('Unique ID') }}</label>
+                        <input type="text" id="inputName" name="unique_id" class="form-control" value="{{ !empty($item->unique_id) ? $item->unique_id : '' }}">
                     </div>
                     <div class="form-group">
-                        <label for="inputCategory">{{ __('Category') }}</label>
-                        <select id="inputCategory" class="select2 form-control" name="cates[]" multiple="multiple">
-                            @if (!empty($cates))
-                            @foreach ($cates as $cate)
-                            <option value="{{ $cate->id }}" {{ in_array($cate->id, $postCates) ? "selected='selected'" : '' }}>{{ $cate->name }}</option>
+                        <label for="inputCategory">{{ __('Type') }}</label>
+                        <select id="inputCategory" class="select2 form-control" name="type">
+                            @if (!empty($types))
+                            @foreach ($types as $type => $typeLabel)
+                            <option value="{{ $type }}" {{ isset($item->type) && $item->type->value == $type ? "selected='selected'" : '' }}>{{ $typeLabel }}</option>
                             @endforeach
                             @endif
                         </select>
@@ -39,24 +39,8 @@
                         </div>
                     @endif
                     <div class="form-group">
-                        <label for="inputDescription">{{ __('Description') }}</label>
-                        <textarea id="inputDescription" class="form-control" name="description" rows="4">{{ !empty($item->description) ? $item->description : '' }}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="summernote">{{ __('Detail') }}</label>
-                        <textarea id="summernote" class="form-control" name="detail" rows="10">{{ !empty($item->detail) ? $item->detail : '' }}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputSeoKeywords">{{ __('Seo Keywords') }}</label>
-                        <input type="text" id="inputSeoKeywords" name="seo_keywords" class="form-control" value="{{ !empty($item->meta_keyword) ? $item->meta_keyword : '' }}"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="postStatus">{{ __('Status') }}</label>
-                        <select name="status" class="form-control">
-                            @foreach ($postStatus as $v)
-                                <option value="{{ $v->value }}" {{ isset($item->status) && $item->status == $v->value ? 'selected="selected"' : '' }}>{{ __($v->key) }}</option>
-                            @endforeach
-                        </select>
+                        <label for="inputDescription">{{ __('Note') }}</label>
+                        <textarea id="inputDescription" class="form-control" name="note" rows="4">{{ !empty($item->note) ? $item->note : '' }}</textarea>
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="{{ __('Save') }}" />

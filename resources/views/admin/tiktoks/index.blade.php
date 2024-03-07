@@ -51,7 +51,9 @@ $params = $_GET;
                     <td style="width: 130px;">{{ __('Image') }}</td>
                     <td>{{ __('Unique ID') }}</td>
                     <td>{{ __('Name') }}</td>
+                    <td>{{ __('Note') }}</td>
                     <td style="width: 70px;">{{ __('Type') }}</td>
+                    <td style="width: 100px;">{{ __('Crawl At') }}</td>
                     <td style="width: 150px;">{{ __('Created At') }}</td>
                     <td style="width: 100px;"></td>
                 </tr>
@@ -74,7 +76,9 @@ $(function() {
             { data: 'image', name: 'image' },
             { data: 'unique_id', name: 'unique_id' },
             { data: 'name', name: 'name' },
+            { data: 'note', name: 'note' },
             { data: 'type', name: 'type' },
+            { data: 'crawl_at', name: 'crawl_at' },
             { data: 'created_at', name: 'created_at' },
             { data: 'action', name: 'action', orderable: false, searchable: false }
         ]

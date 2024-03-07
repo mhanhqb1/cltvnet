@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('tiktoks', function (Blueprint $table) {
             $table->id();
             $table->string('unique_id', 55)->unique();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('tiktok_id')->nullable();
             $table->string('image', 500)->nullable();
             $table->enum('type', TiktokType::values())->default(TiktokType::None->value);

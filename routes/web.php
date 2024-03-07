@@ -101,9 +101,9 @@ Route::prefix('admin')->name('admin.')->group(function() {
             Route::get('/', [TiktoksController::class, 'index'])->name('index');
             Route::get('/indexData', [TiktoksController::class, 'indexData'])->name('indexData');
             Route::get('/add', [TiktoksController::class, 'add'])->name('add');
-            // Route::get('/update/{id}', [TiktoksController::class, 'update'])->name('update');
-            // Route::post('/save', [TiktoksController::class, 'save'])->name('save');
-            // Route::delete('/{id}', [TiktoksController::class, 'delete'])->name('delete');
+            Route::get('/update/{id}', [TiktoksController::class, 'update'])->name('update');
+            Route::post('/save', [TiktoksController::class, 'save'])->name('save');
+            Route::delete('/{id}', [TiktoksController::class, 'delete'])->name('delete');
         });
     });
 });
