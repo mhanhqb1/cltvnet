@@ -6,22 +6,13 @@ use App\Common\Definition\PaginationDefs;
 use App\Http\Controllers\Controller;
 use App\Models\Tiktok;
 use App\Models\TiktokVideo;
+use App\Services\TiktokServices;
 use Illuminate\Http\Request;
 
 class TiktokApiController extends Controller
 {
     public function index(Request $request) {
-        $limit = $request->get('limit', PaginationDefs::API_LIMIT);
-        $today = date('Y-m-d');
-        $data = Tiktok::select([
-                'id',
-                'unique_id',
-                'crawl_at',
-            ])
-            // ->whereNull('crawl_at')
-            // ->orWhere('crawl_at', '<', $today)
-            ->limit($limit)
-            ->get();
+        $data = TiktokServices::api_get_list($request->all());
         return response($data);
     }
 

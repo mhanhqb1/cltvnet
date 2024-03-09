@@ -71,4 +71,19 @@ class TiktokServices extends AbstractService
         $data = Tiktok::where('id', $params['id'])->delete();
         return $data;
     }
+
+    public static function api_get_list(array $params) {
+        $limit = $params['limit'] ?? PaginationDefs::API_LIMIT;
+        $today = date('Y-m-d');
+        $data = Tiktok::select([
+                'id',
+                'unique_id',
+                'crawl_at',
+            ])
+            ->whereNull('crawl_at')
+            ->orWhere('crawl_at', '<', $today)
+            ->limit($limit)
+            ->get();
+        return $data;
+    }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TiktoksController;
+use App\Http\Controllers\Admin\TiktokVideosController;
 use App\Http\Controllers\Api\TiktokApiController;
 use App\Http\Controllers\ContactController as FrontContact;
 use App\Http\Controllers\PostController as FrontPost;
@@ -112,6 +113,16 @@ Route::prefix('admin')->name('admin.')->group(function() {
             Route::get('/update/{id}', [TiktoksController::class, 'update'])->name('update');
             Route::post('/save', [TiktoksController::class, 'save'])->name('save');
             Route::delete('/{id}', [TiktoksController::class, 'delete'])->name('delete');
+        });
+
+        // Tiktok videos
+        Route::prefix('tiktok/videos')->name('tiktok_videos.')->group(function() {
+            Route::get('/', [TiktokVideosController::class, 'index'])->name('index');
+            // Route::get('/indexData', [TiktoksController::class, 'indexData'])->name('indexData');
+            // Route::get('/add', [TiktoksController::class, 'add'])->name('add');
+            // Route::get('/update/{id}', [TiktoksController::class, 'update'])->name('update');
+            // Route::post('/save', [TiktoksController::class, 'save'])->name('save');
+            // Route::delete('/{id}', [TiktoksController::class, 'delete'])->name('delete');
         });
     });
 });

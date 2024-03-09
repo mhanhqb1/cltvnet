@@ -16,7 +16,7 @@ $menuData = [
             ],
             [
                 'name' => 'Danh sách video',
-                'route' => 'admin.category.index'
+                'route' => 'admin.tiktok_videos.index'
             ]
         ]
     ],
