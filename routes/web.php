@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\FoodController;
 use App\Http\Controllers\Admin\IngredientController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\NutritionController;
+use App\Http\Controllers\Admin\TiktokController;
 use App\Http\Controllers\FrontController;
 use Illuminate\Support\Facades\Route;
 
@@ -165,6 +166,25 @@ Route::middleware('auth')
                 Route::post('/', 'store')
                     ->name('store');
                 Route::delete('/{foodId}', 'destroy')
+                    ->name('destroy');
+            });
+
+
+        Route::controller(TiktokController::class)
+            ->prefix('tiktoks')
+            ->name('tiktoks.')
+            ->group(function () {
+                Route::get('/', 'index')
+                    ->name('index');
+                Route::get('/create', 'create')
+                    ->name('create');
+                Route::get('/{tiktokId}/edit', 'edit')
+                    ->name('edit');
+                Route::put('/{tiktokId}', 'update')
+                    ->name('update');
+                Route::post('/', 'store')
+                    ->name('store');
+                Route::delete('/{tiktokId}', 'destroy')
                     ->name('destroy');
             });
 
