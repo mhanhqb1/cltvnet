@@ -23,4 +23,8 @@ class BaseModel extends Model
 
         return $builder;
     }
+
+    public function getImageFormat() {
+        return $this->image ? "<img src='".getImageUrl($this->image)."' width='100px' />" : "";
+    }
 }

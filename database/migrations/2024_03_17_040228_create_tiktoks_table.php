@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('tiktok_id')->nullable();
             $table->string('image', 500)->nullable();
             $table->enum('type', TiktokType::values())->default(TiktokType::None->value);
+            $table->string('note', 500)->nullable();
             $table->date('crawl_at')->nullable();
             $table->timestamps();
         });

@@ -11,7 +11,22 @@ class Tiktok extends BaseModel
 {
     use HasFactory;
 
+    /**
+    * The table associated with the model.
+    *
+    * @var string
+    */
+   protected $table = 'tiktoks';
+
+   /**
+    * The primary key associated with the table.
+    *
+    * @var int
+    */
+   protected $primaryKey = 'id';
+
     protected $fillable = [
+        'id',
         'unique_id',
         'name',
         'tiktok_id',
