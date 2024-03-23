@@ -42,9 +42,11 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th></th>
                             <th>Sản phẩm</th>
                             <th>Ngày giao hàng</th>
+                            <th>Tiền hàng</th>
+                            <th>Tiền ship</th>
                             <th>Tổng tiền</th>
                         </tr>
                     </thead>
@@ -52,15 +54,17 @@
                         @php
                             $totalPrice = 0;
                         @endphp
-                        @foreach($orders as $order)
+                        @foreach($orders as $k => $order)
                         <tr>
-                            <td>{{ $order->order_id }}</td>
+                            <td>{{ $k + 1 }}</td>
                             <td>{!! $order->getProductHtml() !!}</td>
                             <td>{{ $order->shipping_date }}</td>
                             <td>{{ number_format($order->total_price) }}</td>
+                            <td>{{ number_format($order->ship_cost) }}</td>
+                            <td>{{ number_format($order->total_price + $order->ship_cost) }}</td>
                         </tr>
                         @php
-                            $totalPrice += $order->total_price;
+                            $totalPrice += $order->total_price + $order->ship_cost;
                         @endphp
                         @endforeach
                     </tbody>

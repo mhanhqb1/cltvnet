@@ -88,6 +88,9 @@ class CalaOrderController extends Controller
     ): RedirectResponse
     {
         $params = $orderRegisterRequest->validated();
+        $params['order_date'] = $params['order_date'] ?? date('Y-m-d');
+        $params['status'] = $params['status'] ?? OrderStatus::Pending->value;
+        $params['ship_cost'] = $params['ship_cost'] ?? 0;
         $customer = $customerFinder->getOne([
             'customer_id' => $params['customer_id'],
         ]);
@@ -97,31 +100,36 @@ class CalaOrderController extends Controller
             $params['shipping_time'] = $customer->transporter->time_start;
         }
         try {
-            $order = $orderCreator->save($params);
-            if (!empty($params['product_id'])) {
-                $totalPrice = 0;
-                $totalCost = 0;
-                $totalProfit = 0;
-                foreach($params['product_id'] as $productId) {
-                    $product = $productFinder->getOne([
-                        'product_id' => $productId,
-                    ]);
-                    $orderProductCreator->save([
-                        'order_id' => $order->order_id,
-                        'product_id' => $product->product_id,
-                        'cost' => $product->cost,
-                        'price' => $product->price,
-                        'profit' => $product->getProfit(),
-                    ]);
-                    $totalPrice += $product->price;
-                    $totalCost += $product->cost;
-                    $totalProfit += $product->getProfit();
-                }
-                $params['total_price'] = $totalPrice;
-                $params['total_cost'] = $totalCost;
-                $params['total_profit'] = $totalProfit;
+            if (!empty($orderRegisterRequest->file('product_image'))) {
+                $fileName = time().'.'.$orderRegisterRequest->file('product_image')->getClientOriginalExtension();
+                $orderRegisterRequest->file('product_image')->storeAs(FileDefs::IMAGE_STORE_PATH, $fileName);
+                $params['product_image'] = FileDefs::IMAGE_PUBLIC_PATH . $fileName;
             }
-            $orderEditor->update($order, $params);
+            $orderCreator->save($params);
+            // if (!empty($params['product_id'])) {
+            //     $totalPrice = 0;
+            //     $totalCost = 0;
+            //     $totalProfit = 0;
+            //     foreach($params['product_id'] as $productId) {
+            //         $product = $productFinder->getOne([
+            //             'product_id' => $productId,
+            //         ]);
+            //         $orderProductCreator->save([
+            //             'order_id' => $order->order_id,
+            //             'product_id' => $product->product_id,
+            //             'cost' => $product->cost,
+            //             'price' => $product->price,
+            //             'profit' => $product->getProfit(),
+            //         ]);
+            //         $totalPrice += $product->price;
+            //         $totalCost += $product->cost;
+            //         $totalProfit += $product->getProfit();
+            //     }
+            //     $params['total_price'] = $totalPrice;
+            //     $params['total_cost'] = $totalCost;
+            //     $params['total_profit'] = $totalProfit;
+            // }
+            // $orderEditor->update($order, $params);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();

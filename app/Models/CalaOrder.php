@@ -47,6 +47,9 @@ class CalaOrder extends BaseModel
         'shipping_phone',
         'transporter_id',
         'note',
+        'product_name',
+        'product_image',
+        'ship_cost',
     ];
 
     /**
@@ -68,18 +71,41 @@ class CalaOrder extends BaseModel
         return $attrNames;
     }
 
-    public static function getAttributeInputTypes() {
-        return [
-            'customer_id' => 'select',
-            'status' => 'select',
-            'product_id' => 'select2',
-            'order_date' => 'datepicker',
-            'delivery_date' => 'datepicker',
-            'shipping_date' => 'datepicker',
-            'shipping_time' => 'text',
-            'paid_date' => 'datepicker',
-            'note' => 'textarea',
-        ];
+    public static function getAttributeInputTypes($isEdit = false) {
+        if ($isEdit) {
+            return [
+                'customer_id' => 'select',
+                'status' => 'select',
+                // 'product_id' => 'select2',
+                'product_name' => 'text',
+                'product_image' => 'file',
+                'total_price' => 'text',
+                'ship_cost' => 'text',
+                'order_date' => 'datepicker',
+                'delivery_date' => 'datepicker',
+                // 'shipping_date' => 'datepicker',
+                // 'shipping_time' => 'text',
+                'paid_date' => 'datepicker',
+                'note' => 'textarea',
+            ];
+        } else {
+            return [
+                'customer_id' => 'select',
+                'status' => 'select',
+                // 'product_id' => 'select2',
+                'product_name' => 'text',
+                'product_image' => 'file',
+                'total_price' => 'text',
+                'ship_cost' => 'text',
+                // 'order_date' => 'datepicker',
+                'delivery_date' => 'datepicker',
+                // 'shipping_date' => 'datepicker',
+                // 'shipping_time' => 'text',
+                // 'paid_date' => 'datepicker',
+                'note' => 'textarea',
+            ];
+        }
+
     }
 
     public function products(): HasManyThrough
@@ -105,14 +131,20 @@ class CalaOrder extends BaseModel
 
     public function getProductHtml(): string
     {
-        $html = '';
-        if (!$this->products->isEmpty()) {
-            $html .= '<ul class="list-unstyled">';
-            foreach ($this->products as $product) {
-                $html .= '<li>'.$product->getProductFormat().'</li>';
-            }
-            $html .= '</ul>';
+        $html = '<div>';
+        // if (!$this->products->isEmpty()) {
+        //     $html .= '<ul class="list-unstyled">';
+        //     foreach ($this->products as $product) {
+        //         $html .= '<li>'.$product->getProductFormat().'</li>';
+        //     }
+        //     $html .= '</ul>';
+        // }
+        if (!empty($this->product_image)) {
+            $html .= "<img src='".getImageUrl($this->product_image)."' width='100px'/>";
         }
+        $html .= "<h5>".$this->product_name."</h5>";
+        $html .= "<p>".$this->note."</p>";
+        $html .= "</div>";
         return $html;
     }
 

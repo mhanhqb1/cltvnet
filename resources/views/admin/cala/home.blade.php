@@ -121,12 +121,13 @@
                                                 <input type="checkbox" value="{{ $order->order_id }}" data-status="{{ $order->status }}" name="todo" id="todoCheck{{ $order->order_id }}">
                                                 <label for="todoCheck{{ $order->order_id }}"></label>
                                             </div>
-                                            <div>
-                                                {!! $order->getProductHtml() !!}
-                                            </div>
-                                            @if (!empty($order->note))
-                                            <div>{{ $order->note }}</div>
+                                            @if (!empty($order->product_image))
+                                                <img src="{{ getImageUrl($order->product_image) }}" width="100px"/>
                                             @endif
+                                            <div>
+                                                <h5><a href="{{ route('admin.cala.orders.edit', $order->order_id) }}">{{ $order->product_name }}</a></h5>
+                                                <p>{{ $order->note }}</p>
+                                            </div>
                                             <div>
                                                 <span><a href="{{ route('mecala.customerPendingOrders', $order->customer_id) }}">{{ $order->customer->name }}</a></span>
                                             </div>
@@ -152,12 +153,13 @@
                                                 <input type="checkbox" value="{{ $order->order_id }}" data-status="{{ $order->status }}" name="todo" id="todoCheck{{ $order->order_id }}">
                                                 <label for="todoCheck{{ $order->order_id }}"></label>
                                             </div>
-                                            <div>
-                                                {!! $order->getProductHtml() !!}
-                                            </div>
-                                            @if (!empty($order->note))
-                                            <div>{{ $order->note }}</div>
+                                            @if (!empty($order->product_image))
+                                                <img src="{{ getImageUrl($order->product_image) }}" width="100px"/>
                                             @endif
+                                            <div>
+                                                <h5><a href="{{ route('admin.cala.orders.edit', $order->order_id) }}">{{ $order->product_name }}</a></h5>
+                                                <p>{{ $order->note }}</p>
+                                            </div>
                                             <div>
                                                 <span><a href="{{ route('mecala.customerPendingOrders', $order->customer_id) }}">{{ $order->customer->name }}</a></span>
                                             </div>
@@ -183,12 +185,13 @@
                                                 <input type="checkbox" value="{{ $order->order_id }}" data-status="{{ $order->status }}" name="todo" id="todoCheck{{ $order->order_id }}">
                                                 <label for="todoCheck{{ $order->order_id }}"></label>
                                             </div>
-                                            <div>
-                                                {!! $order->getProductHtml() !!}
-                                            </div>
-                                            @if (!empty($order->note))
-                                            <div>{{ $order->note }}</div>
+                                            @if (!empty($order->product_image))
+                                                <img src="{{ getImageUrl($order->product_image) }}" width="100px"/>
                                             @endif
+                                            <div>
+                                                <h5><a href="{{ route('admin.cala.orders.edit', $order->order_id) }}">{{ $order->product_name }}</a></h5>
+                                                <p>{{ $order->note }}</p>
+                                            </div>
                                             <div>
                                                 <span>{{ $order->customer->name }}</span>
                                             </div>
@@ -214,12 +217,13 @@
                                                 <input type="checkbox" value="{{ $order->order_id }}" data-status="{{ $order->status }}" name="todo" id="todoCheck{{ $order->order_id }}">
                                                 <label for="todoCheck{{ $order->order_id }}"></label>
                                             </div>
-                                            <div>
-                                                {!! $order->getProductHtml() !!}
-                                            </div>
-                                            @if (!empty($order->note))
-                                            <div>{{ $order->note }}</div>
+                                            @if (!empty($order->product_image))
+                                                <img src="{{ getImageUrl($order->product_image) }}" width="100px"/>
                                             @endif
+                                            <div>
+                                                <h5><a href="{{ route('admin.cala.orders.edit', $order->order_id) }}">{{ $order->product_name }}</a></h5>
+                                                <p>{{ $order->note }}</p>
+                                            </div>
                                             <div>
                                                 <span><a href="{{ route('mecala.customerDeliveryOrders', $order->customer_id) }}">{{ $order->customer->name }}</a></span>
                                             </div>

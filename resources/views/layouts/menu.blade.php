@@ -35,7 +35,7 @@
         <p>{{ __('menu_menu') }}</p>
     </a>
 </li>
-<!-- <li class="nav-item {{ request()->route()->named('admin.cala.*') ? 'menu-open' : '' }}">
+<li class="nav-item {{ request()->route()->named('admin.cala.*') ? 'menu-open' : '' }}">
     <a href="#" class="nav-link {{ request()->route()->named('admin.cala.*') ? 'active' : '' }}">
         <i class="nav-icon fas fa-shopping-cart"></i>
         <p>
@@ -50,7 +50,7 @@
                 <p>{{ __('dashboard') }}</p>
             </a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a href="{{ route('admin.cala.products.index') }}" class="nav-link {{ request()->route()->named('admin.cala.products.*') ? 'active' : '' }}">
                 <i class="nav-icon fa fa-birthday-cake"></i>
                 <p>{{ __('product_menu') }}</p>
@@ -61,7 +61,7 @@
                 <i class="nav-icon fa fa-car"></i>
                 <p>{{ __('transporter_menu') }}</p>
             </a>
-        </li>
+        </li> -->
         <li class="nav-item">
             <a href="{{ route('admin.cala.customers.index') }}" class="nav-link {{ request()->route()->named('admin.cala.customers.*') ? 'active' : '' }}">
                 <i class="nav-icon fa fa-user"></i>
@@ -74,12 +74,12 @@
                 <p>{{ __('order_menu') }}</p>
             </a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a href="{{ route('admin.cala.cost_orders.index') }}" class="nav-link {{ request()->route()->named('admin.cala.cost_orders.*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>{{ __('cost_order_menu') }}</p>
             </a>
-        </li>
+        </li> -->
         <li class="nav-item">
             <a href="{{ route('admin.cala.home.sales') }}" class="nav-link {{ request()->route()->named('admin.cala.home.sales') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -87,4 +87,4 @@
             </a>
         </li>
     </ul>
-</li> -->
+</li>

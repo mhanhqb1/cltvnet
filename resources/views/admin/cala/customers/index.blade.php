@@ -67,7 +67,11 @@
                                         </a>
                                         <a class="btn btn-primary btn-xs" target="_blank" href="{{ route('mecala.customerPendingOrders', $customer->customer_id) }}">
                                             <i class="fas fa-pencil-alt"></i>
-                                            Xác nhận đơn hàng
+                                            Đơn hàng
+                                        </a>
+                                        <a class="btn btn-primary btn-xs" target="_blank" href="{{ route('mecala.customerDeliveryOrders', $customer->customer_id) }}">
+                                            <i class="fas fa-pencil-alt"></i>
+                                            Tiền nợ
                                         </a>
                                     </td>
                                 </tr>
