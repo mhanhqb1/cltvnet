@@ -800,5 +800,8 @@
     "cate_edit": "Chỉnh sửa danh mục",
     "nutrition_edit": "Chỉnh sửa dinh dưỡng",
     "menu_id": "ID thực đơn",
-    "articles_info": "Bài viết"
+    "articles_info": "Bài viết",
+    "product_name": "Tên sản phẩm",
+    "product_image": "Hình ảnh",
+    "ship_cost": "Tiền ship"
 }
