@@ -71,6 +71,7 @@ class CatesController extends Controller
             $item = $this->model;
         }
         $item->name = $request->name;
+        $item->vi_name = $request->get('vi_name', '');
         $item->slug = createSlug($request->name);
         $item->parent_id = !empty($request->parent_id) ? $request->parent_id : 0;
         $item->position = !empty($request->position) ? $request->position : 0;

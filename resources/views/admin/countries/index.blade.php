@@ -8,6 +8,7 @@
                 <tr>
                     <td>#</td>
                     <td>Name</td>
+                    <td>Tên tiếng Việt</td>
                     <td></td>
                 </tr>
             </thead>
@@ -26,6 +27,7 @@ $(function() {
         columns: [
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
+            { data: 'vi_name', name: 'vi_name' },
             { data: 'action', name: 'action', orderable: false, searchable: false }
         ]
     });

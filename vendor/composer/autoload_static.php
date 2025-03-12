@@ -638,6 +638,7 @@ class ComposerStaticInitf8f65ffb8bb2e48f7a89f89adfcc79ae
 
     public static $classMap = array (
         'App\\Console\\Commands\\AddThumbImages' => __DIR__ . '/../..' . '/app/Console/Commands/AddThumbImages.php',
+        'App\\Console\\Commands\\CreateAdmin' => __DIR__ . '/../..' . '/app/Console/Commands/CreateAdmin.php',
         'App\\Console\\Commands\\DailyPlaylistCrawler' => __DIR__ . '/../..' . '/app/Console/Commands/DailyPlaylistCrawler.php',
         'App\\Console\\Commands\\GenerateSitemap' => __DIR__ . '/../..' . '/app/Console/Commands/GenerateSitemap.php',
         'App\\Console\\Commands\\OkRuCrawler' => __DIR__ . '/../..' . '/app/Console/Commands/OkRuCrawler.php',

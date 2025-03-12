@@ -8,6 +8,7 @@
                 <tr>
                     <td>#</td>
                     <td>Name</td>
+                    <td>Tên tiếng Việt</td>
                     <td>Parent</td>
                     <td></td>
                 </tr>
@@ -27,6 +28,7 @@ $(function() {
         columns: [
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
+            { data: 'vi_name', name: 'vi_name' },
             { data: 'parent_id', name: 'parent_id' },
             { data: 'action', name: 'action', orderable: false, searchable: false }
         ]

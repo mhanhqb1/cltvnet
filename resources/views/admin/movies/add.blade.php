@@ -29,7 +29,7 @@
                         <select class="select2" name="cates[]" multiple="multiple" data-placeholder="Chọn danh mục" style="width: 100%;">
                             @if (!empty($cates))
                             @foreach ($cates as $cate)
-                            <option value="{{ $cate->id }}">{{ $cate->name }}</option>
+                            <option value="{{ $cate->id }}">{{ $cate->vi_name }}</option>
                             @endforeach
                             @endif
                         </select>
@@ -40,7 +40,7 @@
                             <option value="0">----</option>
                             @if (!empty($countries))
                             @foreach ($countries as $country)
-                            <option value="{{ $country->id }}">{{ $country->name }}</option>
+                            <option value="{{ $country->id }}">{{ $country->vi_name }}</option>
                             @endforeach
                             @endif
                         </select>

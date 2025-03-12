@@ -25,12 +25,16 @@
                         <input type="text" id="inputName" name="name" class="form-control" value="{{ !empty(old('name')) ? old('name') : $item->name }}">
                     </div>
                     <div class="form-group">
+                        <label for="inputName">Tên tiếng Việt</label>
+                        <input type="text" id="inputViName" name="vi_name" class="form-control" value="{{ !empty(old('vi_name')) ? old('vi_name') : $item->vi_name }}">
+                    </div>
+                    <div class="form-group">
                         <label for="inputParentId">Danh mục cha</label>
                         <select name="parent_id" id="inputParentId" class="form-control">
                             <option value="0">-</option>
                             @if (!empty($parents))
                             @foreach ($parents as $v)
-                                <option value="{{ $v->id }}" {{ $item->parent_id == $v->id ? 'selected="selected"' : '' }}>{{ $v->name }}</option>
+                                <option value="{{ $v->id }}" {{ $item->parent_id == $v->id ? 'selected="selected"' : '' }}>{{ $v->vi_name }}</option>
                             @endforeach
                             @endif
                         </select>

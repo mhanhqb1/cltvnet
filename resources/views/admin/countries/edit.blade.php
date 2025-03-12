@@ -25,6 +25,10 @@
                         <input type="text" id="inputName" name="name" class="form-control" value="{{ !empty(old('name')) ? old('name') : $item->name }}">
                     </div>
                     <div class="form-group">
+                        <label for="inputName">Tên tiếng Việt</label>
+                        <input type="text" id="inputViName" name="vi_name" class="form-control" value="{{ !empty(old('vi_name')) ? old('vi_name') : $item->vi_name }}">
+                    </div>
+                    <div class="form-group">
                         <label for="inputPosition">Vị trí</label>
                         <input type="text" id="inputPosition" name="position" class="form-control" value="{{ !empty(old('position')) ? old('position') : $item->position }}">
                     </div>

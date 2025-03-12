@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Console\\Commands\\AddThumbImages' => $baseDir . '/app/Console/Commands/AddThumbImages.php',
+    'App\\Console\\Commands\\CreateAdmin' => $baseDir . '/app/Console/Commands/CreateAdmin.php',
     'App\\Console\\Commands\\DailyPlaylistCrawler' => $baseDir . '/app/Console/Commands/DailyPlaylistCrawler.php',
     'App\\Console\\Commands\\GenerateSitemap' => $baseDir . '/app/Console/Commands/GenerateSitemap.php',
     'App\\Console\\Commands\\OkRuCrawler' => $baseDir . '/app/Console/Commands/OkRuCrawler.php',

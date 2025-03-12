@@ -12,6 +12,7 @@ class Cate extends Model
 
     protected $fillable = [
         'name',
+        'vi_name',
         'slug',
         'parent_id',
         'position'

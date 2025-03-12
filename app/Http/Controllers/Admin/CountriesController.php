@@ -70,6 +70,7 @@ class CountriesController extends Controller
             $item = $this->model;
         }
         $item->name = $request->name;
+        $item->vi_name = $request->get('vi_name', '');
         $item->slug = createSlug($request->name);
         $item->position = !empty($request->position) ? $request->position : 0;
         $item->save();
