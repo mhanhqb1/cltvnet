@@ -86,8 +86,6 @@ $cateName = implode(' - ', $cateName);
             </div>
         </div>
 
-        @include('layouts.detail_ads')
-
         @if(!$relatedMovies->isEmpty())
         @include('layouts.related_movies', ['relatedMovies' => $relatedMovies])
         @endif

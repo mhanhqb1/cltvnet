@@ -9,6 +9,28 @@ $cateName = implode(' - ', $cateName);
 ?>
 @extends('layouts.front_master')
 
+@push('css')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.css" />
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "{{ $pageTitle }}",
+        "description": "{{ $movie->description }}",
+        "thumbnailUrl": "{{ getImageUrl($movie->image) }}",
+        "uploadDate": "{{ date('Y-m-d\TH:i:s\Z', strtotime($movie->videos[0]->updated_at)) }}",
+        "contentUrl": "https://www.youtube.com/watch?v={{ $movie->videos[0]->source_urls }}",
+        "embedUrl": "https://www.youtube.com/embed/{{ $movie->videos[0]->source_urls }}",
+        "interactionStatistic": {
+            "@type": "InteractionCounter",
+            "interactionType": "https://schema.org/WatchAction",
+            "userInteractionCount": 1000
+        }
+    }
+    </script>
+@endPush
+
 @section('content')
 <div class="row">
     <div class="col-sm-12">
@@ -21,19 +43,12 @@ $cateName = implode(' - ', $cateName);
                 </font>
             </h2>
             <div class="faq-content">
-                <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;" itemscope itemtype="https://schema.org/VideoObject">
-                    <?php
-                    $iframeUrl = 'https://geo.dailymotion.com/player/x9pog.html?video=' . $movie->videos[0]->source_urls;
-                    if (!empty($movie->videos[0]->source_type)) {
-                        $iframeUrl = '//ok.ru/videoembed/' . $movie->videos[0]->source_urls;
-                    }
-                    ?>
-                    <meta itemprop="name" content="{{ $pageTitle }}" />
-                    <meta itemprop="description" content="{{ $movie->description }}" />
-                    <meta itemprop="uploadDate" content="{{ date('Y-m-d\TH:i:s\Z', strtotime($movie->videos[0]->updated_at)) }}" />
-                    <meta itemprop="thumbnailUrl" content="{{ getImageUrl($movie->image) }}" />
-                    <meta itemprop="embedUrl" content="{{ $iframeUrl }}" />
-                    <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden" frameborder="0" type="text/html" src="{{ $iframeUrl }}" width="100%" height="100%" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
+                <div class="plyr__video-embed" id="player">
+                    <iframe
+                        src="https://www.youtube.com/embed/{{ $movie->videos[0]->source_urls }}?rel=0&modestbranding=1&showinfo=0&iv_load_policy=3"
+                        allowfullscreen
+                        allow="autoplay">
+                    </iframe>
                 </div>
             </div>
         </div>
@@ -82,7 +97,6 @@ $cateName = implode(' - ', $cateName);
         @if(!$relatedMovies->isEmpty())
             @include('layouts.related_movies', ['relatedMovies' => $relatedMovies])
         @endif
-        @include('layouts.detail_ads')
 
         <div class="inner-box category-content" style="padding-bottom: 10px;">
             <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;"> <i class="fa fa-tags"></i>
@@ -185,3 +199,14 @@ $cateName = implode(' - ', $cateName);
     </div>
 </div>
 @endsection
+
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.min.js"></script>
+<script>
+    const player = new Plyr('#player', {
+        autoplay: true,
+        controls: ['play', 'progress', 'mute', 'volume', 'fullscreen']
+    });
+</script>
+@endPush
