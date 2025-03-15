@@ -95,6 +95,15 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
             -webkit-transform: translate(-50%, -50%) rotate(180deg);
             transform: translate(-50%, -50%) rotate(180deg);
         }
+        @media (max-width: 767px) {
+            .movie-item {
+                min-height: 200px;
+            }
+            .add-image {
+                max-width: 100% !important;
+                margin-right: 0 !important;
+            }
+        }
     </style>
     @stack('css')
 </head>
