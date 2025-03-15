@@ -6,6 +6,7 @@ $metaDescription = !empty($metaDescription) ? substr($metaDescription, 0, 300) .
 $metaKeywords = !empty($metaKeywords) ? $metaKeywords : 'ver películas online, películas en español, películas gratis, estrenos de cine, cine en casa, películas HD, streaming gratis';
 $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
 $cacheVersion = env('CACHE_VER');
+$gaKey = env('GA_KEY');
 ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -107,6 +108,18 @@ $cacheVersion = env('CACHE_VER');
         }
     </style>
     @stack('css')
+
+    @if (!empty($gaKey))
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ $gaKey }}"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '{{ $gaKey }}');
+    </script>
+    @endif
 </head>
 
 <body>
