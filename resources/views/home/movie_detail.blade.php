@@ -10,8 +10,9 @@ $cateName = implode(' - ', $cateName);
 @extends('layouts.front_master')
 
 @push('css')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.css" />
 
+@if (empty($movie->is_series))
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.css" />
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -28,7 +29,8 @@ $cateName = implode(' - ', $cateName);
             "userInteractionCount": 1000
         }
     }
-    </script>
+</script>
+@endif
 @endPush
 
 @section('content')

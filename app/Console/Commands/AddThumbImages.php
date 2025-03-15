@@ -37,7 +37,7 @@ class AddThumbImages extends Command
                 try {
                     $path = 'thumbs/' . $m->slug . '-' . time() . '.jpg';
                     $img = Image::make('storage/app/public/' . $m->image);
-                    $img->resize(160, 233)->encode('jpg', 80);
+                    $img->resize(255, 190)->encode('jpg', 80);
                     Storage::disk('public')->put($path, $img);
                     $m->thumb_image = $path;
                     $m->save();
