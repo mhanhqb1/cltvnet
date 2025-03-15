@@ -5,6 +5,7 @@ $masterDescription = "Gratis Multinacional Novelas y Series en Español. Las mej
 $metaDescription = !empty($metaDescription) ? substr($metaDescription, 0, 300) . '...' : $masterDescription;
 $metaKeywords = !empty($metaKeywords) ? $metaKeywords : 'novelas, novelas y series, novelas turcas, novelas peruanas, novelas mexicanas';
 $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
+$cacheVersion = env('CACHE_VER');
 ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -42,7 +43,7 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
     <meta name="revisit-after" content="2 days">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}" media="all">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css?'.$cacheVersion) }}" media="all">
     <style>
         h3.movie-name {
             display: -webkit-box;
@@ -137,7 +138,7 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="{{ asset('/js/scripts.js') }}"></script>
+    <script src="{{ asset('/js/scripts.js?'.$cacheVersion) }}"></script>
     @stack('scripts')
 </body>
 
