@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $limit = 18;
+        $limit = 16;
         $videos = Movie::with('lastVideo')
             ->whereHas('lastVideo')
             ->orderBy('updated_at', 'desc')
@@ -36,12 +36,12 @@ class HomeController extends Controller
         $movies = Movie::getList([
             'limit' => $limit,
             'not_page' => 1,
-            'not_cate_id' => 15
+            'not_cate_id' => 17
         ]);
         $movies2 = Movie::getList([
             'limit' => $limit,
             'not_page' => 1,
-            'cate_id' => 15
+            'cate_id' => 17
         ]);
         return view('home', compact('videos', 'movies', 'movies2'));
     }
