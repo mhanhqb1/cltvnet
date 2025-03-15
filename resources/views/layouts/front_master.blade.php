@@ -1,9 +1,9 @@
 <?php
 $appName = env('APP_NAME');
 $pageTitle = !empty($pageTitle) ? $pageTitle . ' - ' . $appName : $appName;
-$masterDescription = "Gratis Multinacional Novelas y Series en Español. Las mejores novelas multi paises las encontraras aqui en español y completamente gratis y tambien novelas con subtitulos.";
+$masterDescription = "Disfruta de películas online en español gratis en VPOnline.net. Ver estrenos, clásicos y películas en HD sin cortes y sin registro. ¡Tu cine en casa!";
 $metaDescription = !empty($metaDescription) ? substr($metaDescription, 0, 300) . '...' : $masterDescription;
-$metaKeywords = !empty($metaKeywords) ? $metaKeywords : 'novelas, novelas y series, novelas turcas, novelas peruanas, novelas mexicanas';
+$metaKeywords = !empty($metaKeywords) ? $metaKeywords : 'ver películas online, películas en español, películas gratis, estrenos de cine, cine en casa, películas HD, streaming gratis';
 $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
 $cacheVersion = env('CACHE_VER');
 ?>
