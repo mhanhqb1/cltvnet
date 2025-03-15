@@ -59,7 +59,7 @@ $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
 
         .movie-item {
             margin-bottom: 20px;
-            min-height: 330px;
+            min-height: 290px;
             position: relative;
         }
 
