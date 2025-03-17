@@ -1,2 +1,45 @@
 User-agent: *
-Disallow:
+Disallow: /admin/
+Disallow: /login/
+Disallow: /register/
+Disallow: /cart/
+Disallow: /search?
+Disallow: /*?sort=
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+
+# Chặn bot xấu
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+# Cho phép Googlebot index trang phim
+User-agent: Googlebot
+Allow: /new-movie/
+Allow: /tv-show/
+Allow: /series/
+Allow: /category/suspenso/
+Allow: /category/familia/
+Allow: /category/deportes/
+Allow: /category/historia/
+Allow: /category/guerra/
+Allow: /category/crimen/
+Allow: /category/romance/
+Allow: /category/misterio/
+Allow: /category/accion/
+Allow: /category/fantasia/
+Allow: /category/ciencia-ficcion/
+Allow: /category/terror/
+Allow: /category/drama/
+Allow: /category/comedia/
+Allow: /category/animacion/
+Allow: /category/aventura/
+Allow: /sitemaps.xml
+
+# Sitemap
+Sitemap: https://yourwebsite.com/sitemap.xml
