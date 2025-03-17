@@ -110,6 +110,7 @@ $gaKey = env('GA_KEY');
             }
             .movie-item {
                 /* min-height: 210px; */
+                margin-bottom: 10px;
             }
             .add-image {
                 max-width: 100% !important;
