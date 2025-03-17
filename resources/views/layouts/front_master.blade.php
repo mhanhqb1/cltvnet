@@ -99,7 +99,7 @@ $gaKey = env('GA_KEY');
         }
         @media (max-width: 767px) {
             .movie-item {
-                min-height: 200px;
+                min-height: 210px;
             }
             .add-image {
                 max-width: 100% !important;
