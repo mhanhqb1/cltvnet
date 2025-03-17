@@ -79,9 +79,8 @@ $gaKey = env('GA_KEY');
             line-height: 18px;
         }
         .movie-cates {
-            display: flex;
-            gap: 5px;
-            margin-top: 10px;
+            display: block;
+            margin-top: 5px;
         }
         .movie-cate {
             border-radius: 4px;
@@ -90,6 +89,9 @@ $gaKey = env('GA_KEY');
             font-size: 12px;
             line-height: 26px;
             background-color: #FF934B;
+            margin-top: 5px;
+            margin-right: 2px;
+            display: inline-block;
         }
         .movie-cate-2 {
             background-color: #333333;
