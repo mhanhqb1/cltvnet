@@ -66,7 +66,7 @@ $gaKey = env('GA_KEY');
         }
 
         .movie-item {
-            margin-bottom: 20px;
+            /* margin-bottom: 20px; */
             /* min-height: 290px; */
             position: relative;
         }
