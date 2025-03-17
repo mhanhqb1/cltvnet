@@ -12,7 +12,7 @@
                 <div class="col-sm-12">
                     <form class="form-horizontal">
                         <fieldset>
-                            <div class="row">
+                            <div class="list-movie">
                                 @if(!$videos->isEmpty())
                                     @foreach ($videos as $item)
                                         @include('layouts.video', ['item' => $item])
@@ -38,7 +38,7 @@
                     <form class="form-horizontal">
                         <fieldset>
                             <!-- <seri> -->
-                            <div class="row">
+                            <div class="list-movie">
                                 @if(!$movies->isEmpty())
                                     @foreach ($movies as $item)
                                         @include('layouts.movie', ['item' => $item])
@@ -64,7 +64,7 @@
                     <form class="form-horizontal">
                         <fieldset>
                             <!-- <seri> -->
-                            <div class="row">
+                            <div class="list-movie">
                                 @if(!$movies2->isEmpty())
                                     @foreach ($movies2 as $item)
                                         @include('layouts.movie', ['item' => $item])

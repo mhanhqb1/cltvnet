@@ -5,12 +5,12 @@ $name = !empty($item->is_series) ? $item->name.' - '.$item->lastVideo[0]->name :
 $label = !empty($item->is_series) ? $item->lastVideo[0]->name : $item->year;
 $url = empty($item->is_series) ? route('home.movie_detail', $item->slug) : route('home.video_detail', ['movieSlug' => $item->slug, 'videoSlug' => $item->lastVideo[0]->slug]);
 ?>
-<div class="col-xs-6 col-sm-3 movie-item">
+<div class="movie-item">
     @if (!empty($label))
     <span class="movie-label">{{ $label }}</span>
     @endif
     <a href="{{ $url }}">
-        <img src="{{ asset('/images/blank.png') }}" data-src="{!! $imageUrl !!}" alt="{{ $name }}" style="width:100%; height:50%; object-fit: cover;" class="lazyload" /><br />
+        <img src="{{ asset('/images/blank.png') }}" data-src="{!! $imageUrl !!}" alt="{{ $name }}" style="width:100%; height:70%; object-fit: cover;" class="lazyload" /><br />
         <center>
             <h3 class="movie-name">{{ $name }}</h3>
         </center>

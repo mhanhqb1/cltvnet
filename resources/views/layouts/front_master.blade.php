@@ -46,6 +46,12 @@ $gaKey = env('GA_KEY');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css?'.$cacheVersion) }}" media="all">
     <style>
+        .list-movie {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 24px;
+            grid-auto-rows: minmax(min-content, max-content);
+        }
         h3.movie-name {
             display: -webkit-box;
             -webkit-box-orient: vertical;
@@ -61,7 +67,7 @@ $gaKey = env('GA_KEY');
 
         .movie-item {
             margin-bottom: 20px;
-            min-height: 290px;
+            /* min-height: 290px; */
             position: relative;
         }
 
@@ -98,8 +104,12 @@ $gaKey = env('GA_KEY');
             transform: translate(-50%, -50%) rotate(180deg);
         }
         @media (max-width: 767px) {
+            .list-movie {
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 12px;
+            }
             .movie-item {
-                min-height: 210px;
+                /* min-height: 210px; */
             }
             .add-image {
                 max-width: 100% !important;
