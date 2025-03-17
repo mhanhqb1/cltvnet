@@ -49,20 +49,111 @@ $gaKey = env('GA_KEY');
         .list-movie {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-gap: 24px;
+            grid-gap: 12px;
             grid-auto-rows: minmax(min-content, max-content);
+            margin-bottom: 12px;
         }
-        h3.movie-name {
+        .movie-name {
             display: -webkit-box;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 2;
             font-size: 14px;
             text-align: left;
             padding-top: 5px;
             padding-bottom: 0px !important;
             font-size: 16px;
             line-height: 1.5;
+            color: #232323;
+            font-weight: bold;
+        }
+        p.movie-description {
+            margin-top: 5px;
+            color: #787878;
+            font-size: 12px;
+            -webkit-line-clamp: 3;
+            display: -webkit-box;
+            overflow: hidden;
+            word-break: break-all;
+            -webkit-box-orient: vertical;
+            line-height: 18px;
+        }
+        .movie-cates {
+            display: flex;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .movie-cate {
+            border-radius: 4px;
+            color: #fff;
+            padding: 0 10px;
+            font-size: 12px;
+            line-height: 26px;
+            background-color: #FF934B;
+        }
+        .movie-cate-2 {
+            background-color: #333333;
+            color: #FFFFFF;
+        }
+        .movie-cate-3 {
+            background-color: #FFD700;
+            color: #0033CC;
+        }
+        .movie-cate-4 {
+            background-color: #FF007F;
+            color: #004E92;
+        }
+        .movie-cate-5 {
+            background-color: #A8E6CF;
+            color: #222222;
+        }
+        .movie-cate-6 {
+            background-color: #F39C12;
+            color: #34495E;
+        }
+        .movie-cate-7 {
+            background-color: #C0392B;
+            color: #ECF0F1;
+        }
+        .movie-cate-8 {
+            background-color: #00FA9A;
+            color: #2C3E50;
+        }
+        .movie-cate-9 {
+            background-color: #9B59B6;
+            color: #FFFFFF;
+        }
+        .movie-cate-10 {
+            background-color: #1E90FF;
+            color: #FFF200;
+        }
+        .movie-cate-11 {
+            background-color: #FF5733;
+            color: #FFFFFF;
+        }
+        .movie-cate-12 {
+            background-color: #4B0082;
+            color: #FFFF99;
+        }
+        .movie-cate-13 {
+            background-color: #0000FF;
+            color: #FFFFFF;
+        }
+        .movie-cate-14 {
+            background-color: #FF0000;
+            color: #FFFFFF;
+        }
+        .movie-cate-15 {
+            background-color: #FFD700;
+            color: #000000;
+        }
+        .movie-cate-16 {
+            background-color: #2ECC71;
+            color: #FFFFFF;
+        }
+        .movie-cate-17 {
+            background-color: #F39C12;
+            color: #34495E;
         }
 
         .movie-item {

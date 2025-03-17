@@ -54,7 +54,7 @@ class Movie extends Model
     public static function getList($params)
     {
         // Init
-        $data = self::whereHas('videos');
+        $data = self::whereHas('videos')->with('cates');
 
         // Filter
         if (isset($params['is_series'])) {

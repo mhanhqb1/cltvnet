@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function index()
     {
         $limit = 16;
-        $videos = Movie::with('lastVideo')
+        $videos = Movie::with('lastVideo', 'cates')
             ->whereHas('lastVideo')
             ->orderBy('updated_at', 'desc')
             ->limit($limit)
