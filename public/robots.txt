@@ -39,6 +39,14 @@ Allow: /category/drama/
 Allow: /category/comedia/
 Allow: /category/animacion/
 Allow: /category/aventura/
+Allow: /country/cine-estadounidense/
+Allow: /country/cine-espanol/
+Allow: /country/cine-latinoamericano/
+Allow: /country/cine-europeo/
+Allow: /country/cine-asiatico/
+Allow: /country/cine-coreano/
+Allow: /country/cine-japones/
+Allow: /country/cine-chino/
 Allow: /sitemaps.xml
 
 # Sitemap
