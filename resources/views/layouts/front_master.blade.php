@@ -101,7 +101,7 @@ $gaKey = env('GA_KEY');
         }
         .movie-cate-4 {
             background-color: #FF007F;
-            color: #004E92;
+            color: #fff;
         }
         .movie-cate-5 {
             background-color: #A8E6CF;
@@ -169,7 +169,7 @@ $gaKey = env('GA_KEY');
         .movie-label {
             position: absolute;
             top: 0;
-            left: 15px;
+            left: 5px;
             padding: 5px 10px;
             color: #fff;
             background: #1b2a39;
