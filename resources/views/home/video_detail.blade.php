@@ -6,8 +6,13 @@ if (!empty($movie->cates)) {
     }
 }
 $cateName = implode(' - ', $cateName);
+$videoUrl = "http://cdn.vponline.net/videos/".$video->source_urls.".m3u8";
 ?>
 @extends('layouts.front_master')
+
+@push('css')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.15.4/video-js.min.css" rel="stylesheet">
+@endpush
 
 @section('content')
 <style>
@@ -32,41 +37,7 @@ $cateName = implode(' - ', $cateName);
                 </div>
                 @endif
                 <div class="col-sm-12">
-                    @if (!empty($video->is_pre))
-                    <p style="text-align: center; margin: 24px 0;"><span style="font-size: 18pt; font-family: georgia, palatino, serif;"><span style="color: #0000ff;">{{ $pageTitle }} Completo</span></span></p>
-                    <p style="text-align: center;">
-                        <strong><span style="font-size: 20pt;">Disponible después de su transmisión en vivo</span></strong>
-                        <br>
-                        <strong><span style="font-size: 14pt;">Si quieres ser el primero en verlo, sigue nuestra web</span></strong>
-                    </p>
-
-                    <p style="text-align: center; margin: 48px 0 24px;"><span style="font-size: 18pt; font-family: georgia, palatino, serif;"><span style="color: #0000ff;">{{ $movie->name.' - Capítulo '.($video->position - 1) }} Completo</span></span></p>
-                    @endif
-                    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;" itemscope itemtype="https://schema.org/VideoObject">
-                        <meta itemprop="name" content="{{ $pageTitle }}" />
-                        <meta itemprop="description" content="{{ $movie->description }}" />
-                        <meta itemprop="uploadDate" content="{{ date('Y-m-d\TH:i:s\Z', strtotime($video->updated_at)) }}" />
-                        <meta itemprop="thumbnailUrl" content="{{ getImageUrl($movie->image) }}" />
-                        @if ($video->source_type == 3)
-                        <meta itemprop="contentUrl" content="{{ $video->source_urls }}" />
-                        <video id="my-video-player" style="width: 100%; height: 100%" class="video-js vjs-default-skin vjs-fluid"></video>
-                        @else
-                        <?php
-                        switch ($video->source_type) {
-                            case 1:
-                                $iframeUrl = '//ok.ru/videoembed/' . $video->source_urls;
-                                break;
-                            case 2:
-                                $iframeUrl = 'https://short.ink/' . $video->source_urls;
-                                break;
-                            default:
-                                $iframeUrl = 'https://geo.dailymotion.com/player/x9pog.html?video=' . $video->source_urls;
-                        }
-                        ?>
-                        <meta itemprop="embedUrl" content="{{ $iframeUrl }}" />
-                        <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden" frameborder="0" type="text/html" src="{{ $iframeUrl }}" width="100%" height="100%" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
-                        @endif
-                    </div>
+                    <video id="my-video" class="video-js vjs-default-skin" controls style="width: 100%;"></video>
                 </div>
                 <div class="col-sm-12">
                     <div class="prev_next">
@@ -213,32 +184,15 @@ $cateName = implode(' - ', $cateName);
 @endsection
 
 @push('scripts')
-@if ($video->source_type == 3)
-<script src="https://content.jwplatform.com/libraries/Jq6HIbgz.js"></script>
+@if ($video->source_type == 1)
+<script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.15.4/video.min.js"></script>
 <script>
-    $(document).ready(function() {
-        const playerInstance = jwplayer("my-video-player").setup({
-            playlist: [{
-                title: '{{ $video->title }}',
-                sources: [{
-                    "file": "{{ $video->source_urls }}",
-                    "type": "video/mp4"
-                }],
-                image: '{{ getImageUrl($movie->image) }}'
-            }],
-            logo: {
-                file: "",
-                "link": "{{ route('home') }}",
-                "hide": "false",
-                "position": "top-right"
-            },
-            // "advertising": {
-            //     "client": "vast",
-            //     "schedule": ['.$ads.']
-            //     }
-            // }
+    fetch('{{ $videoUrl }}')
+        .then(response => response.json())
+        .then(data => {
+            var player = videojs('my-video');
+            player.src({ src: data.video_url, type: 'application/x-mpegURL' });
         });
-    });
 </script>
 @endif
 @endpush

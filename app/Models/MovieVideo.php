@@ -29,11 +29,11 @@ class MovieVideo extends Model
 
     public static $sourceTypeValue = [
         'youtube' => 0,
-        'direct' => 1,
+        'hls' => 1,
     ];
     public static $sourceTypes = [
         0 => 'Youtube',
-        1 => 'Direct',
+        1 => 'HLS',
     ];
 
     public function movie() {

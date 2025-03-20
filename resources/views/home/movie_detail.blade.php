@@ -45,6 +45,7 @@ $cateName = implode(' - ', $cateName);
                 </font>
             </h2>
             <div class="faq-content">
+                @if($movie->videos[0]->source_type == 0)
                 <div class="plyr__video-embed" id="player">
                     <iframe
                         src="https://www.youtube.com/embed/{{ $movie->videos[0]->source_urls }}?rel=0&modestbranding=1&showinfo=0&iv_load_policy=3"
@@ -52,6 +53,7 @@ $cateName = implode(' - ', $cateName);
                         allow="autoplay">
                     </iframe>
                 </div>
+                @endif
             </div>
         </div>
         @endif
