@@ -6,7 +6,7 @@ if (!empty($movie->cates)) {
     }
 }
 $cateName = implode(' - ', $cateName);
-$videoUrl = "http://cdn.vponline.net/videos/".$video->source_urls.".m3u8";
+$videoUrl = "https://cdn.vponline.net/videos/".$video->source_urls.".m3u8";
 ?>
 @extends('layouts.front_master')
 
