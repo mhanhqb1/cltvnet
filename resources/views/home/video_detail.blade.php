@@ -187,12 +187,8 @@ $videoUrl = "https://cdn.vponline.net/videos/".$video->source_urls.".m3u8";
 @if ($video->source_type == 1)
 <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.15.4/video.min.js"></script>
 <script>
-    fetch('{{ $videoUrl }}')
-        .then(response => response.json())
-        .then(data => {
-            var player = videojs('my-video');
-            player.src({ src: data.video_url, type: 'application/x-mpegURL' });
-        });
+    var player = videojs('my-video');
+    player.src({ src: "{{ $videoUrl }}", type: 'application/x-mpegURL' });
 </script>
 @endif
 @endpush

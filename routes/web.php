@@ -38,6 +38,8 @@ Route::get('/dailymotion', [App\Http\Controllers\HomeController::class, 'dailymo
 Route::get('/okru', [App\Http\Controllers\HomeController::class, 'okru'])->name('home.okru');
 Route::get('/tv-show', [App\Http\Controllers\HomeController::class, 'tvShow'])->name('home.tv_show');
 
+Route::get('/get-video-url/{videoId}', [App\Http\Controllers\HomeController::class, 'getVideoUrl'])->name('home.get_video_url');
+
 Route::prefix('user')->name('user.')->group(function(){
     Route::middleware(['guest:web'])->group(function(){
         Route::view('/login', 'user.login')->name('login');

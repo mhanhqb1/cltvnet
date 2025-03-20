@@ -7,6 +7,7 @@ use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Models\MovieVideo;
 use App\Models\Movie;
+use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
@@ -265,5 +266,12 @@ class HomeController extends Controller
         if (!empty($movieId) && !empty($link)) {
             Movie::ultraNovelas($link, $movieId);
         }
+    }
+
+    public function getVideoUrl($videoId)
+    {
+        $videoUrl = "https://vponline.b-cdn.net/videos/".$videoId.".m3u8";
+        echo $videoUrl;
+        exit();
     }
 }
