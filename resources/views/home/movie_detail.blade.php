@@ -13,23 +13,6 @@ $cateName = implode(' - ', $cateName);
 
 @if (empty($movie->is_series))
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.css" />
-<script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "VideoObject",
-        "name": "{{ $pageTitle }}",
-        "description": "{{ $movie->description }}",
-        "thumbnailUrl": "{{ getImageUrl($movie->image) }}",
-        "uploadDate": "{{ date('Y-m-d\TH:i:s\Z', strtotime($movie->videos[0]->updated_at)) }}",
-        "contentUrl": "https://www.youtube.com/watch?v={{ $movie->videos[0]->source_urls }}",
-        "embedUrl": "https://www.youtube.com/embed/{{ $movie->videos[0]->source_urls }}",
-        "interactionStatistic": {
-            "@type": "InteractionCounter",
-            "interactionType": "https://schema.org/WatchAction",
-            "userInteractionCount": 1000
-        }
-    }
-</script>
 @endif
 @endPush
 
