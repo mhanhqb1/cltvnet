@@ -167,7 +167,7 @@ $cateName = implode(' - ', $cateName);
                                 </a>
                             </h4>
                         </div>
-                        <div aria-labelledby="headingOne" role="tabpanel" class="panel-collapse collapse in" id="collapseOne" aria-expanded="true">
+                        <div aria-labelledby="headingOne" role="tabpanel" class="panel-collapse collapse in movie-chapters" id="collapseOne" aria-expanded="true">
                             @foreach ($movie->videos as $video)
                             <div class="panel-body pprc">
                                 <a data-id="{{ $video->id }}" href="{{ route('home.video_detail', ['movieSlug' => $movie->slug, 'videoSlug' => $video->slug]) }}">
