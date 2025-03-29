@@ -196,6 +196,10 @@ $gaKey = env('GA_KEY');
             -webkit-transform: translate(-50%, -50%) rotate(180deg);
             transform: translate(-50%, -50%) rotate(180deg);
         }
+        .movie-chapters {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
         @media (max-width: 767px) {
             .list-movie {
                 grid-template-columns: repeat(2, 1fr);
@@ -208,6 +212,9 @@ $gaKey = env('GA_KEY');
             .add-image {
                 max-width: 100% !important;
                 margin-right: 0 !important;
+            }
+            .movie-chapters {
+                grid-template-columns: repeat(1, 1fr);
             }
         }
     </style>
