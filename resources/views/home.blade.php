@@ -19,7 +19,7 @@
                                     @endforeach
                                 @endif
                             </div>
-                            <center><a class="btn btn-block btn-border btn-post btn-danger" href="{{ route('home.new_movie') }}" target="_blank">VER TODAS</a></center>
+                            <center><a class="btn btn-block btn-border btn-post btn-danger" href="{{ route('home.series') }}" target="_blank">VER TODAS</a></center>
                         </fieldset>
                     </form>
                 </div>
