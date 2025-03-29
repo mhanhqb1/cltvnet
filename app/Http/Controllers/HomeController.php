@@ -29,8 +29,15 @@ class HomeController extends Controller
     public function index()
     {
         $limit = 16;
+        $seriesVideos = Movie::with('lastVideo', 'cates')
+            ->whereHas('lastVideo')
+            ->where('is_series', 1)
+            ->orderBy('updated_at', 'desc')
+            ->limit($limit)
+            ->get();
         $videos = Movie::with('lastVideo', 'cates')
             ->whereHas('lastVideo')
+            ->where('is_series', 0)
             ->orderBy('updated_at', 'desc')
             ->limit($limit)
             ->get();
@@ -44,7 +51,7 @@ class HomeController extends Controller
             'not_page' => 1,
             'cate_id' => 17
         ]);
-        return view('home', compact('videos', 'movies', 'movies2'));
+        return view('home', compact('videos', 'movies', 'movies2', 'seriesVideos'));
     }
 
     public function cateIndex($slug, Request $request)
