@@ -197,7 +197,7 @@ $gaKey = env('GA_KEY');
             transform: translate(-50%, -50%) rotate(180deg);
         }
         .movie-chapters {
-            display: grid;
+            display: grid !important;
             grid-template-columns: repeat(2, 1fr);
         }
         @media (max-width: 767px) {
