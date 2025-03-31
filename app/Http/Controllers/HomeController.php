@@ -31,6 +31,9 @@ class HomeController extends Controller
         $limit = 16;
         $seriesVideos = Movie::with('lastVideo', 'cates')
             ->whereHas('lastVideo')
+            ->whereHas('cates', function($q) {
+                $q->where('cates.id', '!=', 17);
+            })
             ->where('is_series', 1)
             ->orderBy('updated_at', 'desc')
             ->limit($limit)
