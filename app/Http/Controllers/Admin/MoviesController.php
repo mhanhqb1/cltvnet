@@ -32,7 +32,7 @@ class MoviesController extends Controller
 
     public function indexData()
     {
-        $data = $this->model->withCount('videos')->orderBy('id', 'desc');
+        $data = $this->model->orderBy('id', 'desc');
         return Datatables::of($data)
             ->addColumn('image', function($item) {
                 $html = '';
