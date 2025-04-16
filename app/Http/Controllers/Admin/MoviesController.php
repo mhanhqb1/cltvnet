@@ -186,6 +186,9 @@ class MoviesController extends Controller
         if (!empty($image)) {
             $item->image = $image;
         }
+        Movie::where('id', $request->movie_id)->update([
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
         if ($item->save()) {
             return redirect()->route('admin.movies.edit', $item->movie_id)->with('success', 'Dữ liệu đã được cập nhật thành công');
         }
