@@ -67,6 +67,7 @@
 <script>
     $(document).ready(function () {
         $('#dataTable').DataTable({
+            "order": [],
             "pageLength": 5,
             "searching": false,
             "bInfo": false,
