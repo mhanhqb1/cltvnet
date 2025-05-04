@@ -1,4 +1,5 @@
 <?php
+$showAds = env('SHOW_ADS');
 $cateName = [];
 if (!empty($movie->cates)) {
     foreach ($movie->cates as $v) {
@@ -11,7 +12,7 @@ $videoUrl = "https://cdn.vponline.net/novelas/".$video->source_urls.".m3u8";
 @extends('layouts.front_master')
 
 @push('css')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.15.4/video-js.min.css" rel="stylesheet">
+<link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
 @endpush
 
 @section('content')
@@ -37,7 +38,9 @@ $videoUrl = "https://cdn.vponline.net/novelas/".$video->source_urls.".m3u8";
                 </div>
                 @endif
                 <div class="col-sm-12">
-                    <video id="my-video" class="video-js vjs-default-skin" controls style="width: 100%;"></video>
+                    <video id="my-video" class="video-js vjs-default-skin" controls style="width: 100%;">
+                        <source src="{{ $videoUrl }}" type="application/x-mpegURL" />
+                    </video>
                 </div>
                 <div class="col-sm-12">
                     <div class="prev_next">
@@ -185,10 +188,25 @@ $videoUrl = "https://cdn.vponline.net/novelas/".$video->source_urls.".m3u8";
 
 @push('scripts')
 @if ($video->source_type == 1)
-<script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.15.4/video.min.js"></script>
+<script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
+<script src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/videojs-contrib-ads@latest/dist/videojs.ads.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/videojs-ima@latest/dist/videojs.ima.min.js"></script>
 <script>
     var player = videojs('my-video');
+    @if (!empty($showAds))
+        player.ima({
+            id: 'my-video',
+            adTagUrl: 'https://s.magsrv.com/v1/vast.php?idzone=5602444'
+        });
+        player.ready(function () {
+            player.ima.initializeAdDisplayContainer();
+            player.ima.requestAds();
+            player.play();
+        });
+    @else
     player.src({ src: "{{ $videoUrl }}", type: 'application/x-mpegURL' });
+    @endif
 </script>
 @endif
 @endpush
