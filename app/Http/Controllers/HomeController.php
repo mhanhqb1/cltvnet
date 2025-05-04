@@ -183,6 +183,7 @@ class HomeController extends Controller
             ->whereHas('cates', function ($q) use ($cateIds) {
                 $q->whereIn('cates.id', $cateIds);
             })
+            ->where('is_series', $movie->is_series)
             ->orderBy('year', 'desc')
             ->orderBy('id', 'desc')
             ->limit(30)

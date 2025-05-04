@@ -203,7 +203,7 @@ $showAds = env('SHOW_ADS');
         }
         .movie-chapters {
             display: grid !important;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(6, 1fr);
         }
         @media (max-width: 767px) {
             .list-movie {
@@ -219,7 +219,7 @@ $showAds = env('SHOW_ADS');
                 margin-right: 0 !important;
             }
             .movie-chapters {
-                grid-template-columns: repeat(1, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>

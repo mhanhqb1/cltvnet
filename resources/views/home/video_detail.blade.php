@@ -89,7 +89,7 @@ $videoUrl = "https://cdn.vponline.net/novelas/".$video->source_urls.".m3u8";
                             <div class="panel-body pprc {{ $v->slug == $video->slug ? 'active' : '' }}">
                                 <a data-id="{{ $v->id }}" href="{{ $v->slug == $video->slug ? 'javascript:void(0)' : route('home.video_detail', ['movieSlug' => $movie->slug, 'videoSlug' => $v->slug]) }}">
                                     <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">{{ $movie->name.' - '.$v->name }}</font>
+                                        <font style="vertical-align: inherit;">{{ $v->name }}</font>
                                     </font>
                                 </a>
                             </div>
