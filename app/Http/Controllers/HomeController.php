@@ -230,8 +230,9 @@ class HomeController extends Controller
             ->whereHas('cates', function ($q) use ($cateIds) {
                 $q->whereIn('cates.id', $cateIds);
             })
-            ->orderBy('year', 'desc')
-            ->orderBy('id', 'desc')
+            ->where('is_series', $movie->is_series)
+            // ->orderBy('year', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->limit(30)
             ->get();
         return view('home.video_detail', compact(
