@@ -184,8 +184,8 @@ class HomeController extends Controller
                 $q->whereIn('cates.id', $cateIds);
             })
             ->where('is_series', $movie->is_series)
-            ->orderBy('year', 'desc')
-            ->orderBy('id', 'desc')
+            // ->orderBy('year', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->limit(30)
             ->get();
         return view('home.movie_detail', compact('relatedMovies', 'movie', 'pageTitle', 'metaDescription', 'metaKeywords', 'pageImage'));
