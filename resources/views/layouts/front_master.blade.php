@@ -7,6 +7,7 @@ $metaKeywords = !empty($metaKeywords) ? $metaKeywords : 'ver películas online, 
 $pageImage = !empty($pageImage) ? $pageImage : asset('images/banner.jpg');
 $cacheVersion = env('CACHE_VER');
 $gaKey = env('GA_KEY');
+$showAds = env('SHOW_ADS');
 ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -16,6 +17,10 @@ $gaKey = env('GA_KEY');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="follow, index" />
     <meta name="googlebot" content="follow, index" />
+    @if (!empty($showAds))
+    <meta name="monetag" content="b0b392e42713fd5d3190119316a39457">
+    <meta name="6a97888e-site-verification" content="aeeb73fd895dfc52effd9200c7c429d1">
+    @endif
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}">
     <title>{{ $pageTitle }}</title>
 
