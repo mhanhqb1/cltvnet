@@ -219,7 +219,7 @@ $showAds = env('SHOW_ADS');
                 margin-right: 0 !important;
             }
             .movie-chapters {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
             }
         }
     </style>
