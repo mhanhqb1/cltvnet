@@ -197,13 +197,14 @@ $videoUrl = "https://cdn.vponline.net/novelas/".$video->source_urls.".m3u8";
     @if (!empty($showAds))
         player.ima({
             id: 'my-video',
-            adTagUrl: 'https://s.magsrv.com/v1/vast.php?idzone=5602444'
+            // adTagUrl: 'https://s.magsrv.com/v1/vast.php?idzone=5602444'
+            adTagUrl: 'https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_ad_samples&sz=640x480&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&env=vp&output=vast&unviewed_position_start=1'
         });
-        player.ready(function () {
-            player.ima.initializeAdDisplayContainer();
-            player.ima.requestAds();
-            player.play();
-        });
+        // player.ready(function () {
+        //     player.ima.initializeAdDisplayContainer();
+        //     player.ima.requestAds();
+        //     player.play();
+        // });
     @else
     player.src({ src: "{{ $videoUrl }}", type: 'application/x-mpegURL' });
     @endif
