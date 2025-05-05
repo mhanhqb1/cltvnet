@@ -20,6 +20,7 @@ $showAds = env('SHOW_ADS');
     @if (!empty($showAds))
     <meta name="monetag" content="b0b392e42713fd5d3190119316a39457">
     <meta name="6a97888e-site-verification" content="aeeb73fd895dfc52effd9200c7c429d1">
+    <script src="https://ligheechoagool.com/88/tag.min.js" data-zone="145756" async data-cfasync="false"></script>
     @endif
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}">
     <title>{{ $pageTitle }}</title>
