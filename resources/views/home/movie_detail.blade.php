@@ -172,7 +172,7 @@ $cateName = implode(' - ', $cateName);
                             <div class="panel-body pprc">
                                 <a data-id="{{ $video->id }}" href="{{ route('home.video_detail', ['movieSlug' => $movie->slug, 'videoSlug' => $video->slug]) }}">
                                     <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">{{ $movie->name.' - '.$video->name }}</font>
+                                        <font style="vertical-align: inherit;">{{ $video->name }}</font>
                                     </font>
                                 </a>
                             </div>
