@@ -28,7 +28,12 @@ class Movie extends Model
         'ultra_keyword',
         'thumb_image',
         'tusnovelas',
-        'twitch_id'
+        'twitch_id',
+        'user_id',
+        'danfra_url',
+        'danfra_crawl_at',
+        'danfra_new_chapter',
+        'new_chapter',
     ];
 
     public function videos()

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\Cate;
 use App\Models\Country;
 use App\Models\Movie;
 use App\Models\MovieCate;
 use App\Models\MovieVideo;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Yajra\Datatables\Datatables;
@@ -64,7 +66,8 @@ class MoviesController extends Controller
     {
         $cates = Cate::get();
         $countries = Country::get();
-        return view('admin.movies.add', compact('cates', 'countries'));
+        $users = Admin::get();
+        return view('admin.movies.add', compact('cates', 'countries', 'users'));
     }
 
     public function edit($id)
@@ -72,8 +75,9 @@ class MoviesController extends Controller
         $item = $this->model->find($id);
         $cates = Cate::get();
         $countries = Country::get();
+        $users = Admin::get();
         $movieCates = MovieCate::where('movie_id', $id)->pluck('cate_id')->toArray();
-        return view('admin.movies.edit', compact('item', 'cates', 'movieCates', 'countries'));
+        return view('admin.movies.edit', compact('item', 'cates', 'movieCates', 'countries', 'users'));
     }
 
     public function save(Request $request)
@@ -112,6 +116,8 @@ class MoviesController extends Controller
         $item->ultra_keyword = !empty($request->ultra_keyword) ? $request->ultra_keyword : '';
         $item->tusnovelas = !empty($request->tusnovelas) ? $request->tusnovelas : '';
         $item->twitch_id = !empty($request->twitch_id) ? $request->twitch_id : '';
+        $item->user_id = $request->get('user_id', 0);
+        $item->danfra_url = $request->get('danfra_url', '');
         if (!empty($image)) {
             $item->image = $image;
         }
@@ -186,9 +192,12 @@ class MoviesController extends Controller
         if (!empty($image)) {
             $item->image = $image;
         }
-        Movie::where('id', $request->movie_id)->update([
-            'updated_at' => date('Y-m-d H:i:s')
-        ]);
+        $movie = Movie::where('id', $request->movie_id)->first();
+        $movie->updated_at = date('Y-m-d H:i:s');
+        if ($item->position > $movie->new_chapter) {
+            $movie->new_chapter = $item->position;
+        }
+        $movie->save();
         if ($item->save()) {
             return redirect()->route('admin.movies.edit', $item->movie_id)->with('success', 'Dữ liệu đã được cập nhật thành công');
         }

@@ -101,6 +101,21 @@
                         <input type="text" id="inputYear" class="form-control" name="year" value="{{ old('year') }}">
                     </div>
                     <div class="form-group">
+                        <label for="danfra_url">Danfra URL</label>
+                        <input type="text" id="danfra_url" class="form-control" name="danfra_url" value="{{ old('danfra_url') }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Nguời tạo</label>
+                        <select class="form-control" name="user_id" data-placeholder="" style="width: 100%;">
+                            <option value="0">----</option>
+                            @if (!empty($users))
+                            @foreach ($users as $user)
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endforeach
+                            @endif
+                        </select>
+                    </div>
+                    <!-- <div class="form-group">
                         <label for="inputDailyVideoId">Dailymotion Video ID</label>
                         <input type="text" id="inputDailyVideoId" class="form-control" name="daily_video_id" value="{{ old('daily_video_id') }}">
                     </div>
@@ -119,7 +134,7 @@
                     <div class="form-group">
                         <label for="tusnovelas">Tusnovelas</label>
                         <input type="text" id="tusnovelas" class="form-control" name="tusnovelas" value="{{ old('tusnovelas') }}">
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
