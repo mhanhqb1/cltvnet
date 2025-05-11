@@ -51,6 +51,11 @@ class Movie extends Model
         return $this->belongsTo(Country::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(Admin::class, 'user_id', 'id');
+    }
+
     public function cates()
     {
         return $this->hasManyThrough(Cate::class, MovieCate::class, 'movie_id', 'id', 'id', 'cate_id');
