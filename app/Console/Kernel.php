@@ -22,6 +22,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('CaLaTV:UltraNovelasCrawler')->hourly();
         $schedule->command('CaLaTV:AddThumbImages')->hourly();
         // $schedule->command('CaLaTV:TusNovelasCrawler')->everyThreeMinutes();
+        $schedule->command('CaLaTV:GetDanfraNewChapter')->everyFiveMinutes();
     }
 
     /**

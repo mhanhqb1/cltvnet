@@ -32,8 +32,8 @@ class MovieVideo extends Model
         'hls' => 1,
     ];
     public static $sourceTypes = [
-        0 => 'Youtube',
         1 => 'HLS',
+        0 => 'Youtube',
     ];
 
     public function movie() {
