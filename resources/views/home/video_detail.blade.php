@@ -213,7 +213,7 @@ $videoUrl = getBunnySignUrl($path, $tokenKey, $baseUrl);;//"https://cdn.vponline
         //     player.play();
         // });
     @else
-    player.src({ src: "{{ $videoUrl }}", type: 'application/x-mpegURL' });
+    player.src({ src: "{!! $videoUrl !!}", type: 'application/x-mpegURL' });
     @endif
 </script>
 @endif
