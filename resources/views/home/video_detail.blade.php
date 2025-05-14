@@ -6,8 +6,11 @@ if (!empty($movie->cates)) {
         $cateName[] = '<a href="' . route('home.cate.index', $v->slug) . '">' . $v->name . '</a>';
     }
 }
+$tokenKey = env('BUNNY_TOKEN_KEY');
+$baseUrl = env('BUNNY_CDN_URL');
 $cateName = implode(' - ', $cateName);
-$videoUrl = "https://cdn.vponline.net/novelas/".$video->source_urls.".m3u8";
+$path = "/novelas/".$video->source_urls.".m3u8";
+$videoUrl = getBunnySignUrl($path, $tokenKey, $baseUrl);;//"https://cdn.vponline.net/novelas/".$video->source_urls.".m3u8";
 ?>
 @extends('layouts.front_master')
 

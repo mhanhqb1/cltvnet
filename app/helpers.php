@@ -117,3 +117,20 @@ function callApi($url)
     curl_close($curl);
     return json_decode($response, true);
 }
+
+function getBunnySignUrl($path, $tokenKey, $baseUrl, $expirySeconds = 3600)
+{
+    $expires = time() + $expirySeconds;
+
+    if (strpos($path, '/') !== 0) {
+        $path = '/' . $path;
+    }
+
+    $toSign = $expires . $path;
+
+    $hash = hash_hmac('sha256', $toSign, $tokenKey, true);
+
+    $token = rtrim(strtr(base64_encode($hash), '+/', '-_'), '=');
+
+    return $baseUrl . $path . '?token=' . $token . '&expires=' . $expires;
+}
