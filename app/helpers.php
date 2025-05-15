@@ -131,6 +131,38 @@ function getBunnySignUrl($path, $tokenKey, $baseUrl, $expirySeconds = 3600)
     $hash = hash_hmac('sha256', $toSign, $tokenKey, true);
 
     $token = rtrim(strtr(base64_encode($hash), '+/', '-_'), '=');
+    $query_array = array (
+        'token' => $token,
+        'expires' => $expires,
+    );
+    $query = http_build_query($query_array);
 
-    return $baseUrl . $path . '?token=' . $token . '&expires=' . $expires;
+    return $baseUrl . $path . "?" . $query;
+}
+
+function fetchWithCurl($url)
+{
+    $ch = curl_init();
+
+    curl_setopt_array($ch, [
+        CURLOPT_URL => html_entity_decode($url),
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_TIMEOUT => 10,
+        CURLOPT_SSL_VERIFYHOST => 2,
+        CURLOPT_SSL_VERIFYPEER => true,
+        CURLOPT_USERAGENT => 'Laravel-cURL',
+    ]);
+
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    if (curl_errno($ch) || $httpCode !== 200) {
+        \Log::error("cURL error: " . curl_error($ch));
+        curl_close($ch);
+        return false;
+    }
+
+    curl_close($ch);
+    return $response;
 }

@@ -10,7 +10,8 @@ $tokenKey = env('BUNNY_TOKEN_KEY');
 $baseUrl = env('BUNNY_CDN_URL');
 $cateName = implode(' - ', $cateName);
 $path = "/novelas/".$video->source_urls.".m3u8";
-$videoUrl = getBunnySignUrl($path, $tokenKey, $baseUrl);;//"https://cdn.vponline.net/novelas/".$video->source_urls.".m3u8";
+// $videoUrl = route('home.bunny_manifest', $video->source_urls.".m3u8");//"https://cdn.vponline.net/novelas/".$video->source_urls.".m3u8";
+$videoUrl = "https://cdn.vponline.net/novelas/".$video->source_urls.".m3u8";
 ?>
 @extends('layouts.front_master')
 
@@ -43,9 +44,9 @@ $videoUrl = getBunnySignUrl($path, $tokenKey, $baseUrl);;//"https://cdn.vponline
                     </div>
                 </div>
                 @endif
-                <div class="col-sm-12">
-                    <video id="my-video" class="video-js vjs-default-skin" controls style="width: 100%;">
-                        <source src="{{ $videoUrl }}" type="application/x-mpegURL" />
+                <div class="col-sm-12" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+                    <video id="my-video" class="video-js vjs-default-skin" controls style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden">
+                        <source src="{!! $videoUrl !!}" type="application/x-mpegURL" />
                     </video>
                 </div>
                 <div class="col-sm-12">
@@ -194,26 +195,57 @@ $videoUrl = getBunnySignUrl($path, $tokenKey, $baseUrl);;//"https://cdn.vponline
 
 @push('scripts')
 @if ($video->source_type == 1)
-<script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
-<script src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/videojs-contrib-ads@latest/dist/videojs.ads.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/videojs-ima@latest/dist/videojs.ima.min.js"></script>
+<!-- <script src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script> -->
+<script src="https://vjs.zencdn.net/8.9.0/video.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-ads@6.8.0/dist/videojs-contrib-ads.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/videojs-ima@1.9.0/dist/videojs.ima.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/videojs-vast-plugin@1.1.0/dist/videojs.vast.vpaid.min.js"></script> -->
+ <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
 <script>
-    var player = videojs('my-video');
+    const manifestUrl = "{!! $videoUrl !!}";
     @if (!empty($showAds))
-        player.ima({
-            id: 'my-video',
-            adTagUrl: 'https://s.magsrv.com/v1/vast.php?idzone=5602444',
-            debug: true
-            // adTagUrl: 'https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_ad_samples&sz=640x480&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&env=vp&output=vast&unviewed_position_start=1'
+        var player = fluidPlayer("my-video", {
+            vastOptions: {
+            adList: [
+                {
+                roll: "preRoll",
+                vastTag: "https://s.magsrv.com/v1/vast.php?idzone=5602444",
+                adText: "Advertisement",
+                },
+            ],
+            skipButtonCaption: "Skip ad",
+            skipButtonClickCaption: "You can skip this ad in [seconds]",
+            adCTAText: "Visit sponsor",
+            },
         });
+        // player.ima({
+        //     id: 'my-video',
+        //     adTagUrl: 'https://s.magsrv.com/v1/vast.php?idzone=5602444',
+        //     debug: true,
+        //     adsRenderingSettings: {
+        //         enablePreloading: true
+        //     }
+        //     // adTagUrl: 'https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_ad_samples&sz=640x480&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&env=vp&output=vast&unviewed_position_start=1'
+        // });
         // player.ready(function () {
         //     player.ima.initializeAdDisplayContainer();
         //     player.ima.requestAds();
         //     player.play();
         // });
+        // player.vastClient({
+        //     adTagUrl: 'https://s.magsrv.com/v1/vast.php?idzone=5602444', // Thay bằng zoneID thực
+        //     playAdAlways: true,
+        //     verbosity: 4,
+        //     adCancelTimeout: 5000, // thời gian chờ ad (ms)
+        //     adsEnabled: true
+        // });
+
+        // player.ready(function () {
+        //     player.play();
+        // });
     @else
-    player.src({ src: "{!! $videoUrl !!}", type: 'application/x-mpegURL' });
+        var player = videojs('my-video');
+        player.src({ src: manifestUrl, type: 'application/x-mpegURL' });
     @endif
 </script>
 @endif

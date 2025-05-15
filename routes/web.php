@@ -39,6 +39,8 @@ Route::get('/okru', [App\Http\Controllers\HomeController::class, 'okru'])->name(
 Route::get('/tv-show', [App\Http\Controllers\HomeController::class, 'tvShow'])->name('home.tv_show');
 
 Route::get('/get-video-url/{videoId}', [App\Http\Controllers\HomeController::class, 'getVideoUrl'])->name('home.get_video_url');
+Route::get('/stream/{fileName}', [\App\Http\Controllers\HomeController::class, 'bunnyManifest'])->name('home.bunny_manifest');;
+
 
 Route::prefix('user')->name('user.')->group(function(){
     Route::middleware(['guest:web'])->group(function(){

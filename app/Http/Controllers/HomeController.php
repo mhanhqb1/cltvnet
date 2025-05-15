@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\MovieVideo;
 use App\Models\Movie;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Response;
 
 class HomeController extends Controller
 {
@@ -285,5 +286,39 @@ class HomeController extends Controller
         $videoUrl = "https://vponline.b-cdn.net/videos/".$videoId.".m3u8";
         echo $videoUrl;
         exit();
+    }
+
+    public function bunnyManifest($fileName)
+    {
+        $tokenKey = env('BUNNY_TOKEN_KEY');
+        $baseUrl = env('BUNNY_CDN_URL');
+
+        $path = "/novelas/{$fileName}";
+        $url = getBunnySignUrl($path, $tokenKey, $baseUrl);
+        $response = Http::withHeaders([
+            'User-Agent' => 'Laravel-HttpClient'
+        ])->get($url);
+
+        if (!$response->successful()) {
+            print_r($response); die();
+            \Log::error("Request failed: " . $response->status());
+            return response("Not Found", 404);
+        }
+
+        $manifest = $response->body();
+        if (!$manifest) {
+            return response("Not Found", 404);
+        }
+
+        $signedManifest = preg_replace_callback('/^(.*\.hls)$/m', function ($matches) use ($path, $tokenKey, $baseUrl) {
+            $segment = trim($matches[1]);
+            $segmentPath = dirname($path) . '/' . $segment;
+
+            return getBunnySignUrl($segmentPath, $tokenKey, $baseUrl);
+        }, $manifest);
+
+        return Response::make($signedManifest, 200, [
+            'Content-Type' => 'application/vnd.apple.mpegurl'
+        ]);
     }
 }
