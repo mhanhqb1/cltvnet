@@ -208,14 +208,15 @@ $videoUrl = "https://cdn.vponline.net/novelas/".$video->source_urls.".m3u8";
             vastOptions: {
             adList: [
                 {
-                roll: "preRoll",
-                vastTag: "https://s.magsrv.com/v1/vast.php?idzone=5602444",
-                adText: "Advertisement",
+                    roll: "preRoll",
+                    vastTag: "https://s.magsrv.com/v1/vast.php?idzone=5602444",
+                    adText: "Advertisement",
                 },
             ],
-            skipButtonCaption: "Skip ad",
-            skipButtonClickCaption: "You can skip this ad in [seconds]",
-            adCTAText: "Visit sponsor",
+                skipButtonCaption: "Skip ad",
+                skipButtonClickCaption: "You can skip this ad in [seconds]",
+                adCTAText: "Visit sponsor",
+                verbosity: 4
             },
         });
         // player.ima({
