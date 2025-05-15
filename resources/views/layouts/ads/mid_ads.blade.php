@@ -2,7 +2,7 @@
 $showAds = env('SHOW_ADS');
 ?>
 @if($showAds)
-<div class="ad-pc" style="margin: 10px auto; width: fit-content;">
+<div class="ad-pc" style="margin: 10px auto; width: fit-content; display:flex; gap: 10px;">
     <ins class="eas6a97888e2" data-zoneid="5611518"></ins>
     <ins class="eas6a97888e2" data-zoneid="5611508"></ins>
 </div>
