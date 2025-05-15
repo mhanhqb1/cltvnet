@@ -81,11 +81,11 @@ $cateName = implode(' - ', $cateName);
                 @endif
             </div>
         </div>
-        @include('layouts.ads.mid_ads')
+        @include('layouts.ads.native_ads')
         @if(!$relatedMovies->isEmpty())
             @include('layouts.related_movies', ['relatedMovies' => $relatedMovies])
         @endif
-
+        @include('layouts.ads.mid_ads')
         <div class="inner-box category-content" style="padding-bottom: 10px;">
             <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;"> <i class="fa fa-tags"></i>
                 <font style="vertical-align: inherit;">

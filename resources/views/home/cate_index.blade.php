@@ -8,7 +8,7 @@
                 <i class="fa fa-list"></i>
                 {{ 'Categoría: '.$pageTitle }}
             </h2>
-            @include('layouts.ads.mid_ads')
+            @include('layouts.ads.native_ads')
             <div class="row">
                 @if (!$movies->isEmpty())
                 <div class="cat-wrap">
@@ -18,6 +18,7 @@
                 </div>
                 @endif
             </div>
+            @include('layouts.ads.mid_ads')
             <div class="row">
                 <center>
                 {{ $movies->links('pagination::bootstrap-4') }}
