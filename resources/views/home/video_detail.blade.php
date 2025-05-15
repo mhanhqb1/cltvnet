@@ -209,7 +209,7 @@ $videoUrl = "https://cdn.vponline.net/novelas/".$video->source_urls.".m3u8";
             adList: [
                 {
                     roll: "preRoll",
-                    vastTag: "https://s.magsrv.com/v1/vast.php?idzone=5602444",
+                    vastTag: "https://s.magsrv.com/v1/vast.php?idzone=5611452",
                     adText: "Advertisement",
                 },
             ],
