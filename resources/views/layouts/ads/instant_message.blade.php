@@ -2,5 +2,10 @@
 $showAds = env('SHOW_ADS');
 ?>
 @if($showAds)
-<ins class="eas6a97888e6" data-zoneid="5611710"></ins>
+<div class="ad-pc">
+    <ins class="eas6a97888e6" data-zoneid="5611710"></ins>
+</div>
+<div class="ad-mobile">
+    <ins class="eas6a97888e14" data-zoneid="5611714"></ins>
+</div>
 @endif
