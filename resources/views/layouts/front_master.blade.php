@@ -20,6 +20,7 @@ $showAds = env('SHOW_ADS');
     @if (!empty($showAds))
     <meta name="monetag" content="b0b392e42713fd5d3190119316a39457">
     <meta name="6a97888e-site-verification" content="aeeb73fd895dfc52effd9200c7c429d1">
+    <meta http-equiv="Delegate-CH" content="Sec-CH-UA https://s.magsrv.com; Sec-CH-UA-Mobile https://s.magsrv.com; Sec-CH-UA-Arch https://s.magsrv.com; Sec-CH-UA-Model https://s.magsrv.com; Sec-CH-UA-Platform https://s.magsrv.com; Sec-CH-UA-Platform-Version https://s.magsrv.com; Sec-CH-UA-Bitness https://s.magsrv.com; Sec-CH-UA-Full-Version-List https://s.magsrv.com; Sec-CH-UA-Full-Version https://s.magsrv.com;">
     <!-- <script src="https://ligheechoagool.com/88/tag.min.js" data-zone="145756" async data-cfasync="false"></script> -->
     @endif
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}">
