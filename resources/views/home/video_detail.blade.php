@@ -66,7 +66,6 @@ $videoUrl = "https://cdn.vponline.net/novelas/".$video->source_urls.".m3u8";
                 </div>
             </div>
         </div>
-        @include('layouts.ads.top_ads')
         @if(!$relatedMovies->isEmpty())
         @include('layouts.related_movies', ['relatedMovies' => $relatedMovies])
         @endif
