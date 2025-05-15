@@ -26,7 +26,7 @@
             </div>
         </div>
     </div>
-
+    @include('layouts.ads.mid_ads')
     <div class="col-sm-12">
         <div class="inner-box category-content" style="padding-bottom:20px;">
             <h2 class="title-2" style="color:#cd1d1f; font-weight:bold;">

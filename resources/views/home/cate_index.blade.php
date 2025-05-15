@@ -8,6 +8,7 @@
                 <i class="fa fa-list"></i>
                 {{ 'Categoría: '.$pageTitle }}
             </h2>
+            @include('layouts.ads.mid_ads')
             <div class="row">
                 @if (!$movies->isEmpty())
                 <div class="cat-wrap">

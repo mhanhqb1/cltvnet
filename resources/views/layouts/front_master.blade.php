@@ -22,6 +22,7 @@ $showAds = env('SHOW_ADS');
     <meta name="6a97888e-site-verification" content="aeeb73fd895dfc52effd9200c7c429d1">
     <meta http-equiv="Delegate-CH" content="Sec-CH-UA https://s.magsrv.com; Sec-CH-UA-Mobile https://s.magsrv.com; Sec-CH-UA-Arch https://s.magsrv.com; Sec-CH-UA-Model https://s.magsrv.com; Sec-CH-UA-Platform https://s.magsrv.com; Sec-CH-UA-Platform-Version https://s.magsrv.com; Sec-CH-UA-Bitness https://s.magsrv.com; Sec-CH-UA-Full-Version-List https://s.magsrv.com; Sec-CH-UA-Full-Version https://s.magsrv.com;">
     <!-- <script src="https://ligheechoagool.com/88/tag.min.js" data-zone="145756" async data-cfasync="false"></script> -->
+     <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
     @endif
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}">
     <title>{{ $pageTitle }}</title>
@@ -224,6 +225,20 @@ $showAds = env('SHOW_ADS');
                 grid-template-columns: repeat(3, 1fr);
             }
         }
+        .ad-pc, .ad-mobile {
+            display: none;
+        }
+
+        @media (min-width: 769px) {
+            .ad-pc {
+                display: block;
+            }
+        }
+        @media (max-width: 768px) {
+            .ad-mobile {
+                display: block;
+            }
+        }
     </style>
     @stack('css')
 
@@ -272,6 +287,13 @@ $showAds = env('SHOW_ADS');
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{{ asset('/js/scripts.js?'.$cacheVersion) }}"></script>
     @stack('scripts')
+    @if ($showAds)
+    <script>
+        (AdProvider = window.AdProvider || []).push({
+            "serve": {}
+        });
+    </script>
+    @endif
     @include('layouts.ads.popup_under')
 </body>
 
