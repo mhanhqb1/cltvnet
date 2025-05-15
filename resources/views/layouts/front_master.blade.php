@@ -246,6 +246,7 @@ $showAds = env('SHOW_ADS');
             @include('layouts.front_header')
         </div>
         <div class="main-container">
+            @include('layouts.ads.top_ads')
             <div class="container">
                 <a href="{{ url('/') }}" class="bartop">
                     Welcome to <strong>{{ $appName }}</strong>
