@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CatesController;
 use App\Http\Controllers\Admin\MoviesController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CountriesController;
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,7 +64,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
     });
 
     Route::middleware(['auth:admin'])->group(function() {
-        Route::view('/', 'admin.home')->name('home');
+        Route::get('/', [DashboardController::class, 'index'])->name('home');
         Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 
         // Post
