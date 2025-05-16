@@ -13,7 +13,7 @@ class DashboardController extends Controller
         $userName = $user->name;
         $movies = Movie::where('is_series', 1)
             ->whereNotNull('danfra_url')
-            ->whereColumn('danfra_new_chapter', '>', 'new_chapter');
+            ->whereColumn('danfra_new_chapter', '!=', 'new_chapter');
         if ($userName != 'admin') {
             $movies = $movies->where('user_id', $user->id);
         }
