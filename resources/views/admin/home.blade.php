@@ -26,6 +26,7 @@
                     <th>Tên phim</th>
                     <th>Tập hiện tại</th>
                     <th>Tập mới bên Danfra</th>
+                    <th>Người tạo</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,6 +36,7 @@
                     <td><a href="{{ route('admin.movies.edit', $movie->id) }}" target="_blank">{{ $movie->name }}</a></td>
                     <td>{{ $movie->new_chapter }}</td>
                     <td><a href="{{ $movie->danfra_url }}" target="_blank">{{ $movie->danfra_new_chapter }}</a></td>
+                    <td>{{ $movie->user->name }}</td>
                 </tr>
                 @endforeach
             </tbody>

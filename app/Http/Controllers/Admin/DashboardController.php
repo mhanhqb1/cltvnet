@@ -11,7 +11,8 @@ class DashboardController extends Controller
     public function index(Request $request) {
         $user = auth('admin')->user();
         $userName = $user->name;
-        $movies = Movie::where('is_series', 1)
+        $movies = Movie::with('user')
+            ->where('is_series', 1)
             ->whereNotNull('danfra_url')
             ->whereColumn('danfra_new_chapter', '!=', 'new_chapter');
         if ($userName != 'admin') {
