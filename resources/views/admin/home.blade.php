@@ -36,7 +36,7 @@
                     <td><a href="{{ route('admin.movies.edit', $movie->id) }}" target="_blank">{{ $movie->name }}</a></td>
                     <td>{{ $movie->new_chapter }}</td>
                     <td><a href="{{ $movie->danfra_url }}" target="_blank">{{ $movie->danfra_new_chapter }}</a></td>
-                    <td>{{ $movie->user->name }}</td>
+                    <td>{{ !empty($movie->user->name) ? $movie->user->name : '-' }}</td>
                 </tr>
                 @endforeach
             </tbody>
