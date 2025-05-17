@@ -9,7 +9,7 @@
                     <td>#</td>
                     <td>Image</td>
                     <td>Name</td>
-                    <td>Description</td>
+                    <td>Thể loại</td>
                     <td>New Chapter</td>
                     <td>Danfra New Chapter</td>
                     <td>Người tạo</td>
@@ -32,7 +32,7 @@ $(function() {
             { data: 'id', name: 'id' },
             { data: 'image', name: 'image', orderable: false, searchable: false },
             { data: 'name', name: 'name' },
-            { data: 'description', name: 'description' },
+            { data: 'is_series', name: 'is_series' },
             { data: 'new_chapter', name: 'new_chapter' },
             { data: 'danfra_new_chapter', name: 'danfra_new_chapter' },
             { data: 'user_name', name: 'user_name' },

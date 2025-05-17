@@ -51,6 +51,9 @@ class MoviesController extends Controller
             ->addColumn('user_name', function($item) {
                 return !empty($item->user->name) ? $item->user->name : '-';
             })
+            ->addColumn('is_series', function($item) {
+                return !empty($item->is_series) ? 'Phim bộ' : 'Phim lẻ';
+            })
             ->addColumn('action', function ($item) {
                 return '<a href="'.route('admin.movies.edit', $item->id).'" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> Edit</a>
                 <a href="'.route('admin.movies.addVideo', ['movie_id' => $item->id]).'" class="btn btn-xs btn-info"><i class="fas fa-edit"></i> Add video</a>
@@ -61,7 +64,7 @@ class MoviesController extends Controller
                 </form>
                 ';
             })
-            ->rawColumns(['image', 'action', 'user_name'])
+            ->rawColumns(['image', 'action', 'user_name', 'is_series'])
             ->make(true);
     }
 
