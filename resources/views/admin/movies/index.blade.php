@@ -10,6 +10,9 @@
                     <td>Image</td>
                     <td>Name</td>
                     <td>Description</td>
+                    <td>New Chapter</td>
+                    <td>Danfra New Chapter</td>
+                    <td>Người tạo</td>
                     <td style="width: 180px;"></td>
                 </tr>
             </thead>
@@ -30,6 +33,9 @@ $(function() {
             { data: 'image', name: 'image', orderable: false, searchable: false },
             { data: 'name', name: 'name' },
             { data: 'description', name: 'description' },
+            { data: 'new_chapter', name: 'new_chapter' },
+            { data: 'danfra_new_chapter', name: 'danfra_new_chapter' },
+            { data: 'user_name', name: 'user_name' },
             { data: 'action', name: 'action', orderable: false, searchable: false }
         ]
     });
