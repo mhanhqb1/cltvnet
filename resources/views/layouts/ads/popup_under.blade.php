@@ -13,15 +13,16 @@ $showAds = env('SHOW_ADS');
                 "popup_force": false,
                 "chrome_enabled": true,
                 "new_tab": false,
-                "frequency_period": 10,
+                "frequency_period": 5,
                 "frequency_count": 1,
                 "trigger_method": 4,
                 "trigger_class": "class-1",
                 "trigger_delay": 0,
-                "capping_enabled": false,
+                "capping_enabled": true,
                 "tcf_enabled": true,
                 "only_inline": false
             };
+
 
             window.document.querySelectorAll || (document.querySelectorAll = document.body.querySelectorAll = Object.querySelectorAll = function(e, o, t, i, n) {
                 var r = document,
@@ -408,15 +409,16 @@ $showAds = env('SHOW_ADS');
                 "popup_force": false,
                 "chrome_enabled": true,
                 "new_tab": false,
-                "frequency_period": 10,
+                "frequency_period": 5,
                 "frequency_count": 1,
                 "trigger_method": 4,
                 "trigger_class": "class-1",
                 "trigger_delay": 0,
-                "capping_enabled": false,
+                "capping_enabled": true,
                 "tcf_enabled": true,
                 "only_inline": false
             };
+
 
             window.document.querySelectorAll || (document.querySelectorAll = document.body.querySelectorAll = Object.querySelectorAll = function(e, o, t, i, n) {
                 var r = document,
