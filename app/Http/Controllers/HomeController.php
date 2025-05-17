@@ -29,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $limit = 16;
+        $limit = 32;
         $seriesVideos = Movie::with('lastVideo', 'cates')
             ->whereHas('lastVideo')
             ->whereHas('cates', function($q) {
