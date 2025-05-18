@@ -10,7 +10,7 @@ $gaKey = env('GA_KEY');
 $showAds = env('SHOW_ADS');
 ?>
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
@@ -25,6 +25,7 @@ $showAds = env('SHOW_ADS');
     <!-- <script src="https://ligheechoagool.com/88/tag.min.js" data-zone="145756" async data-cfasync="false"></script> -->
      <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
     @endif
+    <link rel="alternate" href="url" hreflang="es" />
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}">
     <title>{{ $pageTitle }}</title>
 
