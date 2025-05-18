@@ -50,6 +50,7 @@ $videoUrl = "https://cdn.vponline.net/novelas/".$video->source_urls.".m3u8";
                         <source src="{!! $videoUrl !!}" type="application/x-mpegURL" />
                     </video>
                 </div>
+                @include('layouts.share_sns')
                 <div class="col-sm-12">
                     <div class="prev_next">
                         @if (!empty($preVideo))
