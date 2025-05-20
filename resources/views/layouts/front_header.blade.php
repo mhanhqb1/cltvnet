@@ -14,7 +14,7 @@ $countries = getFrontCountries();
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <form action="{{ route('home.search') }}" method="GET">
-                        <div class="row search-row" style="margin-top:auto; max-width:auto;">
+                        <div class="row search-row no-popunder" style="margin-top:auto; max-width:auto;">
                             <div class="col-lg-8 col-sm-8 search-col">
                                 <input type="text" name="q" id="autocomplete-ajax" class="keywords form-control input-rel searchtag-input " placeholder="¿Qué serie estás buscando?" value="{{ !empty($_GET['q']) ? $_GET['q'] : '' }}" autocomplete="off" style="width:400px; margin-top:-3px; font-size:15px;" required>
                             </div>
