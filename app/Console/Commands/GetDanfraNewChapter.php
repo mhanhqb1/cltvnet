@@ -44,6 +44,7 @@ class GetDanfraNewChapter extends Command
                 echo $movie->name.PHP_EOL;
                 $movie->danfra_new_chapter = $this->danfraCrawler($movie->danfra_url);
                 $movie->danfra_crawl_at = date('Y-m-d H:i:s');
+                $movie->updated_at = $movie->updated_at;
                 $movie->save();
             }
         }
