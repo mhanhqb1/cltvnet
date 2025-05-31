@@ -1,5 +1,5 @@
 <?php
-$showAds = env('SHOW_ADS');
+$showAds = 0;//env('SHOW_ADS');
 ?>
 @if($showAds)
 <div style="margin: 10px auto; width: fit-content;">

@@ -18,12 +18,13 @@ $showAds = env('SHOW_ADS');
     <meta name="robots" content="follow, index" />
     <meta name="googlebot" content="follow, index" />
     @if (!empty($showAds))
-    <meta name="clckd" content="199f65a40cdc2d3ce1192016884429c4" />
+    <meta name="939d67e81fe0503ba3c237bd0cf52014f1879d94" content="939d67e81fe0503ba3c237bd0cf52014f1879d94" />
+    <!-- <meta name="clckd" content="199f65a40cdc2d3ce1192016884429c4" />
     <meta name="monetag" content="b0b392e42713fd5d3190119316a39457">
     <meta name="6a97888e-site-verification" content="aeeb73fd895dfc52effd9200c7c429d1">
     <meta http-equiv="Delegate-CH" content="Sec-CH-UA https://s.magsrv.com; Sec-CH-UA-Mobile https://s.magsrv.com; Sec-CH-UA-Arch https://s.magsrv.com; Sec-CH-UA-Model https://s.magsrv.com; Sec-CH-UA-Platform https://s.magsrv.com; Sec-CH-UA-Platform-Version https://s.magsrv.com; Sec-CH-UA-Bitness https://s.magsrv.com; Sec-CH-UA-Full-Version-List https://s.magsrv.com; Sec-CH-UA-Full-Version https://s.magsrv.com;">
-    <!-- <script src="https://ligheechoagool.com/88/tag.min.js" data-zone="145756" async data-cfasync="false"></script> -->
-     <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+
+     <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> -->
     @endif
     <link rel="alternate" href="url" hreflang="es" />
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}">
@@ -291,11 +292,11 @@ $showAds = env('SHOW_ADS');
     <script src="{{ asset('/js/scripts.js?'.$cacheVersion) }}"></script>
     @stack('scripts')
     @if ($showAds)
-    <script>
+    <!-- <script>
         (AdProvider = window.AdProvider || []).push({
             "serve": {}
         });
-    </script>
+    </script> -->
     @endif
     @include('layouts.ads.popup_under')
 </body>
