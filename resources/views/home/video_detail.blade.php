@@ -206,67 +206,72 @@ $videoUrl = "https://cdn.vponline.net/novelas/".$video->source_urls.".m3u8";
 <script src="{{ asset('js/jwplayer.js') }}"></script>
 <script>
     const manifestUrl = "{!! $videoUrl !!}";
+    if (window.innerWidth > 768) {
     @if (!empty($showAds))
         jwplayer.key="3SYLbRo6MN5cBDxwpZh3dl1gb0lMTUOos31M5hoAlf4=";
         jwplayer("my-video").setup({
             file: manifestUrl,
-            // image: "https://cdn.yourdomain.com/thumbnail.jpg", {{-- Thumbnail preview --}}
+            // image: "https://cdn.yourdomain.com/thumbnail.jpg",
             width: "100%",
             aspectratio: "16:9",
             autostart: false,
             controls: true,
-            // advertising: {
-            //     client: "vast",
-            //     skipoffset: 5, // Cho phép bỏ qua sau 5s
-            //     vpaidmode: "insecure",
-            //     schedule: [
-            //         {
-            //             offset: "pre", // Pre-roll
-            //             tag: "{!! $vastUrl !!}"
-            //         },
-            //         {
-            //             offset: "10%",
-            //             tag: "{!! $vastUrl !!}"
-            //         },
-            //         {
-            //             offset: "20%",
-            //             tag: "{!! $vastUrl !!}"
-            //         },
-            //         {
-            //             offset: "30%",
-            //             tag: "{!! $vastUrl !!}"
-            //         },
-            //         {
-            //             offset: "40%",
-            //             tag: "{!! $vastUrl !!}"
-            //         },
-            //         {
-            //             offset: "50%",
-            //             tag: "{!! $vastUrl !!}"
-            //         },
-            //         {
-            //             offset: "60%",
-            //             tag: "{!! $vastUrl !!}"
-            //         },
-            //         {
-            //             offset: "70%",
-            //             tag: "{!! $vastUrl !!}"
-            //         },
-            //         {
-            //             offset: "80%",
-            //             tag: "{!! $vastUrl !!}"
-            //         },
-            //         {
-            //             offset: "post", // Post-roll
-            //             tag: "{!! $vastUrl !!}"
-            //         }
-            //     ]
-            // }
+            advertising: {
+                client: "vast",
+                skipoffset: 5, // Cho phép bỏ qua sau 5s
+                vpaidmode: "insecure",
+                schedule: [
+                    {
+                        offset: "pre", // Pre-roll
+                        tag: "{!! $vastUrl !!}"
+                    },
+                    {
+                        offset: "10%",
+                        tag: "{!! $vastUrl !!}"
+                    },
+                    {
+                        offset: "20%",
+                        tag: "{!! $vastUrl !!}"
+                    },
+                    {
+                        offset: "30%",
+                        tag: "{!! $vastUrl !!}"
+                    },
+                    {
+                        offset: "40%",
+                        tag: "{!! $vastUrl !!}"
+                    },
+                    {
+                        offset: "50%",
+                        tag: "{!! $vastUrl !!}"
+                    },
+                    {
+                        offset: "60%",
+                        tag: "{!! $vastUrl !!}"
+                    },
+                    {
+                        offset: "70%",
+                        tag: "{!! $vastUrl !!}"
+                    },
+                    {
+                        offset: "80%",
+                        tag: "{!! $vastUrl !!}"
+                    },
+                    {
+                        offset: "post", // Post-roll
+                        tag: "{!! $vastUrl !!}"
+                    }
+                ]
+            }
         });
     @else
         var player = videojs('my-video');
         player.src({ src: manifestUrl, type: 'application/x-mpegURL' });
     @endif
+    } else {
+        var player = videojs('my-video');
+        player.src({ src: manifestUrl, type: 'application/x-mpegURL' });
+    }
 </script>
 @endif
 @endpush
