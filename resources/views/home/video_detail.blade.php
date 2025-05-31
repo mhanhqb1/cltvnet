@@ -1,6 +1,6 @@
 <?php
 $showAds = env('SHOW_ADS');
-$vastUrl = 'https://s.magsrv.com/v1/vast.php?idzone=5611452&type=vast';
+$vastUrl = 'https://unwritten-cash.com/d/mAF.z/dyGKNtvyZZGyUQ/Uenmk9/uDZRULlVkpP/TEYGzSOTTKUrwGN/Dng/t-NQj/MF5QNtT/AF0oO/Qv';
 $cateName = [];
 if (!empty($movie->cates)) {
     foreach ($movie->cates as $v) {
