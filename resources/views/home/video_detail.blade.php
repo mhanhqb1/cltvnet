@@ -215,79 +215,54 @@ $videoUrl = "https://cdn.vponline.net/novelas/".$video->source_urls.".m3u8";
             aspectratio: "16:9",
             autostart: false,
             controls: true,
-            advertising: {
-                client: "vast",
-                skipoffset: 5, // Cho phép bỏ qua sau 5s
-                vpaidmode: "insecure",
-                schedule: [
-                    {
-                        offset: "pre", // Pre-roll
-                        tag: "{!! $vastUrl !!}"
-                    },
-                    {
-                        offset: "10%",
-                        tag: "{!! $vastUrl !!}"
-                    },
-                    {
-                        offset: "20%",
-                        tag: "{!! $vastUrl !!}"
-                    },
-                    {
-                        offset: "30%",
-                        tag: "{!! $vastUrl !!}"
-                    },
-                    {
-                        offset: "40%",
-                        tag: "{!! $vastUrl !!}"
-                    },
-                    {
-                        offset: "50%",
-                        tag: "{!! $vastUrl !!}"
-                    },
-                    {
-                        offset: "60%",
-                        tag: "{!! $vastUrl !!}"
-                    },
-                    {
-                        offset: "70%",
-                        tag: "{!! $vastUrl !!}"
-                    },
-                    {
-                        offset: "80%",
-                        tag: "{!! $vastUrl !!}"
-                    },
-                    {
-                        offset: "post", // Post-roll
-                        tag: "{!! $vastUrl !!}"
-                    }
-                ]
-            }
+            // advertising: {
+            //     client: "vast",
+            //     skipoffset: 5, // Cho phép bỏ qua sau 5s
+            //     vpaidmode: "insecure",
+            //     schedule: [
+            //         {
+            //             offset: "pre", // Pre-roll
+            //             tag: "{!! $vastUrl !!}"
+            //         },
+            //         {
+            //             offset: "10%",
+            //             tag: "{!! $vastUrl !!}"
+            //         },
+            //         {
+            //             offset: "20%",
+            //             tag: "{!! $vastUrl !!}"
+            //         },
+            //         {
+            //             offset: "30%",
+            //             tag: "{!! $vastUrl !!}"
+            //         },
+            //         {
+            //             offset: "40%",
+            //             tag: "{!! $vastUrl !!}"
+            //         },
+            //         {
+            //             offset: "50%",
+            //             tag: "{!! $vastUrl !!}"
+            //         },
+            //         {
+            //             offset: "60%",
+            //             tag: "{!! $vastUrl !!}"
+            //         },
+            //         {
+            //             offset: "70%",
+            //             tag: "{!! $vastUrl !!}"
+            //         },
+            //         {
+            //             offset: "80%",
+            //             tag: "{!! $vastUrl !!}"
+            //         },
+            //         {
+            //             offset: "post", // Post-roll
+            //             tag: "{!! $vastUrl !!}"
+            //         }
+            //     ]
+            // }
         });
-        // player.ima({
-        //     id: 'my-video',
-        //     adTagUrl: 'https://s.magsrv.com/v1/vast.php?idzone=5602444',
-        //     debug: true,
-        //     adsRenderingSettings: {
-        //         enablePreloading: true
-        //     }
-        //     // adTagUrl: 'https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_ad_samples&sz=640x480&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&env=vp&output=vast&unviewed_position_start=1'
-        // });
-        // player.ready(function () {
-        //     player.ima.initializeAdDisplayContainer();
-        //     player.ima.requestAds();
-        //     player.play();
-        // });
-        // player.vastClient({
-        //     adTagUrl: 'https://s.magsrv.com/v1/vast.php?idzone=5602444', // Thay bằng zoneID thực
-        //     playAdAlways: true,
-        //     verbosity: 4,
-        //     adCancelTimeout: 5000, // thời gian chờ ad (ms)
-        //     adsEnabled: true
-        // });
-
-        // player.ready(function () {
-        //     player.play();
-        // });
     @else
         var player = videojs('my-video');
         player.src({ src: manifestUrl, type: 'application/x-mpegURL' });
