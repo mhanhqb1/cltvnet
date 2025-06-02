@@ -19,6 +19,7 @@ $videoUrl = "https://cdn.vponline.net/novelas/".$video->source_urls.".m3u8";
 @push('css')
 <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
 @if (!empty($showAds))
+<meta name="referrer" content="no-referrer-when-downgrade" />
 <!-- <meta http-equiv="Delegate-CH" content="Sec-CH-UA https://s.magsrv.com; Sec-CH-UA-Mobile https://s.magsrv.com; Sec-CH-UA-Arch https://s.magsrv.com; Sec-CH-UA-Model https://s.magsrv.com; Sec-CH-UA-Platform https://s.magsrv.com; Sec-CH-UA-Platform-Version https://s.magsrv.com; Sec-CH-UA-Bitness https://s.magsrv.com; Sec-CH-UA-Full-Version-List https://s.magsrv.com; Sec-CH-UA-Full-Version https://s.magsrv.com;"> -->
 @endif
 @endpush
